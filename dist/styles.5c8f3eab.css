@@ -1,0 +1,333 @@
+/* open-sans-regular - cyrillic_cyrillic-ext_latin */
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/open-sans-v16-cyrillic_cyrillic-ext_latin-regular.2e643340.eot");
+  /* IE9 Compat Modes */
+  src: local("Open Sans Regular"), local("OpenSans-Regular"), url("/open-sans-v16-cyrillic_cyrillic-ext_latin-regular.2e643340.eot?#iefix") format("embedded-opentype"), url("/open-sans-v16-cyrillic_cyrillic-ext_latin-regular.6049d29b.woff2") format("woff2"), url("/open-sans-v16-cyrillic_cyrillic-ext_latin-regular.e196c079.woff") format("woff"), url("/open-sans-v16-cyrillic_cyrillic-ext_latin-regular.7b0ea896.ttf") format("truetype"), url("/open-sans-v16-cyrillic_cyrillic-ext_latin-regular.4f10a9c2.svg#OpenSans") format("svg");
+  /* Legacy iOS */
+}
+/* open-sans-700 - cyrillic_cyrillic-ext_latin */
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 700;
+  src: url("/open-sans-v16-cyrillic_cyrillic-ext_latin-700.36c77f4a.eot");
+  /* IE9 Compat Modes */
+  src: local("Open Sans Bold"), local("OpenSans-Bold"), url("/open-sans-v16-cyrillic_cyrillic-ext_latin-700.36c77f4a.eot?#iefix") format("embedded-opentype"), url("/open-sans-v16-cyrillic_cyrillic-ext_latin-700.22fc9f23.woff2") format("woff2"), url("/open-sans-v16-cyrillic_cyrillic-ext_latin-700.945f3d6e.woff") format("woff"), url("/open-sans-v16-cyrillic_cyrillic-ext_latin-700.246ff39c.ttf") format("truetype"), url("/open-sans-v16-cyrillic_cyrillic-ext_latin-700.d3c908f3.svg#OpenSans") format("svg");
+  /* Legacy iOS */
+}
+/* open-sans-800 - cyrillic_cyrillic-ext_latin */
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 800;
+  src: url("/open-sans-v16-cyrillic_cyrillic-ext_latin-800.b002957f.eot");
+  /* IE9 Compat Modes */
+  src: local("Open Sans ExtraBold"), local("OpenSans-ExtraBold"), url("/open-sans-v16-cyrillic_cyrillic-ext_latin-800.b002957f.eot?#iefix") format("embedded-opentype"), url("/open-sans-v16-cyrillic_cyrillic-ext_latin-800.ae2d6028.woff2") format("woff2"), url("/open-sans-v16-cyrillic_cyrillic-ext_latin-800.6b3a60fd.woff") format("woff"), url("/open-sans-v16-cyrillic_cyrillic-ext_latin-800.8d676e4c.ttf") format("truetype"), url("/open-sans-v16-cyrillic_cyrillic-ext_latin-800.8009bff2.svg#OpenSans") format("svg");
+  /* Legacy iOS */
+}
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+button {
+  background: transparent;
+  outline: none;
+  border: none;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+  color: #000000;
+  display: block;
+}
+
+.main-screen {
+  background-color: #e3eaec;
+  padding: 1.5em;
+}
+
+.main-screen__inner {
+  z-index: 1;
+  padding: 1.5em 3.5em 160px;
+  border: 20px solid #fff;
+  position: relative;
+}
+
+.main-screen__burger {
+  width: 40px;
+  height: 22px;
+  cursor: pointer;
+  position: absolute;
+  top: 79px;
+  right: 42px;
+  transition: 0.2s linear;
+}
+.main-screen__burger:hover li:nth-child(2), .main-screen__burger:hover li:last-child {
+  width: 100%;
+}
+.main-screen__burger li {
+  transition: 0.2s linear;
+  width: 100%;
+  height: 4px;
+  background-color: #000;
+}
+.main-screen__burger li:first-child {
+  width: 100%;
+}
+.main-screen__burger li:nth-child(2) {
+  width: 70%;
+}
+.main-screen__burger li:last-child {
+  width: 40%;
+}
+.main-screen__burger li:not(:last-child) {
+  margin-bottom: 4px;
+}
+
+.women-picture {
+  width: 30%;
+  height: 190px;
+  position: absolute;
+  top: -33px;
+  right: 50%;
+  transform: translateX(50%);
+}
+
+.main-screen__logo {
+  width: 186px;
+  height: 119px;
+}
+
+.main-screen__title {
+  margin: 72px auto 30px;
+}
+
+.main-screen__subtitle {
+  color: #403e3e;
+  font-family: "Open Sans";
+  font-size: 23px;
+  font-weight: 400;
+  letter-spacing: 14px;
+  text-align: center;
+  margin-bottom: 60px;
+  cursor: default;
+}
+
+.bottles-list {
+  margin: 0 auto;
+  display: flex;
+  width: 1000px;
+}
+.bottles-list li {
+  position: unset !important;
+}
+
+.fruits {
+  display: flex;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.fruits__left-list {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-15%, 15%) !important;
+}
+.fruits__left-list li {
+  position: unset !important;
+}
+.fruits__left-list li:first-child {
+  width: 80px;
+  transform: translate(220%, 150%);
+}
+.fruits__left-list li:nth-child(2) {
+  width: 140px;
+  transform: translate(85%, 100%) rotate(60deg);
+}
+.fruits__left-list li:nth-child(3) {
+  width: 250px;
+  transform: translate(0, 30%);
+}
+.fruits__left-list li:nth-child(4) {
+  width: 390px;
+}
+
+.fruits__right-list {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(20%, 15%) !important;
+}
+.fruits__right-list li {
+  position: unset !important;
+}
+.fruits__right-list li:first-child {
+  width: 80px;
+  transform: translate(150%, 135%);
+}
+.fruits__right-list li:nth-child(2) {
+  width: 140px;
+  transform: translate(100%, 80%);
+}
+.fruits__right-list li:nth-child(3) {
+  width: 210px;
+  transform: translate(60%, 40%);
+}
+.fruits__right-list li:nth-child(4) {
+  width: 390px;
+}
+
+/*# sourceMappingURL=/styles.5c8f3eab.css.map */

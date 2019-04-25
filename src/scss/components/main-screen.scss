@@ -1,0 +1,78 @@
+@import "./helpers/variables";
+@import "./helpers/mixins";
+
+.main-screen {
+  background-color: $primary-bg-color;
+  padding: 1.5em;
+}
+
+.main-screen__inner {
+  z-index: 1;
+  padding: 1.5em 3.5em 160px;
+  border: 20px solid #fff;
+  position: relative;
+}
+
+.main-screen__burger {
+  width: 40px;
+  height: 22px;
+  cursor: pointer;
+  position: absolute;
+  top: 79px;
+  right: 42px;
+  transition: 0.2s linear;
+
+  &:hover li:nth-child(2),
+  &:hover li:last-child {
+    width: 100%;
+  }
+
+  li {
+    transition: 0.2s linear;
+    width: 100%;
+    height: 4px;
+    background-color: #000;
+
+    &:first-child {
+      width: 100%;
+    }
+
+    &:nth-child(2) {
+      width: 70%;
+    }
+
+    &:last-child {
+      width: 40%;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 4px;
+    }
+  }
+}
+
+.women-picture {
+  width: 30%;
+  height: 190px;
+  position: absolute;
+  top: -33px;
+  right: 50%;
+  transform: translateX(50%);
+}
+
+.main-screen__logo {
+  width: 186px;
+  height: 119px;
+}
+
+.main-screen__title {
+  margin: 72px auto 30px;
+}
+
+.main-screen__subtitle {
+  @include text($font-size: 23px);
+  letter-spacing: 14px;
+  text-align: center;
+  margin-bottom: 60px;
+  cursor: default;
+}
