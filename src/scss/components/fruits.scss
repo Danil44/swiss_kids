@@ -1,33 +1,62 @@
+@import "./helpers/variables";
 .fruits {
   display: flex;
   position: absolute;
   top: 0;
-  bottom: 0;
-  justify-content: space-between;
+  left: 0;
+  bottom: 100%;
+  transform: translate(0, 50%);
   width: 100%;
+  justify-content: space-between;
+  @media (min-width: $desktop-bp) {
+    top: -5%;
+  }
 }
 
 .fruits__left-list {
   position: absolute;
   top: 0;
   left: 0;
-  transform: translate(-15%, 15%) !important;
+  transform: translate(-25%, 15%) !important;
+
+  @media (min-width: $desktop-bp) {
+    transform: translate(-15%, 15%) !important;
+  }
   li {
     position: unset !important;
     &:first-child {
-      width: 80px;
-      transform: translate(220%, 150%);
+      width: calc(25px + 2vh);
+      position: absolute !important;
+      top: 0;
+      margin-left: 7em;
     }
     &:nth-child(2) {
-      width: 140px;
-      transform: translate(85%, 100%) rotate(60deg);
+      width: calc(50px + 2vh);
+      margin: 3em 3em 0;
     }
     &:nth-child(3) {
-      width: 250px;
-      transform: translate(0, 30%);
+      width: calc(110px + 2vh);
     }
     &:nth-child(4) {
-      width: 390px;
+      width: calc(170px + 2vh);
+    }
+    @media (min-width: $desktop-bp) {
+      &:first-child {
+        width: 80px;
+        position: absolute !important;
+        bottom: 0;
+        margin-left: 7em;
+      }
+      &:nth-child(2) {
+        width: 140px;
+        margin: 3em 3em 0;
+      }
+      &:nth-child(3) {
+        width: 250px;
+      }
+      &:nth-child(4) {
+        width: 390px;
+      }
     }
   }
 }
@@ -36,23 +65,45 @@
   position: absolute;
   top: 0;
   right: 0;
-  transform: translate(20%, 15%) !important;
+  transform: translate(25%, 15%) !important;
+
+  @media (min-width: $desktop-bp) {
+    transform: translate(20%, 15%) !important;
+  }
   li {
     position: unset !important;
+
     &:first-child {
-      width: 80px;
-      transform: translate(150%, 135%);
+      width: calc(30px + 2vh);
+      margin-left: 7em;
     }
     &:nth-child(2) {
-      width: 140px;
-      transform: translate(100%, 80%);
+      width: calc(60px + 2vh);
+      margin-left: 7em;
     }
     &:nth-child(3) {
-      width: 210px;
-      transform: translate(60%, 40%);
+      width: calc(120px + 2vh);
+      margin-left: 5em;
     }
     &:nth-child(4) {
-      width: 390px;
+      width: calc(200px + 2vh);
+    }
+    @media (min-width: $desktop-bp) {
+      &:first-child {
+        width: 80px;
+        margin-left: 7em;
+      }
+      &:nth-child(2) {
+        width: 140px;
+        margin-left: 9em;
+      }
+      &:nth-child(3) {
+        width: 210px;
+        margin-left: 5em;
+      }
+      &:nth-child(4) {
+        width: 390px;
+      }
     }
   }
 }

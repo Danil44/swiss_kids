@@ -20,6 +20,7 @@
     "sass": "^1.19.0"
   },
   "dependencies": {
+    "pageable": "^0.6.8",
     "parallax-js": "^3.1.0"
   }
 }
