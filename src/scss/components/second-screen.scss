@@ -1,0 +1,13 @@
+@import "./helpers/variables";
+.second-screen {
+  background-color: $primary-bg-color;
+  position: relative;
+  overflow-x: hidden;
+  width: 100%;
+  height: 100vh;
+  @media (min-width: $desktop-bp) {
+    height: 100%;
+    padding: 1.5em;
+    overflow: unset;
+  }
+}

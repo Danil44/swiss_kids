@@ -140,7 +140,7 @@ body {
   line-height: 1;
   height: 100%;
   position: relative;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 ol,
@@ -188,6 +188,77 @@ a {
   text-decoration: none;
   color: #000000;
   display: block;
+}
+
+.preloader-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #e3eaec;
+  z-index: 999;
+  visibility: visible;
+}
+.preloader-screen.done {
+  visibility: hidden;
+}
+.preloader-screen .lds-roller {
+  position: relative;
+  width: 6em;
+  height: 6em;
+  padding: 0;
+  border-radius: 50%;
+  list-style: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.preloader-screen .lds-roller > * {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5em;
+  height: 5em;
+  margin: -1.25em;
+}
+.preloader-screen .lds-roller > *:nth-of-type(1) {
+  transform: rotate(0deg) translate(3em) rotate(0deg);
+}
+.preloader-screen .lds-roller > *:nth-of-type(2) {
+  transform: rotate(72deg) translate(3em) rotate(-72deg);
+}
+.preloader-screen .lds-roller > *:nth-of-type(3) {
+  transform: rotate(144deg) translate(3em) rotate(-144deg);
+}
+.preloader-screen .lds-roller > *:nth-of-type(4) {
+  transform: rotate(216deg) translate(3em) rotate(-216deg);
+}
+.preloader-screen .lds-roller > *:nth-of-type(5) {
+  transform: rotate(288deg) translate(3em) rotate(-288deg);
+}
+.preloader-screen .lds-roller div {
+  width: 40px;
+  height: 40px;
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.preloader-screen .lds-roller div:first-child {
+  width: 50px;
+  height: 50px;
+  background-image: url("/raspberrie.d36cb90b.png");
+}
+.preloader-screen .lds-roller div:nth-child(2) {
+  background-image: url("/blackberry.3c7b47bb.png");
+}
+.preloader-screen .lds-roller div:nth-child(3) {
+  background-image: url("/strawberry.2b05899a.png");
+}
+.preloader-screen .lds-roller div:last-child {
+  background-image: url("/lemon.b1759aba.png");
 }
 
 .glider,
@@ -350,10 +421,14 @@ a {
 }
 
 .main-screen {
-  background-color: #e3eaec;
+  background-image: url("/background.dacad9f3.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   padding: 0.8em;
   position: relative;
   overflow-x: hidden;
+  width: 100%;
   height: 100vh;
 }
 @media (min-width: 1024px) {
@@ -611,6 +686,21 @@ a {
   }
   .fruits__right-list li:nth-child(4) {
     width: 390px;
+  }
+}
+
+.second-screen {
+  background-color: #e3eaec;
+  position: relative;
+  overflow-x: hidden;
+  width: 100%;
+  height: 100vh;
+}
+@media (min-width: 1024px) {
+  .second-screen {
+    height: 100%;
+    padding: 1.5em;
+    overflow: unset;
   }
 }
 

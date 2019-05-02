@@ -2,12 +2,67 @@ import EventEmitter from "./services/event-emitter";
 import Parallax from "parallax-js";
 import Pageable from "pageable";
 import Glider from "./glider";
+import "babel-polyfill";
 
 export default class View extends EventEmitter {
   constructor() {
     super();
   }
 
+  preloaderAnimation() {
+    const rollerCircle = document.getElementById("load-roller");
+
+    TweenMax.to(rollerCircle, 1.5, {
+      delay: 0,
+      rotation: 360,
+      ease: Linear.easeNone,
+      repeat: -1
+    }).timeScale(1.2);
+  }
+
+  applyFirstScreenAnimation() {
+    const mainScreen = document.querySelector(".main-screen");
+    const bottles = mainScreen.querySelectorAll(".bottles__item");
+    const title = mainScreen.querySelector(".js-title");
+    const subtitle = mainScreen.querySelector(".js-subtitle");
+    const mainTimeline = new TimelineMax();
+
+    bottles.forEach(item => {
+      const tl = new TimelineMax();
+      tl.from(
+        item,
+        1,
+        {
+          delay: 0.5,
+          alpha: 0,
+          opacity: 0,
+          y: -250,
+          ease: Elastic.easeOut.config(0.3, 0.3)
+        },
+        0
+      );
+      mainTimeline.add(tl, "-=0.6");
+    });
+
+    TweenMax.from(title, 2.5, {
+      delay: 1,
+      opacity: 0,
+      y: 100,
+      ease: Elastic.easeOut.config(0.8, 0.3)
+    });
+
+    TweenMax.from(subtitle, 2.5, {
+      delay: 2,
+      opacity: 0,
+      y: 20,
+      ease: Power2.easeOut,
+      onComplete: () => {
+        if (window.matchMedia("(min-width: 1024px)").matches) {
+          this.runParallax();
+        }
+      }
+    });
+  }
   applyProductsSlide() {
     const prevBtn = document.querySelector(".glider-prev");
     const nextBtn = document.querySelector(".glider-next");

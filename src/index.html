@@ -13,6 +13,14 @@
 
 <body>
     <main id='container'>
+        <div class="preloader-screen done" id="preloader">
+            <div class="lds-roller" id="load-roller">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
         <section class="main-screen" data-anchor="Page 1">
             <div class="fruits">
                 <ul class="fruits__left-list" id="fruits-1" data-relative-input="true">
@@ -39,30 +47,30 @@
                     <li></li>
                 </ul>
                 <div class="main-screen__title-wrapper"><img src="./images/main-screen/title.png" alt="Title"
-                        class="main-screen__title" />
-                    <h4 class="main-screen__subtitle">Швейцарські</h4>
+                        class="main-screen__title js-title" />
+                    <h4 class="main-screen__subtitle js-subtitle">Швейцарські</h4>
                 </div>
                 <div class="glider-contain multiple bottles-list">
 
                     <button class="glider-prev bottles__slide"><i class="fas fa-angle-left"></i></button>
 
                     <ul class="bottles-list products-list" id="bottles-list" data-relative-input="true">
-                        <li class="bottles__item" data-depth="0.08">
+                        <li class="bottles__item " data-depth="0.08">
                             <img src="./images/main-screen/green-bottle.png" alt="Calcivit vitamins"
                                 class="bottles__img" />
                         </li>
 
-                        <li class="bottles__item" data-depth="0.06">
+                        <li class="bottles__item " data-depth="0.06">
                             <img src="./images/main-screen/blue-bottle.png" alt="Multivit vitamins"
                                 class="bottles__img" />
                         </li>
 
-                        <li class="bottles__item" data-depth="0.08">
+                        <li class="bottles__item " data-depth="0.08">
                             <img src="./images/main-screen/purple-bottle.png" alt="Immunovit vitamins"
                                 class="bottles__img" />
                         </li>
 
-                        <li class="bottles__item" data-depth="0.05">
+                        <li class="bottles__item " data-depth="0.05">
                             <img src="./images/main-screen/orange-bottle.png" alt="Smartvit vitamins"
                                 class="bottles__img" />
                         </li>
@@ -73,42 +81,15 @@
             </div>
 
         </section>
-        <section class="main-screen" data-anchor="Page 2">
+        <section class="second-screen" data-anchor="Page 2">
             <div class="main-screen__inner">
                 <a href="#" class="main-screen__logo"><img src="./images/swiss-logo.svg" alt="Swiss logo" /></a>
-                <div class="main-screen__title-wrapper"><img src="./images/main-screen/title.png" alt="Title"
-                        class="main-screen__title" />
-                    <h4 class="main-screen__subtitle">Швейцарські</h4>
-                </div>
-                <div class="glider-contain multiple bottles-list">
 
-
-                    <ul class="bottles-list products-list" id="bottles-list" data-relative-input="true">
-                        <li class="bottles__item" data-depth="0.08">
-                            <img src="./images/main-screen/green-bottle.png" alt="Calcivit vitamins"
-                                class="bottles__img" />
-                        </li>
-
-                        <li class="bottles__item" data-depth="0.06">
-                            <img src="./images/main-screen/blue-bottle.png" alt="Multivit vitamins"
-                                class="bottles__img" />
-                        </li>
-
-                        <li class="bottles__item" data-depth="0.08">
-                            <img src="./images/main-screen/purple-bottle.png" alt="Immunovit vitamins"
-                                class="bottles__img" />
-                        </li>
-
-                        <li class="bottles__item" data-depth="0.05">
-                            <img src="./images/main-screen/orange-bottle.png" alt="Smartvit vitamins"
-                                class="bottles__img" />
-                        </li>
-                    </ul>
-
-                </div>
             </div>
         </section>
     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TimelineMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
     <script src="./js/index.js"></script>
 </body>
 

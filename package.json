@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "parcel src/index.html",
+    "start": "parcel src/index.html",
     "build": "parcel build src/index.html"
   },
   "repository": {
@@ -20,6 +20,7 @@
     "sass": "^1.19.0"
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "pageable": "^0.6.8",
     "parallax-js": "^3.1.0"
   }
