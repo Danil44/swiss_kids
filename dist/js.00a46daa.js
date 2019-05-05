@@ -181,6 +181,10 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
@@ -197,10 +201,50 @@ function (_EventEmitter) {
   _inherits(Model, _EventEmitter);
 
   function Model() {
+    var _this;
+
     _classCallCheck(this, Model);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Model).call(this));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Model).call(this));
+    _this.page = null;
+    _this.isCalcivitAnimated = false;
+    _this.isMultivitAnimated = false;
+    _this.isImmunovitAnimated = false;
+    _this.isSmartvitAnimated = false;
+    return _this;
   }
+
+  _createClass(Model, [{
+    key: "getCurrentPath",
+    value: function getCurrentPath() {
+      var href = window.location.href;
+      var currentPage = href.split("/").splice(3, 4).join("/");
+
+      if (currentPage === "#page-2" && !this.isCalcivitAnimated) {
+        this.page = "calcivit";
+        this.isCalcivitAnimated = true;
+        this.emit("loadAnimation", this.page);
+      }
+
+      if (currentPage === "#page-3" && !this.isMultivitAnimated) {
+        this.page = "multivit";
+        this.isMultivitAnimated = true;
+        this.emit("loadAnimation", this.page);
+      }
+
+      if (currentPage === "#page-4" && !this.isImmunovitAnimated) {
+        this.page = "immunovit";
+        this.isImmunovitAnimated = true;
+        this.emit("loadAnimation", this.page);
+      }
+
+      if (currentPage === "#page-5" && !this.isSmartvitAnimated) {
+        this.page = "smartvit";
+        this.isSmartvitAnimated = true;
+        this.emit("loadAnimation", this.page);
+      }
+    }
+  }]);
 
   return Model;
 }(_eventEmitter.default);
@@ -9872,10 +9916,77 @@ function (_EventEmitter) {
         ease: Power2.easeOut,
         onComplete: function onComplete() {
           if (window.matchMedia("(min-width: 1024px)").matches) {
-            _this.runParallax();
+            _this.runParallax("main");
           }
         }
       });
+    }
+  }, {
+    key: "loadProductsScreensAnimation",
+    value: function loadProductsScreensAnimation(productName) {
+      var _this2 = this;
+
+      function togglePicturesVissibility(elements) {
+        elements.forEach(function (elem) {
+          if (elem) {
+            if (elem.classList.contains("hidden")) {
+              elem.classList.remove("hidden");
+            } else {
+              elem.classList.add("hidden");
+            }
+          }
+        });
+      }
+
+      var container = document.querySelector(".second-screen > .".concat(productName));
+      var productPictures = container.querySelector(".product-screen__pictures");
+      var vines = container.querySelector(".vines");
+      var animal = productPictures.querySelector(".js-animal");
+      var bottle = productPictures.querySelector(".js-bottle");
+      var background = productPictures.querySelector(".js-product-background");
+      togglePicturesVissibility([productPictures, vines]);
+
+      if (vines) {
+        TweenMax.from(vines, 3, {
+          delay: 0,
+          y: -500,
+          ease: Elastic.easeOut.config(0.7, 0.3)
+        });
+      }
+
+      TweenMax.from(bottle, 2, {
+        scale: 0,
+        ease: Elastic.easeOut.config(0.6, 0.3),
+        opacity: 0
+      });
+      TweenMax.from(background, 2, {
+        x: -500,
+        ease: Elastic.easeOut.config(0.8, 0.4),
+        opacity: 0,
+        onComplete: function onComplete() {
+          if (window.matchMedia("(min-width: 1024px)").matches) {
+            _this2.runParallax(productName, container);
+          }
+        }
+      });
+
+      if (productName === "multivit") {
+        TweenMax.from(animal, 2, {
+          x: 200,
+          ease: Elastic.easeOut.config(0.8, 0.4),
+          opacity: 0
+        });
+      }
+
+      if (productName === "immunovit") {
+        TweenMax.from(animal, 2, {
+          delay: 0.6,
+          y: -40,
+          x: -20,
+          ease: Elastic.easeOut.config(0.8, 0.4),
+          opacity: 0
+        });
+      }
     }
   }, {
     key: "applyProductsSlide",
@@ -9926,7 +10037,7 @@ function (_EventEmitter) {
         // display the pips
         animation: 450,
         // the duration in ms of the scroll animation
-        delay: 100,
+        delay: 500,
         // the delay in ms before the scroll animation starts
         throttle: 50,
         // the interval in ms that the resize callback is fired
@@ -9960,13 +10071,25 @@ function (_EventEmitter) {
     }
   }, {
     key: "runParallax",
-    value: function runParallax() {
-      var bottles = document.getElementById("bottles-list");
-      var fruits1 = document.getElementById("fruits-1");
-      var fruits2 = document.getElementById("fruits-2");
-      var runBottlesParallax = new _parallaxJs.default(bottles);
-      var runFruits1 = new _parallaxJs.default(fruits1);
-      var runFruits2 = new _parallaxJs.default(fruits2);
+    value: function runParallax(product, container) {
+      function runMainScreen() {
+        var bottles = document.getElementById("bottles-list");
+        var fruits1 = document.getElementById("fruits-1");
+        var fruits2 = document.getElementById("fruits-2");
+        var runBottlesParallax = new _parallaxJs.default(bottles);
+        var runFruits1 = new _parallaxJs.default(fruits1);
+        var runFruits2 = new _parallaxJs.default(fruits2);
+      }
+
+      function runProductsParallax() {
+        if (container) {
+          var productPictures = container.querySelector(".".concat(product, "-pictures"));
+          new _parallaxJs.default(productPictures);
+        }
+      }
+
+      runMainScreen();
+      runProductsParallax();
     }
   }]);
 
@@ -9996,9 +10119,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -10018,30 +10141,46 @@ function (_EventEmitter) {
 
     _this.onPageLoad(view);
 
-    if (window.matchMedia("(min-width: 1024px)").matches) {
-      view.applyOnePageScroll();
-    } else {
-      view.applyProductsSlide();
-    }
-
-    view.applyFirstScreenAnimation(); // view.preloaderAnimation();
-
+    _this.view = view;
+    _this.model = model;
+    view.preloaderAnimation();
+    model.on("loadAnimation", _this.loadProductsScreensAnimation.bind(_assertThisInitialized(_this)));
+    window.addEventListener("scroll", function () {
+      model.getCurrentPath();
+    });
     return _this;
   }
 
   _createClass(Controller, [{
+    key: "loadProductsScreensAnimation",
+    value: function loadProductsScreensAnimation(productName) {
+      if (productName) {
+        this.view.loadProductsScreensAnimation(productName);
+      } else {
+        return;
+      }
+    }
+  }, {
     key: "onPageLoad",
     value: function onPageLoad(view) {
       document.body.onload = function () {
         setTimeout(function () {
-          var preloaderCircle = document.getElementById("preloader"); // TweenMax.to(preloaderCircle, 0.8, {
-          //   delay: 0,
-          //   opacity: 0,
-          //   ease: Power2.easeOut,
-          //   onComplete: () => {
-          //     preloaderCircle.classList.toggle("done");
-          //   }
-          // });
+          var preloaderCircle = document.getElementById("preloader");
+          TweenMax.to(preloaderCircle, 0.8, {
+            delay: 0,
+            opacity: 0,
+            ease: Power2.easeOut,
+            onComplete: function onComplete() {
+              preloaderCircle.classList.toggle("done");
+            }
+          });
+
+          if (window.matchMedia("(min-width: 1024px)").matches) {
+            view.applyFirstScreenAnimation();
+            view.applyOnePageScroll();
+          } else {
+            view.applyProductsSlide();
+          }
         }, 2000);
       };
     }
@@ -10093,7 +10232,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63165" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55890" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

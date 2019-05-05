@@ -58,11 +58,76 @@ export default class View extends EventEmitter {
       ease: Power2.easeOut,
       onComplete: () => {
         if (window.matchMedia("(min-width: 1024px)").matches) {
-          this.runParallax();
+          this.runParallax("main");
         }
       }
     });
   }
+
+  loadProductsScreensAnimation(productName) {
+    function togglePicturesVissibility(elements) {
+      elements.forEach(elem => {
+        if (elem) {
+          if (elem.classList.contains("hidden")) {
+            elem.classList.remove("hidden");
+          } else {
+            elem.classList.add("hidden");
+          }
+        }
+      });
+    }
+    const container = document.querySelector(
+      `.second-screen > .${productName}`
+    );
+    const productPictures = container.querySelector(
+      ".product-screen__pictures"
+    );
+    const vines = container.querySelector(".vines");
+    const animal = productPictures.querySelector(".js-animal");
+    const bottle = productPictures.querySelector(".js-bottle");
+    const background = productPictures.querySelector(".js-product-background");
+    togglePicturesVissibility([productPictures, vines]);
+    if (vines) {
+      TweenMax.from(vines, 3, {
+        delay: 0,
+        y: -500,
+        ease: Elastic.easeOut.config(0.7, 0.3)
+      });
+    }
+    TweenMax.from(bottle, 2, {
+      scale: 0,
+      ease: Elastic.easeOut.config(0.6, 0.3),
+      opacity: 0
+    });
+    TweenMax.from(background, 2, {
+      x: -500,
+      ease: Elastic.easeOut.config(0.8, 0.4),
+      opacity: 0,
+      onComplete: () => {
+        if (window.matchMedia("(min-width: 1024px)").matches) {
+          this.runParallax(productName, container);
+        }
+      }
+    });
+
+    if (productName === "multivit") {
+      TweenMax.from(animal, 2, {
+        x: 200,
+        ease: Elastic.easeOut.config(0.8, 0.4),
+        opacity: 0
+      });
+    }
+    if (productName === "immunovit") {
+      TweenMax.from(animal, 2, {
+        delay: 0.6,
+        y: -40,
+        x: -20,
+        ease: Elastic.easeOut.config(0.8, 0.4),
+        opacity: 0
+      });
+    }
+  }
+
   applyProductsSlide() {
     const prevBtn = document.querySelector(".glider-prev");
     const nextBtn = document.querySelector(".glider-next");
@@ -109,7 +174,7 @@ export default class View extends EventEmitter {
       anchors: [], // define the page anchors
       pips: true, // display the pips
       animation: 450, // the duration in ms of the scroll animation
-      delay: 100, // the delay in ms before the scroll animation starts
+      delay: 500, // the delay in ms before the scroll animation starts
       throttle: 50, // the interval in ms that the resize callback is fired
       orientation: "vertical", // or horizontal
       swipeThreshold: 50, // swipe / mouse drag distance (px) before firing the page change event
@@ -132,12 +197,22 @@ export default class View extends EventEmitter {
     });
   }
 
-  runParallax() {
-    const bottles = document.getElementById("bottles-list");
-    const fruits1 = document.getElementById("fruits-1");
-    const fruits2 = document.getElementById("fruits-2");
-    const runBottlesParallax = new Parallax(bottles);
-    const runFruits1 = new Parallax(fruits1);
-    const runFruits2 = new Parallax(fruits2);
+  runParallax(product, container) {
+    function runMainScreen() {
+      const bottles = document.getElementById("bottles-list");
+      const fruits1 = document.getElementById("fruits-1");
+      const fruits2 = document.getElementById("fruits-2");
+      const runBottlesParallax = new Parallax(bottles);
+      const runFruits1 = new Parallax(fruits1);
+      const runFruits2 = new Parallax(fruits2);
+    }
+    function runProductsParallax() {
+      if (container) {
+        const productPictures = container.querySelector(`.${product}-pictures`);
+        new Parallax(productPictures);
+      }
+    }
+    runMainScreen();
+    runProductsParallax();
   }
 }

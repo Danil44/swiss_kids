@@ -6,31 +6,10 @@
 
 .main-screen {
   background-image: url("../images/main-screen/background.png");
+  height: 100%;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  padding: 0.8em;
-  position: relative;
-  overflow-x: hidden;
-  width: 100%;
-  height: 100vh;
-  @media (min-width: $desktop-bp) {
-    height: 100%;
-    padding: 1.5em;
-    overflow: unset;
-  }
-}
-
-.main-screen__inner {
-  z-index: 1;
-  padding: 0.7em 0.5em;
-  border: 10px solid #fff;
-  position: relative;
-  height: 100%;
-  @media (min-width: $desktop-bp) {
-    padding: 1.5em 3.5em;
-    border: 20px solid #fff;
-  }
 }
 
 .main-screen__burger {
@@ -40,7 +19,7 @@
   top: 20px;
   right: 20px;
   transition: 0.2s linear;
-  @media (min-width: $desktop-bp) {
+  @media (min-width: $desktop-sm-bp) {
     width: 40px;
     top: 55px;
     right: 42px;
@@ -81,16 +60,12 @@
   top: 0;
   right: 50%;
   transform: translate(50%, -23%);
-  @media (min-width: $desktop-bp) {
+  @media (min-width: $desktop-sm-bp) {
     width: 30%;
   }
 }
 
 .main-screen__logo {
-  width: 65px;
-  @media (min-width: $desktop-bp) {
-    width: 165px;
-  }
 }
 
 .main-screen__title-wrapper {
@@ -100,14 +75,17 @@
   top: 20%;
   left: 50%;
   transform: translateX(-50%);
-  @media (min-width: $desktop-bp) {
+  @media (min-width: $desktop-sm-bp) {
     width: 900px;
     height: 145px;
+  }
+  @media (min-width: $desktop-lg-bp) {
+    width: 1090px;
   }
 }
 
 .main-screen__title {
-  @media (min-width: $desktop-bp) {
+  @media (min-width: $desktop-sm-bp) {
     width: 100%;
     margin-bottom: 1.5em;
   }
@@ -115,7 +93,7 @@
 
 .main-screen__subtitle {
   @include text($font-size: 12px);
-  @media (min-width: $desktop-bp) {
+  @media (min-width: $desktop-sm-bp) {
     font-size: 23px;
     letter-spacing: 14px;
     text-align: center;

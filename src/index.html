@@ -13,7 +13,7 @@
 
 <body>
     <main id='container'>
-        <div class="preloader-screen done" id="preloader">
+        <div class="preloader-screen" id="preloader">
             <div class="lds-roller" id="load-roller">
                 <div></div>
                 <div></div>
@@ -21,7 +21,7 @@
                 <div></div>
             </div>
         </div>
-        <section class="main-screen" data-anchor="Page 1">
+        <section class="main-screen main-page__screen" data-anchor="Page 1">
             <div class="fruits">
                 <ul class="fruits__left-list" id="fruits-1" data-relative-input="true">
                     <li data-depth="0.04"><img src="./images/main-screen/blackberry.png" alt=""></li>
@@ -36,11 +36,11 @@
                     <li data-depth="0.26"><img src="./images/main-screen/orange.png" alt=""></li>
                 </ul>
             </div>
-            <div class="main-screen__inner">
+            <div class="main-screen__inner main-page__inner">
                 <div class="women-picture">
                     <img src="./images/main-screen/women.png" alt="" />
                 </div>
-                <a href="#" class="main-screen__logo"><img src="./images/swiss-logo.svg" alt="Swiss logo" /></a>
+                <a href="#" class="main-page__logo"><img src="./images/swiss-logo.svg" alt="Swiss logo" /></a>
                 <ul class="main-screen__burger">
                     <li></li>
                     <li></li>
@@ -55,23 +55,27 @@
                     <button class="glider-prev bottles__slide"><i class="fas fa-angle-left"></i></button>
 
                     <ul class="bottles-list products-list" id="bottles-list" data-relative-input="true">
-                        <li class="bottles__item " data-depth="0.08">
-                            <img src="./images/main-screen/green-bottle.png" alt="Calcivit vitamins"
+                        <li class="bottles__item" data-depth="0.08">
+                            <img srcset="./images/main-screen/green-bottle.png 1x,  ./images/main-screen/green-bottle@2x.png 2x"
+                                src="./images/main-screen/green-bottle.png" alt="Calcivit vitamins"
                                 class="bottles__img" />
                         </li>
 
-                        <li class="bottles__item " data-depth="0.06">
-                            <img src="./images/main-screen/blue-bottle.png" alt="Multivit vitamins"
+                        <li class="bottles__item" data-depth="0.06">
+                            <img srcset="./images/main-screen/blue-bottle.png 1x, ./images/main-screen/blue-bottle@2x.png 2x"
+                                src="./images/main-screen/blue-bottle.png" alt="Multivit vitamins"
                                 class="bottles__img" />
                         </li>
 
-                        <li class="bottles__item " data-depth="0.08">
-                            <img src="./images/main-screen/purple-bottle.png" alt="Immunovit vitamins"
+                        <li class="bottles__item" data-depth="0.08">
+                            <img srcset="./images/main-screen/purple-bottle.png 1x,./images/main-screen/purple-bottle@2x.png 2x"
+                                src="./images/main-screen/purple-bottle.png" alt="Immunovit vitamins"
                                 class="bottles__img" />
                         </li>
 
-                        <li class="bottles__item " data-depth="0.05">
-                            <img src="./images/main-screen/orange-bottle.png" alt="Smartvit vitamins"
+                        <li class="bottles__item" data-depth="0.05">
+                            <img srcset="./images/main-screen/orange-bottle.png 1x, ./images/main-screen/orange-bottle@2x.png 2x"
+                                src="./images/main-screen/orange-bottle.png" alt="Smartvit vitamins"
                                 class="bottles__img" />
                         </li>
                     </ul>
@@ -81,10 +85,117 @@
             </div>
 
         </section>
-        <section class="second-screen" data-anchor="Page 2">
-            <div class="main-screen__inner">
-                <a href="#" class="main-screen__logo"><img src="./images/swiss-logo.svg" alt="Swiss logo" /></a>
-
+        <section class="second-screen main-page__screen" data-anchor="Page 2">
+            <div class="main-page__inner product-screen calcivit">
+                <a href="#" class="main-page__logo"><img src="./images/swiss-logo.svg" alt="Swiss logo" /></a>
+                <div class="vines hidden"><img src="./images/products-screens/calcivit/monkey-vines.png" alt=""></div>
+                <div class="product-screen__content">
+                    <ul class="product-screen__pictures hidden calcivit-pictures">
+                        <li data-depth="0.6" class="product-screen__item product-screen__parrot js-animal"><object
+                                id="parrot" type="image/svg+xml"
+                                data="./images/products-screens/calcivit/parrot.svg"></object>
+                        </li>
+                        <li data-depth="0.08" class="product-screen__item product-screen__bottle js-bottle"><img
+                                srcset="./images/products-screens/calcivit/bottle.png 1x, ./images/products-screens/calcivit/bottle@2x.png 2x"
+                                src="./images/products-screens/calcivit/bottle.png" alt="Calcivit picture"></li>
+                        <li data-depth="0.1" class="product-screen__item product-screen__plants js-product-background">
+                            <img srcset="./images/products-screens/calcivit/background.png 1x, ./images/products-screens/calcivit/background@2x.png 2x"
+                                src="./images/products-screens/calcivit/background.png" alt=""></li>
+                    </ul>
+                    <div class="product-screen__desc">
+                        <h3 class="product-screen__title">Calcivit Kids</h3>
+                        <p class="product-screen__text">Жувальні пастилки для здорового росту та розвитку кісток і
+                            зубів, а також для укріплення загального здоров’я дітей. <strong>З вітамінами К2, D3 та
+                                кальцієм.</strong>
+                            Жувальні пастилки в формі крокодильчиків зі смаком лісових ягід, для дітей від 6 років
+                        </p>
+                        <button class="product-screen__btn product-screen__btn--green">Детальніше</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="second-screen main-page__screen" data-anchor="Page 3">
+            <div class="main-page__inner product-screen multivit">
+                <a href="#" class="main-page__logo"><img src="./images/swiss-logo.svg" alt="Swiss logo" /></a>
+                <div class="product-screen__content">
+                    <ul class="product-screen__pictures hidden multivit-pictures">
+                        <li data-depth="0.7" class="product-screen__item product-screen__fish js-animal"><object
+                                type="image/svg+xml" data="./images/products-screens/multivit/fish.svg"></object>
+                        </li>
+                        <li data-depth="0.2" class="product-screen__item product-screen__bottle js-bottle"><img
+                                srcset="./images/products-screens/multivit/bottle.png 1x, ./images/products-screens/multivit/bottle@2x.png 2x"
+                                src="./images/products-screens/multivit/bottle.png" alt="Calcivit picture"></li>
+                        <li data-depth="0.06" class="product-screen__item product-screen__reef js-product-background">
+                            <img srcset="./images/products-screens/multivit/background.png 1x, ./images/products-screens/multivit/background@2x.png 2x"
+                                src="./images/products-screens/multivit/background.png" alt=""></li>
+                    </ul>
+                    <div class="product-screen__desc">
+                        <h3 class="product-screen__title">Multivit Kids</h3>
+                        <p class="product-screen__text">Жувальні пастилки, що сприяють здоровому росту та розвитку
+                            дитячого організму. З вітамінами <strong>A, C, D, E, B, біотином, йодом,
+                                рибофлавіном та тіаміном</strong>. Жувальні пастилки без цукру, зі смаком лісових ягід,
+                            апельсину та
+                            лимону, для дітей від 7 років.
+                        </p>
+                        <button class="product-screen__btn product-screen__btn--blue">Детальніше</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="second-screen main-page__screen" data-anchor="Page 4">
+            <div class="main-page__inner product-screen immunovit">
+                <a href="#" class="main-page__logo"><img src="./images/swiss-logo.svg" alt="Swiss logo" /></a>
+                <div class="product-screen__content">
+                    <ul class="product-screen__pictures hidden immunovit-pictures">
+                        <li data-depth="0.09" class="product-screen__item product-screen__owl js-animal"><object
+                                type="image/svg+xml" data="./images/products-screens/immunovit/owl.svg"></object>
+                        </li>
+                        <li data-depth="0.3" class="product-screen__item product-screen__bottle js-bottle"><img
+                                srcset="./images/products-screens/immunovit/bottle.png 1x, ./images/products-screens/immunovit/bottle@2x.png 2x"
+                                src="./images/products-screens/immunovit/bottle.png" alt="Calcivit picture"></li>
+                        <li data-depth="0.02" class="product-screen__item product-screen__night js-product-background">
+                            <object type="image/svg+xml"
+                                data="./images/products-screens/immunovit/background.svg"></object>
+                        </li>
+                    </ul>
+                    <div class="product-screen__desc">
+                        <h3 class="product-screen__title">immunovit Kids</h3>
+                        <p class="product-screen__text">Жувальні пастилки, що сприяють зміцненню імунної системи у
+                            дітей, а також допомагають впоратися з фізичними та розумовими
+                            навантаженнями.<strong>Містить ключові вітаміни та мінерали, без цукру.</strong> Жувальні
+                            пастилки зі смаком лісових ягід, апельсину та лимону, для дітей від 4 років.
+                        </p>
+                        <button class="product-screen__btn product-screen__btn--purple">Детальніше</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="second-screen main-page__screen" data-anchor="Page 5">
+            <div class="main-page__inner product-screen smartvit">
+                <a href="#" class="main-page__logo"><img src="./images/swiss-logo.svg" alt="Swiss logo" /></a>
+                <div class="product-screen__content">
+                    <ul class="product-screen__pictures hidden smartvit-pictures">
+                        <li data-depth="0.7" class="product-screen__item product-screen__owl js-animal"><object
+                                type="image/svg+xml" data="./images/products-screens/smartvit/bug.svg"></object>
+                        </li>
+                        <li data-depth="0.2" class="product-screen__item product-screen__bottle js-bottle"><img
+                                srcset="./images/products-screens/smartvit/bottle.png 1x, ./images/products-screens/smartvit/bottle@2x.png 2x"
+                                src="./images/products-screens/smartvit/bottle.png" alt="Calcivit picture"></li>
+                        <li data-depth="0.08" class="product-screen__item product-screen__forest js-product-background">
+                            <img srcset="./images/products-screens/smartvit/background.png 1x, ./images/products-screens/smartvit/background@2x.png 2x"
+                                src="./images/products-screens/smartvit/background.png" alt="">
+                        </li>
+                    </ul>
+                    <div class="product-screen__desc">
+                        <h3 class="product-screen__title">smartvit kids</h3>
+                        <p class="product-screen__text">Жувальні таблетки для покращення розумової активності у дітей,
+                            так звані «вітаміни для розуму». З вітамінами <strong>B2, B5, B6, B12, цинком та
+                                залізом.</strong> Жувальні
+                            таблетки зі смаком йогурту та апельсину, для дітей від 3 років.
+                        </p>
+                        <button class="product-screen__btn product-screen__btn--orange">Детальніше</button>
+                    </div>
+                </div>
             </div>
         </section>
     </main>

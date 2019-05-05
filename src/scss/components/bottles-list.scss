@@ -6,8 +6,12 @@
   left: 50%;
   width: 200px;
   transform: translate(-50%, 100%) !important;
-  @media (min-width: $desktop-bp) {
+
+  @media (min-width: $desktop-sm-bp) {
     width: 1000px;
+  }
+  @media (min-width: $desktop-md-bp) {
+    width: 1200px;
   }
 
   li {
@@ -18,7 +22,7 @@
 .bottles__slide {
   top: 50%;
   transform: translateY(120%);
-  @media (min-width: $desktop-bp) {
+  @media (min-width: $desktop-sm-bp) {
     display: none;
   }
 }

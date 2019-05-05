@@ -1,0 +1,34 @@
+@import "./helpers/variables";
+
+.main-page__screen {
+  padding: 0.8em;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+  @media (min-width: $desktop-sm-bp) {
+    height: 100%;
+    padding: 1.5em;
+  }
+}
+
+.main-page__inner {
+  z-index: 1;
+  padding: 0.7em 0.5em;
+  border: 10px solid #fff;
+  position: relative;
+  height: 100%;
+  @media (min-width: $desktop-sm-bp) {
+    padding: 1.5em 3.5em;
+    border: 20px solid #fff;
+  }
+}
+
+.main-page__logo {
+  position: absolute;
+  z-index: 1;
+  width: 65px;
+  @media (min-width: $desktop-sm-bp) {
+    width: 165px;
+  }
+}

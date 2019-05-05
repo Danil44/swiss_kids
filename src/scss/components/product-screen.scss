@@ -1,0 +1,192 @@
+@import "./helpers/variables";
+@import "./helpers/mixins";
+
+.product-screen {
+  position: relative;
+  & > .vines {
+    opacity: 1;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(-30%);
+    z-index: -1;
+    visibility: visible;
+    &.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+  &__parrot {
+    width: 125px;
+    height: 125px;
+    position: absolute;
+    top: 20% !important;
+    left: 12% !important;
+  }
+  &__bottle {
+    width: 500px;
+    position: absolute;
+    top: 15% !important;
+    left: 20% !important;
+    z-index: 2;
+  }
+  &__plants {
+    z-index: -1;
+    width: 950px;
+    position: absolute;
+    top: 0;
+    left: -15% !important;
+  }
+  &__reef {
+    z-index: -1;
+    position: absolute;
+    top: -20% !important;
+    left: -15% !important;
+  }
+  &__fish {
+    @extend .product-screen__parrot;
+    top: 0% !important;
+    left: 70% !important;
+  }
+
+  &__night {
+    @extend .product-screen__reef;
+    width: 650px;
+    z-index: -1;
+    top: -7% !important;
+    left: 16% !important;
+  }
+
+  &__owl {
+    top: 20% !important;
+    left: 68% !important;
+    position: absolute;
+    width: 90px;
+    height: 90px;
+  }
+  &__forest {
+    @extend .product-screen__reef;
+    left: -11% !important;
+    top: -13% !important;
+  }
+}
+
+.product-screen__content {
+  height: 100%;
+  display: flex;
+}
+
+.product-screen__pictures {
+  opacity: 1;
+  position: relative;
+  left: 1% !important;
+  top: 10% !important;
+  width: 100%;
+  height: 100%;
+  transition: 0.5s all;
+  &.hidden {
+    opacity: 0;
+  }
+}
+
+.product-screen__desc {
+  width: 100%;
+  padding: 0 0 0 5em;
+  align-self: center;
+}
+
+.product-screen__title {
+  font-size: 73px;
+  color: #403e3e;
+  font-family: $primary-font-stack;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 0.6em;
+}
+
+.product-screen__text {
+  width: 600px;
+  font-size: 24px;
+  line-height: 36px;
+  color: #403e3e;
+  font-family: $primary-font-stack;
+  font-weight: 400;
+  margin-bottom: 3.5em;
+
+  & strong {
+    font-weight: 600;
+  }
+}
+
+.product-screen__btn {
+  font-size: 23px;
+  font-weight: 800;
+  border-radius: 44px;
+  background-color: #ffffff;
+  padding: 1em 2.2em 1em 5em;
+  position: relative;
+  cursor: pointer;
+  &::before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 90px;
+    height: 90px;
+    top: 0;
+    left: 0;
+    transform: translate(16%, -35%);
+  }
+
+  &::after {
+    content: "";
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    transform: translate(-50%, -40%);
+    width: 18px;
+    height: 18px;
+  }
+  &--green {
+    color: $green-btn;
+    &::after {
+      background-image: url("data:image/svg+xml,%3Csvg id='Layer_1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26.5 43.8'%3E%3Cstyle%3E .st0%7Bfill:%2300a042%7D %3C/style%3E%3Cpath transform='rotate(45.001 13.258 13.257)' class='st0' d='M-1.7 9.5h30V17h-30z'/%3E%3Cpath transform='rotate(-45.001 13.257 30.507)' class='st0' d='M-1.7 26.8h30v7.5h-30z'/%3E%3C/svg%3E");
+    }
+    &::before {
+      background-image: url("../images/products-screens/calcivit/btn-icon.png");
+    }
+  }
+  &--blue {
+    color: $blue-btn;
+    &::after {
+      background-image: url("data:image/svg+xml,%3Csvg id='Layer_1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26.5 43.8'%3E%3Cstyle%3E .st0%7Bfill:%23006d9e%7D %3C/style%3E%3Cpath transform='rotate(45.001 13.258 13.257)' class='st0' d='M-1.7 9.5h30V17h-30z'/%3E%3Cpath transform='rotate(-45.001 13.257 30.507)' class='st0' d='M-1.7 26.8h30v7.5h-30z'/%3E%3C/svg%3E");
+    }
+    &::before {
+      background-image: url("../images/products-screens/multivit/btn-icon.png");
+    }
+  }
+  &--purple {
+    color: $purple-btn;
+    &::after {
+      background-image: url("data:image/svg+xml,%3Csvg id='Layer_1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26.5 43.8'%3E%3Cstyle%3E .st0%7Bfill:%239e1679%7D %3C/style%3E%3Cpath transform='rotate(45.001 13.258 13.257)' class='st0' d='M-1.7 9.5h30V17h-30z'/%3E%3Cpath transform='rotate(-45.001 13.257 30.507)' class='st0' d='M-1.7 26.8h30v7.5h-30z'/%3E%3C/svg%3E");
+    }
+    &::before {
+      background-image: url("../images/products-screens/immunovit/btn-icon.png");
+    }
+  }
+  &--orange {
+    color: $orange-btn;
+    &::after {
+      background-image: url("data:image/svg+xml,%3Csvg id='Layer_1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26.5 43.8'%3E%3Cstyle%3E .st0%7Bfill:%23de3c16%7D %3C/style%3E%3Cpath transform='rotate(45.001 13.258 13.257)' class='st0' d='M-1.7 9.5h30V17h-30z'/%3E%3Cpath transform='rotate(-45.001 13.257 30.507)' class='st0' d='M-1.7 26.8h30v7.5h-30z'/%3E%3C/svg%3E");
+    }
+    &::before {
+      background-image: url("../images/products-screens/smartvit/btn-icon.png");
+    }
+  }
+}
