@@ -6,12 +6,18 @@ export default class Controller extends EventEmitter {
     this.onPageLoad(view);
     this.view = view;
     this.model = model;
+
     view.preloaderAnimation();
     model.on("loadAnimation", this.loadProductsScreensAnimation.bind(this));
+    model.on("loadAboutAnimation", this.loadAboutScreensAnimation.bind(this));
+  }
 
-    window.addEventListener("scroll", () => {
-      model.getCurrentPath();
-    });
+  loadAboutScreensAnimation(screenName) {
+    if (screenName) {
+      this.view.loadAboutScreenAnimation(screenName);
+    } else {
+      return;
+    }
   }
 
   loadProductsScreensAnimation(productName) {
@@ -26,6 +32,7 @@ export default class Controller extends EventEmitter {
     document.body.onload = () => {
       setTimeout(() => {
         const preloaderCircle = document.getElementById("preloader");
+        const page = this.model.getPath();
 
         TweenMax.to(preloaderCircle, 0.8, {
           delay: 0,
@@ -33,14 +40,19 @@ export default class Controller extends EventEmitter {
           ease: Power2.easeOut,
           onComplete: () => {
             preloaderCircle.classList.toggle("done");
+
+            document.body.onscroll = () => {
+              this.model.loadCurrentScreenAnimation();
+            };
+            this.model.loadCurrentScreenAnimation(page);
           }
         });
         if (window.matchMedia("(min-width: 1024px)").matches) {
-          view.applyFirstScreenAnimation();
+          view.loadFirstScreenAnimation();
 
-          view.applyOnePageScroll();
+          view.loadOnePageScroll();
         } else {
-          view.applyProductsSlide();
+          view.loadProductsSlide();
         }
       }, 2000);
     };

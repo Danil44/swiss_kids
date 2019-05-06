@@ -1,6 +1,8 @@
 @import "./helpers/variables";
 @import "./helpers/mixins";
 
+//Using "!important" only for overwriting Parallax.js positions styles!
+
 .product-screen {
   position: relative;
   & > .vines {
@@ -24,21 +26,30 @@
     top: 20% !important;
     left: 12% !important;
   }
-  &__bottle {
-    width: 500px;
+  &__vitamins {
+    max-width: 60%;
     position: absolute;
     top: 15% !important;
     left: 20% !important;
     z-index: 2;
+
+    &--lg {
+      position: absolute !important;
+      width: 700px;
+      top: 20% !important;
+      left: 10% !important;
+    }
   }
+
   &__plants {
     z-index: -1;
-    width: 950px;
+    max-width: 200%;
     position: absolute;
     top: 0;
-    left: -15% !important;
+    left: -20% !important;
   }
   &__reef {
+    max-width: 90%;
     z-index: -1;
     position: absolute;
     top: -20% !important;
@@ -67,8 +78,61 @@
   }
   &__forest {
     @extend .product-screen__reef;
+    max-width: 105%;
     left: -11% !important;
     top: -13% !important;
+  }
+  &__bug {
+    @extend .product-screen__owl;
+  }
+  &__planet {
+    border-radius: 50%;
+    overflow: hidden;
+    position: absolute !important;
+    transform: translate(0, 140%) !important;
+    & > div {
+      width: 7.5vw;
+      height: 7.5vw;
+      background-image: url("../images/products-screens/omega/planet.svg");
+      background-repeat: no-repeat;
+      background-size: 200% 200%;
+      animation: planetRotation 5s linear infinite alternate-reverse;
+      transition: transform 200ms linear;
+    }
+  }
+  &__spaceship {
+    @extend .product-screen__owl;
+    top: 5% !important;
+    left: 60% !important;
+    width: 120px;
+  }
+
+  &__space {
+    @extend .product-screen__reef;
+    max-width: 150%;
+    top: -15% !important;
+  }
+
+  &__ballons {
+    width: 190px;
+    position: absolute !important;
+    top: 0% !important;
+    left: 10% !important;
+  }
+
+  &__city {
+    @extend .product-screen__reef;
+    top: -5% !important;
+    left: -1% !important;
+  }
+}
+
+@keyframes planetRotation {
+  from {
+    background-position: 85% 20%;
+  }
+  to {
+    background-position: 10% 80%;
   }
 }
 
@@ -78,6 +142,7 @@
 }
 
 .product-screen__pictures {
+  user-select: none;
   opacity: 1;
   position: relative;
   left: 1% !important;
@@ -187,6 +252,15 @@
     }
     &::before {
       background-image: url("../images/products-screens/smartvit/btn-icon.png");
+    }
+  }
+  &--pink {
+    color: $pink-btn;
+    &::after {
+      background-image: url("data:image/svg+xml,%3Csvg id='Layer_1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26.5 43.8'%3E%3Cstyle%3E .st0%7Bfill:%23ec2fc1%7D %3C/style%3E%3Cpath transform='rotate(45.001 13.258 13.257)' class='st0' d='M-1.7 9.5h30V17h-30z'/%3E%3Cpath transform='rotate(-45.001 13.257 30.507)' class='st0' d='M-1.7 26.8h30v7.5h-30z'/%3E%3C/svg%3E");
+    }
+    &::before {
+      background-image: url("../images/products-screens/hello-kitty/btn-icon.png");
     }
   }
 }
