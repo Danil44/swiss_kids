@@ -1,0 +1,120 @@
+@import "./main-page.scss";
+@import "../helpers/variables";
+.product-page__main-screen {
+  @extend .main-page__screen;
+}
+
+.product-page__inner {
+  @extend .main-page__inner;
+  width: 100%;
+}
+
+.product-page__vitamins {
+  max-width: 38%;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-end;
+}
+
+.product-page__title-wrapper {
+  @extend .main-screen__title-wrapper;
+  top: 8%;
+  width: 100%;
+}
+
+.product-page__title {
+  @extend .main-screen__title;
+  align-self: center;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-family: $primary-font-stack;
+  font-size: calc(135px - 1vw);
+  margin-bottom: 38px;
+  background: rgb(61, 165, 107); /* Old browsers */
+  background: -moz-linear-gradient(
+    -45deg,
+    rgba(61, 165, 107, 1) 17%,
+    rgba(61, 165, 107, 1) 36%,
+    rgba(69, 125, 171, 1) 48%,
+    rgba(171, 79, 135, 1) 52%,
+    rgba(223, 67, 7, 1) 60%,
+    rgba(223, 67, 7, 1) 100%
+  ); /* FF3.6-15 */
+  background: -webkit-linear-gradient(
+    -45deg,
+    rgba(61, 165, 107, 1) 17%,
+    rgba(61, 165, 107, 1) 36%,
+    rgba(69, 125, 171, 1) 48%,
+    rgba(171, 79, 135, 1) 52%,
+    rgba(223, 67, 7, 1) 60%,
+    rgba(223, 67, 7, 1) 100%
+  ); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(
+    135deg,
+    rgba(61, 165, 107, 1) 17%,
+    rgba(61, 165, 107, 1) 36%,
+    rgba(69, 125, 171, 1) 48%,
+    rgba(171, 79, 135, 1) 52%,
+    rgba(223, 67, 7, 1) 60%,
+    rgba(223, 67, 7, 1) 100%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3da56b', endColorstr='#df4307',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.product-page__subtitle {
+  @extend .main-screen__subtitle;
+  text-transform: uppercase;
+  top: 0;
+  letter-spacing: 2px;
+}
+
+.product-page__fruits {
+  @extend .main-page__fruits;
+  height: 100%;
+
+  & > ul:first-child {
+    top: -20% !important;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    li {
+      position: absolute !important;
+      &:first-child {
+        width: 45%;
+        top: -35% !important;
+      }
+      &:last-child {
+        width: 25%;
+        top: 10% !important;
+        left: 50% !important;
+      }
+    }
+  }
+  & > ul:last-child {
+    right: -10%;
+    width: 50%;
+    height: 100%;
+    li {
+      position: absolute !important;
+      top: 0;
+      right: 0;
+      &:first-child {
+        width: 20%;
+        top: -45% !important;
+      }
+      &:last-child {
+        width: 40%;
+        right: 0% !important;
+        top: -20% !important;
+      }
+    }
+  }
+}
+
+.product-page__about-screen {
+}
+.product-page__products-list {
+}

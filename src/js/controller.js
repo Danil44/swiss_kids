@@ -3,11 +3,12 @@ import EventEmitter from "./services/event-emitter";
 export default class Controller extends EventEmitter {
   constructor(model, view) {
     super();
-    this.onPageLoad(view);
+
     this.view = view;
     this.model = model;
 
-    view.preloaderAnimation();
+    this.onPageLoad(view);
+
     model.on("loadAnimation", this.loadProductsScreensAnimation.bind(this));
     model.on("loadAboutAnimation", this.loadAboutScreensAnimation.bind(this));
   }
@@ -21,40 +22,49 @@ export default class Controller extends EventEmitter {
   }
 
   loadProductsScreensAnimation(productName) {
-    if (productName) {
+    const currentPage = document.querySelector("body").className;
+    if (productName && currentPage === "main-page") {
       this.view.loadProductsScreensAnimation(productName);
-    } else {
-      return;
     }
   }
 
   onPageLoad(view) {
     document.body.onload = () => {
+      const rollerCircle = document.getElementById("load-roller");
+      const animation = TweenMax.to(rollerCircle, 1.5, {
+        delay: 0,
+        rotation: 360,
+        ease: Linear.easeNone,
+        repeat: -1
+      }).timeScale(1.2);
+      const currentPage = document.querySelector("body").className;
+
+      const path = this.model.getPath() || currentPage;
+
+      if (window.matchMedia("(min-width: 1024px)").matches) {
+        view.loadFirstScreenAnimation();
+        view.loadOnePageScroll(path);
+      } else {
+        view.loadProductsSlide();
+      }
+
       setTimeout(() => {
         const preloaderCircle = document.getElementById("preloader");
-        const page = this.model.getPath();
 
         TweenMax.to(preloaderCircle, 0.8, {
           delay: 0,
           opacity: 0,
           ease: Power2.easeOut,
           onComplete: () => {
+            animation.kill();
             preloaderCircle.classList.toggle("done");
-
             document.body.onscroll = () => {
               this.model.loadCurrentScreenAnimation();
             };
-            this.model.loadCurrentScreenAnimation(page);
+            this.model.loadCurrentScreenAnimation(path);
           }
         });
-        if (window.matchMedia("(min-width: 1024px)").matches) {
-          view.loadFirstScreenAnimation();
-
-          view.loadOnePageScroll();
-        } else {
-          view.loadProductsSlide();
-        }
-      }, 2000);
+      }, 1500);
     };
   }
 }

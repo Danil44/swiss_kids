@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="./scss/product-styles.scss" />
+    <title>Smartvit</title>
+</head>
+
+<body class="main-smartvit">
+    <div class="page-scroll" id='container'>
+        <main>
+            <div class="up-button js-upButton"></div>
+            <div class="preloader-screen" id="preloader">
+                <div class="lds-roller" id="load-roller">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+            <section class=" product-page__main-screen js-main-screen" data-anchor="main-smartvit">
+                <div class="product-page__fruits">
+                    <ul id="fruits-1" data-relative-input="true">
+                        <li data-depth="0.04"><img src="./images/product-page/smartvit/orange-1.png" alt=""></li>
+                        <li data-depth="0.12"><img src="./images/product-page/smartvit/orange-2.png" alt=""></li>
+                    </ul>
+                    <ul id="fruits-2">
+                        <li data-depth="0.06"><img src="./images/product-page/smartvit/orange-3.png" alt=""></li>
+                        <li data-depth="0.08"><img src="./images/product-page/smartvit/orange-4.png" alt=""></li>
+                    </ul>
+                </div>
+                <div class="product-page__inner">
+                    <a href="./index.html" class="main-page__logo"><img src="./images/swiss-logo.svg"
+                            alt="Swiss logo" /></a>
+                    <ul class="main-screen__burger">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <div id="product-bottle" class="product-page__vitamins js-product-bottle"><img data-depth="0.09"
+                            srcset="./images/product-page/smartvit/vitamins.png 1x,  ./images/product-page/smartvit/vitamins@2x.png 2x"
+                            src="./images/product-page/smartvit/vitamins.png" alt="Calcivit vitamins" /></div>
+
+                    <div class="product-page__title-wrapper">
+                        <h2 class="product-page__title js-title">smartvit kids</h2>
+                        <h4 class="product-page__subtitle js-subtitle">Швейцарські вітаміни для дітей</h4>
+                    </div>
+                </div>
+            </section>
+            <section class="product-page__about about-product js-screen" data-anchor="about-product">
+                <h4 class="about-product__title">Smartvit Kids</h4>
+                <div class="about-product__content">
+                    <div class="about-product__desc">
+                        <h4 class="about-product__title">Про препарат</h4>
+                        <p>Жевательные таблетки Свисс Энерджи на основе глюкозы со вкусом йогурта и апельсина, являются
+                            источником витаминов В2, В5, В6 и В12, цинка и железа.
+                            Комплекс Смартвит Кидс способствует повышению умственной активности у детей, укрепляет
+                            иммунитет и помогает им успешно справляться с ежедневными задачами.
+                            В состав жевательных витаминов Swiss Energy Smartvit Kids (Свисс Энерджи Смартвит Кидс)
+                            входят только безопасные и полезные ингредиенты высокого качества.</p>
+                    </div>
+                    <div class="about-product__ingredients">
+                        <h4 class="about-product__title"></h4>
+                        <p></p>
+                        <ul>
+                            <li><span class="ingredient-name"></span><span class="ingredient-number"></span></li>
+                            <li><span class="ingredient-name"></span><span class="ingredient-number"></span></li>
+                            <li><span class="ingredient-name"></span><span class="ingredient-number"></span></li>
+                            <li><span class="ingredient-name"></span><span class="ingredient-number"></span></li>
+                            <li><span class="ingredient-name"></span><span class="ingredient-number"></span></li>
+                            <li><span class="ingredient-name"></span><span class="ingredient-number"></span></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TimelineMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
+    <script src="./js/index.js"></script>
+</body>
+<!-- <div class="glider-contain multiple bottles-list">
+
+    <button class="glider-prev bottles__slide"><i class="fas fa-angle-left"></i></button>
+
+    <ul class="bottles-list products-list" id="bottles-list" data-relative-input="true">
+        <li class="bottles__item" data-depth="0.08">
+            <img srcset="./images/main-screen/green-bottle.png 1x,  ./images/main-screen/green-bottle@2x.png 2x"
+                src="./images/main-screen/green-bottle.png" alt="Calcivit vitamins"
+                class="bottles__img" />
+        </li>
+
+        <li class="bottles__item" data-depth="0.06">
+            <img srcset="./images/main-screen/blue-bottle.png 1x, ./images/main-screen/blue-bottle@2x.png 2x"
+                src="./images/main-screen/blue-bottle.png" alt="Multivit vitamins"
+                class="bottles__img" />
+        </li>
+
+        <li class="bottles__item" data-depth="0.08">
+            <img srcset="./images/main-screen/purple-bottle.png 1x,./images/main-screen/purple-bottle@2x.png 2x"
+                src="./images/main-screen/purple-bottle.png" alt="Immunovit vitamins"
+                class="bottles__img" />
+        </li>
+
+        <li class="bottles__item" data-depth="0.05">
+            <img srcset="./images/main-screen/orange-bottle.png 1x, ./images/main-screen/orange-bottle@2x.png 2x"
+                src="./images/main-screen/orange-bottle.png" alt="Smartvit vitamins"
+                class="bottles__img" />
+        </li>
+    </ul>
+    <button class="glider-next bottles__slide"><i class="fas fa-angle-right"></i></button>
+</div> -->
+
+</html>

@@ -16,6 +16,25 @@
 
   li {
     position: unset !important;
+    width: 25%;
+    height: 300px;
+    transition: 0.2s linear;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    &:first-child {
+      background-image: url("../images/main-screen/green-bottle.png");
+      background-size: cover;
+    }
+    &:nth-child(2) {
+      background-image: url("../images/main-screen/blue-bottle.png");
+    }
+    &:nth-child(3) {
+      background-image: url("../images/main-screen/purple-bottle.png");
+    }
+    &:last-child {
+      background-image: url("../images/main-screen/orange-bottle.png");
+    }
   }
 }
 

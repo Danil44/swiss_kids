@@ -1,0 +1,36 @@
+@import "../helpers/variables";
+.up-button {
+  position: fixed;
+  right: 8%;
+  bottom: 10%;
+  width: 60px;
+  height: 60px;
+  z-index: 999;
+  cursor: pointer;
+  user-select: none;
+  background-image: url("data:image/svg+xml,%3Csvg data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cdefs%3E%3ClinearGradient id='a' y1='128' x2='256' y2='128' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23ca5424'/%3E%3Cstop offset='.26' stop-color='%23966395'/%3E%3Cstop offset='.51' stop-color='%23458fa0'/%3E%3Cstop offset='1' stop-color='%2345a575'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M128 0a128 128 0 1 0 128 128A128 128 0 0 0 128 0z' fill='url(%23a)'/%3E%3Cpath fill='%23fff' d='M186.32 141.73L128 83.4l-58.32 58.33 18.87 18.87L128 121.14l39.45 39.46 18.87-18.87z'/%3E%3C/svg%3E");
+
+  &:hover {
+    animation: bounce 0.7s;
+  }
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  60%,
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+
+  40% {
+    -webkit-transform: translateY(-20px);
+    transform: translateY(-20px);
+  }
+
+  80% {
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px);
+  }
+}

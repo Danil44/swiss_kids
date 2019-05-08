@@ -2,39 +2,50 @@ import Parallax from "parallax-js";
 
 export default class Animations {
   constructor() {}
+
   firstScreen() {
-    const mainScreen = document.querySelector(".main-screen");
+    const mainScreen = document.querySelector(".js-main-screen");
     const bottles = mainScreen.querySelectorAll(".bottles__item");
     const title = mainScreen.querySelector(".js-title");
     const subtitle = mainScreen.querySelector(".js-subtitle");
+    const productBottle = mainScreen.querySelector(".js-product-bottle");
     const mainTimeline = new TimelineMax();
 
-    bottles.forEach(item => {
-      const tl = new TimelineMax();
-      tl.from(
-        item,
-        1,
-        {
-          delay: 0.5,
-          alpha: 0,
-          opacity: 0,
-          y: -250,
-          ease: Elastic.easeOut.config(0.3, 0.3)
-        },
-        0
-      );
-      mainTimeline.add(tl, "-=0.6");
-    });
+    if (productBottle) {
+      TweenMax.from(productBottle, 2, {
+        delay: 0.5,
+        scale: 0,
+        opacity: 0,
+        ease: Elastic.easeOut.config(0.8, 0.4)
+      });
+    }
 
+    if (bottles) {
+      bottles.forEach(item => {
+        const tl = new TimelineMax();
+        tl.from(
+          item,
+          1,
+          {
+            delay: 1.5,
+            alpha: 0,
+            opacity: 0,
+            y: -250,
+            ease: Elastic.easeOut.config(0.8, 0.3)
+          },
+          0
+        );
+      });
+    }
     TweenMax.from(title, 2.5, {
-      delay: 1,
+      delay: 0.5,
       opacity: 0,
       y: 100,
       ease: Elastic.easeOut.config(0.8, 0.3)
     });
 
     TweenMax.from(subtitle, 2.5, {
-      delay: 2,
+      delay: 1.5,
       opacity: 0,
       y: 20,
       ease: Power2.easeOut,
@@ -83,10 +94,7 @@ export default class Animations {
   }
 
   products(productName) {
-    const container = document.querySelector(
-      `.main-page__screen > .${productName}`
-    );
-
+    const container = document.querySelector(`.js-screen > .${productName}`);
     const productPictures = container.querySelector(
       ".product-screen__pictures"
     );
@@ -206,9 +214,13 @@ export default class Animations {
       const bottles = document.getElementById("bottles-list");
       const fruits1 = document.getElementById("fruits-1");
       const fruits2 = document.getElementById("fruits-2");
-      new Parallax(bottles);
+      const productBottle = document.getElementById("product-bottle");
+
+      if (bottles) new Parallax(bottles);
       new Parallax(fruits1);
       new Parallax(fruits2);
+
+      if (productBottle) new Parallax(productBottle);
     }
     function runProductsParallax() {
       if (container) {

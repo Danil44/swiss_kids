@@ -27,15 +27,19 @@
     left: 12% !important;
   }
   &__vitamins {
-    max-width: 60%;
+    max-width: 55%;
+    width: 55%;
+    height: 57%;
+    background-repeat: no-repeat;
+    background-size: cover;
     position: absolute;
     top: 15% !important;
     left: 20% !important;
     z-index: 2;
 
     &--lg {
-      position: absolute !important;
-      width: 700px;
+      max-width: 80%;
+      width: 100%;
       top: 20% !important;
       left: 10% !important;
     }
@@ -49,11 +53,11 @@
     left: -20% !important;
   }
   &__reef {
-    max-width: 90%;
+    max-width: 100%;
     z-index: -1;
     position: absolute;
-    top: -20% !important;
-    left: -15% !important;
+    top: -10% !important;
+    left: -10% !important;
   }
   &__fish {
     @extend .product-screen__parrot;
@@ -89,6 +93,7 @@
     border-radius: 50%;
     overflow: hidden;
     position: absolute !important;
+    top: 9% !important;
     transform: translate(0, 140%) !important;
     & > div {
       width: 7.5vw;
@@ -110,7 +115,7 @@
   &__space {
     @extend .product-screen__reef;
     max-width: 150%;
-    top: -15% !important;
+    top: -5% !important;
   }
 
   &__ballons {
@@ -155,6 +160,39 @@
   }
 }
 
+.product-screen__vitamins {
+  &--calcivit {
+    background-image: url("../images/products-screens/calcivit/vitamins.png");
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+      background-image: url("../images/products-screens/calcivit/vitamins@2x.png");
+    }
+  }
+  &--multivit {
+    background-image: url("../images/products-screens/multivit/vitamins.png");
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+      background-image: url("../images/products-screens/multivit/vitamins@2x.png");
+    }
+  }
+  &--immunovit {
+    background-image: url("../images/products-screens/immunovit/vitamins.png");
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+      background-image: url("../images/products-screens/immunovit/vitamins@2x.png");
+    }
+  }
+  &--smartvit {
+    background-image: url("../images/products-screens/smartvit/vitamins.png");
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+      background-image: url("../images/products-screens/smartvit/vitamins@2x.png");
+    }
+  }
+  &--omega {
+    background-image: url("../images/products-screens/omega/vitamins.png");
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+      background-image: url("../images/products-screens/omega/vitamins@2x.png");
+    }
+  }
+}
+
 .product-screen__desc {
   width: 100%;
   padding: 0 0 0 5em;
@@ -185,19 +223,27 @@
 }
 
 .product-screen__btn {
-  font-size: 23px;
+  font-family: $primary-font-stack;
+  font-size: 22px;
   font-weight: 800;
+  border: 5px solid transparent;
   border-radius: 44px;
   background-color: #ffffff;
-  padding: 1em 2.2em 1em 5em;
+  padding: 1.2em 2.2em 1.2em 6em;
   position: relative;
+  display: inline-block;
+  text-transform: uppercase;
   cursor: pointer;
+  transition: 0.2s linear;
+
   &::before {
     content: "";
     display: inline-block;
+    border: 6px solid $primary-bg-color;
+    border-radius: 50%;
     position: absolute;
     background-position: center;
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     width: 90px;
     height: 90px;
@@ -220,6 +266,9 @@
   }
   &--green {
     color: $green-btn;
+    &:hover {
+      border-color: $green-btn;
+    }
     &::after {
       background-image: url("data:image/svg+xml,%3Csvg id='Layer_1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26.5 43.8'%3E%3Cstyle%3E .st0%7Bfill:%2300a042%7D %3C/style%3E%3Cpath transform='rotate(45.001 13.258 13.257)' class='st0' d='M-1.7 9.5h30V17h-30z'/%3E%3Cpath transform='rotate(-45.001 13.257 30.507)' class='st0' d='M-1.7 26.8h30v7.5h-30z'/%3E%3C/svg%3E");
     }
@@ -228,6 +277,9 @@
     }
   }
   &--blue {
+    &:hover {
+      border-color: $blue-btn;
+    }
     color: $blue-btn;
     &::after {
       background-image: url("data:image/svg+xml,%3Csvg id='Layer_1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26.5 43.8'%3E%3Cstyle%3E .st0%7Bfill:%23006d9e%7D %3C/style%3E%3Cpath transform='rotate(45.001 13.258 13.257)' class='st0' d='M-1.7 9.5h30V17h-30z'/%3E%3Cpath transform='rotate(-45.001 13.257 30.507)' class='st0' d='M-1.7 26.8h30v7.5h-30z'/%3E%3C/svg%3E");
@@ -238,6 +290,9 @@
   }
   &--purple {
     color: $purple-btn;
+    &:hover {
+      border-color: $purple-btn;
+    }
     &::after {
       background-image: url("data:image/svg+xml,%3Csvg id='Layer_1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26.5 43.8'%3E%3Cstyle%3E .st0%7Bfill:%239e1679%7D %3C/style%3E%3Cpath transform='rotate(45.001 13.258 13.257)' class='st0' d='M-1.7 9.5h30V17h-30z'/%3E%3Cpath transform='rotate(-45.001 13.257 30.507)' class='st0' d='M-1.7 26.8h30v7.5h-30z'/%3E%3C/svg%3E");
     }
@@ -247,6 +302,9 @@
   }
   &--orange {
     color: $orange-btn;
+    &:hover {
+      border-color: $orange-btn;
+    }
     &::after {
       background-image: url("data:image/svg+xml,%3Csvg id='Layer_1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26.5 43.8'%3E%3Cstyle%3E .st0%7Bfill:%23de3c16%7D %3C/style%3E%3Cpath transform='rotate(45.001 13.258 13.257)' class='st0' d='M-1.7 9.5h30V17h-30z'/%3E%3Cpath transform='rotate(-45.001 13.257 30.507)' class='st0' d='M-1.7 26.8h30v7.5h-30z'/%3E%3C/svg%3E");
     }
@@ -256,6 +314,9 @@
   }
   &--pink {
     color: $pink-btn;
+    &:hover {
+      border-color: $pink-btn;
+    }
     &::after {
       background-image: url("data:image/svg+xml,%3Csvg id='Layer_1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26.5 43.8'%3E%3Cstyle%3E .st0%7Bfill:%23ec2fc1%7D %3C/style%3E%3Cpath transform='rotate(45.001 13.258 13.257)' class='st0' d='M-1.7 9.5h30V17h-30z'/%3E%3Cpath transform='rotate(-45.001 13.257 30.507)' class='st0' d='M-1.7 26.8h30v7.5h-30z'/%3E%3C/svg%3E");
     }

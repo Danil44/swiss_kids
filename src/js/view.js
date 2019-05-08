@@ -8,17 +8,9 @@ export default class View extends EventEmitter {
   constructor() {
     super();
     this.animation = new Animations();
-  }
-
-  preloaderAnimation() {
-    const rollerCircle = document.getElementById("load-roller");
-
-    TweenMax.to(rollerCircle, 1.5, {
-      delay: 0,
-      rotation: 360,
-      ease: Linear.easeNone,
-      repeat: -1
-    }).timeScale(1.2);
+    this.anchors = [];
+    this.pageable = "";
+    this.upBtn = document.querySelector(".js-upButton");
   }
 
   loadAboutScreenAnimation(screenName) {
@@ -71,11 +63,15 @@ export default class View extends EventEmitter {
     });
   }
 
+  handleScrollToTop(evt) {
+    evt.preventDefault();
+    console.log(this.pageable);
+    this.pageable.scrollToAnchor("#main");
+  }
+
   loadOnePageScroll(page) {
-    const container = document.getElementById("container");
-    const pageable = new Pageable(container, {
-      childSelector: "[data-anchor]", // CSS3 selector string for the pages
-      anchors: [
+    if (page === "main") {
+      this.anchors = [
         "main",
         "calcivit",
         "multivit",
@@ -85,9 +81,21 @@ export default class View extends EventEmitter {
         "hello-kitty",
         "spider-man",
         "about-products"
-      ], // define the page anchors
+      ];
+    } else if (page === "main-smartvit") {
+      this.anchors = [
+        "main-smartvit",
+        "about-smartvit",
+        "product-list",
+        "footer"
+      ];
+    }
+    const container = document.getElementById("container");
+    this.pageable = new Pageable(container, {
+      childSelector: "[data-anchor]", // CSS3 selector string for the pages
+      anchors: this.anchors, // define the page anchors
       animation: 450, // the duration in ms of the scroll animation
-      delay: 500, // the delay in ms before the scroll animation starts
+      delay: 0, // the delay in ms before the scroll animation starts
       orientation: "vertical", // or horizontal
       swipeThreshold: 50, // swipe / mouse drag distance (px) before firing the page change event
       freeScroll: true, // allow manual scrolling when dragging instead of automatically moving to next page
@@ -97,12 +105,29 @@ export default class View extends EventEmitter {
         touch: true, // enable / disable touch / swipe scrolling
         keydown: true // enable / disable keyboard navigation
       },
+
       easing: function(currentTime, startPos, endPos, interval) {
         // the easing function used for the scroll animation
         return (
           -endPos * (currentTime /= interval) * (currentTime - 2) + startPos
         );
+      },
+
+      onFinish: () => {
+        const href = window.location.href;
+        const screen = href
+          .split("#")
+          .splice(1, 2)
+          .join("/");
+
+        if (screen === "main") {
+          this.upBtn.style.display = "none";
+        } else {
+          this.upBtn.style.display = "block";
+        }
       }
     });
+    if (this.upBtn)
+      this.upBtn.addEventListener("click", this.handleScrollToTop.bind(this));
   }
 }

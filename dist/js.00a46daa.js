@@ -1877,30 +1877,43 @@ function () {
     value: function firstScreen() {
       var _this = this;
 
-      var mainScreen = document.querySelector(".main-screen");
+      var mainScreen = document.querySelector(".js-main-screen");
       var bottles = mainScreen.querySelectorAll(".bottles__item");
       var title = mainScreen.querySelector(".js-title");
       var subtitle = mainScreen.querySelector(".js-subtitle");
+      var productBottle = mainScreen.querySelector(".js-product-bottle");
       var mainTimeline = new TimelineMax();
-      bottles.forEach(function (item) {
-        var tl = new TimelineMax();
-        tl.from(item, 1, {
+
+      if (productBottle) {
+        TweenMax.from(productBottle, 2, {
           delay: 0.5,
-          alpha: 0,
+          scale: 0,
           opacity: 0,
-          y: -250,
-          ease: Elastic.easeOut.config(0.3, 0.3)
-        }, 0);
-        mainTimeline.add(tl, "-=0.6");
-      });
+          ease: Elastic.easeOut.config(0.8, 0.4)
+        });
+      }
+
+      if (bottles) {
+        bottles.forEach(function (item) {
+          var tl = new TimelineMax();
+          tl.from(item, 1, {
+            delay: 1.5,
+            alpha: 0,
+            opacity: 0,
+            y: -250,
+            ease: Elastic.easeOut.config(0.8, 0.3)
+          }, 0);
+        });
+      }
+
       TweenMax.from(title, 2.5, {
-        delay: 1,
+        delay: 0.5,
         opacity: 0,
         y: 100,
         ease: Elastic.easeOut.config(0.8, 0.3)
       });
       TweenMax.from(subtitle, 2.5, {
-        delay: 2,
+        delay: 1.5,
         opacity: 0,
         y: 20,
         ease: Power2.easeOut,
@@ -1950,7 +1963,7 @@ function () {
     value: function products(productName) {
       var _this2 = this;
 
-      var container = document.querySelector(".main-page__screen > .".concat(productName));
+      var container = document.querySelector(".js-screen > .".concat(productName));
       var productPictures = container.querySelector(".product-screen__pictures");
       var vines = container.querySelector(".vines");
       var animal = productPictures.querySelector(".js-animal");
@@ -2073,9 +2086,11 @@ function () {
         var bottles = document.getElementById("bottles-list");
         var fruits1 = document.getElementById("fruits-1");
         var fruits2 = document.getElementById("fruits-2");
-        new _parallaxJs.default(bottles);
+        var productBottle = document.getElementById("product-bottle");
+        if (bottles) new _parallaxJs.default(bottles);
         new _parallaxJs.default(fruits1);
         new _parallaxJs.default(fruits2);
+        if (productBottle) new _parallaxJs.default(productBottle);
       }
 
       function runProductsParallax() {
@@ -10121,21 +10136,13 @@ function (_EventEmitter) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(View).call(this));
     _this.animation = new _animations.default();
+    _this.anchors = [];
+    _this.pageable = "";
+    _this.upBtn = document.querySelector(".js-upButton");
     return _this;
   }
 
   _createClass(View, [{
-    key: "preloaderAnimation",
-    value: function preloaderAnimation() {
-      var rollerCircle = document.getElementById("load-roller");
-      TweenMax.to(rollerCircle, 1.5, {
-        delay: 0,
-        rotation: 360,
-        ease: Linear.easeNone,
-        repeat: -1
-      }).timeScale(1.2);
-    }
-  }, {
     key: "loadAboutScreenAnimation",
     value: function loadAboutScreenAnimation(screenName) {
       this.animation.about(screenName);
@@ -10187,17 +10194,32 @@ function (_EventEmitter) {
       });
     }
   }, {
+    key: "handleScrollToTop",
+    value: function handleScrollToTop(evt) {
+      evt.preventDefault();
+      console.log(this.pageable);
+      this.pageable.scrollToAnchor("#main");
+    }
+  }, {
     key: "loadOnePageScroll",
     value: function loadOnePageScroll(page) {
+      var _this2 = this;
+
+      if (page === "main") {
+        this.anchors = ["main", "calcivit", "multivit", "immunovit", "smartvit", "omega", "hello-kitty", "spider-man", "about-products"];
+      } else if (page === "main-smartvit") {
+        this.anchors = ["main-smartvit", "about-smartvit", "product-list", "footer"];
+      }
+
       var container = document.getElementById("container");
-      var pageable = new _pageable.default(container, {
+      this.pageable = new _pageable.default(container, {
         childSelector: "[data-anchor]",
         // CSS3 selector string for the pages
-        anchors: ["main", "calcivit", "multivit", "immunovit", "smartvit", "omega", "hello-kitty", "spider-man", "about-products"],
+        anchors: this.anchors,
         // define the page anchors
         animation: 450,
         // the duration in ms of the scroll animation
-        delay: 500,
+        delay: 0,
         // the delay in ms before the scroll animation starts
         orientation: "vertical",
         // or horizontal
@@ -10218,8 +10240,19 @@ function (_EventEmitter) {
         easing: function easing(currentTime, startPos, endPos, interval) {
           // the easing function used for the scroll animation
           return -endPos * (currentTime /= interval) * (currentTime - 2) + startPos;
+        },
+        onFinish: function onFinish() {
+          var href = window.location.href;
+          var screen = href.split("#").splice(1, 2).join("/");
+
+          if (screen === "main") {
+            _this2.upBtn.style.display = "none";
+          } else {
+            _this2.upBtn.style.display = "block";
+          }
         }
       });
+      if (this.upBtn) this.upBtn.addEventListener("click", this.handleScrollToTop.bind(this));
     }
   }]);
 
@@ -10268,12 +10301,11 @@ function (_EventEmitter) {
     _classCallCheck(this, Controller);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Controller).call(this));
+    _this.view = view;
+    _this.model = model;
 
     _this.onPageLoad(view);
 
-    _this.view = view;
-    _this.model = model;
-    view.preloaderAnimation();
     model.on("loadAnimation", _this.loadProductsScreensAnimation.bind(_assertThisInitialized(_this)));
     model.on("loadAboutAnimation", _this.loadAboutScreensAnimation.bind(_assertThisInitialized(_this)));
     return _this;
@@ -10291,10 +10323,10 @@ function (_EventEmitter) {
   }, {
     key: "loadProductsScreensAnimation",
     value: function loadProductsScreensAnimation(productName) {
-      if (productName) {
+      var currentPage = document.querySelector("body").className;
+
+      if (productName && currentPage === "main-page") {
         this.view.loadProductsScreensAnimation(productName);
-      } else {
-        return;
       }
     }
   }, {
@@ -10303,33 +10335,41 @@ function (_EventEmitter) {
       var _this2 = this;
 
       document.body.onload = function () {
+        var rollerCircle = document.getElementById("load-roller");
+        var animation = TweenMax.to(rollerCircle, 1.5, {
+          delay: 0,
+          rotation: 360,
+          ease: Linear.easeNone,
+          repeat: -1
+        }).timeScale(1.2);
+        var currentPage = document.querySelector("body").className;
+        var path = _this2.model.getPath() || currentPage;
+
+        if (window.matchMedia("(min-width: 1024px)").matches) {
+          view.loadFirstScreenAnimation();
+          view.loadOnePageScroll(path);
+        } else {
+          view.loadProductsSlide();
+        }
+
         setTimeout(function () {
           var preloaderCircle = document.getElementById("preloader");
-
-          var page = _this2.model.getPath();
-
           TweenMax.to(preloaderCircle, 0.8, {
             delay: 0,
             opacity: 0,
             ease: Power2.easeOut,
             onComplete: function onComplete() {
+              animation.kill();
               preloaderCircle.classList.toggle("done");
 
               document.body.onscroll = function () {
                 _this2.model.loadCurrentScreenAnimation();
               };
 
-              _this2.model.loadCurrentScreenAnimation(page);
+              _this2.model.loadCurrentScreenAnimation(path);
             }
           });
-
-          if (window.matchMedia("(min-width: 1024px)").matches) {
-            view.loadFirstScreenAnimation();
-            view.loadOnePageScroll();
-          } else {
-            view.loadProductsSlide();
-          }
-        }, 2000);
+        }, 1500);
       };
     }
   }]);
@@ -10383,7 +10423,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65270" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57396" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
