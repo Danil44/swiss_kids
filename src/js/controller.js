@@ -23,7 +23,7 @@ export default class Controller extends EventEmitter {
 
   loadProductsScreensAnimation(productName) {
     const currentPage = document.querySelector("body").className;
-    if (productName && currentPage === "main-page") {
+    if (productName && currentPage === "main") {
       this.view.loadProductsScreensAnimation(productName);
     }
   }
@@ -38,19 +38,19 @@ export default class Controller extends EventEmitter {
         repeat: -1
       }).timeScale(1.2);
       const currentPage = document.querySelector("body").className;
-
       const path = this.model.getPath() || currentPage;
 
-      if (window.matchMedia("(min-width: 1024px)").matches) {
-        view.loadFirstScreenAnimation();
-        view.loadOnePageScroll(path);
-      } else {
-        view.loadProductsSlide();
-      }
+      window.location.href = `#${path}`;
+
+      const preloaderCircle = document.getElementById("preloader");
 
       setTimeout(() => {
-        const preloaderCircle = document.getElementById("preloader");
-
+        if (window.matchMedia("(min-width: 1024px)").matches) {
+          view.loadFirstScreenAnimation();
+          view.loadOnePageScroll(path);
+        } else {
+          view.loadProductsSlide();
+        }
         TweenMax.to(preloaderCircle, 0.8, {
           delay: 0,
           opacity: 0,

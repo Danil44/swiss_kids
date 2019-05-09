@@ -65,8 +65,7 @@ export default class View extends EventEmitter {
 
   handleScrollToTop(evt) {
     evt.preventDefault();
-    console.log(this.pageable);
-    this.pageable.scrollToAnchor("#main");
+    this.pageable.scrollToPage(1);
   }
 
   loadOnePageScroll(page) {
@@ -119,7 +118,6 @@ export default class View extends EventEmitter {
           .split("#")
           .splice(1, 2)
           .join("/");
-
         if (screen === "main") {
           this.upBtn.style.display = "none";
         } else {
