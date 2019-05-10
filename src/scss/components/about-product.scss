@@ -1,0 +1,64 @@
+@import "./main-page.scss";
+@import "../helpers/variables";
+@import "../helpers/mixins";
+.about-product__inner {
+  background-color: #fff;
+  height: 100%;
+  padding: 0.7em 0.5em;
+  @media (min-width: $desktop-sm-bp) {
+    padding: 5.5em 9.5em;
+  }
+}
+
+.about-product__title {
+  @include text($font-size: calc(75px + 0.5vw), $font-weight: 600);
+  margin-bottom: 1.5em;
+}
+
+.about-product__subtitle {
+  @include text($font-size: calc(40px + 0.5vw), $font-weight: 600);
+  padding-bottom: 1em;
+  border-bottom: 5px solid $primary-bg-color;
+}
+
+.about-product__content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  align-items: baseline;
+}
+
+.about-product__desc {
+  flex-basis: calc(50% - 8em);
+  & > p {
+    @include text($font-size: calc(13px + 0.5vw));
+    line-height: 40px;
+    padding-top: 1.5em;
+  }
+}
+
+.about-product__ingredients {
+  @extend .about-product__desc;
+  & > p {
+    @include text($font-size: calc(13px + 0.5vw));
+    margin-bottom: 1em;
+  }
+  & > ul li {
+    display: flex;
+    margin-bottom: 1em;
+  }
+  .ingredient-name {
+    @include text($font-size: calc(11px + 0.5vw), $font-weight: 600);
+  }
+  .dots {
+    margin: 0 33px;
+    flex-grow: 1;
+    border-bottom: 3px dotted #afbdc5;
+    height: 0;
+    align-self: flex-end;
+  }
+  .ingredient-number {
+    @include text($font-size: calc(11px + 0.5vw));
+  }
+}

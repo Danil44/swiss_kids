@@ -6,7 +6,17 @@
 
 .product-page__inner {
   @extend .main-page__inner;
+  background-image: url("../images/product-page/light-481.png");
   width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  @media (min-width: 375px) and (max-width: 400px),
+    (min-width: 468px),
+    (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi) {
+    background-image: url("../images/product-page/light.png");
+  }
 }
 
 .product-page__vitamins {
@@ -100,21 +110,18 @@
     li {
       position: absolute !important;
       top: 0;
-      right: 0;
       &:first-child {
         width: 20%;
         top: -45% !important;
       }
       &:last-child {
         width: 40%;
-        right: 0% !important;
         top: -20% !important;
       }
     }
   }
 }
 
-.product-page__about-screen {
-}
-.product-page__products-list {
+.product-page__about {
+  @extend .main-page__screen;
 }

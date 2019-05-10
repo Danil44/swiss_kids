@@ -265,233 +265,6 @@ var global = arguments[3];
 
 */
 function _instanceof(a,b){return null!=b&&"undefined"!=typeof Symbol&&b[Symbol.hasInstance]?b[Symbol.hasInstance](a):a instanceof b}function _typeof(a){return _typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(a){return typeof a}:function(a){return a&&"function"==typeof Symbol&&a.constructor===Symbol&&a!==Symbol.prototype?"symbol":typeof a},_typeof(a)}Element.prototype.matches||(Element.prototype.matches=Element.prototype.msMatchesSelector||Element.prototype.webkitMatchesSelector),Element.prototype.closest||(Element.prototype.closest=function(a){var b=this;do{if(b.matches(a))return b;b=b.parentElement||b.parentNode}while(null!==b&&1===b.nodeType);return null}),function(a,b){"object"===("undefined"==typeof exports?"undefined":_typeof(exports))?module.exports=b("Pageable"):"function"==typeof define&&define.amd?define([],b):a.Pageable=b("Pageable")}("undefined"==typeof global?this.window||this.global:global,function(){"use strict";var a=function(){},b=function(a,b){return a.dataset?a.dataset[b]:a.getAttribute("data-"+b)},c=function(a){return"[object Object]"===Object.prototype.toString.call(a)},d=function a(b,d){for(var e in d)if(d.hasOwnProperty(e)){var f=d[e];f&&c(f)?(b[e]=b[e]||{},a(b[e],f)):b[e]=f}return b},e=function(a,b,c){var d;return function(){if(c=c||this,!d)return a.apply(c,arguments),d=!0,setTimeout(function(){d=!1},b)}},f=function(a){this.instance=a,this.running=!1,this.config=this.instance.config.slideshow};f.prototype.start=function(){var a=this;a.running||(a.running=!0,a.instance.slideIndex=a.instance.index,a.instance.interval=setInterval(function(){a.instance.config.onBeforeStart.call(a.instance,a.instance.slideIndex),setTimeout(function(){a.instance.config.infinite&&a.instance._overScroll(!0),a.instance.index<a.instance.pages.length-1?a.instance.slideIndex++:a.instance.slideIndex=0,a.instance.scrollToIndex(a.instance.slideIndex)},a.config.delay||0)},a.config.interval))},f.prototype.stop=function(){this.running&&(clearInterval(this.instance.interval),this.instance.slideInterval=!1,this.running=!1)};var g=function(c,e){if(void 0===c)return console.error("Pageable:","No container defined.");var f=this;return(this.container="string"==typeof c?document.querySelector(c):c,!this.container)?console.error("Pageable:","The container could not be found."):(this.config=d({pips:!0,animation:300,delay:0,throttle:50,orientation:"vertical",easing:function(a,e,b,c){return-b*(a/=c)*(a-2)+e},onInit:a,onUpdate:a,onBeforeStart:a,onStart:a,onScroll:a,onFinish:a,swipeThreshold:50,freeScroll:!1,slideshow:!1,infinite:!1,childSelector:"[data-anchor]",events:{wheel:!0,mouse:!0,touch:!0,keydown:!0}},e),this.events=this.config.events,this.pages=[].slice.call(this.container.querySelectorAll(this.config.childSelector)),this.pages.length?void(this.horizontal="horizontal"===this.config.orientation,this.anchors=[],this.pages.forEach(function(a,c){var d="",e=b(a,"anchor");d=e?e.replace(/\s+/,"-").toLowerCase():Array.isArray(f.config.anchors)&&f.config.anchors.length?f.config.anchors[c].replace(/\s+/,"-").toLowerCase():a.className.replace(/\s+/,"-").toLowerCase(),a.id!==d&&(a.id=d),f.anchors.push("#"+d),a.classList.add("pg-page"),0==c?a.classList.add("pg-active"):a.classList.remove("pg-active")}),this.axis=this.horizontal?"x":"y",this.mouseAxis={x:"clientX",y:"clientY"},this.scrollAxis={x:"scrollLeft",y:"scrollTop"},this.size={x:"width",y:"height"},this.bar=this._getScrollBarWidth(),this.index=0,this.slideIndex=0,this.oldIndex=0,this.down=!1,this.initialised=!1,this.touch="ontouchstart"in window||window.DocumentTouch&&_instanceof(document,DocumentTouch),this.init()):console.error("Pageable:","No child nodes matching the selector "+this.config.childSelector+" could be found."))};return g.prototype.init=function(){if(!this.initialised&&!this.container.pageable){var a=this.config;if(this.wrapper=document.createElement("div"),this.container.parentNode.insertBefore(this.wrapper,this.container),this.wrapper.appendChild(this.container),this.wrapper.classList.add("pg-wrapper"),this.wrapper.classList.add("pg-"+a.orientation),this.wrapper.classList.add("pg-wrapper"),this.container.classList.add("pg-container"),document.body.style.margin=0,document.body.style.overflow="hidden",this.container.style.display="inline-block",["Prev","Next"].forEach(function(b){var c="nav"+b+"El";a[c]&&("string"==typeof a[c]?this[c]=document.querySelector(a[c]):_instanceof(a[c],Element)&&(this[c]=a[c]),this[c]&&this[c].classList.add("pg-nav"))},this),a.pips){var b=document.createElement("nav"),c=document.createElement("ul");b.classList.add("pg-pips"),this.pages.forEach(function(b,d){var e=document.createElement("li"),f=document.createElement("a"),a=document.createElement("span");f.href="#"+b.id,0==d&&f.classList.add("active"),f.appendChild(a),e.appendChild(f),c.appendChild(e)}),b.appendChild(c),this.wrapper.appendChild(b),this.pips=[].slice.call(c.children)}this.pageCount=this.pages.length,this.lastIndex=this.pageCount-1,a.infinite&&this._toggleInfinite(!1,!0),this.bind(),this.update(),this._load();var d=this._getData();this.config.onInit.call(this,d),this.emit("init",d),this.initialised=!0,this.container.pageable=this,a.slideshow&&"function"==typeof f&&(this.slider=new f(this),this.slider.start())}},g.prototype.bind=function(){this.callbacks={wheel:this._wheel.bind(this),update:e(this.update.bind(this),this.config.throttle),load:this._load.bind(this),start:this._start.bind(this),drag:this._drag.bind(this),stop:this._stop.bind(this),click:this._click.bind(this),prev:this.prev.bind(this),next:this.next.bind(this),keydown:this._keydown.bind(this)},document.addEventListener("keydown",this.callbacks.keydown,!1),this.wrapper.addEventListener("wheel",this.callbacks.wheel,!1),window.addEventListener("resize",this.callbacks.update,!1),this.wrapper.addEventListener(this.touch?"touchstart":"mousedown",this.callbacks.start,!1),window.addEventListener(this.touch?"touchmove":"mousemove",this.callbacks.drag,!1),window.addEventListener(this.touch?"touchend":"mouseup",this.callbacks.stop,!1),this.navPrevEl&&(this.navPrevEl.addEventListener("click",this.callbacks.prev,!1),this.navNextEl&&this.navNextEl.addEventListener("click",this.callbacks.next,!1)),document.addEventListener("click",this.callbacks.click,!1)},g.prototype.unbind=function(){this.wrapper.removeEventListener("wheel",this.callbacks.wheel),window.removeEventListener("resize",this.callbacks.update),this.wrapper.removeEventListener(this.touch?"touchstart":"mousedown",this.callbacks.start),window.addEventListener(this.touch?"touchmove":"mousemove",this.callbacks.drag),window.removeEventListener(this.touch?"touchend":"mouseup",this.callbacks.stop),document.removeEventListener("keydown",this.callbacks.keydown),this.navPrevEl&&this.navPrevEl.removeEventListener("click",this.callbacks.prev,!1),this.navNextEl&&this.navNextEl.removeEventListener("click",this.callbacks.next,!1),document.removeEventListener("click",this.callbacks.click)},g.prototype.scrollToPage=function(a){this.scrollToIndex(a-1)},g.prototype.scrollToAnchor=function(a){this.scrollToIndex(this.anchors.indexOf(a))},g.prototype.scrollToIndex=function(a){if(!this.scrolling&&0<=a&&a<=this.pages.length-1){var b=this.index;this.index=a,this.oldIndex=b,this._scrollBy(this._getScrollAmount(b))}},g.prototype.next=function(){if(this.config.infinite){var a=this.index;if(a===this.lastIndex)return a++,this._scrollBy(-this.data.window[this.size[this.axis]],a)}this.scrollToIndex(this.index+1)},g.prototype.prev=function(){if(this.config.infinite){var a=this.index;if(0===a)return a--,this._scrollBy(this.data.window[this.size[this.axis]],a)}this.scrollToIndex(this.index-1)},g.prototype.update=function(){clearTimeout(this.timer),this.data={window:{width:window.innerWidth,height:window.innerHeight},container:{height:this.wrapper.scrollHeight,width:this.wrapper.scrollWidth}};var a=this.size[this.axis],b=this.horizontal?this.size.y:this.size.x;this.wrapper.style["overflow-"+this.axis]="scroll",this.wrapper.style[a]=this.data.window[a]+"px",this.wrapper.style[b]=this.data.window[b]+this.bar+"px";var c=this.config.infinite?this.pages.length+2:this.pages.length,d=this.config.infinite?this.data.window[a]:0;this.container.style[a]=c*this.data.window[a]+"px",this.wrapper.style["padding-"+(this.horizontal?"bottom":"right")]=this.bar+"px",this.wrapper[this.scrollAxis[this.axis]]=this.index*this.data.window[a]+d,this.scrollSize=c*this.data.window[a]-this.data.window[a],this.scrollPosition=this.data.window[a]*this.index+d,this.pages.forEach(function(c){this.horizontal&&(c.style.float="left"),c.style[a]=this.data.window[a]+"px",c.style[b]=this.data.window[b]+"px"},this),this.config.infinite&&this.clones.forEach(function(c){this.horizontal&&(c.style.float="left"),c.style[a]=this.data.window[a]+"px",c.style[b]=this.data.window[b]+"px"},this),this.config.onUpdate.call(this,this._getData()),this.emit("update",this._getData())},g.prototype.orientate=function(a){switch(a){case"vertical":this.horizontal=!1,this.axis="y",this.container.style.width="";break;case"horizontal":this.horizontal=!0,this.axis="x",this.container.style.height="";break;default:return!1;}this.horizontal?(this.wrapper.classList.add("pg-horizontal"),this.wrapper.classList.remove("pg-vertical")):(this.wrapper.classList.add("pg-vertical"),this.wrapper.classList.remove("pg-horizontal")),this.config.orientation=a,this.update()},g.prototype.slideshow=function(){return this.slider},g.prototype.destroy=function(){if(this.initialised){this.emit("destroy"),this.unbind(),document.body.style.margin="",document.body.style.overflow="",this.container.style.display="",this.container.style.height="",this.container.style.width="",this.container.classList.remove("pg-container"),this.wrapper.parentNode.replaceChild(this.container,this.wrapper);for(var a,b=0;b<this.pages.length;b++)a=this.pages[b],a.style.height="",a.style.width="",a.style.float="",a.classList.remove("pg-page"),a.classList.remove("pg-active");["Prev","Next"].forEach(function(a){var b="nav"+a+"El";this[b]&&(this[b].classList.remove("active"),this[b].classList.remove("pg-nav"))},this),this.config.infinite&&this._toggleInfinite(!0),this.config.slideshow&&(this.slider.stop(),this.slider=!1),this.initialised=!1,delete this.container.pageable}},g.prototype.on=function(a,b){this.listeners=this.listeners||{},this.listeners[a]=this.listeners[a]||[],this.listeners[a].push(b)},g.prototype.off=function(a,b){this.listeners=this.listeners||{},!1==a in this.listeners||this.listeners[a].splice(this.listeners[a].indexOf(b),1)},g.prototype.emit=function(a){if(this.listeners=this.listeners||{},!1!=a in this.listeners)for(var b=0;b<this.listeners[a].length;b++)this.listeners[a][b].apply(this,[].slice.call(arguments,1))},g.prototype._click=function(a){if(a.target.closest){var b=a.target.closest("a");b&&-1<this.anchors.indexOf(b.hash)&&(a.preventDefault(),this.scrollToAnchor(b.hash))}},g.prototype._preventDefault=function(a){a.preventDefault(),a.stopPropagation()},g.prototype._keydown=function(a){if(this.config.events.keydown){if(this.scrolling||this.dragging)return a.preventDefault(),!1;var b=!1;void 0===a.key?void 0!==a.keyCode&&(b=a.keyCode):b=a.key;var c="Arrow"+("x"===this.axis?"Left":"Up"),d="Arrow"+("x"===this.axis?"Right":"Down");b&&(33===b||37===b||b===c||"PageUp"===b?(a.preventDefault(),this.prev()):34===b||39===b||b===d||"PageDown"===b?(a.preventDefault(),this.next()):void 0)}},g.prototype._start=function(a){var b=this._getEvent(a);return!(this.scrolling||this.dragging)&&("touchstart"!==a.type||this.events.touch?!!("mousedown"!==a.type||this.events.mouse&&0===a.button)&&!!b.target.closest(this.config.childSelector)&&void(this._preventDefault(a),this.dragging=this.config.freeScroll,this.config.slideshow&&this.slider.stop(),this.down={x:b.clientX,y:b.clientY},this.startIndex=this.index,this.config.onBeforeStart.call(this,this.index)):(b.target.closest("a")||this._preventDefault(a),!1))},g.prototype._drag=function(a){if(this.config.freeScroll&&this.dragging&&!this.scrolling){var b=this._getEvent(a),c=this._limitDrag(b),d=this._getData();this.container.style.transform=this.horizontal?"translate3d("+c+"px, 0, 0)":"translate3d(0, "+c+"px, 0)",d.scrolled-=c,this.config.onScroll.call(this,d,"drag"),this.emit("scroll",d)}},g.prototype._stop=function(a){var b=this,c=this._getEvent(a),d=function(){b.index<b.pages.length-1&&b.index++},e=function(){0<b.index&&b.index--};this.oldIndex=this.index;var f=Math.abs(c[this.mouseAxis[this.axis]]-this.down[this.axis])>=this.config.swipeThreshold,g=this.down&&f;if(this.config.slideshow&&this.slider.start(),this.dragging&&!this.scrolling){var h=this._limitDrag(c);return this.dragging=h,g&&(this.config.infinite&&this._overScroll(0>h,h),0<h?e():d()),this._scrollBy(this._getScrollAmount(this.oldIndex)-h),void(this.down=!1)}if(this.down&&!this.scrolling){var i=c[this.mouseAxis[this.axis]]<this.down[this.axis],j=c[this.mouseAxis[this.axis]]>this.down[this.axis];g&&(this.config.infinite&&this._overScroll(i),i?d():j&&e()),this.startIndex===this.index?this.config.onFinish.call(this,this._getData()):this._scrollBy(this._getScrollAmount(this.oldIndex)),this.down=!1}},g.prototype._wheel=function(a){if(a.preventDefault(),this.events.wheel&&!this.scrolling){var b=this.index,c=this.index,d=0<a.deltaY;this.config.infinite&&this._overScroll(d),d?this.index<this.pages.length-1&&b++:0<this.index&&b--,b!==c&&(this.oldIndex=c,this.scrollToIndex(b))}},g.prototype._load=function(){var a=location.hash;if(a){var b=this.anchors.indexOf(a);if(-1<b){var c=this.config.infinite?1:0;this.scrollPosition=this.data.window[this.size[this.axis]]*(b+c);var d=this._getData();this.index=b,this.slideIndex=b,this.pages.forEach(function(a,b){b===this.index?a.classList.add("pg-active"):a.classList.remove("pg-active")},this),this._setNavs(),this._setPips(),this.config.onScroll.call(this,d),this.config.onFinish.call(this,d),this.emit("scroll",d)}}this.update()},g.prototype._getEvent=function(a){return this.touch?"touchend"===a.type?a.changedTouches[0]:a.touches[0]:a},g.prototype._getData=function(){var a=this.config.infinite?this.scrollPosition-this.data.window[this.size[this.axis]]:this.scrollPosition,b=this.config.infinite?this.scrollSize-2*this.data.window[this.size[this.axis]]:this.scrollSize;return{index:this.index,percent:100*(a/b),scrolled:a,max:b}},g.prototype._overScroll=function(a){var b=1<arguments.length&&void 0!==arguments[1]?arguments[1]:0,c=this.index;c===this.lastIndex&&a?(c++,this._scrollBy(-this.data.window[this.size[this.axis]]-b,c)):0===c&&!a&&(c--,this._scrollBy(this.data.window[this.size[this.axis]]-b,c))},g.prototype._scrollBy=function(a,b){if(this.scrolling)return!1;this.scrolling=!0,this.config.onBeforeStart.call(this,this.oldIndex),this.emit("scroll.before",this._getData()),this.config.slideshow&&this.slider.stop();var c=this;c.timer=setTimeout(function(){var d=Date.now(),e=c._getScrollOffset();c.config.onStart.call(c,c.pages[c.index].id),c.emit("scroll.start",c._getData()),c.frame=requestAnimationFrame(function f(){var g=Date.now(),h=g-d;if(h>c.config.animation){cancelAnimationFrame(c.frame),c.container.style.transform="",c.frame=!1,c.scrolling=!1,c.dragging=!1,c.config.slideshow&&c.slider.start(),c.config.infinite&&(b===c.pageCount?c.index=0:-1===b&&(c.index=c.lastIndex));var i=c._getData();return window.location.hash=c.pages[c.index].id,c.pages.forEach(function(a,b){b===c.index?a.classList.add("pg-active"):a.classList.remove("pg-active")},c),c.slideIndex=c.index,c._setPips(),c._setNavs(),c.config.onFinish.call(c,i),c.emit("scroll.end",i),!1}var j=c.dragging?c.dragging:0,k=c.config.easing(h,j,a,c.config.animation);c.container.style.transform=c.horizontal?"translate3d("+k+"px, 0, 0)":"translate3d(0, "+k+"px, 0)",c.scrollPosition=e[c.axis]-k;var i=c._getData();c.config.infinite&&(b===c.pageCount?i.scrolled=0:-1===b&&(i.scrolled=i.max)),c.config.onScroll.call(c,i),c.emit("scroll",i),c.frame=requestAnimationFrame(f)})},c.dragging?0:c.config.delay)},g.prototype._getScrollOffset=function(){return{x:this.wrapper.scrollLeft,y:this.wrapper.scrollTop}},g.prototype._getScrollAmount=function(a,c){void 0===c&&(c=this.index);var d=this.data.window[this.size[this.axis]],e=d*c;return d*a-e},g.prototype._getScrollBarWidth=function(){var a=document.body,b=document.createElement("div"),c=0;return b.style.cssText="width: 100; height: 100; overflow: scroll; position: absolute; top: -9999;",a.appendChild(b),c=b.offsetWidth-b.clientWidth,a.removeChild(b),c},g.prototype._toggleInfinite=function(a,b){if(a&&this.config.infinite)this.clones.forEach(function(a){this.container.removeChild(a)},this),this.config.infinite=!1;else if(!this.config.infinite||b){this.config.infinite=!0;var c=this.pages[0].cloneNode(!0),d=this.pages[this.lastIndex].cloneNode(!0);c.id+="-clone",d.id+="-clone",c.classList.add("pg-clone"),d.classList.add("pg-clone"),c.classList.remove("pg-active"),d.classList.remove("pg-active"),this.clones=[c,d],this.container.insertBefore(d,this.pages[0]),this.container.appendChild(c)}this.update()},g.prototype._limitDrag=function(a){var b=a[this.mouseAxis[this.axis]]-this.down[this.axis];return!this.config.infinite&&(0===this.index&&0<b||this.index===this.pages.length-1&&0>b)&&(b/=10),b},g.prototype._setNavs=function(){this.navPrevEl&&(this.config.infinite||0<this.index?this.navPrevEl.classList.add("active"):this.navPrevEl.classList.remove("active")),this.navNextEl&&(this.config.infinite||this.index<this.pages.length-1?this.navNextEl.classList.add("active"):this.navNextEl.classList.remove("active"))},g.prototype._setPips=function(a){this.config.pips&&(void 0===a&&(a=this.index),this.pips.forEach(function(b,c){c==a?b.firstElementChild.classList.add("active"):b.firstElementChild.classList.remove("active")}))},g});
-},{}],"js/glider.js":[function(require,module,exports) {
-var define;
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-/* @preserve
-    _____ __ _     __                _
-   / ___// /(_)___/ /___  ____      (_)___
-  / (_ // // // _  // -_)/ __/_    / /(_-<
-  \___//_//_/ \_,_/ \__//_/  (_)__/ //___/
-                              |___/
-
-  Version: 1.6.6
-  Author: Nick Piscitelli (pickykneee)
-  Website: https://nickpiscitelli.com
-  Documentation: http://nickpiscitelli.github.io/Glider.js
-  License: MIT License
-  Release Date: October 25th, 2018
-
-*/
-!function (e) {
-  "function" == typeof define && define.amd ? define(e) : "object" == (typeof exports === "undefined" ? "undefined" : _typeof(exports)) ? module.exports = e() : e();
-}(function () {
-  var a = "undefined" != typeof window ? window : this,
-      e = a.Glider = function (e, t) {
-    var o = this;
-    if (e._glider) return e._glider;
-    if (o.ele = e, o.ele.classList.add("glider"), (o.ele._glider = o).opt = Object.assign({}, {
-      slidesToScroll: 1,
-      slidesToShow: 1,
-      resizeLock: !0,
-      duration: 0.5,
-      easing: function easing(e, t, o, i, r) {
-        return i * (t /= r) * t + o;
-      }
-    }, t), o.animate_id = o.page = o.slide = 0, o.arrows = {}, o._opt = o.opt, o.opt.skipTrack) o.track = o.ele.children[0];else for (o.track = document.createElement("div"), o.ele.appendChild(o.track); 1 !== o.ele.children.length;) {
-      o.track.appendChild(o.ele.children[0]);
-    }
-    o.track.classList.add("glider-track"), o.init(), o.resize = o.init.bind(o, !0), o.event(o.ele, "add", {
-      scroll: o.updateControls.bind(o)
-    }), o.event(a, "add", {
-      resize: o.resize
-    });
-  },
-      t = e.prototype;
-
-  return t.init = function (e, t) {
-    var o = this,
-        i = 0,
-        r = 0;
-    o.slides = o.track.children, [].forEach.call(o.slides, function (e) {
-      e.classList.add("glider-slide");
-    }), o.containerWidth = o.ele.clientWidth;
-    var s = o.settingsBreakpoint();
-
-    if (t || (t = s), "auto" === o.opt.slidesToShow || o.opt._autoSlide) {
-      var l = o.containerWidth / o.opt.itemWidth;
-      o.opt._autoSlide = o.opt.slidesToShow = o.opt.exactWidth ? l : Math.floor(l);
-    }
-
-    "auto" === o.opt.slidesToScroll && (o.opt.slidesToScroll = Math.floor(o.opt.slidesToShow)), o.itemWidth = o.opt.exactWidth ? o.opt.itemWidth : o.containerWidth / o.opt.slidesToShow, [].forEach.call(o.slides, function (e) {
-      e.style.height = "auto", e.style.width = o.itemWidth + "px", i += o.itemWidth, r = Math.max(e.offsetHeight, r);
-    }), o.track.style.width = i + "px", o.trackWidth = i, o.opt.resizeLock && o.scrollTo(o.slide * o.itemWidth, 0), (s || t) && (o.bindArrows(), o.buildDots(), o.bindDrag()), o.updateControls(), o.emit(e ? "refresh " : "loaded");
-  }, t.bindDrag = function () {
-    var t = this;
-    t.mouse = t.mouse || t.handleMouse.bind(t);
-
-    var e = function e() {
-      t.mouseDown = void 0, t.ele.classList.remove("drag");
-    },
-        o = {
-      mouseup: e,
-      mouseleave: e,
-      mousedown: function mousedown(e) {
-        t.mouseDown = e.clientX, t.ele.classList.add("drag");
-      },
-      mousemove: t.mouse
-    };
-
-    t.ele.classList.toggle("draggable", !0 === t.opt.draggable), t.event(t.ele, "remove", o), t.opt.draggable && t.event(t.ele, "add", o);
-  }, t.buildDots = function () {
-    var e = this;
-
-    if (e.opt.dots) {
-      if ("string" == typeof e.opt.dots ? e.dots = document.querySelector(e.opt.dots) : e.dots = e.opt.dots, e.dots) {
-        e.dots.innerHTML = "", e.dots.className = "glider-dots";
-
-        for (var t = 0; t < Math.ceil(e.slides.length / e.opt.slidesToShow); ++t) {
-          var o = document.createElement("button");
-          o.dataset.index = t, o.setAttribute("aria-label", "Page " + (t + 1)), o.className = "glider-dot " + (t ? "" : "active"), e.event(o, "add", {
-            click: e.scrollItem.bind(e, t, !0)
-          }), e.dots.appendChild(o);
-        }
-      }
-    } else e.dots && (e.dots.innerHTML = "");
-  }, t.bindArrows = function () {
-    var o = this;
-    o.opt.arrows ? ["prev", "next"].forEach(function (e) {
-      var t = o.opt.arrows[e];
-      t && ("string" == typeof t && (t = document.querySelector(t)), t._func = t._func || o.scrollItem.bind(o, e), o.event(t, "remove", {
-        click: t._func
-      }), o.event(t, "add", {
-        click: t._func
-      }), o.arrows[e] = t);
-    }) : Object.keys(o.arrows).forEach(function (e) {
-      var t = o.arrows[e];
-      o.event(t, "remove", {
-        click: t._func
-      });
-    });
-  }, t.updateControls = function (e) {
-    var d = this;
-    e && !d.opt.scrollPropagate && e.stopPropagation();
-    var t = d.containerWidth >= d.trackWidth;
-    d.opt.rewind || (d.arrows.prev && d.arrows.prev.classList.toggle("disabled", d.ele.scrollLeft <= 0 || t), d.arrows.next && d.arrows.next.classList.toggle("disabled", d.ele.scrollLeft + d.containerWidth >= Math.floor(d.trackWidth) || t)), d.slide = Math.round(d.ele.scrollLeft / d.itemWidth), d.page = Math.round(d.ele.scrollLeft / d.containerWidth);
-    var c = d.slide + Math.floor(Math.floor(d.opt.slidesToShow) / 2),
-        h = Math.floor(d.opt.slidesToShow) % 2 ? 0 : c + 1;
-    1 === Math.floor(d.opt.slidesToShow) && (h = 0), d.ele.scrollLeft + d.containerWidth >= Math.floor(d.trackWidth) && (d.page = d.dots ? d.dots.children.length - 1 : 0), [].forEach.call(d.slides, function (e, t) {
-      var o = e.classList,
-          i = o.contains("visible"),
-          r = d.ele.scrollLeft,
-          s = d.ele.scrollLeft + d.containerWidth,
-          l = d.itemWidth * t,
-          n = l + d.itemWidth;
-      [].forEach.call(o, function (e) {
-        /^left|right/.test(e) && o.remove(e);
-      }), o.toggle("active", d.slide === t), c === t || h && h === t ? o.add("center") : (o.remove("center"), o.add([t < c ? "left" : "right", Math.abs(t - (t < c ? c : h || c))].join("-")));
-      var a = Math.ceil(l) >= r && Math.ceil(n) <= s;
-      o.toggle("visible", a), a !== i && d.emit("slide-" + (a ? "visible" : "hidden"), {
-        slide: t
-      });
-    }), d.dots && [].forEach.call(d.dots.children, function (e, t) {
-      e.classList.toggle("active", d.page === t);
-    }), e && d.opt.scrollLock && (clearTimeout(d.scrollLock), d.scrollLock = setTimeout(function () {
-      clearTimeout(d.scrollLock), d.ele.scrollLeft / d.itemWidth % 1 && d.scrollItem(d.round(d.ele.scrollLeft / d.itemWidth));
-    }, d.opt.scrollLockDelay || 250));
-  }, t.scrollItem = function (e, t, o) {
-    o && o.preventDefault();
-    var i = this,
-        r = e;
-    if (++i.animate_id, !0 === t) e *= i.containerWidth, e = Math.round(e / i.itemWidth) * i.itemWidth;else {
-      if ("string" == typeof e) {
-        var s = "prev" === e;
-
-        if (e = i.opt.slidesToScroll % 1 || i.opt.slidesToShow % 1 ? i.round(i.ele.scrollLeft / i.itemWidth) : i.slide, s ? e -= i.opt.slidesToScroll : e += i.opt.slidesToScroll, i.opt.rewind) {
-          var l = i.ele.scrollLeft;
-          e = s && !l ? i.slides.length : !s && l + i.containerWidth >= Math.floor(i.trackWidth) ? 0 : e;
-        }
-      }
-
-      e = Math.max(Math.min(e, i.slides.length), 0), i.slide = e, e = i.itemWidth * e;
-    }
-    return i.scrollTo(e, i.opt.duration * Math.abs(i.ele.scrollLeft - e), function () {
-      i.updateControls(), i.emit("animated", {
-        value: r,
-        type: "string" == typeof r ? "arrow" : t ? "dot" : "slide"
-      });
-    }), !1;
-  }, t.settingsBreakpoint = function () {
-    var e = this,
-        t = e._opt.responsive;
-
-    if (t) {
-      t.sort(function (e, t) {
-        return t.breakpoint - e.breakpoint;
-      });
-
-      for (var o = 0; o < t.length; ++o) {
-        var i = t[o];
-        if (a.innerWidth >= i.breakpoint) return e.breakpoint !== i.breakpoint && (e.opt = Object.assign({}, e._opt, i.settings), e.breakpoint = i.breakpoint, !0);
-      }
-    }
-
-    var r = 0 !== e.breakpoint;
-    return e.opt = Object.assign({}, e._opt), e.breakpoint = 0, r;
-  }, t.scrollTo = function (t, o, i) {
-    var r = this,
-        s = new Date().getTime(),
-        l = r.animate_id,
-        n = function n() {
-      var e = new Date().getTime() - s;
-      r.ele.scrollLeft = r.ele.scrollLeft + (t - r.ele.scrollLeft) * r.opt.easing(0, e, 0, 1, o), e < o && l === r.animate_id ? a.requestAnimationFrame(n) : (r.ele.scrollLeft = t, i && i.call(r));
-    };
-
-    a.requestAnimationFrame(n);
-  }, t.removeItem = function (e) {
-    var t = this;
-    t.slides.length && (t.track.removeChild(t.slides[e]), t.refresh(!0), t.emit("remove"));
-  }, t.addItem = function (e) {
-    this.track.appendChild(e), this.refresh(!0), this.emit("add");
-  }, t.handleMouse = function (e) {
-    var t = this;
-    t.mouseDown && (t.ele.scrollLeft += (t.mouseDown - e.clientX) * (t.opt.dragVelocity || 3.3), t.mouseDown = e.clientX);
-  }, t.round = function (e) {
-    var t = 1 / (this.opt.slidesToScroll % 1 || 1);
-    return Math.round(e * t) / t;
-  }, t.refresh = function (e) {
-    this.init(!0, e);
-  }, t.setOption = function (t, e) {
-    var o = this;
-    o.breakpoint && !e ? o._opt.responsive.forEach(function (e) {
-      e.breakpoint === o.breakpoint && (e.settings = Object.assign({}, e.settings, t));
-    }) : o._opt = Object.assign({}, o._opt, t), o.breakpoint = 0, o.settingsBreakpoint();
-  }, t.destroy = function () {
-    var e = this,
-        t = e.ele.cloneNode(!0),
-        o = function o(t) {
-      t.removeAttribute("style"), [].forEach.call(t.classList, function (e) {
-        /^glider/.test(e) && t.classList.remove(e);
-      });
-    };
-
-    t.children[0].outerHTML = t.children[0].innerHTML, o(t), [].forEach.call(t.getElementsByTagName("*"), o), e.ele.parentNode.replaceChild(t, e.ele), e.event(a, "remove", {
-      resize: e.resize
-    }), e.emit("destroy");
-  }, t.emit = function (e, t) {
-    var o = new a.CustomEvent("glider-" + e, {
-      bubbles: !this.opt.eventPropagate,
-      detail: t
-    });
-    this.ele.dispatchEvent(o);
-  }, t.event = function (e, t, o) {
-    var i = e[t + "EventListener"].bind(e);
-    Object.keys(o).forEach(function (e) {
-      i(e, o[e]);
-    });
-  }, e;
-});
 },{}],"../node_modules/process/browser.js":[function(require,module,exports) {
 
 // shim for using process in browser
@@ -2109,7 +1882,4083 @@ function () {
 }();
 
 exports.default = Animations;
-},{"parallax-js":"../node_modules/parallax-js/dist/parallax.js"}],"../node_modules/core-js/modules/_global.js":[function(require,module,exports) {
+},{"parallax-js":"../node_modules/parallax-js/dist/parallax.js"}],"../node_modules/tiny-slider/src/helpers/Object.keys.js":[function(require,module,exports) {
+// Object.keys
+if (!Object.keys) {
+  Object.keys = function (object) {
+    var keys = [];
+
+    for (var name in object) {
+      if (Object.prototype.hasOwnProperty.call(object, name)) {
+        keys.push(name);
+      }
+    }
+
+    return keys;
+  };
+}
+},{}],"../node_modules/tiny-slider/src/helpers/childNode.remove.js":[function(require,module,exports) {
+// ChildNode.remove
+if (!("remove" in Element.prototype)) {
+  Element.prototype.remove = function () {
+    if (this.parentNode) {
+      this.parentNode.removeChild(this);
+    }
+  };
+}
+},{}],"../node_modules/tiny-slider/src/helpers/raf.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.raf = void 0;
+var win = window;
+
+var raf = win.requestAnimationFrame || win.webkitRequestAnimationFrame || win.mozRequestAnimationFrame || win.msRequestAnimationFrame || function (cb) {
+  return setTimeout(cb, 16);
+};
+
+exports.raf = raf;
+},{}],"../node_modules/tiny-slider/src/helpers/caf.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.caf = void 0;
+var win = window;
+
+var caf = win.cancelAnimationFrame || win.mozCancelAnimationFrame || function (id) {
+  clearTimeout(id);
+};
+
+exports.caf = caf;
+},{}],"../node_modules/tiny-slider/src/helpers/extend.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.extend = extend;
+
+function extend() {
+  var obj,
+      name,
+      copy,
+      target = arguments[0] || {},
+      i = 1,
+      length = arguments.length;
+
+  for (; i < length; i++) {
+    if ((obj = arguments[i]) !== null) {
+      for (name in obj) {
+        copy = obj[name];
+
+        if (target === copy) {
+          continue;
+        } else if (copy !== undefined) {
+          target[name] = copy;
+        }
+      }
+    }
+  }
+
+  return target;
+}
+},{}],"../node_modules/tiny-slider/src/helpers/checkStorageValue.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.checkStorageValue = checkStorageValue;
+
+function checkStorageValue(value) {
+  return ['true', 'false'].indexOf(value) >= 0 ? JSON.parse(value) : value;
+}
+},{}],"../node_modules/tiny-slider/src/helpers/setLocalStorage.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.setLocalStorage = setLocalStorage;
+
+function setLocalStorage(storage, key, value, access) {
+  if (access) {
+    try {
+      storage.setItem(key, value);
+    } catch (e) {}
+  }
+
+  return value;
+}
+},{}],"../node_modules/tiny-slider/src/helpers/getSlideId.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getSlideId = getSlideId;
+
+function getSlideId() {
+  var id = window.tnsId;
+  window.tnsId = !id ? 1 : id + 1;
+  return 'tns' + window.tnsId;
+}
+},{}],"../node_modules/tiny-slider/src/helpers/getBody.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getBody = getBody;
+
+function getBody() {
+  var doc = document,
+      body = doc.body;
+
+  if (!body) {
+    body = doc.createElement('body');
+    body.fake = true;
+  }
+
+  return body;
+}
+},{}],"../node_modules/tiny-slider/src/helpers/docElement.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.docElement = void 0;
+var docElement = document.documentElement;
+exports.docElement = docElement;
+},{}],"../node_modules/tiny-slider/src/helpers/setFakeBody.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.setFakeBody = setFakeBody;
+
+var _docElement = require("./docElement.js");
+
+function setFakeBody(body) {
+  var docOverflow = '';
+
+  if (body.fake) {
+    docOverflow = _docElement.docElement.style.overflow; //avoid crashing IE8, if background image is used
+
+    body.style.background = ''; //Safari 5.13/5.1.4 OSX stops loading if ::-webkit-scrollbar is used and scrollbars are visible
+
+    body.style.overflow = _docElement.docElement.style.overflow = 'hidden';
+
+    _docElement.docElement.appendChild(body);
+  }
+
+  return docOverflow;
+}
+},{"./docElement.js":"../node_modules/tiny-slider/src/helpers/docElement.js"}],"../node_modules/tiny-slider/src/helpers/resetFakeBody.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.resetFakeBody = resetFakeBody;
+
+var _docElement = require("./docElement.js");
+
+function resetFakeBody(body, docOverflow) {
+  if (body.fake) {
+    body.remove();
+    _docElement.docElement.style.overflow = docOverflow; // Trigger layout so kinetic scrolling isn't disabled in iOS6+
+    // eslint-disable-next-line
+
+    _docElement.docElement.offsetHeight;
+  }
+}
+},{"./docElement.js":"../node_modules/tiny-slider/src/helpers/docElement.js"}],"../node_modules/tiny-slider/src/helpers/calc.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.calc = calc;
+
+var _getBody = require("./getBody.js");
+
+var _setFakeBody = require("./setFakeBody.js");
+
+var _resetFakeBody = require("./resetFakeBody.js");
+
+// get css-calc 
+// @return - false | calc | -webkit-calc | -moz-calc
+// @usage - var calc = getCalc(); 
+function calc() {
+  var doc = document,
+      body = (0, _getBody.getBody)(),
+      docOverflow = (0, _setFakeBody.setFakeBody)(body),
+      div = doc.createElement('div'),
+      result = false;
+  body.appendChild(div);
+
+  try {
+    var str = '(10px * 10)',
+        vals = ['calc' + str, '-moz-calc' + str, '-webkit-calc' + str],
+        val;
+
+    for (var i = 0; i < 3; i++) {
+      val = vals[i];
+      div.style.width = val;
+
+      if (div.offsetWidth === 100) {
+        result = val.replace(str, '');
+        break;
+      }
+    }
+  } catch (e) {}
+
+  body.fake ? (0, _resetFakeBody.resetFakeBody)(body, docOverflow) : div.remove();
+  return result;
+}
+},{"./getBody.js":"../node_modules/tiny-slider/src/helpers/getBody.js","./setFakeBody.js":"../node_modules/tiny-slider/src/helpers/setFakeBody.js","./resetFakeBody.js":"../node_modules/tiny-slider/src/helpers/resetFakeBody.js"}],"../node_modules/tiny-slider/src/helpers/percentageLayout.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.percentageLayout = percentageLayout;
+
+var _getBody = require("./getBody.js");
+
+var _setFakeBody = require("./setFakeBody.js");
+
+var _resetFakeBody = require("./resetFakeBody.js");
+
+// get subpixel support value
+// @return - boolean
+function percentageLayout() {
+  // check subpixel layout supporting
+  var doc = document,
+      body = (0, _getBody.getBody)(),
+      docOverflow = (0, _setFakeBody.setFakeBody)(body),
+      wrapper = doc.createElement('div'),
+      outer = doc.createElement('div'),
+      str = '',
+      count = 70,
+      perPage = 3,
+      supported = false;
+  wrapper.className = "tns-t-subp2";
+  outer.className = "tns-t-ct";
+
+  for (var i = 0; i < count; i++) {
+    str += '<div></div>';
+  }
+
+  outer.innerHTML = str;
+  wrapper.appendChild(outer);
+  body.appendChild(wrapper);
+  supported = Math.abs(wrapper.getBoundingClientRect().left - outer.children[count - perPage].getBoundingClientRect().left) < 2;
+  body.fake ? (0, _resetFakeBody.resetFakeBody)(body, docOverflow) : wrapper.remove();
+  return supported;
+}
+},{"./getBody.js":"../node_modules/tiny-slider/src/helpers/getBody.js","./setFakeBody.js":"../node_modules/tiny-slider/src/helpers/setFakeBody.js","./resetFakeBody.js":"../node_modules/tiny-slider/src/helpers/resetFakeBody.js"}],"../node_modules/tiny-slider/src/helpers/mediaquerySupport.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.mediaquerySupport = mediaquerySupport;
+
+var _getBody = require("./getBody.js");
+
+var _setFakeBody = require("./setFakeBody.js");
+
+var _resetFakeBody = require("./resetFakeBody.js");
+
+function mediaquerySupport() {
+  var doc = document,
+      body = (0, _getBody.getBody)(),
+      docOverflow = (0, _setFakeBody.setFakeBody)(body),
+      div = doc.createElement('div'),
+      style = doc.createElement('style'),
+      rule = '@media all and (min-width:1px){.tns-mq-test{position:absolute}}',
+      position;
+  style.type = 'text/css';
+  div.className = 'tns-mq-test';
+  body.appendChild(style);
+  body.appendChild(div);
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = rule;
+  } else {
+    style.appendChild(doc.createTextNode(rule));
+  }
+
+  position = window.getComputedStyle ? window.getComputedStyle(div).position : div.currentStyle['position'];
+  body.fake ? (0, _resetFakeBody.resetFakeBody)(body, docOverflow) : div.remove();
+  return position === "absolute";
+}
+},{"./getBody.js":"../node_modules/tiny-slider/src/helpers/getBody.js","./setFakeBody.js":"../node_modules/tiny-slider/src/helpers/setFakeBody.js","./resetFakeBody.js":"../node_modules/tiny-slider/src/helpers/resetFakeBody.js"}],"../node_modules/tiny-slider/src/helpers/createStyleSheet.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.createStyleSheet = createStyleSheet;
+
+// create and append style sheet
+function createStyleSheet(media) {
+  // Create the <style> tag
+  var style = document.createElement("style"); // style.setAttribute("type", "text/css");
+  // Add a media (and/or media query) here if you'd like!
+  // style.setAttribute("media", "screen")
+  // style.setAttribute("media", "only screen and (max-width : 1024px)")
+
+  if (media) {
+    style.setAttribute("media", media);
+  } // WebKit hack :(
+  // style.appendChild(document.createTextNode(""));
+  // Add the <style> element to the page
+
+
+  document.querySelector('head').appendChild(style);
+  return style.sheet ? style.sheet : style.styleSheet;
+}
+
+;
+},{}],"../node_modules/tiny-slider/src/helpers/addCSSRule.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.addCSSRule = addCSSRule;
+
+var _raf = require("./raf.js");
+
+// cross browsers addRule method
+function addCSSRule(sheet, selector, rules, index) {
+  // return raf(function() {
+  'insertRule' in sheet ? sheet.insertRule(selector + '{' + rules + '}', index) : sheet.addRule(selector, rules, index); // });
+}
+},{"./raf.js":"../node_modules/tiny-slider/src/helpers/raf.js"}],"../node_modules/tiny-slider/src/helpers/removeCSSRule.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.removeCSSRule = removeCSSRule;
+
+var _raf = require("./raf.js");
+
+// cross browsers addRule method
+function removeCSSRule(sheet, index) {
+  // return raf(function() {
+  'deleteRule' in sheet ? sheet.deleteRule(index) : sheet.removeRule(index); // });
+}
+},{"./raf.js":"../node_modules/tiny-slider/src/helpers/raf.js"}],"../node_modules/tiny-slider/src/helpers/getCssRulesLength.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getCssRulesLength = getCssRulesLength;
+
+function getCssRulesLength(sheet) {
+  var rule = 'insertRule' in sheet ? sheet.cssRules : sheet.rules;
+  return rule.length;
+}
+},{}],"../node_modules/tiny-slider/src/helpers/toDegree.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.toDegree = toDegree;
+
+function toDegree(y, x) {
+  return Math.atan2(y, x) * (180 / Math.PI);
+}
+},{}],"../node_modules/tiny-slider/src/helpers/getTouchDirection.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getTouchDirection = getTouchDirection;
+
+function getTouchDirection(angle, range) {
+  var direction = false,
+      gap = Math.abs(90 - Math.abs(angle));
+
+  if (gap >= 90 - range) {
+    direction = 'horizontal';
+  } else if (gap <= range) {
+    direction = 'vertical';
+  }
+
+  return direction;
+}
+},{}],"../node_modules/tiny-slider/src/helpers/forEach.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.forEach = forEach;
+
+// https://toddmotto.com/ditch-the-array-foreach-call-nodelist-hack/
+function forEach(arr, callback, scope) {
+  for (var i = 0, l = arr.length; i < l; i++) {
+    callback.call(scope, arr[i], i);
+  }
+}
+},{}],"../node_modules/tiny-slider/src/helpers/classListSupport.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.classListSupport = void 0;
+var classListSupport = 'classList' in document.createElement('_');
+exports.classListSupport = classListSupport;
+},{}],"../node_modules/tiny-slider/src/helpers/hasClass.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "classListSupport", {
+  enumerable: true,
+  get: function () {
+    return _classListSupport.classListSupport;
+  }
+});
+exports.hasClass = void 0;
+
+var _classListSupport = require("./classListSupport.js");
+
+var hasClass = _classListSupport.classListSupport ? function (el, str) {
+  return el.classList.contains(str);
+} : function (el, str) {
+  return el.className.indexOf(str) >= 0;
+};
+exports.hasClass = hasClass;
+},{"./classListSupport.js":"../node_modules/tiny-slider/src/helpers/classListSupport.js"}],"../node_modules/tiny-slider/src/helpers/addClass.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.addClass = void 0;
+
+var _hasClass = require("./hasClass.js");
+
+var addClass = _hasClass.classListSupport ? function (el, str) {
+  if (!(0, _hasClass.hasClass)(el, str)) {
+    el.classList.add(str);
+  }
+} : function (el, str) {
+  if (!(0, _hasClass.hasClass)(el, str)) {
+    el.className += ' ' + str;
+  }
+};
+exports.addClass = addClass;
+},{"./hasClass.js":"../node_modules/tiny-slider/src/helpers/hasClass.js"}],"../node_modules/tiny-slider/src/helpers/removeClass.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.removeClass = void 0;
+
+var _hasClass = require("./hasClass.js");
+
+var removeClass = _hasClass.classListSupport ? function (el, str) {
+  if ((0, _hasClass.hasClass)(el, str)) {
+    el.classList.remove(str);
+  }
+} : function (el, str) {
+  if ((0, _hasClass.hasClass)(el, str)) {
+    el.className = el.className.replace(str, '');
+  }
+};
+exports.removeClass = removeClass;
+},{"./hasClass.js":"../node_modules/tiny-slider/src/helpers/hasClass.js"}],"../node_modules/tiny-slider/src/helpers/hasAttr.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.hasAttr = hasAttr;
+
+function hasAttr(el, attr) {
+  return el.hasAttribute(attr);
+}
+},{}],"../node_modules/tiny-slider/src/helpers/getAttr.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getAttr = getAttr;
+
+function getAttr(el, attr) {
+  return el.getAttribute(attr);
+}
+},{}],"../node_modules/tiny-slider/src/helpers/isNodeList.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.isNodeList = isNodeList;
+
+function isNodeList(el) {
+  // Only NodeList has the "item()" function
+  return typeof el.item !== "undefined";
+}
+},{}],"../node_modules/tiny-slider/src/helpers/setAttrs.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.setAttrs = setAttrs;
+
+var _isNodeList = require("./isNodeList.js");
+
+function setAttrs(els, attrs) {
+  els = (0, _isNodeList.isNodeList)(els) || els instanceof Array ? els : [els];
+
+  if (Object.prototype.toString.call(attrs) !== '[object Object]') {
+    return;
+  }
+
+  for (var i = els.length; i--;) {
+    for (var key in attrs) {
+      els[i].setAttribute(key, attrs[key]);
+    }
+  }
+}
+},{"./isNodeList.js":"../node_modules/tiny-slider/src/helpers/isNodeList.js"}],"../node_modules/tiny-slider/src/helpers/removeAttrs.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.removeAttrs = removeAttrs;
+
+var _isNodeList = require("./isNodeList.js");
+
+function removeAttrs(els, attrs) {
+  els = (0, _isNodeList.isNodeList)(els) || els instanceof Array ? els : [els];
+  attrs = attrs instanceof Array ? attrs : [attrs];
+  var attrLength = attrs.length;
+
+  for (var i = els.length; i--;) {
+    for (var j = attrLength; j--;) {
+      els[i].removeAttribute(attrs[j]);
+    }
+  }
+}
+},{"./isNodeList.js":"../node_modules/tiny-slider/src/helpers/isNodeList.js"}],"../node_modules/tiny-slider/src/helpers/arrayFromNodeList.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.arrayFromNodeList = arrayFromNodeList;
+
+function arrayFromNodeList(nl) {
+  var arr = [];
+
+  for (var i = 0, l = nl.length; i < l; i++) {
+    arr.push(nl[i]);
+  }
+
+  return arr;
+}
+},{}],"../node_modules/tiny-slider/src/helpers/hideElement.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.hideElement = hideElement;
+
+function hideElement(el, forceHide) {
+  if (el.style.display !== 'none') {
+    el.style.display = 'none';
+  }
+}
+},{}],"../node_modules/tiny-slider/src/helpers/showElement.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.showElement = showElement;
+
+function showElement(el, forceHide) {
+  if (el.style.display === 'none') {
+    el.style.display = '';
+  }
+}
+},{}],"../node_modules/tiny-slider/src/helpers/isVisible.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.isVisible = isVisible;
+
+function isVisible(el) {
+  return window.getComputedStyle(el).display !== 'none';
+}
+},{}],"../node_modules/tiny-slider/src/helpers/whichProperty.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.whichProperty = whichProperty;
+
+function whichProperty(props) {
+  if (typeof props === 'string') {
+    var arr = [props],
+        Props = props.charAt(0).toUpperCase() + props.substr(1),
+        prefixes = ['Webkit', 'Moz', 'ms', 'O'];
+    prefixes.forEach(function (prefix) {
+      if (prefix !== 'ms' || props === 'transform') {
+        arr.push(prefix + Props);
+      }
+    });
+    props = arr;
+  }
+
+  var el = document.createElement('fakeelement'),
+      len = props.length;
+
+  for (var i = 0; i < props.length; i++) {
+    var prop = props[i];
+
+    if (el.style[prop] !== undefined) {
+      return prop;
+    }
+  }
+
+  return false; // explicit for ie9-
+}
+},{}],"../node_modules/tiny-slider/src/helpers/has3DTransforms.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.has3DTransforms = has3DTransforms;
+
+var _getBody = require("./getBody.js");
+
+var _setFakeBody = require("./setFakeBody.js");
+
+var _resetFakeBody = require("./resetFakeBody.js");
+
+function has3DTransforms(tf) {
+  if (!tf) {
+    return false;
+  }
+
+  if (!window.getComputedStyle) {
+    return false;
+  }
+
+  var doc = document,
+      body = (0, _getBody.getBody)(),
+      docOverflow = (0, _setFakeBody.setFakeBody)(body),
+      el = doc.createElement('p'),
+      has3d,
+      cssTF = tf.length > 9 ? '-' + tf.slice(0, -9).toLowerCase() + '-' : '';
+  cssTF += 'transform'; // Add it to the body to get the computed style
+
+  body.insertBefore(el, null);
+  el.style[tf] = 'translate3d(1px,1px,1px)';
+  has3d = window.getComputedStyle(el).getPropertyValue(cssTF);
+  body.fake ? (0, _resetFakeBody.resetFakeBody)(body, docOverflow) : el.remove();
+  return has3d !== undefined && has3d.length > 0 && has3d !== "none";
+}
+},{"./getBody.js":"../node_modules/tiny-slider/src/helpers/getBody.js","./setFakeBody.js":"../node_modules/tiny-slider/src/helpers/setFakeBody.js","./resetFakeBody.js":"../node_modules/tiny-slider/src/helpers/resetFakeBody.js"}],"../node_modules/tiny-slider/src/helpers/getEndProperty.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getEndProperty = getEndProperty;
+
+// get transitionend, animationend based on transitionDuration
+// @propin: string
+// @propOut: string, first-letter uppercase
+// Usage: getEndProperty('WebkitTransitionDuration', 'Transition') => webkitTransitionEnd
+function getEndProperty(propIn, propOut) {
+  var endProp = false;
+
+  if (/^Webkit/.test(propIn)) {
+    endProp = 'webkit' + propOut + 'End';
+  } else if (/^O/.test(propIn)) {
+    endProp = 'o' + propOut + 'End';
+  } else if (propIn) {
+    endProp = propOut.toLowerCase() + 'end';
+  }
+
+  return endProp;
+}
+},{}],"../node_modules/tiny-slider/src/helpers/passiveOption.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.passiveOption = void 0;
+// Test via a getter in the options object to see if the passive property is accessed
+var supportsPassive = false;
+
+try {
+  var opts = Object.defineProperty({}, 'passive', {
+    get: function get() {
+      supportsPassive = true;
+    }
+  });
+  window.addEventListener("test", null, opts);
+} catch (e) {}
+
+var passiveOption = supportsPassive ? {
+  passive: true
+} : false;
+exports.passiveOption = passiveOption;
+},{}],"../node_modules/tiny-slider/src/helpers/addEvents.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.addEvents = addEvents;
+
+var _passiveOption = require("./passiveOption.js");
+
+function addEvents(el, obj, preventScrolling) {
+  for (var prop in obj) {
+    var option = ['touchstart', 'touchmove'].indexOf(prop) >= 0 && !preventScrolling ? _passiveOption.passiveOption : false;
+    el.addEventListener(prop, obj[prop], option);
+  }
+}
+},{"./passiveOption.js":"../node_modules/tiny-slider/src/helpers/passiveOption.js"}],"../node_modules/tiny-slider/src/helpers/removeEvents.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.removeEvents = removeEvents;
+
+var _passiveOption = require("./passiveOption.js");
+
+function removeEvents(el, obj) {
+  for (var prop in obj) {
+    var option = ['touchstart', 'touchmove'].indexOf(prop) >= 0 ? _passiveOption.passiveOption : false;
+    el.removeEventListener(prop, obj[prop], option);
+  }
+}
+},{"./passiveOption.js":"../node_modules/tiny-slider/src/helpers/passiveOption.js"}],"../node_modules/tiny-slider/src/helpers/events.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Events = Events;
+
+function Events() {
+  return {
+    topics: {},
+    on: function on(eventName, fn) {
+      this.topics[eventName] = this.topics[eventName] || [];
+      this.topics[eventName].push(fn);
+    },
+    off: function off(eventName, fn) {
+      if (this.topics[eventName]) {
+        for (var i = 0; i < this.topics[eventName].length; i++) {
+          if (this.topics[eventName][i] === fn) {
+            this.topics[eventName].splice(i, 1);
+            break;
+          }
+        }
+      }
+    },
+    emit: function emit(eventName, data) {
+      data.type = eventName;
+
+      if (this.topics[eventName]) {
+        this.topics[eventName].forEach(function (fn) {
+          fn(data, eventName);
+        });
+      }
+    }
+  };
+}
+
+;
+},{}],"../node_modules/tiny-slider/src/helpers/jsTransform.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.jsTransform = jsTransform;
+
+function jsTransform(element, attr, prefix, postfix, to, duration, callback) {
+  var tick = Math.min(duration, 10),
+      unit = to.indexOf('%') >= 0 ? '%' : 'px',
+      to = to.replace(unit, ''),
+      from = Number(element.style[attr].replace(prefix, '').replace(postfix, '').replace(unit, '')),
+      positionTick = (to - from) / duration * tick,
+      running;
+  setTimeout(moveElement, tick);
+
+  function moveElement() {
+    duration -= tick;
+    from += positionTick;
+    element.style[attr] = prefix + from + unit + postfix;
+
+    if (duration > 0) {
+      setTimeout(moveElement, tick);
+    } else {
+      callback();
+    }
+  }
+}
+},{}],"../node_modules/tiny-slider/src/tiny-slider.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.tns = void 0;
+
+require("./helpers/Object.keys");
+
+require("./helpers/childNode.remove");
+
+var _raf = require("./helpers/raf.js");
+
+var _caf = require("./helpers/caf.js");
+
+var _extend = require("./helpers/extend.js");
+
+var _checkStorageValue = require("./helpers/checkStorageValue.js");
+
+var _setLocalStorage = require("./helpers/setLocalStorage.js");
+
+var _getSlideId = require("./helpers/getSlideId.js");
+
+var _calc = require("./helpers/calc.js");
+
+var _percentageLayout = require("./helpers/percentageLayout.js");
+
+var _mediaquerySupport = require("./helpers/mediaquerySupport.js");
+
+var _createStyleSheet = require("./helpers/createStyleSheet.js");
+
+var _addCSSRule = require("./helpers/addCSSRule.js");
+
+var _removeCSSRule = require("./helpers/removeCSSRule.js");
+
+var _getCssRulesLength = require("./helpers/getCssRulesLength.js");
+
+var _toDegree = require("./helpers/toDegree.js");
+
+var _getTouchDirection = require("./helpers/getTouchDirection.js");
+
+var _forEach = require("./helpers/forEach.js");
+
+var _hasClass = require("./helpers/hasClass.js");
+
+var _addClass = require("./helpers/addClass.js");
+
+var _removeClass = require("./helpers/removeClass.js");
+
+var _hasAttr = require("./helpers/hasAttr.js");
+
+var _getAttr = require("./helpers/getAttr.js");
+
+var _setAttrs = require("./helpers/setAttrs.js");
+
+var _removeAttrs = require("./helpers/removeAttrs.js");
+
+var _arrayFromNodeList = require("./helpers/arrayFromNodeList.js");
+
+var _hideElement = require("./helpers/hideElement.js");
+
+var _showElement = require("./helpers/showElement.js");
+
+var _isVisible = require("./helpers/isVisible.js");
+
+var _whichProperty = require("./helpers/whichProperty.js");
+
+var _has3DTransforms = require("./helpers/has3DTransforms.js");
+
+var _getEndProperty = require("./helpers/getEndProperty.js");
+
+var _addEvents = require("./helpers/addEvents.js");
+
+var _removeEvents = require("./helpers/removeEvents.js");
+
+var _events = require("./helpers/events.js");
+
+var _jsTransform = require("./helpers/jsTransform.js");
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+var tns = function tns(options) {
+  options = (0, _extend.extend)({
+    container: '.slider',
+    mode: 'carousel',
+    axis: 'horizontal',
+    items: 1,
+    gutter: 0,
+    edgePadding: 0,
+    fixedWidth: false,
+    autoWidth: false,
+    viewportMax: false,
+    slideBy: 1,
+    center: false,
+    controls: true,
+    controlsPosition: 'top',
+    controlsText: ['prev', 'next'],
+    controlsContainer: false,
+    prevButton: false,
+    nextButton: false,
+    nav: true,
+    navPosition: 'top',
+    navContainer: false,
+    navAsThumbnails: false,
+    arrowKeys: false,
+    speed: 300,
+    autoplay: false,
+    autoplayPosition: 'top',
+    autoplayTimeout: 5000,
+    autoplayDirection: 'forward',
+    autoplayText: ['start', 'stop'],
+    autoplayHoverPause: false,
+    autoplayButton: false,
+    autoplayButtonOutput: true,
+    autoplayResetOnVisibility: true,
+    animateIn: 'tns-fadeIn',
+    animateOut: 'tns-fadeOut',
+    animateNormal: 'tns-normal',
+    animateDelay: false,
+    loop: true,
+    rewind: false,
+    autoHeight: false,
+    responsive: false,
+    lazyload: false,
+    lazyloadSelector: '.tns-lazy-img',
+    touch: true,
+    mouseDrag: false,
+    swipeAngle: 15,
+    nested: false,
+    preventActionWhenRunning: false,
+    preventScrollOnTouch: false,
+    freezable: true,
+    onInit: false,
+    useLocalStorage: true
+  }, options || {});
+  var doc = document,
+      win = window,
+      KEYS = {
+    ENTER: 13,
+    SPACE: 32,
+    LEFT: 37,
+    RIGHT: 39
+  },
+      tnsStorage = {},
+      localStorageAccess = options.useLocalStorage;
+
+  if (localStorageAccess) {
+    // check browser version and local storage access
+    var browserInfo = navigator.userAgent;
+    var uid = new Date();
+
+    try {
+      tnsStorage = win.localStorage;
+
+      if (tnsStorage) {
+        tnsStorage.setItem(uid, uid);
+        localStorageAccess = tnsStorage.getItem(uid) == uid;
+        tnsStorage.removeItem(uid);
+      } else {
+        localStorageAccess = false;
+      }
+
+      if (!localStorageAccess) {
+        tnsStorage = {};
+      }
+    } catch (e) {
+      localStorageAccess = false;
+    }
+
+    if (localStorageAccess) {
+      // remove storage when browser version changes
+      if (tnsStorage['tnsApp'] && tnsStorage['tnsApp'] !== browserInfo) {
+        ['tC', 'tPL', 'tMQ', 'tTf', 't3D', 'tTDu', 'tTDe', 'tADu', 'tADe', 'tTE', 'tAE'].forEach(function (item) {
+          tnsStorage.removeItem(item);
+        });
+      } // update browserInfo
+
+
+      localStorage['tnsApp'] = browserInfo;
+    }
+  }
+
+  var CALC = tnsStorage['tC'] ? (0, _checkStorageValue.checkStorageValue)(tnsStorage['tC']) : (0, _setLocalStorage.setLocalStorage)(tnsStorage, 'tC', (0, _calc.calc)(), localStorageAccess),
+      PERCENTAGELAYOUT = tnsStorage['tPL'] ? (0, _checkStorageValue.checkStorageValue)(tnsStorage['tPL']) : (0, _setLocalStorage.setLocalStorage)(tnsStorage, 'tPL', (0, _percentageLayout.percentageLayout)(), localStorageAccess),
+      CSSMQ = tnsStorage['tMQ'] ? (0, _checkStorageValue.checkStorageValue)(tnsStorage['tMQ']) : (0, _setLocalStorage.setLocalStorage)(tnsStorage, 'tMQ', (0, _mediaquerySupport.mediaquerySupport)(), localStorageAccess),
+      TRANSFORM = tnsStorage['tTf'] ? (0, _checkStorageValue.checkStorageValue)(tnsStorage['tTf']) : (0, _setLocalStorage.setLocalStorage)(tnsStorage, 'tTf', (0, _whichProperty.whichProperty)('transform'), localStorageAccess),
+      HAS3DTRANSFORMS = tnsStorage['t3D'] ? (0, _checkStorageValue.checkStorageValue)(tnsStorage['t3D']) : (0, _setLocalStorage.setLocalStorage)(tnsStorage, 't3D', (0, _has3DTransforms.has3DTransforms)(TRANSFORM), localStorageAccess),
+      TRANSITIONDURATION = tnsStorage['tTDu'] ? (0, _checkStorageValue.checkStorageValue)(tnsStorage['tTDu']) : (0, _setLocalStorage.setLocalStorage)(tnsStorage, 'tTDu', (0, _whichProperty.whichProperty)('transitionDuration'), localStorageAccess),
+      TRANSITIONDELAY = tnsStorage['tTDe'] ? (0, _checkStorageValue.checkStorageValue)(tnsStorage['tTDe']) : (0, _setLocalStorage.setLocalStorage)(tnsStorage, 'tTDe', (0, _whichProperty.whichProperty)('transitionDelay'), localStorageAccess),
+      ANIMATIONDURATION = tnsStorage['tADu'] ? (0, _checkStorageValue.checkStorageValue)(tnsStorage['tADu']) : (0, _setLocalStorage.setLocalStorage)(tnsStorage, 'tADu', (0, _whichProperty.whichProperty)('animationDuration'), localStorageAccess),
+      ANIMATIONDELAY = tnsStorage['tADe'] ? (0, _checkStorageValue.checkStorageValue)(tnsStorage['tADe']) : (0, _setLocalStorage.setLocalStorage)(tnsStorage, 'tADe', (0, _whichProperty.whichProperty)('animationDelay'), localStorageAccess),
+      TRANSITIONEND = tnsStorage['tTE'] ? (0, _checkStorageValue.checkStorageValue)(tnsStorage['tTE']) : (0, _setLocalStorage.setLocalStorage)(tnsStorage, 'tTE', (0, _getEndProperty.getEndProperty)(TRANSITIONDURATION, 'Transition'), localStorageAccess),
+      ANIMATIONEND = tnsStorage['tAE'] ? (0, _checkStorageValue.checkStorageValue)(tnsStorage['tAE']) : (0, _setLocalStorage.setLocalStorage)(tnsStorage, 'tAE', (0, _getEndProperty.getEndProperty)(ANIMATIONDURATION, 'Animation'), localStorageAccess); // get element nodes from selectors
+
+  var supportConsoleWarn = win.console && typeof win.console.warn === "function",
+      tnsList = ['container', 'controlsContainer', 'prevButton', 'nextButton', 'navContainer', 'autoplayButton'],
+      optionsElements = {};
+  tnsList.forEach(function (item) {
+    if (typeof options[item] === 'string') {
+      var str = options[item],
+          el = doc.querySelector(str);
+      optionsElements[item] = str;
+
+      if (el && el.nodeName) {
+        options[item] = el;
+      } else {
+        if (supportConsoleWarn) {
+          console.warn('Can\'t find', options[item]);
+        }
+
+        return;
+      }
+    }
+  }); // make sure at least 1 slide
+
+  if (options.container.children.length < 1) {
+    if (supportConsoleWarn) {
+      console.warn('No slides found in', options.container);
+    }
+
+    return;
+  } // update options
+
+
+  var responsive = options.responsive,
+      nested = options.nested,
+      carousel = options.mode === 'carousel' ? true : false;
+
+  if (responsive) {
+    // apply responsive[0] to options and remove it
+    if (0 in responsive) {
+      options = (0, _extend.extend)(options, responsive[0]);
+      delete responsive[0];
+    }
+
+    var responsiveTem = {};
+
+    for (var key in responsive) {
+      var val = responsive[key]; // update responsive
+      // from: 300: 2
+      // to: 
+      //   300: { 
+      //     items: 2 
+      //   } 
+
+      val = typeof val === 'number' ? {
+        items: val
+      } : val;
+      responsiveTem[key] = val;
+    }
+
+    responsive = responsiveTem;
+    responsiveTem = null;
+  } // update options
+
+
+  function updateOptions(obj) {
+    for (var key in obj) {
+      if (!carousel) {
+        if (key === 'slideBy') {
+          obj[key] = 'page';
+        }
+
+        if (key === 'edgePadding') {
+          obj[key] = false;
+        }
+
+        if (key === 'autoHeight') {
+          obj[key] = false;
+        }
+      } // update responsive options
+
+
+      if (key === 'responsive') {
+        updateOptions(obj[key]);
+      }
+    }
+  }
+
+  if (!carousel) {
+    updateOptions(options);
+  } // === define and set variables ===
+
+
+  if (!carousel) {
+    options.axis = 'horizontal';
+    options.slideBy = 'page';
+    options.edgePadding = false;
+    var animateIn = options.animateIn,
+        animateOut = options.animateOut,
+        animateDelay = options.animateDelay,
+        animateNormal = options.animateNormal;
+  }
+
+  var horizontal = options.axis === 'horizontal' ? true : false,
+      outerWrapper = doc.createElement('div'),
+      innerWrapper = doc.createElement('div'),
+      middleWrapper,
+      container = options.container,
+      containerParent = container.parentNode,
+      containerHTML = container.outerHTML,
+      slideItems = container.children,
+      slideCount = slideItems.length,
+      breakpointZone,
+      windowWidth = getWindowWidth(),
+      isOn = false;
+
+  if (responsive) {
+    setBreakpointZone();
+  }
+
+  if (carousel) {
+    container.className += ' tns-vpfix';
+  } // fixedWidth: viewport > rightBoundary > indexMax
+
+
+  var autoWidth = options.autoWidth,
+      fixedWidth = getOption('fixedWidth'),
+      edgePadding = getOption('edgePadding'),
+      gutter = getOption('gutter'),
+      viewport = getViewportWidth(),
+      center = getOption('center'),
+      items = !autoWidth ? Math.floor(getOption('items')) : 1,
+      slideBy = getOption('slideBy'),
+      viewportMax = options.viewportMax || options.fixedWidthViewportWidth,
+      arrowKeys = getOption('arrowKeys'),
+      speed = getOption('speed'),
+      rewind = options.rewind,
+      loop = rewind ? false : options.loop,
+      autoHeight = getOption('autoHeight'),
+      controls = getOption('controls'),
+      controlsText = getOption('controlsText'),
+      nav = getOption('nav'),
+      touch = getOption('touch'),
+      mouseDrag = getOption('mouseDrag'),
+      autoplay = getOption('autoplay'),
+      autoplayTimeout = getOption('autoplayTimeout'),
+      autoplayText = getOption('autoplayText'),
+      autoplayHoverPause = getOption('autoplayHoverPause'),
+      autoplayResetOnVisibility = getOption('autoplayResetOnVisibility'),
+      sheet = (0, _createStyleSheet.createStyleSheet)(),
+      lazyload = options.lazyload,
+      lazyloadSelector = options.lazyloadSelector,
+      slidePositions,
+      // collection of slide positions
+  slideItemsOut = [],
+      cloneCount = loop ? getCloneCountForLoop() : 0,
+      slideCountNew = !carousel ? slideCount + cloneCount : slideCount + cloneCount * 2,
+      hasRightDeadZone = (fixedWidth || autoWidth) && !loop ? true : false,
+      rightBoundary = fixedWidth ? getRightBoundary() : null,
+      updateIndexBeforeTransform = !carousel || !loop ? true : false,
+      // transform
+  transformAttr = horizontal ? 'left' : 'top',
+      transformPrefix = '',
+      transformPostfix = '',
+      // index
+  getIndexMax = function () {
+    if (fixedWidth) {
+      return function () {
+        return center && !loop ? slideCount - 1 : Math.ceil(-rightBoundary / (fixedWidth + gutter));
+      };
+    } else if (autoWidth) {
+      return function () {
+        for (var i = slideCountNew; i--;) {
+          if (slidePositions[i] >= -rightBoundary) {
+            return i;
+          }
+        }
+      };
+    } else {
+      return function () {
+        if (center && carousel && !loop) {
+          return slideCount - 1;
+        } else {
+          return loop || carousel ? Math.max(0, slideCountNew - Math.ceil(items)) : slideCountNew - 1;
+        }
+      };
+    }
+  }(),
+      index = getStartIndex(getOption('startIndex')),
+      indexCached = index,
+      displayIndex = getCurrentSlide(),
+      indexMin = 0,
+      indexMax = !autoWidth ? getIndexMax() : null,
+      // resize
+  resizeTimer,
+      preventActionWhenRunning = options.preventActionWhenRunning,
+      swipeAngle = options.swipeAngle,
+      moveDirectionExpected = swipeAngle ? '?' : true,
+      running = false,
+      onInit = options.onInit,
+      events = new _events.Events(),
+      // id, class
+  newContainerClasses = ' tns-slider tns-' + options.mode,
+      slideId = container.id || (0, _getSlideId.getSlideId)(),
+      disable = getOption('disable'),
+      disabled = false,
+      freezable = options.freezable,
+      freeze = freezable && !autoWidth ? getFreeze() : false,
+      frozen = false,
+      controlsEvents = {
+    'click': onControlsClick,
+    'keydown': onControlsKeydown
+  },
+      navEvents = {
+    'click': onNavClick,
+    'keydown': onNavKeydown
+  },
+      hoverEvents = {
+    'mouseover': mouseoverPause,
+    'mouseout': mouseoutRestart
+  },
+      visibilityEvent = {
+    'visibilitychange': onVisibilityChange
+  },
+      docmentKeydownEvent = {
+    'keydown': onDocumentKeydown
+  },
+      touchEvents = {
+    'touchstart': onPanStart,
+    'touchmove': onPanMove,
+    'touchend': onPanEnd,
+    'touchcancel': onPanEnd
+  },
+      dragEvents = {
+    'mousedown': onPanStart,
+    'mousemove': onPanMove,
+    'mouseup': onPanEnd,
+    'mouseleave': onPanEnd
+  },
+      hasControls = hasOption('controls'),
+      hasNav = hasOption('nav'),
+      navAsThumbnails = autoWidth ? true : options.navAsThumbnails,
+      hasAutoplay = hasOption('autoplay'),
+      hasTouch = hasOption('touch'),
+      hasMouseDrag = hasOption('mouseDrag'),
+      slideActiveClass = 'tns-slide-active',
+      imgCompleteClass = 'tns-complete',
+      imgEvents = {
+    'load': onImgLoaded,
+    'error': onImgFailed
+  },
+      imgsComplete,
+      liveregionCurrent,
+      preventScroll = options.preventScrollOnTouch === 'force' ? true : false; // controls
+
+
+  if (hasControls) {
+    var controlsContainer = options.controlsContainer,
+        controlsContainerHTML = options.controlsContainer ? options.controlsContainer.outerHTML : '',
+        prevButton = options.prevButton,
+        nextButton = options.nextButton,
+        prevButtonHTML = options.prevButton ? options.prevButton.outerHTML : '',
+        nextButtonHTML = options.nextButton ? options.nextButton.outerHTML : '',
+        prevIsButton,
+        nextIsButton;
+  } // nav
+
+
+  if (hasNav) {
+    var navContainer = options.navContainer,
+        navContainerHTML = options.navContainer ? options.navContainer.outerHTML : '',
+        navItems,
+        pages = autoWidth ? slideCount : getPages(),
+        pagesCached = 0,
+        navClicked = -1,
+        navCurrentIndex = getCurrentNavIndex(),
+        navCurrentIndexCached = navCurrentIndex,
+        navActiveClass = 'tns-nav-active',
+        navStr = 'Carousel Page ',
+        navStrCurrent = ' (Current Slide)';
+  } // autoplay
+
+
+  if (hasAutoplay) {
+    var autoplayDirection = options.autoplayDirection === 'forward' ? 1 : -1,
+        autoplayButton = options.autoplayButton,
+        autoplayButtonHTML = options.autoplayButton ? options.autoplayButton.outerHTML : '',
+        autoplayHtmlStrings = ['<span class=\'tns-visually-hidden\'>', ' animation</span>'],
+        autoplayTimer,
+        animating,
+        autoplayHoverPaused,
+        autoplayUserPaused,
+        autoplayVisibilityPaused;
+  }
+
+  if (hasTouch || hasMouseDrag) {
+    var initPosition = {},
+        lastPosition = {},
+        translateInit,
+        disX,
+        disY,
+        panStart = false,
+        rafIndex,
+        getDist = horizontal ? function (a, b) {
+      return a.x - b.x;
+    } : function (a, b) {
+      return a.y - b.y;
+    };
+  } // disable slider when slidecount <= items
+
+
+  if (!autoWidth) {
+    resetVariblesWhenDisable(disable || freeze);
+  }
+
+  if (TRANSFORM) {
+    transformAttr = TRANSFORM;
+    transformPrefix = 'translate';
+
+    if (HAS3DTRANSFORMS) {
+      transformPrefix += horizontal ? '3d(' : '3d(0px, ';
+      transformPostfix = horizontal ? ', 0px, 0px)' : ', 0px)';
+    } else {
+      transformPrefix += horizontal ? 'X(' : 'Y(';
+      transformPostfix = ')';
+    }
+  }
+
+  if (carousel) {
+    container.className = container.className.replace('tns-vpfix', '');
+  }
+
+  initStructure();
+  initSheet();
+  initSliderTransform(); // === COMMON FUNCTIONS === //
+
+  function resetVariblesWhenDisable(condition) {
+    if (condition) {
+      controls = nav = touch = mouseDrag = arrowKeys = autoplay = autoplayHoverPause = autoplayResetOnVisibility = false;
+    }
+  }
+
+  function getCurrentSlide() {
+    var tem = carousel ? index - cloneCount : index;
+
+    while (tem < 0) {
+      tem += slideCount;
+    }
+
+    return tem % slideCount + 1;
+  }
+
+  function getStartIndex(ind) {
+    ind = ind ? Math.max(0, Math.min(loop ? slideCount - 1 : slideCount - items, ind)) : 0;
+    return carousel ? ind + cloneCount : ind;
+  }
+
+  function getAbsIndex(i) {
+    if (i == null) {
+      i = index;
+    }
+
+    if (carousel) {
+      i -= cloneCount;
+    }
+
+    while (i < 0) {
+      i += slideCount;
+    }
+
+    return Math.floor(i % slideCount);
+  }
+
+  function getCurrentNavIndex() {
+    var absIndex = getAbsIndex(),
+        result;
+    result = navAsThumbnails ? absIndex : fixedWidth || autoWidth ? Math.ceil((absIndex + 1) * pages / slideCount - 1) : Math.floor(absIndex / items); // set active nav to the last one when reaches the right edge
+
+    if (!loop && carousel && index === indexMax) {
+      result = pages - 1;
+    }
+
+    return result;
+  }
+
+  function getItemsMax() {
+    // fixedWidth or autoWidth while viewportMax is not available
+    if (autoWidth || fixedWidth && !viewportMax) {
+      return slideCount - 1; // most cases
+    } else {
+      var str = fixedWidth ? 'fixedWidth' : 'items',
+          arr = [];
+
+      if (fixedWidth || options[str] < slideCount) {
+        arr.push(options[str]);
+      }
+
+      if (responsive) {
+        for (var bp in responsive) {
+          var tem = responsive[bp][str];
+
+          if (tem && (fixedWidth || tem < slideCount)) {
+            arr.push(tem);
+          }
+        }
+      }
+
+      if (!arr.length) {
+        arr.push(0);
+      }
+
+      return Math.ceil(fixedWidth ? viewportMax / Math.min.apply(null, arr) : Math.max.apply(null, arr));
+    }
+  }
+
+  function getCloneCountForLoop() {
+    var itemsMax = getItemsMax(),
+        result = carousel ? Math.ceil((itemsMax * 5 - slideCount) / 2) : itemsMax * 4 - slideCount;
+    result = Math.max(itemsMax, result);
+    return hasOption('edgePadding') ? result + 1 : result;
+  }
+
+  function getWindowWidth() {
+    return win.innerWidth || doc.documentElement.clientWidth || doc.body.clientWidth;
+  }
+
+  function getInsertPosition(pos) {
+    return pos === 'top' ? 'afterbegin' : 'beforeend';
+  }
+
+  function getClientWidth(el) {
+    var div = doc.createElement('div'),
+        rect,
+        width;
+    el.appendChild(div);
+    rect = div.getBoundingClientRect();
+    width = rect.right - rect.left;
+    div.remove();
+    return width || getClientWidth(el.parentNode);
+  }
+
+  function getViewportWidth() {
+    var gap = edgePadding ? edgePadding * 2 - gutter : 0;
+    return getClientWidth(containerParent) - gap;
+  }
+
+  function hasOption(item) {
+    if (options[item]) {
+      return true;
+    } else {
+      if (responsive) {
+        for (var bp in responsive) {
+          if (responsive[bp][item]) {
+            return true;
+          }
+        }
+      }
+
+      return false;
+    }
+  } // get option:
+  // fixed width: viewport, fixedWidth, gutter => items
+  // others: window width => all variables
+  // all: items => slideBy
+
+
+  function getOption(item, ww) {
+    if (ww == null) {
+      ww = windowWidth;
+    }
+
+    if (item === 'items' && fixedWidth) {
+      return Math.floor((viewport + gutter) / (fixedWidth + gutter)) || 1;
+    } else {
+      var result = options[item];
+
+      if (responsive) {
+        for (var bp in responsive) {
+          // bp: convert string to number
+          if (ww >= parseInt(bp)) {
+            if (item in responsive[bp]) {
+              result = responsive[bp][item];
+            }
+          }
+        }
+      }
+
+      if (item === 'slideBy' && result === 'page') {
+        result = getOption('items');
+      }
+
+      if (!carousel && (item === 'slideBy' || item === 'items')) {
+        result = Math.floor(result);
+      }
+
+      return result;
+    }
+  }
+
+  function getSlideMarginLeft(i) {
+    return CALC ? CALC + '(' + i * 100 + '% / ' + slideCountNew + ')' : i * 100 / slideCountNew + '%';
+  }
+
+  function getInnerWrapperStyles(edgePaddingTem, gutterTem, fixedWidthTem, speedTem, autoHeightBP) {
+    var str = '';
+
+    if (edgePaddingTem !== undefined) {
+      var gap = edgePaddingTem;
+
+      if (gutterTem) {
+        gap -= gutterTem;
+      }
+
+      str = horizontal ? 'margin: 0 ' + gap + 'px 0 ' + edgePaddingTem + 'px;' : 'margin: ' + edgePaddingTem + 'px 0 ' + gap + 'px 0;';
+    } else if (gutterTem && !fixedWidthTem) {
+      var gutterTemUnit = '-' + gutterTem + 'px',
+          dir = horizontal ? gutterTemUnit + ' 0 0' : '0 ' + gutterTemUnit + ' 0';
+      str = 'margin: 0 ' + dir + ';';
+    }
+
+    if (!carousel && autoHeightBP && TRANSITIONDURATION && speedTem) {
+      str += getTransitionDurationStyle(speedTem);
+    }
+
+    return str;
+  }
+
+  function getContainerWidth(fixedWidthTem, gutterTem, itemsTem) {
+    if (fixedWidthTem) {
+      return (fixedWidthTem + gutterTem) * slideCountNew + 'px';
+    } else {
+      return CALC ? CALC + '(' + slideCountNew * 100 + '% / ' + itemsTem + ')' : slideCountNew * 100 / itemsTem + '%';
+    }
+  }
+
+  function getSlideWidthStyle(fixedWidthTem, gutterTem, itemsTem) {
+    var width;
+
+    if (fixedWidthTem) {
+      width = fixedWidthTem + gutterTem + 'px';
+    } else {
+      if (!carousel) {
+        itemsTem = Math.floor(itemsTem);
+      }
+
+      var dividend = carousel ? slideCountNew : itemsTem;
+      width = CALC ? CALC + '(100% / ' + dividend + ')' : 100 / dividend + '%';
+    }
+
+    width = 'width:' + width; // inner slider: overwrite outer slider styles
+
+    return nested !== 'inner' ? width + ';' : width + ' !important;';
+  }
+
+  function getSlideGutterStyle(gutterTem) {
+    var str = ''; // gutter maybe interger || 0
+    // so can't use 'if (gutter)'
+
+    if (gutterTem !== false) {
+      var prop = horizontal ? 'padding-' : 'margin-',
+          dir = horizontal ? 'right' : 'bottom';
+      str = prop + dir + ': ' + gutterTem + 'px;';
+    }
+
+    return str;
+  }
+
+  function getCSSPrefix(name, num) {
+    var prefix = name.substring(0, name.length - num).toLowerCase();
+
+    if (prefix) {
+      prefix = '-' + prefix + '-';
+    }
+
+    return prefix;
+  }
+
+  function getTransitionDurationStyle(speed) {
+    return getCSSPrefix(TRANSITIONDURATION, 18) + 'transition-duration:' + speed / 1000 + 's;';
+  }
+
+  function getAnimationDurationStyle(speed) {
+    return getCSSPrefix(ANIMATIONDURATION, 17) + 'animation-duration:' + speed / 1000 + 's;';
+  }
+
+  function initStructure() {
+    var classOuter = 'tns-outer',
+        classInner = 'tns-inner',
+        hasGutter = hasOption('gutter');
+    outerWrapper.className = classOuter;
+    innerWrapper.className = classInner;
+    outerWrapper.id = slideId + '-ow';
+    innerWrapper.id = slideId + '-iw'; // set container properties
+
+    if (container.id === '') {
+      container.id = slideId;
+    }
+
+    newContainerClasses += PERCENTAGELAYOUT || autoWidth ? ' tns-subpixel' : ' tns-no-subpixel';
+    newContainerClasses += CALC ? ' tns-calc' : ' tns-no-calc';
+
+    if (autoWidth) {
+      newContainerClasses += ' tns-autowidth';
+    }
+
+    newContainerClasses += ' tns-' + options.axis;
+    container.className += newContainerClasses; // add constrain layer for carousel
+
+    if (carousel) {
+      middleWrapper = doc.createElement('div');
+      middleWrapper.id = slideId + '-mw';
+      middleWrapper.className = 'tns-ovh';
+      outerWrapper.appendChild(middleWrapper);
+      middleWrapper.appendChild(innerWrapper);
+    } else {
+      outerWrapper.appendChild(innerWrapper);
+    }
+
+    if (autoHeight) {
+      var wp = middleWrapper ? middleWrapper : innerWrapper;
+      wp.className += ' tns-ah';
+    }
+
+    containerParent.insertBefore(outerWrapper, container);
+    innerWrapper.appendChild(container); // add id, class, aria attributes 
+    // before clone slides
+
+    (0, _forEach.forEach)(slideItems, function (item, i) {
+      (0, _addClass.addClass)(item, 'tns-item');
+
+      if (!item.id) {
+        item.id = slideId + '-item' + i;
+      }
+
+      if (!carousel && animateNormal) {
+        (0, _addClass.addClass)(item, animateNormal);
+      }
+
+      (0, _setAttrs.setAttrs)(item, {
+        'aria-hidden': 'true',
+        'tabindex': '-1'
+      });
+    }); // ## clone slides
+    // carousel: n + slides + n
+    // gallery:      slides + n
+
+    if (cloneCount) {
+      var fragmentBefore = doc.createDocumentFragment(),
+          fragmentAfter = doc.createDocumentFragment();
+
+      for (var j = cloneCount; j--;) {
+        var num = j % slideCount,
+            cloneFirst = slideItems[num].cloneNode(true);
+        (0, _removeAttrs.removeAttrs)(cloneFirst, 'id');
+        fragmentAfter.insertBefore(cloneFirst, fragmentAfter.firstChild);
+
+        if (carousel) {
+          var cloneLast = slideItems[slideCount - 1 - num].cloneNode(true);
+          (0, _removeAttrs.removeAttrs)(cloneLast, 'id');
+          fragmentBefore.appendChild(cloneLast);
+        }
+      }
+
+      container.insertBefore(fragmentBefore, container.firstChild);
+      container.appendChild(fragmentAfter);
+      slideItems = container.children;
+    }
+  }
+
+  function initSliderTransform() {
+    // ## images loaded/failed
+    if (hasOption('autoHeight') || autoWidth || !horizontal) {
+      var imgs = container.querySelectorAll('img'); // add complete class if all images are loaded/failed
+
+      (0, _forEach.forEach)(imgs, function (img) {
+        var src = img.src;
+
+        if (src && src.indexOf('data:image') < 0) {
+          (0, _addEvents.addEvents)(img, imgEvents);
+          img.src = '';
+          img.src = src;
+          (0, _addClass.addClass)(img, 'loading');
+        } else if (!lazyload) {
+          imgLoaded(img);
+        }
+      }); // All imgs are completed
+
+      (0, _raf.raf)(function () {
+        imgsLoadedCheck((0, _arrayFromNodeList.arrayFromNodeList)(imgs), function () {
+          imgsComplete = true;
+        });
+      }); // Check imgs in window only for auto height
+
+      if (!autoWidth && horizontal) {
+        imgs = getImageArray(index, Math.min(index + items - 1, slideCountNew - 1));
+      }
+
+      lazyload ? initSliderTransformStyleCheck() : (0, _raf.raf)(function () {
+        imgsLoadedCheck((0, _arrayFromNodeList.arrayFromNodeList)(imgs), initSliderTransformStyleCheck);
+      });
+    } else {
+      // set container transform property
+      if (carousel) {
+        doContainerTransformSilent();
+      } // update slider tools and events
+
+
+      initTools();
+      initEvents();
+    }
+  }
+
+  function initSliderTransformStyleCheck() {
+    if (autoWidth) {
+      // check styles application
+      var num = loop ? index : slideCount - 1;
+
+      (function stylesApplicationCheck() {
+        slideItems[num - 1].getBoundingClientRect().right.toFixed(2) === slideItems[num].getBoundingClientRect().left.toFixed(2) ? initSliderTransformCore() : setTimeout(function () {
+          stylesApplicationCheck();
+        }, 16);
+      })();
+    } else {
+      initSliderTransformCore();
+    }
+  }
+
+  function initSliderTransformCore() {
+    // run Fn()s which are rely on image loading
+    if (!horizontal || autoWidth) {
+      setSlidePositions();
+
+      if (autoWidth) {
+        rightBoundary = getRightBoundary();
+
+        if (freezable) {
+          freeze = getFreeze();
+        }
+
+        indexMax = getIndexMax(); // <= slidePositions, rightBoundary <=
+
+        resetVariblesWhenDisable(disable || freeze);
+      } else {
+        updateContentWrapperHeight();
+      }
+    } // set container transform property
+
+
+    if (carousel) {
+      doContainerTransformSilent();
+    } // update slider tools and events
+
+
+    initTools();
+    initEvents();
+  }
+
+  function initSheet() {
+    // gallery:
+    // set animation classes and left value for gallery slider
+    if (!carousel) {
+      for (var i = index, l = index + Math.min(slideCount, items); i < l; i++) {
+        var item = slideItems[i];
+        item.style.left = (i - index) * 100 / items + '%';
+        (0, _addClass.addClass)(item, animateIn);
+        (0, _removeClass.removeClass)(item, animateNormal);
+      }
+    } // #### LAYOUT
+    // ## INLINE-BLOCK VS FLOAT
+    // ## PercentageLayout:
+    // slides: inline-block
+    // remove blank space between slides by set font-size: 0
+    // ## Non PercentageLayout:
+    // slides: float
+    //         margin-right: -100%
+    //         margin-left: ~
+    // Resource: https://docs.google.com/spreadsheets/d/147up245wwTXeQYve3BRSAD4oVcvQmuGsFteJOeA5xNQ/edit?usp=sharing
+
+
+    if (horizontal) {
+      if (PERCENTAGELAYOUT || autoWidth) {
+        (0, _addCSSRule.addCSSRule)(sheet, '#' + slideId + ' > .tns-item', 'font-size:' + win.getComputedStyle(slideItems[0]).fontSize + ';', (0, _getCssRulesLength.getCssRulesLength)(sheet));
+        (0, _addCSSRule.addCSSRule)(sheet, '#' + slideId, 'font-size:0;', (0, _getCssRulesLength.getCssRulesLength)(sheet));
+      } else if (carousel) {
+        (0, _forEach.forEach)(slideItems, function (slide, i) {
+          slide.style.marginLeft = getSlideMarginLeft(i);
+        });
+      }
+    } // ## BASIC STYLES
+
+
+    if (CSSMQ) {
+      // middle wrapper style
+      if (TRANSITIONDURATION) {
+        var str = middleWrapper && options.autoHeight ? getTransitionDurationStyle(options.speed) : '';
+        (0, _addCSSRule.addCSSRule)(sheet, '#' + slideId + '-mw', str, (0, _getCssRulesLength.getCssRulesLength)(sheet));
+      } // inner wrapper styles
+
+
+      str = getInnerWrapperStyles(options.edgePadding, options.gutter, options.fixedWidth, options.speed, options.autoHeight);
+      (0, _addCSSRule.addCSSRule)(sheet, '#' + slideId + '-iw', str, (0, _getCssRulesLength.getCssRulesLength)(sheet)); // container styles
+
+      if (carousel) {
+        str = horizontal && !autoWidth ? 'width:' + getContainerWidth(options.fixedWidth, options.gutter, options.items) + ';' : '';
+
+        if (TRANSITIONDURATION) {
+          str += getTransitionDurationStyle(speed);
+        }
+
+        (0, _addCSSRule.addCSSRule)(sheet, '#' + slideId, str, (0, _getCssRulesLength.getCssRulesLength)(sheet));
+      } // slide styles
+
+
+      str = horizontal && !autoWidth ? getSlideWidthStyle(options.fixedWidth, options.gutter, options.items) : '';
+
+      if (options.gutter) {
+        str += getSlideGutterStyle(options.gutter);
+      } // set gallery items transition-duration
+
+
+      if (!carousel) {
+        if (TRANSITIONDURATION) {
+          str += getTransitionDurationStyle(speed);
+        }
+
+        if (ANIMATIONDURATION) {
+          str += getAnimationDurationStyle(speed);
+        }
+      }
+
+      if (str) {
+        (0, _addCSSRule.addCSSRule)(sheet, '#' + slideId + ' > .tns-item', str, (0, _getCssRulesLength.getCssRulesLength)(sheet));
+      } // non CSS mediaqueries: IE8
+      // ## update inner wrapper, container, slides if needed
+      // set inline styles for inner wrapper & container
+      // insert stylesheet (one line) for slides only (since slides are many)
+
+    } else {
+      // middle wrapper styles
+      update_carousel_transition_duration(); // inner wrapper styles
+
+      innerWrapper.style.cssText = getInnerWrapperStyles(edgePadding, gutter, fixedWidth, autoHeight); // container styles
+
+      if (carousel && horizontal && !autoWidth) {
+        container.style.width = getContainerWidth(fixedWidth, gutter, items);
+      } // slide styles
+
+
+      var str = horizontal && !autoWidth ? getSlideWidthStyle(fixedWidth, gutter, items) : '';
+
+      if (gutter) {
+        str += getSlideGutterStyle(gutter);
+      } // append to the last line
+
+
+      if (str) {
+        (0, _addCSSRule.addCSSRule)(sheet, '#' + slideId + ' > .tns-item', str, (0, _getCssRulesLength.getCssRulesLength)(sheet));
+      }
+    } // ## MEDIAQUERIES
+
+
+    if (responsive && CSSMQ) {
+      for (var bp in responsive) {
+        // bp: convert string to number
+        bp = parseInt(bp);
+        var opts = responsive[bp],
+            str = '',
+            middleWrapperStr = '',
+            innerWrapperStr = '',
+            containerStr = '',
+            slideStr = '',
+            itemsBP = !autoWidth ? getOption('items', bp) : null,
+            fixedWidthBP = getOption('fixedWidth', bp),
+            speedBP = getOption('speed', bp),
+            edgePaddingBP = getOption('edgePadding', bp),
+            autoHeightBP = getOption('autoHeight', bp),
+            gutterBP = getOption('gutter', bp); // middle wrapper string
+
+        if (TRANSITIONDURATION && middleWrapper && getOption('autoHeight', bp) && 'speed' in opts) {
+          middleWrapperStr = '#' + slideId + '-mw{' + getTransitionDurationStyle(speedBP) + '}';
+        } // inner wrapper string
+
+
+        if ('edgePadding' in opts || 'gutter' in opts) {
+          innerWrapperStr = '#' + slideId + '-iw{' + getInnerWrapperStyles(edgePaddingBP, gutterBP, fixedWidthBP, speedBP, autoHeightBP) + '}';
+        } // container string
+
+
+        if (carousel && horizontal && !autoWidth && ('fixedWidth' in opts || 'items' in opts || fixedWidth && 'gutter' in opts)) {
+          containerStr = 'width:' + getContainerWidth(fixedWidthBP, gutterBP, itemsBP) + ';';
+        }
+
+        if (TRANSITIONDURATION && 'speed' in opts) {
+          containerStr += getTransitionDurationStyle(speedBP);
+        }
+
+        if (containerStr) {
+          containerStr = '#' + slideId + '{' + containerStr + '}';
+        } // slide string
+
+
+        if ('fixedWidth' in opts || fixedWidth && 'gutter' in opts || !carousel && 'items' in opts) {
+          slideStr += getSlideWidthStyle(fixedWidthBP, gutterBP, itemsBP);
+        }
+
+        if ('gutter' in opts) {
+          slideStr += getSlideGutterStyle(gutterBP);
+        } // set gallery items transition-duration
+
+
+        if (!carousel && 'speed' in opts) {
+          if (TRANSITIONDURATION) {
+            slideStr += getTransitionDurationStyle(speedBP);
+          }
+
+          if (ANIMATIONDURATION) {
+            slideStr += getAnimationDurationStyle(speedBP);
+          }
+        }
+
+        if (slideStr) {
+          slideStr = '#' + slideId + ' > .tns-item{' + slideStr + '}';
+        } // add up
+
+
+        str = middleWrapperStr + innerWrapperStr + containerStr + slideStr;
+
+        if (str) {
+          sheet.insertRule('@media (min-width: ' + bp / 16 + 'em) {' + str + '}', sheet.cssRules.length);
+        }
+      }
+    }
+  }
+
+  function initTools() {
+    // == slides ==
+    updateSlideStatus(); // == live region ==
+
+    outerWrapper.insertAdjacentHTML('afterbegin', '<div class="tns-liveregion tns-visually-hidden" aria-live="polite" aria-atomic="true">slide <span class="current">' + getLiveRegionStr() + '</span>  of ' + slideCount + '</div>');
+    liveregionCurrent = outerWrapper.querySelector('.tns-liveregion .current'); // == autoplayInit ==
+
+    if (hasAutoplay) {
+      var txt = autoplay ? 'stop' : 'start';
+
+      if (autoplayButton) {
+        (0, _setAttrs.setAttrs)(autoplayButton, {
+          'data-action': txt
+        });
+      } else if (options.autoplayButtonOutput) {
+        outerWrapper.insertAdjacentHTML(getInsertPosition(options.autoplayPosition), '<button data-action="' + txt + '">' + autoplayHtmlStrings[0] + txt + autoplayHtmlStrings[1] + autoplayText[0] + '</button>');
+        autoplayButton = outerWrapper.querySelector('[data-action]');
+      } // add event
+
+
+      if (autoplayButton) {
+        (0, _addEvents.addEvents)(autoplayButton, {
+          'click': toggleAutoplay
+        });
+      }
+
+      if (autoplay) {
+        startAutoplay();
+
+        if (autoplayHoverPause) {
+          (0, _addEvents.addEvents)(container, hoverEvents);
+        }
+
+        if (autoplayResetOnVisibility) {
+          (0, _addEvents.addEvents)(container, visibilityEvent);
+        }
+      }
+    } // == navInit ==
+
+
+    if (hasNav) {
+      var initIndex = !carousel ? 0 : cloneCount; // customized nav
+      // will not hide the navs in case they're thumbnails
+
+      if (navContainer) {
+        (0, _setAttrs.setAttrs)(navContainer, {
+          'aria-label': 'Carousel Pagination'
+        });
+        navItems = navContainer.children;
+        (0, _forEach.forEach)(navItems, function (item, i) {
+          (0, _setAttrs.setAttrs)(item, {
+            'data-nav': i,
+            'tabindex': '-1',
+            'aria-label': navStr + (i + 1),
+            'aria-controls': slideId
+          });
+        }); // generated nav 
+      } else {
+        var navHtml = '',
+            hiddenStr = navAsThumbnails ? '' : 'style="display:none"';
+
+        for (var i = 0; i < slideCount; i++) {
+          // hide nav items by default
+          navHtml += '<button data-nav="' + i + '" tabindex="-1" aria-controls="' + slideId + '" ' + hiddenStr + ' aria-label="' + navStr + (i + 1) + '"></button>';
+        }
+
+        navHtml = '<div class="tns-nav" aria-label="Carousel Pagination">' + navHtml + '</div>';
+        outerWrapper.insertAdjacentHTML(getInsertPosition(options.navPosition), navHtml);
+        navContainer = outerWrapper.querySelector('.tns-nav');
+        navItems = navContainer.children;
+      }
+
+      updateNavVisibility(); // add transition
+
+      if (TRANSITIONDURATION) {
+        var prefix = TRANSITIONDURATION.substring(0, TRANSITIONDURATION.length - 18).toLowerCase(),
+            str = 'transition: all ' + speed / 1000 + 's';
+
+        if (prefix) {
+          str = '-' + prefix + '-' + str;
+        }
+
+        (0, _addCSSRule.addCSSRule)(sheet, '[aria-controls^=' + slideId + '-item]', str, (0, _getCssRulesLength.getCssRulesLength)(sheet));
+      }
+
+      (0, _setAttrs.setAttrs)(navItems[navCurrentIndex], {
+        'aria-label': navStr + (navCurrentIndex + 1) + navStrCurrent
+      });
+      (0, _removeAttrs.removeAttrs)(navItems[navCurrentIndex], 'tabindex');
+      (0, _addClass.addClass)(navItems[navCurrentIndex], navActiveClass); // add events
+
+      (0, _addEvents.addEvents)(navContainer, navEvents);
+    } // == controlsInit ==
+
+
+    if (hasControls) {
+      if (!controlsContainer && (!prevButton || !nextButton)) {
+        outerWrapper.insertAdjacentHTML(getInsertPosition(options.controlsPosition), '<div class="tns-controls" aria-label="Carousel Navigation" tabindex="0"><button data-controls="prev" tabindex="-1" aria-controls="' + slideId + '">' + controlsText[0] + '</button><button data-controls="next" tabindex="-1" aria-controls="' + slideId + '">' + controlsText[1] + '</button></div>');
+        controlsContainer = outerWrapper.querySelector('.tns-controls');
+      }
+
+      if (!prevButton || !nextButton) {
+        prevButton = controlsContainer.children[0];
+        nextButton = controlsContainer.children[1];
+      }
+
+      if (options.controlsContainer) {
+        (0, _setAttrs.setAttrs)(controlsContainer, {
+          'aria-label': 'Carousel Navigation',
+          'tabindex': '0'
+        });
+      }
+
+      if (options.controlsContainer || options.prevButton && options.nextButton) {
+        (0, _setAttrs.setAttrs)([prevButton, nextButton], {
+          'aria-controls': slideId,
+          'tabindex': '-1'
+        });
+      }
+
+      if (options.controlsContainer || options.prevButton && options.nextButton) {
+        (0, _setAttrs.setAttrs)(prevButton, {
+          'data-controls': 'prev'
+        });
+        (0, _setAttrs.setAttrs)(nextButton, {
+          'data-controls': 'next'
+        });
+      }
+
+      prevIsButton = isButton(prevButton);
+      nextIsButton = isButton(nextButton);
+      updateControlsStatus(); // add events
+
+      if (controlsContainer) {
+        (0, _addEvents.addEvents)(controlsContainer, controlsEvents);
+      } else {
+        (0, _addEvents.addEvents)(prevButton, controlsEvents);
+        (0, _addEvents.addEvents)(nextButton, controlsEvents);
+      }
+    } // hide tools if needed
+
+
+    disableUI();
+  }
+
+  function initEvents() {
+    // add events
+    if (carousel && TRANSITIONEND) {
+      var eve = {};
+      eve[TRANSITIONEND] = onTransitionEnd;
+      (0, _addEvents.addEvents)(container, eve);
+    }
+
+    if (touch) {
+      (0, _addEvents.addEvents)(container, touchEvents, options.preventScrollOnTouch);
+    }
+
+    if (mouseDrag) {
+      (0, _addEvents.addEvents)(container, dragEvents);
+    }
+
+    if (arrowKeys) {
+      (0, _addEvents.addEvents)(doc, docmentKeydownEvent);
+    }
+
+    if (nested === 'inner') {
+      events.on('outerResized', function () {
+        resizeTasks();
+        events.emit('innerLoaded', info());
+      });
+    } else if (responsive || fixedWidth || autoWidth || autoHeight || !horizontal) {
+      (0, _addEvents.addEvents)(win, {
+        'resize': onResize
+      });
+    }
+
+    if (autoHeight) {
+      if (nested === 'outer') {
+        events.on('innerLoaded', doAutoHeight);
+      } else if (!disable) {
+        doAutoHeight();
+      }
+    }
+
+    doLazyLoad();
+
+    if (disable) {
+      disableSlider();
+    } else if (freeze) {
+      freezeSlider();
+    }
+
+    events.on('indexChanged', additionalUpdates);
+
+    if (nested === 'inner') {
+      events.emit('innerLoaded', info());
+    }
+
+    if (typeof onInit === 'function') {
+      onInit(info());
+    }
+
+    isOn = true;
+  }
+
+  function destroy() {
+    // sheet
+    sheet.disabled = true;
+
+    if (sheet.ownerNode) {
+      sheet.ownerNode.remove();
+    } // remove win event listeners
+
+
+    (0, _removeEvents.removeEvents)(win, {
+      'resize': onResize
+    }); // arrowKeys, controls, nav
+
+    if (arrowKeys) {
+      (0, _removeEvents.removeEvents)(doc, docmentKeydownEvent);
+    }
+
+    if (controlsContainer) {
+      (0, _removeEvents.removeEvents)(controlsContainer, controlsEvents);
+    }
+
+    if (navContainer) {
+      (0, _removeEvents.removeEvents)(navContainer, navEvents);
+    } // autoplay
+
+
+    (0, _removeEvents.removeEvents)(container, hoverEvents);
+    (0, _removeEvents.removeEvents)(container, visibilityEvent);
+
+    if (autoplayButton) {
+      (0, _removeEvents.removeEvents)(autoplayButton, {
+        'click': toggleAutoplay
+      });
+    }
+
+    if (autoplay) {
+      clearInterval(autoplayTimer);
+    } // container
+
+
+    if (carousel && TRANSITIONEND) {
+      var eve = {};
+      eve[TRANSITIONEND] = onTransitionEnd;
+      (0, _removeEvents.removeEvents)(container, eve);
+    }
+
+    if (touch) {
+      (0, _removeEvents.removeEvents)(container, touchEvents);
+    }
+
+    if (mouseDrag) {
+      (0, _removeEvents.removeEvents)(container, dragEvents);
+    } // cache Object values in options && reset HTML
+
+
+    var htmlList = [containerHTML, controlsContainerHTML, prevButtonHTML, nextButtonHTML, navContainerHTML, autoplayButtonHTML];
+    tnsList.forEach(function (item, i) {
+      var el = item === 'container' ? outerWrapper : options[item];
+
+      if (_typeof(el) === 'object') {
+        var prevEl = el.previousElementSibling ? el.previousElementSibling : false,
+            parentEl = el.parentNode;
+        el.outerHTML = htmlList[i];
+        options[item] = prevEl ? prevEl.nextElementSibling : parentEl.firstElementChild;
+      }
+    }); // reset variables
+
+    tnsList = animateIn = animateOut = animateDelay = animateNormal = horizontal = outerWrapper = innerWrapper = container = containerParent = containerHTML = slideItems = slideCount = breakpointZone = windowWidth = autoWidth = fixedWidth = edgePadding = gutter = viewport = items = slideBy = viewportMax = arrowKeys = speed = rewind = loop = autoHeight = sheet = lazyload = slidePositions = slideItemsOut = cloneCount = slideCountNew = hasRightDeadZone = rightBoundary = updateIndexBeforeTransform = transformAttr = transformPrefix = transformPostfix = getIndexMax = index = indexCached = indexMin = indexMax = resizeTimer = swipeAngle = moveDirectionExpected = running = onInit = events = newContainerClasses = slideId = disable = disabled = freezable = freeze = frozen = controlsEvents = navEvents = hoverEvents = visibilityEvent = docmentKeydownEvent = touchEvents = dragEvents = hasControls = hasNav = navAsThumbnails = hasAutoplay = hasTouch = hasMouseDrag = slideActiveClass = imgCompleteClass = imgEvents = imgsComplete = controls = controlsText = controlsContainer = controlsContainerHTML = prevButton = nextButton = prevIsButton = nextIsButton = nav = navContainer = navContainerHTML = navItems = pages = pagesCached = navClicked = navCurrentIndex = navCurrentIndexCached = navActiveClass = navStr = navStrCurrent = autoplay = autoplayTimeout = autoplayDirection = autoplayText = autoplayHoverPause = autoplayButton = autoplayButtonHTML = autoplayResetOnVisibility = autoplayHtmlStrings = autoplayTimer = animating = autoplayHoverPaused = autoplayUserPaused = autoplayVisibilityPaused = initPosition = lastPosition = translateInit = disX = disY = panStart = rafIndex = getDist = touch = mouseDrag = null; // check variables
+    // [animateIn, animateOut, animateDelay, animateNormal, horizontal, outerWrapper, innerWrapper, container, containerParent, containerHTML, slideItems, slideCount, breakpointZone, windowWidth, autoWidth, fixedWidth, edgePadding, gutter, viewport, items, slideBy, viewportMax, arrowKeys, speed, rewind, loop, autoHeight, sheet, lazyload, slidePositions, slideItemsOut, cloneCount, slideCountNew, hasRightDeadZone, rightBoundary, updateIndexBeforeTransform, transformAttr, transformPrefix, transformPostfix, getIndexMax, index, indexCached, indexMin, indexMax, resizeTimer, swipeAngle, moveDirectionExpected, running, onInit, events, newContainerClasses, slideId, disable, disabled, freezable, freeze, frozen, controlsEvents, navEvents, hoverEvents, visibilityEvent, docmentKeydownEvent, touchEvents, dragEvents, hasControls, hasNav, navAsThumbnails, hasAutoplay, hasTouch, hasMouseDrag, slideActiveClass, imgCompleteClass, imgEvents, imgsComplete, controls, controlsText, controlsContainer, controlsContainerHTML, prevButton, nextButton, prevIsButton, nextIsButton, nav, navContainer, navContainerHTML, navItems, pages, pagesCached, navClicked, navCurrentIndex, navCurrentIndexCached, navActiveClass, navStr, navStrCurrent, autoplay, autoplayTimeout, autoplayDirection, autoplayText, autoplayHoverPause, autoplayButton, autoplayButtonHTML, autoplayResetOnVisibility, autoplayHtmlStrings, autoplayTimer, animating, autoplayHoverPaused, autoplayUserPaused, autoplayVisibilityPaused, initPosition, lastPosition, translateInit, disX, disY, panStart, rafIndex, getDist, touch, mouseDrag ].forEach(function(item) { if (item !== null) { console.log(item); } });
+
+    for (var a in this) {
+      if (a !== 'rebuild') {
+        this[a] = null;
+      }
+    }
+
+    isOn = false;
+  } // === ON RESIZE ===
+  // responsive || fixedWidth || autoWidth || !horizontal
+
+
+  function onResize(e) {
+    (0, _raf.raf)(function () {
+      resizeTasks(getEvent(e));
+    });
+  }
+
+  function resizeTasks(e) {
+    if (!isOn) {
+      return;
+    }
+
+    if (nested === 'outer') {
+      events.emit('outerResized', info(e));
+    }
+
+    windowWidth = getWindowWidth();
+    var bpChanged,
+        breakpointZoneTem = breakpointZone,
+        needContainerTransform = false;
+
+    if (responsive) {
+      setBreakpointZone();
+      bpChanged = breakpointZoneTem !== breakpointZone; // if (hasRightDeadZone) { needContainerTransform = true; } // *?
+
+      if (bpChanged) {
+        events.emit('newBreakpointStart', info(e));
+      }
+    }
+
+    var indChanged,
+        itemsChanged,
+        itemsTem = items,
+        disableTem = disable,
+        freezeTem = freeze,
+        arrowKeysTem = arrowKeys,
+        controlsTem = controls,
+        navTem = nav,
+        touchTem = touch,
+        mouseDragTem = mouseDrag,
+        autoplayTem = autoplay,
+        autoplayHoverPauseTem = autoplayHoverPause,
+        autoplayResetOnVisibilityTem = autoplayResetOnVisibility,
+        indexTem = index;
+
+    if (bpChanged) {
+      var fixedWidthTem = fixedWidth,
+          autoHeightTem = autoHeight,
+          controlsTextTem = controlsText,
+          centerTem = center,
+          autoplayTextTem = autoplayText;
+
+      if (!CSSMQ) {
+        var gutterTem = gutter,
+            edgePaddingTem = edgePadding;
+      }
+    } // get option:
+    // fixed width: viewport, fixedWidth, gutter => items
+    // others: window width => all variables
+    // all: items => slideBy
+
+
+    arrowKeys = getOption('arrowKeys');
+    controls = getOption('controls');
+    nav = getOption('nav');
+    touch = getOption('touch');
+    center = getOption('center');
+    mouseDrag = getOption('mouseDrag');
+    autoplay = getOption('autoplay');
+    autoplayHoverPause = getOption('autoplayHoverPause');
+    autoplayResetOnVisibility = getOption('autoplayResetOnVisibility');
+
+    if (bpChanged) {
+      disable = getOption('disable');
+      fixedWidth = getOption('fixedWidth');
+      speed = getOption('speed');
+      autoHeight = getOption('autoHeight');
+      controlsText = getOption('controlsText');
+      autoplayText = getOption('autoplayText');
+      autoplayTimeout = getOption('autoplayTimeout');
+
+      if (!CSSMQ) {
+        edgePadding = getOption('edgePadding');
+        gutter = getOption('gutter');
+      }
+    } // update options
+
+
+    resetVariblesWhenDisable(disable);
+    viewport = getViewportWidth(); // <= edgePadding, gutter
+
+    if ((!horizontal || autoWidth) && !disable) {
+      setSlidePositions();
+
+      if (!horizontal) {
+        updateContentWrapperHeight(); // <= setSlidePositions
+
+        needContainerTransform = true;
+      }
+    }
+
+    if (fixedWidth || autoWidth) {
+      rightBoundary = getRightBoundary(); // autoWidth: <= viewport, slidePositions, gutter
+      // fixedWidth: <= viewport, fixedWidth, gutter
+
+      indexMax = getIndexMax(); // autoWidth: <= rightBoundary, slidePositions
+      // fixedWidth: <= rightBoundary, fixedWidth, gutter
+    }
+
+    if (bpChanged || fixedWidth) {
+      items = getOption('items');
+      slideBy = getOption('slideBy');
+      itemsChanged = items !== itemsTem;
+
+      if (itemsChanged) {
+        if (!fixedWidth && !autoWidth) {
+          indexMax = getIndexMax();
+        } // <= items
+        // check index before transform in case
+        // slider reach the right edge then items become bigger
+
+
+        updateIndex();
+      }
+    }
+
+    if (bpChanged) {
+      if (disable !== disableTem) {
+        if (disable) {
+          disableSlider();
+        } else {
+          enableSlider(); // <= slidePositions, rightBoundary, indexMax
+        }
+      }
+    }
+
+    if (freezable && (bpChanged || fixedWidth || autoWidth)) {
+      freeze = getFreeze(); // <= autoWidth: slidePositions, gutter, viewport, rightBoundary
+      // <= fixedWidth: fixedWidth, gutter, rightBoundary
+      // <= others: items
+
+      if (freeze !== freezeTem) {
+        if (freeze) {
+          doContainerTransform(getContainerTransformValue(getStartIndex(0)));
+          freezeSlider();
+        } else {
+          unfreezeSlider();
+          needContainerTransform = true;
+        }
+      }
+    }
+
+    resetVariblesWhenDisable(disable || freeze); // controls, nav, touch, mouseDrag, arrowKeys, autoplay, autoplayHoverPause, autoplayResetOnVisibility
+
+    if (!autoplay) {
+      autoplayHoverPause = autoplayResetOnVisibility = false;
+    }
+
+    if (arrowKeys !== arrowKeysTem) {
+      arrowKeys ? (0, _addEvents.addEvents)(doc, docmentKeydownEvent) : (0, _removeEvents.removeEvents)(doc, docmentKeydownEvent);
+    }
+
+    if (controls !== controlsTem) {
+      if (controls) {
+        if (controlsContainer) {
+          (0, _showElement.showElement)(controlsContainer);
+        } else {
+          if (prevButton) {
+            (0, _showElement.showElement)(prevButton);
+          }
+
+          if (nextButton) {
+            (0, _showElement.showElement)(nextButton);
+          }
+        }
+      } else {
+        if (controlsContainer) {
+          (0, _hideElement.hideElement)(controlsContainer);
+        } else {
+          if (prevButton) {
+            (0, _hideElement.hideElement)(prevButton);
+          }
+
+          if (nextButton) {
+            (0, _hideElement.hideElement)(nextButton);
+          }
+        }
+      }
+    }
+
+    if (nav !== navTem) {
+      nav ? (0, _showElement.showElement)(navContainer) : (0, _hideElement.hideElement)(navContainer);
+    }
+
+    if (touch !== touchTem) {
+      touch ? (0, _addEvents.addEvents)(container, touchEvents, options.preventScrollOnTouch) : (0, _removeEvents.removeEvents)(container, touchEvents);
+    }
+
+    if (mouseDrag !== mouseDragTem) {
+      mouseDrag ? (0, _addEvents.addEvents)(container, dragEvents) : (0, _removeEvents.removeEvents)(container, dragEvents);
+    }
+
+    if (autoplay !== autoplayTem) {
+      if (autoplay) {
+        if (autoplayButton) {
+          (0, _showElement.showElement)(autoplayButton);
+        }
+
+        if (!animating && !autoplayUserPaused) {
+          startAutoplay();
+        }
+      } else {
+        if (autoplayButton) {
+          (0, _hideElement.hideElement)(autoplayButton);
+        }
+
+        if (animating) {
+          stopAutoplay();
+        }
+      }
+    }
+
+    if (autoplayHoverPause !== autoplayHoverPauseTem) {
+      autoplayHoverPause ? (0, _addEvents.addEvents)(container, hoverEvents) : (0, _removeEvents.removeEvents)(container, hoverEvents);
+    }
+
+    if (autoplayResetOnVisibility !== autoplayResetOnVisibilityTem) {
+      autoplayResetOnVisibility ? (0, _addEvents.addEvents)(doc, visibilityEvent) : (0, _removeEvents.removeEvents)(doc, visibilityEvent);
+    }
+
+    if (bpChanged) {
+      if (fixedWidth !== fixedWidthTem || center !== centerTem) {
+        needContainerTransform = true;
+      }
+
+      if (autoHeight !== autoHeightTem) {
+        if (!autoHeight) {
+          innerWrapper.style.height = '';
+        }
+      }
+
+      if (controls && controlsText !== controlsTextTem) {
+        prevButton.innerHTML = controlsText[0];
+        nextButton.innerHTML = controlsText[1];
+      }
+
+      if (autoplayButton && autoplayText !== autoplayTextTem) {
+        var i = autoplay ? 1 : 0,
+            html = autoplayButton.innerHTML,
+            len = html.length - autoplayTextTem[i].length;
+
+        if (html.substring(len) === autoplayTextTem[i]) {
+          autoplayButton.innerHTML = html.substring(0, len) + autoplayText[i];
+        }
+      }
+    } else {
+      if (center && (fixedWidth || autoWidth)) {
+        needContainerTransform = true;
+      }
+    }
+
+    if (itemsChanged || fixedWidth && !autoWidth) {
+      pages = getPages();
+      updateNavVisibility();
+    }
+
+    indChanged = index !== indexTem;
+
+    if (indChanged) {
+      events.emit('indexChanged', info());
+      needContainerTransform = true;
+    } else if (itemsChanged) {
+      if (!indChanged) {
+        additionalUpdates();
+      }
+    } else if (fixedWidth || autoWidth) {
+      doLazyLoad();
+      updateSlideStatus();
+      updateLiveRegion();
+    }
+
+    if (itemsChanged && !carousel) {
+      updateGallerySlidePositions();
+    }
+
+    if (!disable && !freeze) {
+      // non-meduaqueries: IE8
+      if (bpChanged && !CSSMQ) {
+        // middle wrapper styles
+        if (autoHeight !== autoheightTem || speed !== speedTem) {
+          update_carousel_transition_duration();
+        } // inner wrapper styles
+
+
+        if (edgePadding !== edgePaddingTem || gutter !== gutterTem) {
+          innerWrapper.style.cssText = getInnerWrapperStyles(edgePadding, gutter, fixedWidth, speed, autoHeight);
+        }
+
+        if (horizontal) {
+          // container styles
+          if (carousel) {
+            container.style.width = getContainerWidth(fixedWidth, gutter, items);
+          } // slide styles
+
+
+          var str = getSlideWidthStyle(fixedWidth, gutter, items) + getSlideGutterStyle(gutter); // remove the last line and
+          // add new styles
+
+          (0, _removeCSSRule.removeCSSRule)(sheet, (0, _getCssRulesLength.getCssRulesLength)(sheet) - 1);
+          (0, _addCSSRule.addCSSRule)(sheet, '#' + slideId + ' > .tns-item', str, (0, _getCssRulesLength.getCssRulesLength)(sheet));
+        }
+      } // auto height
+
+
+      if (autoHeight) {
+        doAutoHeight();
+      }
+
+      if (needContainerTransform) {
+        doContainerTransformSilent();
+        indexCached = index;
+      }
+    }
+
+    if (bpChanged) {
+      events.emit('newBreakpointEnd', info(e));
+    }
+  } // === INITIALIZATION FUNCTIONS === //
+
+
+  function getFreeze() {
+    if (!fixedWidth && !autoWidth) {
+      var a = center ? items - (items - 1) / 2 : items;
+      return slideCount <= a;
+    }
+
+    var width = fixedWidth ? (fixedWidth + gutter) * slideCount : slidePositions[slideCount],
+        vp = edgePadding ? viewport + edgePadding * 2 : viewport + gutter;
+
+    if (center) {
+      vp -= fixedWidth ? (viewport - fixedWidth) / 2 : (viewport - (slidePositions[index + 1] - slidePositions[index] - gutter)) / 2;
+    }
+
+    return width <= vp;
+  }
+
+  function setBreakpointZone() {
+    breakpointZone = 0;
+
+    for (var bp in responsive) {
+      bp = parseInt(bp); // convert string to number
+
+      if (windowWidth >= bp) {
+        breakpointZone = bp;
+      }
+    }
+  } // (slideBy, indexMin, indexMax) => index
+
+
+  var updateIndex = function () {
+    return loop ? carousel ? // loop + carousel
+    function () {
+      var leftEdge = indexMin,
+          rightEdge = indexMax;
+      leftEdge += slideBy;
+      rightEdge -= slideBy; // adjust edges when has edge paddings
+      // or fixed-width slider with extra space on the right side
+
+      if (edgePadding) {
+        leftEdge += 1;
+        rightEdge -= 1;
+      } else if (fixedWidth) {
+        if ((viewport + gutter) % (fixedWidth + gutter)) {
+          rightEdge -= 1;
+        }
+      }
+
+      if (cloneCount) {
+        if (index > rightEdge) {
+          index -= slideCount;
+        } else if (index < leftEdge) {
+          index += slideCount;
+        }
+      }
+    } : // loop + gallery
+    function () {
+      if (index > indexMax) {
+        while (index >= indexMin + slideCount) {
+          index -= slideCount;
+        }
+      } else if (index < indexMin) {
+        while (index <= indexMax - slideCount) {
+          index += slideCount;
+        }
+      }
+    } : // non-loop
+    function () {
+      index = Math.max(indexMin, Math.min(indexMax, index));
+    };
+  }();
+
+  function disableUI() {
+    if (!autoplay && autoplayButton) {
+      (0, _hideElement.hideElement)(autoplayButton);
+    }
+
+    if (!nav && navContainer) {
+      (0, _hideElement.hideElement)(navContainer);
+    }
+
+    if (!controls) {
+      if (controlsContainer) {
+        (0, _hideElement.hideElement)(controlsContainer);
+      } else {
+        if (prevButton) {
+          (0, _hideElement.hideElement)(prevButton);
+        }
+
+        if (nextButton) {
+          (0, _hideElement.hideElement)(nextButton);
+        }
+      }
+    }
+  }
+
+  function enableUI() {
+    if (autoplay && autoplayButton) {
+      (0, _showElement.showElement)(autoplayButton);
+    }
+
+    if (nav && navContainer) {
+      (0, _showElement.showElement)(navContainer);
+    }
+
+    if (controls) {
+      if (controlsContainer) {
+        (0, _showElement.showElement)(controlsContainer);
+      } else {
+        if (prevButton) {
+          (0, _showElement.showElement)(prevButton);
+        }
+
+        if (nextButton) {
+          (0, _showElement.showElement)(nextButton);
+        }
+      }
+    }
+  }
+
+  function freezeSlider() {
+    if (frozen) {
+      return;
+    } // remove edge padding from inner wrapper
+
+
+    if (edgePadding) {
+      innerWrapper.style.margin = '0px';
+    } // add class tns-transparent to cloned slides
+
+
+    if (cloneCount) {
+      var str = 'tns-transparent';
+
+      for (var i = cloneCount; i--;) {
+        if (carousel) {
+          (0, _addClass.addClass)(slideItems[i], str);
+        }
+
+        (0, _addClass.addClass)(slideItems[slideCountNew - i - 1], str);
+      }
+    } // update tools
+
+
+    disableUI();
+    frozen = true;
+  }
+
+  function unfreezeSlider() {
+    if (!frozen) {
+      return;
+    } // restore edge padding for inner wrapper
+    // for mordern browsers
+
+
+    if (edgePadding && CSSMQ) {
+      innerWrapper.style.margin = '';
+    } // remove class tns-transparent to cloned slides
+
+
+    if (cloneCount) {
+      var str = 'tns-transparent';
+
+      for (var i = cloneCount; i--;) {
+        if (carousel) {
+          (0, _removeClass.removeClass)(slideItems[i], str);
+        }
+
+        (0, _removeClass.removeClass)(slideItems[slideCountNew - i - 1], str);
+      }
+    } // update tools
+
+
+    enableUI();
+    frozen = false;
+  }
+
+  function disableSlider() {
+    if (disabled) {
+      return;
+    }
+
+    sheet.disabled = true;
+    container.className = container.className.replace(newContainerClasses.substring(1), '');
+    (0, _removeAttrs.removeAttrs)(container, ['style']);
+
+    if (loop) {
+      for (var j = cloneCount; j--;) {
+        if (carousel) {
+          (0, _hideElement.hideElement)(slideItems[j]);
+        }
+
+        (0, _hideElement.hideElement)(slideItems[slideCountNew - j - 1]);
+      }
+    } // vertical slider
+
+
+    if (!horizontal || !carousel) {
+      (0, _removeAttrs.removeAttrs)(innerWrapper, ['style']);
+    } // gallery
+
+
+    if (!carousel) {
+      for (var i = index, l = index + slideCount; i < l; i++) {
+        var item = slideItems[i];
+        (0, _removeAttrs.removeAttrs)(item, ['style']);
+        (0, _removeClass.removeClass)(item, animateIn);
+        (0, _removeClass.removeClass)(item, animateNormal);
+      }
+    } // update tools
+
+
+    disableUI();
+    disabled = true;
+  }
+
+  function enableSlider() {
+    if (!disabled) {
+      return;
+    }
+
+    sheet.disabled = false;
+    container.className += newContainerClasses;
+    doContainerTransformSilent();
+
+    if (loop) {
+      for (var j = cloneCount; j--;) {
+        if (carousel) {
+          (0, _showElement.showElement)(slideItems[j]);
+        }
+
+        (0, _showElement.showElement)(slideItems[slideCountNew - j - 1]);
+      }
+    } // gallery
+
+
+    if (!carousel) {
+      for (var i = index, l = index + slideCount; i < l; i++) {
+        var item = slideItems[i],
+            classN = i < index + items ? animateIn : animateNormal;
+        item.style.left = (i - index) * 100 / items + '%';
+        (0, _addClass.addClass)(item, classN);
+      }
+    } // update tools
+
+
+    enableUI();
+    disabled = false;
+  }
+
+  function updateLiveRegion() {
+    var str = getLiveRegionStr();
+
+    if (liveregionCurrent.innerHTML !== str) {
+      liveregionCurrent.innerHTML = str;
+    }
+  }
+
+  function getLiveRegionStr() {
+    var arr = getVisibleSlideRange(),
+        start = arr[0] + 1,
+        end = arr[1] + 1;
+    return start === end ? start + '' : start + ' to ' + end;
+  }
+
+  function getVisibleSlideRange(val) {
+    if (val == null) {
+      val = getContainerTransformValue();
+    }
+
+    var start = index,
+        end,
+        rangestart,
+        rangeend; // get range start, range end for autoWidth and fixedWidth
+
+    if (center || edgePadding) {
+      if (autoWidth || fixedWidth) {
+        rangestart = -(parseFloat(val) + edgePadding);
+        rangeend = rangestart + viewport + edgePadding * 2;
+      }
+    } else {
+      if (autoWidth) {
+        rangestart = slidePositions[index];
+        rangeend = rangestart + viewport;
+      }
+    } // get start, end
+    // - check auto width
+
+
+    if (autoWidth) {
+      slidePositions.forEach(function (point, i) {
+        if (i < slideCountNew) {
+          if ((center || edgePadding) && point <= rangestart + 0.5) {
+            start = i;
+          }
+
+          if (rangeend - point >= 0.5) {
+            end = i;
+          }
+        }
+      }); // - check percentage width, fixed width
+    } else {
+      if (fixedWidth) {
+        var cell = fixedWidth + gutter;
+
+        if (center || edgePadding) {
+          start = Math.floor(rangestart / cell);
+          end = Math.ceil(rangeend / cell - 1);
+        } else {
+          end = start + Math.ceil(viewport / cell) - 1;
+        }
+      } else {
+        if (center || edgePadding) {
+          var a = items - 1;
+
+          if (center) {
+            start -= a / 2;
+            end = index + a / 2;
+          } else {
+            end = index + a;
+          }
+
+          if (edgePadding) {
+            var b = edgePadding * items / viewport;
+            start -= b;
+            end += b;
+          }
+
+          start = Math.floor(start);
+          end = Math.ceil(end);
+        } else {
+          end = start + items - 1;
+        }
+      }
+
+      start = Math.max(start, 0);
+      end = Math.min(end, slideCountNew - 1);
+    }
+
+    return [start, end];
+  }
+
+  function doLazyLoad() {
+    if (lazyload && !disable) {
+      getImageArray.apply(null, getVisibleSlideRange()).forEach(function (img) {
+        if (!(0, _hasClass.hasClass)(img, imgCompleteClass)) {
+          // stop propagation transitionend event to container
+          var eve = {};
+
+          eve[TRANSITIONEND] = function (e) {
+            e.stopPropagation();
+          };
+
+          (0, _addEvents.addEvents)(img, eve);
+          (0, _addEvents.addEvents)(img, imgEvents); // update src
+
+          img.src = (0, _getAttr.getAttr)(img, 'data-src'); // update srcset
+
+          var srcset = (0, _getAttr.getAttr)(img, 'data-srcset');
+
+          if (srcset) {
+            img.srcset = srcset;
+          }
+
+          (0, _addClass.addClass)(img, 'loading');
+        }
+      });
+    }
+  }
+
+  function onImgLoaded(e) {
+    imgLoaded(getTarget(e));
+  }
+
+  function onImgFailed(e) {
+    imgFailed(getTarget(e));
+  }
+
+  function imgLoaded(img) {
+    (0, _addClass.addClass)(img, 'loaded');
+    imgCompleted(img);
+  }
+
+  function imgFailed(img) {
+    (0, _addClass.addClass)(img, 'failed');
+    imgCompleted(img);
+  }
+
+  function imgCompleted(img) {
+    (0, _addClass.addClass)(img, 'tns-complete');
+    (0, _removeClass.removeClass)(img, 'loading');
+    (0, _removeEvents.removeEvents)(img, imgEvents);
+  }
+
+  function getImageArray(start, end) {
+    var imgs = [];
+
+    while (start <= end) {
+      (0, _forEach.forEach)(slideItems[start].querySelectorAll('img'), function (img) {
+        imgs.push(img);
+      });
+      start++;
+    }
+
+    return imgs;
+  } // check if all visible images are loaded
+  // and update container height if it's done
+
+
+  function doAutoHeight() {
+    var imgs = getImageArray.apply(null, getVisibleSlideRange());
+    (0, _raf.raf)(function () {
+      imgsLoadedCheck(imgs, updateInnerWrapperHeight);
+    });
+  }
+
+  function imgsLoadedCheck(imgs, cb) {
+    // directly execute callback function if all images are complete
+    if (imgsComplete) {
+      return cb();
+    } // check selected image classes otherwise
+
+
+    imgs.forEach(function (img, index) {
+      if ((0, _hasClass.hasClass)(img, imgCompleteClass)) {
+        imgs.splice(index, 1);
+      }
+    }); // execute callback function if selected images are all complete
+
+    if (!imgs.length) {
+      return cb();
+    } // otherwise execute this functiona again
+
+
+    (0, _raf.raf)(function () {
+      imgsLoadedCheck(imgs, cb);
+    });
+  }
+
+  function additionalUpdates() {
+    doLazyLoad();
+    updateSlideStatus();
+    updateLiveRegion();
+    updateControlsStatus();
+    updateNavStatus();
+  }
+
+  function update_carousel_transition_duration() {
+    if (carousel && autoHeight) {
+      middleWrapper.style[TRANSITIONDURATION] = speed / 1000 + 's';
+    }
+  }
+
+  function getMaxSlideHeight(slideStart, slideRange) {
+    var heights = [];
+
+    for (var i = slideStart, l = Math.min(slideStart + slideRange, slideCountNew); i < l; i++) {
+      heights.push(slideItems[i].offsetHeight);
+    }
+
+    return Math.max.apply(null, heights);
+  } // update inner wrapper height
+  // 1. get the max-height of the visible slides
+  // 2. set transitionDuration to speed
+  // 3. update inner wrapper height to max-height
+  // 4. set transitionDuration to 0s after transition done
+
+
+  function updateInnerWrapperHeight() {
+    var maxHeight = autoHeight ? getMaxSlideHeight(index, items) : getMaxSlideHeight(cloneCount, slideCount),
+        wp = middleWrapper ? middleWrapper : innerWrapper;
+
+    if (wp.style.height !== maxHeight) {
+      wp.style.height = maxHeight + 'px';
+    }
+  } // get the distance from the top edge of the first slide to each slide
+  // (init) => slidePositions
+
+
+  function setSlidePositions() {
+    slidePositions = [0];
+    var attr = horizontal ? 'left' : 'top',
+        attr2 = horizontal ? 'right' : 'bottom',
+        base = slideItems[0].getBoundingClientRect()[attr];
+    (0, _forEach.forEach)(slideItems, function (item, i) {
+      // skip the first slide
+      if (i) {
+        slidePositions.push(item.getBoundingClientRect()[attr] - base);
+      } // add the end edge
+
+
+      if (i === slideCountNew - 1) {
+        slidePositions.push(item.getBoundingClientRect()[attr2] - base);
+      }
+    });
+  } // update slide
+
+
+  function updateSlideStatus() {
+    var range = getVisibleSlideRange(),
+        start = range[0],
+        end = range[1];
+    (0, _forEach.forEach)(slideItems, function (item, i) {
+      // show slides
+      if (i >= start && i <= end) {
+        if ((0, _hasAttr.hasAttr)(item, 'aria-hidden')) {
+          (0, _removeAttrs.removeAttrs)(item, ['aria-hidden', 'tabindex']);
+          (0, _addClass.addClass)(item, slideActiveClass);
+        } // hide slides
+
+      } else {
+        if (!(0, _hasAttr.hasAttr)(item, 'aria-hidden')) {
+          (0, _setAttrs.setAttrs)(item, {
+            'aria-hidden': 'true',
+            'tabindex': '-1'
+          });
+          (0, _removeClass.removeClass)(item, slideActiveClass);
+        }
+      }
+    });
+  } // gallery: update slide position
+
+
+  function updateGallerySlidePositions() {
+    var l = index + Math.min(slideCount, items);
+
+    for (var i = slideCountNew; i--;) {
+      var item = slideItems[i];
+
+      if (i >= index && i < l) {
+        // add transitions to visible slides when adjusting their positions
+        (0, _addClass.addClass)(item, 'tns-moving');
+        item.style.left = (i - index) * 100 / items + '%';
+        (0, _addClass.addClass)(item, animateIn);
+        (0, _removeClass.removeClass)(item, animateNormal);
+      } else if (item.style.left) {
+        item.style.left = '';
+        (0, _addClass.addClass)(item, animateNormal);
+        (0, _removeClass.removeClass)(item, animateIn);
+      } // remove outlet animation
+
+
+      (0, _removeClass.removeClass)(item, animateOut);
+    } // removing '.tns-moving'
+
+
+    setTimeout(function () {
+      (0, _forEach.forEach)(slideItems, function (el) {
+        (0, _removeClass.removeClass)(el, 'tns-moving');
+      });
+    }, 300);
+  } // set tabindex on Nav
+
+
+  function updateNavStatus() {
+    // get current nav
+    if (nav) {
+      navCurrentIndex = navClicked >= 0 ? navClicked : getCurrentNavIndex();
+      navClicked = -1;
+
+      if (navCurrentIndex !== navCurrentIndexCached) {
+        var navPrev = navItems[navCurrentIndexCached],
+            navCurrent = navItems[navCurrentIndex];
+        (0, _setAttrs.setAttrs)(navPrev, {
+          'tabindex': '-1',
+          'aria-label': navStr + (navCurrentIndexCached + 1)
+        });
+        (0, _removeClass.removeClass)(navPrev, navActiveClass);
+        (0, _setAttrs.setAttrs)(navCurrent, {
+          'aria-label': navStr + (navCurrentIndex + 1) + navStrCurrent
+        });
+        (0, _removeAttrs.removeAttrs)(navCurrent, 'tabindex');
+        (0, _addClass.addClass)(navCurrent, navActiveClass);
+        navCurrentIndexCached = navCurrentIndex;
+      }
+    }
+  }
+
+  function getLowerCaseNodeName(el) {
+    return el.nodeName.toLowerCase();
+  }
+
+  function isButton(el) {
+    return getLowerCaseNodeName(el) === 'button';
+  }
+
+  function isAriaDisabled(el) {
+    return el.getAttribute('aria-disabled') === 'true';
+  }
+
+  function disEnableElement(isButton, el, val) {
+    if (isButton) {
+      el.disabled = val;
+    } else {
+      el.setAttribute('aria-disabled', val.toString());
+    }
+  } // set 'disabled' to true on controls when reach the edges
+
+
+  function updateControlsStatus() {
+    if (!controls || rewind || loop) {
+      return;
+    }
+
+    var prevDisabled = prevIsButton ? prevButton.disabled : isAriaDisabled(prevButton),
+        nextDisabled = nextIsButton ? nextButton.disabled : isAriaDisabled(nextButton),
+        disablePrev = index <= indexMin ? true : false,
+        disableNext = !rewind && index >= indexMax ? true : false;
+
+    if (disablePrev && !prevDisabled) {
+      disEnableElement(prevIsButton, prevButton, true);
+    }
+
+    if (!disablePrev && prevDisabled) {
+      disEnableElement(prevIsButton, prevButton, false);
+    }
+
+    if (disableNext && !nextDisabled) {
+      disEnableElement(nextIsButton, nextButton, true);
+    }
+
+    if (!disableNext && nextDisabled) {
+      disEnableElement(nextIsButton, nextButton, false);
+    }
+  } // set duration
+
+
+  function resetDuration(el, str) {
+    if (TRANSITIONDURATION) {
+      el.style[TRANSITIONDURATION] = str;
+    }
+  }
+
+  function getSliderWidth() {
+    return fixedWidth ? (fixedWidth + gutter) * slideCountNew : slidePositions[slideCountNew];
+  }
+
+  function getCenterGap(num) {
+    if (num == null) {
+      num = index;
+    }
+
+    var gap = edgePadding ? gutter : 0;
+    return autoWidth ? (viewport - gap - (slidePositions[num + 1] - slidePositions[num] - gutter)) / 2 : fixedWidth ? (viewport - fixedWidth) / 2 : (items - 1) / 2;
+  }
+
+  function getRightBoundary() {
+    var gap = edgePadding ? gutter : 0,
+        result = viewport + gap - getSliderWidth();
+
+    if (center && !loop) {
+      result = fixedWidth ? -(fixedWidth + gutter) * (slideCountNew - 1) - getCenterGap() : getCenterGap(slideCountNew - 1) - slidePositions[slideCountNew - 1];
+    }
+
+    if (result > 0) {
+      result = 0;
+    }
+
+    return result;
+  }
+
+  function getContainerTransformValue(num) {
+    if (num == null) {
+      num = index;
+    }
+
+    var val;
+
+    if (horizontal && !autoWidth) {
+      if (fixedWidth) {
+        val = -(fixedWidth + gutter) * num;
+
+        if (center) {
+          val += getCenterGap();
+        }
+      } else {
+        var denominator = TRANSFORM ? slideCountNew : items;
+
+        if (center) {
+          num -= getCenterGap();
+        }
+
+        val = -num * 100 / denominator;
+      }
+    } else {
+      val = -slidePositions[num];
+
+      if (center && autoWidth) {
+        val += getCenterGap();
+      }
+    }
+
+    if (hasRightDeadZone) {
+      val = Math.max(val, rightBoundary);
+    }
+
+    val += horizontal && !autoWidth && !fixedWidth ? '%' : 'px';
+    return val;
+  }
+
+  function doContainerTransformSilent(val) {
+    resetDuration(container, '0s');
+    doContainerTransform(val);
+  }
+
+  function doContainerTransform(val) {
+    if (val == null) {
+      val = getContainerTransformValue();
+    }
+
+    container.style[transformAttr] = transformPrefix + val + transformPostfix;
+  }
+
+  function animateSlide(number, classOut, classIn, isOut) {
+    var l = number + items;
+
+    if (!loop) {
+      l = Math.min(l, slideCountNew);
+    }
+
+    for (var i = number; i < l; i++) {
+      var item = slideItems[i]; // set item positions
+
+      if (!isOut) {
+        item.style.left = (i - index) * 100 / items + '%';
+      }
+
+      if (animateDelay && TRANSITIONDELAY) {
+        item.style[TRANSITIONDELAY] = item.style[ANIMATIONDELAY] = animateDelay * (i - number) / 1000 + 's';
+      }
+
+      (0, _removeClass.removeClass)(item, classOut);
+      (0, _addClass.addClass)(item, classIn);
+
+      if (isOut) {
+        slideItemsOut.push(item);
+      }
+    }
+  } // make transfer after click/drag:
+  // 1. change 'transform' property for mordern browsers
+  // 2. change 'left' property for legacy browsers
+
+
+  var transformCore = function () {
+    return carousel ? function () {
+      resetDuration(container, '');
+
+      if (TRANSITIONDURATION || !speed) {
+        // for morden browsers with non-zero duration or 
+        // zero duration for all browsers
+        doContainerTransform(); // run fallback function manually 
+        // when duration is 0 / container is hidden
+
+        if (!speed || !(0, _isVisible.isVisible)(container)) {
+          onTransitionEnd();
+        }
+      } else {
+        // for old browser with non-zero duration
+        (0, _jsTransform.jsTransform)(container, transformAttr, transformPrefix, transformPostfix, getContainerTransformValue(), speed, onTransitionEnd);
+      }
+
+      if (!horizontal) {
+        updateContentWrapperHeight();
+      }
+    } : function () {
+      slideItemsOut = [];
+      var eve = {};
+      eve[TRANSITIONEND] = eve[ANIMATIONEND] = onTransitionEnd;
+      (0, _removeEvents.removeEvents)(slideItems[indexCached], eve);
+      (0, _addEvents.addEvents)(slideItems[index], eve);
+      animateSlide(indexCached, animateIn, animateOut, true);
+      animateSlide(index, animateNormal, animateIn); // run fallback function manually 
+      // when transition or animation not supported / duration is 0
+
+      if (!TRANSITIONEND || !ANIMATIONEND || !speed || !(0, _isVisible.isVisible)(container)) {
+        onTransitionEnd();
+      }
+    };
+  }();
+
+  function render(e, sliderMoved) {
+    if (updateIndexBeforeTransform) {
+      updateIndex();
+    } // render when slider was moved (touch or drag) even though index may not change
+
+
+    if (index !== indexCached || sliderMoved) {
+      // events
+      events.emit('indexChanged', info());
+      events.emit('transitionStart', info());
+
+      if (autoHeight) {
+        doAutoHeight();
+      } // pause autoplay when click or keydown from user
+
+
+      if (animating && e && ['click', 'keydown'].indexOf(e.type) >= 0) {
+        stopAutoplay();
+      }
+
+      running = true;
+      transformCore();
+    }
+  }
+  /*
+   * Transfer prefixed properties to the same format
+   * CSS: -Webkit-Transform => webkittransform
+   * JS: WebkitTransform => webkittransform
+   * @param {string} str - property
+   *
+   */
+
+
+  function strTrans(str) {
+    return str.toLowerCase().replace(/-/g, '');
+  } // AFTER TRANSFORM
+  // Things need to be done after a transfer:
+  // 1. check index
+  // 2. add classes to visible slide
+  // 3. disable controls buttons when reach the first/last slide in non-loop slider
+  // 4. update nav status
+  // 5. lazyload images
+  // 6. update container height
+
+
+  function onTransitionEnd(event) {
+    // check running on gallery mode
+    // make sure trantionend/animationend events run only once
+    if (carousel || running) {
+      events.emit('transitionEnd', info(event));
+
+      if (!carousel && slideItemsOut.length > 0) {
+        for (var i = 0; i < slideItemsOut.length; i++) {
+          var item = slideItemsOut[i]; // set item positions
+
+          item.style.left = '';
+
+          if (ANIMATIONDELAY && TRANSITIONDELAY) {
+            item.style[ANIMATIONDELAY] = '';
+            item.style[TRANSITIONDELAY] = '';
+          }
+
+          (0, _removeClass.removeClass)(item, animateOut);
+          (0, _addClass.addClass)(item, animateNormal);
+        }
+      }
+      /* update slides, nav, controls after checking ...
+       * => legacy browsers who don't support 'event' 
+       *    have to check event first, otherwise event.target will cause an error 
+       * => or 'gallery' mode: 
+       *   + event target is slide item
+       * => or 'carousel' mode: 
+       *   + event target is container, 
+       *   + event.property is the same with transform attribute
+       */
+
+
+      if (!event || !carousel && event.target.parentNode === container || event.target === container && strTrans(event.propertyName) === strTrans(transformAttr)) {
+        if (!updateIndexBeforeTransform) {
+          var indexTem = index;
+          updateIndex();
+
+          if (index !== indexTem) {
+            events.emit('indexChanged', info());
+            doContainerTransformSilent();
+          }
+        }
+
+        if (nested === 'inner') {
+          events.emit('innerLoaded', info());
+        }
+
+        running = false;
+        indexCached = index;
+      }
+    }
+  } // # ACTIONS
+
+
+  function goTo(targetIndex, e) {
+    if (freeze) {
+      return;
+    } // prev slideBy
+
+
+    if (targetIndex === 'prev') {
+      onControlsClick(e, -1); // next slideBy
+    } else if (targetIndex === 'next') {
+      onControlsClick(e, 1); // go to exact slide
+    } else {
+      if (running) {
+        if (preventActionWhenRunning) {
+          return;
+        } else {
+          onTransitionEnd();
+        }
+      }
+
+      var absIndex = getAbsIndex(),
+          indexGap = 0;
+
+      if (targetIndex === 'first') {
+        indexGap = -absIndex;
+      } else if (targetIndex === 'last') {
+        indexGap = carousel ? slideCount - items - absIndex : slideCount - 1 - absIndex;
+      } else {
+        if (typeof targetIndex !== 'number') {
+          targetIndex = parseInt(targetIndex);
+        }
+
+        if (!isNaN(targetIndex)) {
+          // from directly called goTo function
+          if (!e) {
+            targetIndex = Math.max(0, Math.min(slideCount - 1, targetIndex));
+          }
+
+          indexGap = targetIndex - absIndex;
+        }
+      } // gallery: make sure new page won't overlap with current page
+
+
+      if (!carousel && indexGap && Math.abs(indexGap) < items) {
+        var factor = indexGap > 0 ? 1 : -1;
+        indexGap += index + indexGap - slideCount >= indexMin ? slideCount * factor : slideCount * 2 * factor * -1;
+      }
+
+      index += indexGap; // make sure index is in range
+
+      if (carousel && loop) {
+        if (index < indexMin) {
+          index += slideCount;
+        }
+
+        if (index > indexMax) {
+          index -= slideCount;
+        }
+      } // if index is changed, start rendering
+
+
+      if (getAbsIndex(index) !== getAbsIndex(indexCached)) {
+        render(e);
+      }
+    }
+  } // on controls click
+
+
+  function onControlsClick(e, dir) {
+    if (running) {
+      if (preventActionWhenRunning) {
+        return;
+      } else {
+        onTransitionEnd();
+      }
+    }
+
+    var passEventObject;
+
+    if (!dir) {
+      e = getEvent(e);
+      var target = getTarget(e);
+
+      while (target !== controlsContainer && [prevButton, nextButton].indexOf(target) < 0) {
+        target = target.parentNode;
+      }
+
+      var targetIn = [prevButton, nextButton].indexOf(target);
+
+      if (targetIn >= 0) {
+        passEventObject = true;
+        dir = targetIn === 0 ? -1 : 1;
+      }
+    }
+
+    if (rewind) {
+      if (index === indexMin && dir === -1) {
+        goTo('last', e);
+        return;
+      } else if (index === indexMax && dir === 1) {
+        goTo('first', e);
+        return;
+      }
+    }
+
+    if (dir) {
+      index += slideBy * dir;
+
+      if (autoWidth) {
+        index = Math.floor(index);
+      } // pass e when click control buttons or keydown
+
+
+      render(passEventObject || e && e.type === 'keydown' ? e : null);
+    }
+  } // on nav click
+
+
+  function onNavClick(e) {
+    if (running) {
+      if (preventActionWhenRunning) {
+        return;
+      } else {
+        onTransitionEnd();
+      }
+    }
+
+    e = getEvent(e);
+    var target = getTarget(e),
+        navIndex; // find the clicked nav item
+
+    while (target !== navContainer && !(0, _hasAttr.hasAttr)(target, 'data-nav')) {
+      target = target.parentNode;
+    }
+
+    if ((0, _hasAttr.hasAttr)(target, 'data-nav')) {
+      var navIndex = navClicked = Number((0, _getAttr.getAttr)(target, 'data-nav')),
+          targetIndexBase = fixedWidth || autoWidth ? navIndex * slideCount / pages : navIndex * items,
+          targetIndex = navAsThumbnails ? navIndex : Math.min(Math.ceil(targetIndexBase), slideCount - 1);
+      goTo(targetIndex, e);
+
+      if (navCurrentIndex === navIndex) {
+        if (animating) {
+          stopAutoplay();
+        }
+
+        navClicked = -1; // reset navClicked
+      }
+    }
+  } // autoplay functions
+
+
+  function setAutoplayTimer() {
+    autoplayTimer = setInterval(function () {
+      onControlsClick(null, autoplayDirection);
+    }, autoplayTimeout);
+    animating = true;
+  }
+
+  function stopAutoplayTimer() {
+    clearInterval(autoplayTimer);
+    animating = false;
+  }
+
+  function updateAutoplayButton(action, txt) {
+    (0, _setAttrs.setAttrs)(autoplayButton, {
+      'data-action': action
+    });
+    autoplayButton.innerHTML = autoplayHtmlStrings[0] + action + autoplayHtmlStrings[1] + txt;
+  }
+
+  function startAutoplay() {
+    setAutoplayTimer();
+
+    if (autoplayButton) {
+      updateAutoplayButton('stop', autoplayText[1]);
+    }
+  }
+
+  function stopAutoplay() {
+    stopAutoplayTimer();
+
+    if (autoplayButton) {
+      updateAutoplayButton('start', autoplayText[0]);
+    }
+  } // programaitcally play/pause the slider
+
+
+  function play() {
+    if (autoplay && !animating) {
+      startAutoplay();
+      autoplayUserPaused = false;
+    }
+  }
+
+  function pause() {
+    if (animating) {
+      stopAutoplay();
+      autoplayUserPaused = true;
+    }
+  }
+
+  function toggleAutoplay() {
+    if (animating) {
+      stopAutoplay();
+      autoplayUserPaused = true;
+    } else {
+      startAutoplay();
+      autoplayUserPaused = false;
+    }
+  }
+
+  function onVisibilityChange() {
+    if (doc.hidden) {
+      if (animating) {
+        stopAutoplayTimer();
+        autoplayVisibilityPaused = true;
+      }
+    } else if (autoplayVisibilityPaused) {
+      setAutoplayTimer();
+      autoplayVisibilityPaused = false;
+    }
+  }
+
+  function mouseoverPause() {
+    if (animating) {
+      stopAutoplayTimer();
+      autoplayHoverPaused = true;
+    }
+  }
+
+  function mouseoutRestart() {
+    if (autoplayHoverPaused) {
+      setAutoplayTimer();
+      autoplayHoverPaused = false;
+    }
+  } // keydown events on document 
+
+
+  function onDocumentKeydown(e) {
+    e = getEvent(e);
+    var keyIndex = [KEYS.LEFT, KEYS.RIGHT].indexOf(e.keyCode);
+
+    if (keyIndex >= 0) {
+      onControlsClick(e, keyIndex === 0 ? -1 : 1);
+    }
+  } // on key control
+
+
+  function onControlsKeydown(e) {
+    e = getEvent(e);
+    var keyIndex = [KEYS.LEFT, KEYS.RIGHT].indexOf(e.keyCode);
+
+    if (keyIndex >= 0) {
+      if (keyIndex === 0) {
+        if (!prevButton.disabled) {
+          onControlsClick(e, -1);
+        }
+      } else if (!nextButton.disabled) {
+        onControlsClick(e, 1);
+      }
+    }
+  } // set focus
+
+
+  function setFocus(el) {
+    el.focus();
+  } // on key nav
+
+
+  function onNavKeydown(e) {
+    e = getEvent(e);
+    var curElement = doc.activeElement;
+
+    if (!(0, _hasAttr.hasAttr)(curElement, 'data-nav')) {
+      return;
+    } // var code = e.keyCode,
+
+
+    var keyIndex = [KEYS.LEFT, KEYS.RIGHT, KEYS.ENTER, KEYS.SPACE].indexOf(e.keyCode),
+        navIndex = Number((0, _getAttr.getAttr)(curElement, 'data-nav'));
+
+    if (keyIndex >= 0) {
+      if (keyIndex === 0) {
+        if (navIndex > 0) {
+          setFocus(navItems[navIndex - 1]);
+        }
+      } else if (keyIndex === 1) {
+        if (navIndex < pages - 1) {
+          setFocus(navItems[navIndex + 1]);
+        }
+      } else {
+        navClicked = navIndex;
+        goTo(navIndex, e);
+      }
+    }
+  }
+
+  function getEvent(e) {
+    e = e || win.event;
+    return isTouchEvent(e) ? e.changedTouches[0] : e;
+  }
+
+  function getTarget(e) {
+    return e.target || win.event.srcElement;
+  }
+
+  function isTouchEvent(e) {
+    return e.type.indexOf('touch') >= 0;
+  }
+
+  function preventDefaultBehavior(e) {
+    e.preventDefault ? e.preventDefault() : e.returnValue = false;
+  }
+
+  function getMoveDirectionExpected() {
+    return (0, _getTouchDirection.getTouchDirection)((0, _toDegree.toDegree)(lastPosition.y - initPosition.y, lastPosition.x - initPosition.x), swipeAngle) === options.axis;
+  }
+
+  function onPanStart(e) {
+    if (running) {
+      if (preventActionWhenRunning) {
+        return;
+      } else {
+        onTransitionEnd();
+      }
+    }
+
+    if (autoplay && animating) {
+      stopAutoplayTimer();
+    }
+
+    panStart = true;
+
+    if (rafIndex) {
+      (0, _caf.caf)(rafIndex);
+      rafIndex = null;
+    }
+
+    var $ = getEvent(e);
+    events.emit(isTouchEvent(e) ? 'touchStart' : 'dragStart', info(e));
+
+    if (!isTouchEvent(e) && ['img', 'a'].indexOf(getLowerCaseNodeName(getTarget(e))) >= 0) {
+      preventDefaultBehavior(e);
+    }
+
+    lastPosition.x = initPosition.x = $.clientX;
+    lastPosition.y = initPosition.y = $.clientY;
+
+    if (carousel) {
+      translateInit = parseFloat(container.style[transformAttr].replace(transformPrefix, ''));
+      resetDuration(container, '0s');
+    }
+  }
+
+  function onPanMove(e) {
+    if (panStart) {
+      var $ = getEvent(e);
+      lastPosition.x = $.clientX;
+      lastPosition.y = $.clientY;
+
+      if (carousel) {
+        if (!rafIndex) {
+          rafIndex = (0, _raf.raf)(function () {
+            panUpdate(e);
+          });
+        }
+      } else {
+        if (moveDirectionExpected === '?') {
+          moveDirectionExpected = getMoveDirectionExpected();
+        }
+
+        if (moveDirectionExpected) {
+          preventScroll = true;
+        }
+      }
+
+      if (preventScroll) {
+        e.preventDefault();
+      }
+    }
+  }
+
+  function panUpdate(e) {
+    if (!moveDirectionExpected) {
+      panStart = false;
+      return;
+    }
+
+    (0, _caf.caf)(rafIndex);
+
+    if (panStart) {
+      rafIndex = (0, _raf.raf)(function () {
+        panUpdate(e);
+      });
+    }
+
+    if (moveDirectionExpected === '?') {
+      moveDirectionExpected = getMoveDirectionExpected();
+    }
+
+    if (moveDirectionExpected) {
+      if (!preventScroll && isTouchEvent(e)) {
+        preventScroll = true;
+      }
+
+      try {
+        if (e.type) {
+          events.emit(isTouchEvent(e) ? 'touchMove' : 'dragMove', info(e));
+        }
+      } catch (err) {}
+
+      var x = translateInit,
+          dist = getDist(lastPosition, initPosition);
+
+      if (!horizontal || fixedWidth || autoWidth) {
+        x += dist;
+        x += 'px';
+      } else {
+        var percentageX = TRANSFORM ? dist * items * 100 / ((viewport + gutter) * slideCountNew) : dist * 100 / (viewport + gutter);
+        x += percentageX;
+        x += '%';
+      }
+
+      container.style[transformAttr] = transformPrefix + x + transformPostfix;
+    }
+  }
+
+  function onPanEnd(e) {
+    if (panStart) {
+      if (rafIndex) {
+        (0, _caf.caf)(rafIndex);
+        rafIndex = null;
+      }
+
+      if (carousel) {
+        resetDuration(container, '');
+      }
+
+      panStart = false;
+      var $ = getEvent(e);
+      lastPosition.x = $.clientX;
+      lastPosition.y = $.clientY;
+      var dist = getDist(lastPosition, initPosition);
+
+      if (Math.abs(dist)) {
+        // drag vs click
+        if (!isTouchEvent(e)) {
+          // prevent "click"
+          var target = getTarget(e);
+          (0, _addEvents.addEvents)(target, {
+            'click': function preventClick(e) {
+              preventDefaultBehavior(e);
+              (0, _removeEvents.removeEvents)(target, {
+                'click': preventClick
+              });
+            }
+          });
+        }
+
+        if (carousel) {
+          rafIndex = (0, _raf.raf)(function () {
+            if (horizontal && !autoWidth) {
+              var indexMoved = -dist * items / (viewport + gutter);
+              indexMoved = dist > 0 ? Math.floor(indexMoved) : Math.ceil(indexMoved);
+              index += indexMoved;
+            } else {
+              var moved = -(translateInit + dist);
+
+              if (moved <= 0) {
+                index = indexMin;
+              } else if (moved >= slidePositions[slideCountNew - 1]) {
+                index = indexMax;
+              } else {
+                var i = 0;
+
+                while (i < slideCountNew && moved >= slidePositions[i]) {
+                  index = i;
+
+                  if (moved > slidePositions[i] && dist < 0) {
+                    index += 1;
+                  }
+
+                  i++;
+                }
+              }
+            }
+
+            render(e, dist);
+            events.emit(isTouchEvent(e) ? 'touchEnd' : 'dragEnd', info(e));
+          });
+        } else {
+          if (moveDirectionExpected) {
+            onControlsClick(e, dist > 0 ? -1 : 1);
+          }
+        }
+      }
+    } // reset
+
+
+    if (options.preventScrollOnTouch === 'auto') {
+      preventScroll = false;
+    }
+
+    if (swipeAngle) {
+      moveDirectionExpected = '?';
+    }
+
+    if (autoplay && !animating) {
+      setAutoplayTimer();
+    }
+  } // === RESIZE FUNCTIONS === //
+  // (slidePositions, index, items) => vertical_conentWrapper.height
+
+
+  function updateContentWrapperHeight() {
+    var wp = middleWrapper ? middleWrapper : innerWrapper;
+    wp.style.height = slidePositions[index + items] - slidePositions[index] + 'px';
+  }
+
+  function getPages() {
+    var rough = fixedWidth ? (fixedWidth + gutter) * slideCount / viewport : slideCount / items;
+    return Math.min(Math.ceil(rough), slideCount);
+  }
+  /*
+   * 1. update visible nav items list
+   * 2. add "hidden" attributes to previous visible nav items
+   * 3. remove "hidden" attrubutes to new visible nav items
+   */
+
+
+  function updateNavVisibility() {
+    if (!nav || navAsThumbnails) {
+      return;
+    }
+
+    if (pages !== pagesCached) {
+      var min = pagesCached,
+          max = pages,
+          fn = _showElement.showElement;
+
+      if (pagesCached > pages) {
+        min = pages;
+        max = pagesCached;
+        fn = _hideElement.hideElement;
+      }
+
+      while (min < max) {
+        fn(navItems[min]);
+        min++;
+      } // cache pages
+
+
+      pagesCached = pages;
+    }
+  }
+
+  function info(e) {
+    return {
+      container: container,
+      slideItems: slideItems,
+      navContainer: navContainer,
+      navItems: navItems,
+      controlsContainer: controlsContainer,
+      hasControls: hasControls,
+      prevButton: prevButton,
+      nextButton: nextButton,
+      items: items,
+      slideBy: slideBy,
+      cloneCount: cloneCount,
+      slideCount: slideCount,
+      slideCountNew: slideCountNew,
+      index: index,
+      indexCached: indexCached,
+      displayIndex: getCurrentSlide(),
+      navCurrentIndex: navCurrentIndex,
+      navCurrentIndexCached: navCurrentIndexCached,
+      pages: pages,
+      pagesCached: pagesCached,
+      sheet: sheet,
+      isOn: isOn,
+      event: e || {}
+    };
+  }
+
+  return {
+    version: '2.9.2',
+    getInfo: info,
+    events: events,
+    goTo: goTo,
+    play: play,
+    pause: pause,
+    isOn: isOn,
+    updateSliderHeight: updateInnerWrapperHeight,
+    refresh: initSliderTransform,
+    destroy: destroy,
+    rebuild: function rebuild() {
+      return tns((0, _extend.extend)(options, optionsElements));
+    }
+  };
+};
+
+exports.tns = tns;
+},{"./helpers/Object.keys":"../node_modules/tiny-slider/src/helpers/Object.keys.js","./helpers/childNode.remove":"../node_modules/tiny-slider/src/helpers/childNode.remove.js","./helpers/raf.js":"../node_modules/tiny-slider/src/helpers/raf.js","./helpers/caf.js":"../node_modules/tiny-slider/src/helpers/caf.js","./helpers/extend.js":"../node_modules/tiny-slider/src/helpers/extend.js","./helpers/checkStorageValue.js":"../node_modules/tiny-slider/src/helpers/checkStorageValue.js","./helpers/setLocalStorage.js":"../node_modules/tiny-slider/src/helpers/setLocalStorage.js","./helpers/getSlideId.js":"../node_modules/tiny-slider/src/helpers/getSlideId.js","./helpers/calc.js":"../node_modules/tiny-slider/src/helpers/calc.js","./helpers/percentageLayout.js":"../node_modules/tiny-slider/src/helpers/percentageLayout.js","./helpers/mediaquerySupport.js":"../node_modules/tiny-slider/src/helpers/mediaquerySupport.js","./helpers/createStyleSheet.js":"../node_modules/tiny-slider/src/helpers/createStyleSheet.js","./helpers/addCSSRule.js":"../node_modules/tiny-slider/src/helpers/addCSSRule.js","./helpers/removeCSSRule.js":"../node_modules/tiny-slider/src/helpers/removeCSSRule.js","./helpers/getCssRulesLength.js":"../node_modules/tiny-slider/src/helpers/getCssRulesLength.js","./helpers/toDegree.js":"../node_modules/tiny-slider/src/helpers/toDegree.js","./helpers/getTouchDirection.js":"../node_modules/tiny-slider/src/helpers/getTouchDirection.js","./helpers/forEach.js":"../node_modules/tiny-slider/src/helpers/forEach.js","./helpers/hasClass.js":"../node_modules/tiny-slider/src/helpers/hasClass.js","./helpers/addClass.js":"../node_modules/tiny-slider/src/helpers/addClass.js","./helpers/removeClass.js":"../node_modules/tiny-slider/src/helpers/removeClass.js","./helpers/hasAttr.js":"../node_modules/tiny-slider/src/helpers/hasAttr.js","./helpers/getAttr.js":"../node_modules/tiny-slider/src/helpers/getAttr.js","./helpers/setAttrs.js":"../node_modules/tiny-slider/src/helpers/setAttrs.js","./helpers/removeAttrs.js":"../node_modules/tiny-slider/src/helpers/removeAttrs.js","./helpers/arrayFromNodeList.js":"../node_modules/tiny-slider/src/helpers/arrayFromNodeList.js","./helpers/hideElement.js":"../node_modules/tiny-slider/src/helpers/hideElement.js","./helpers/showElement.js":"../node_modules/tiny-slider/src/helpers/showElement.js","./helpers/isVisible.js":"../node_modules/tiny-slider/src/helpers/isVisible.js","./helpers/whichProperty.js":"../node_modules/tiny-slider/src/helpers/whichProperty.js","./helpers/has3DTransforms.js":"../node_modules/tiny-slider/src/helpers/has3DTransforms.js","./helpers/getEndProperty.js":"../node_modules/tiny-slider/src/helpers/getEndProperty.js","./helpers/addEvents.js":"../node_modules/tiny-slider/src/helpers/addEvents.js","./helpers/removeEvents.js":"../node_modules/tiny-slider/src/helpers/removeEvents.js","./helpers/events.js":"../node_modules/tiny-slider/src/helpers/events.js","./helpers/jsTransform.js":"../node_modules/tiny-slider/src/helpers/jsTransform.js"}],"../node_modules/core-js/modules/_global.js":[function(require,module,exports) {
 
 // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
 var global = module.exports = typeof window != 'undefined' && window.Math == Math
@@ -10098,9 +13947,9 @@ var _eventEmitter = _interopRequireDefault(require("./services/event-emitter"));
 
 var _pageable = _interopRequireDefault(require("pageable"));
 
-var _glider = _interopRequireDefault(require("./glider"));
-
 var _animations = _interopRequireDefault(require("./animations"));
+
+var _tinySlider = require("../../node_modules/tiny-slider/src/tiny-slider");
 
 require("babel-polyfill");
 
@@ -10160,37 +14009,32 @@ function (_EventEmitter) {
   }, {
     key: "loadProductsSlide",
     value: function loadProductsSlide() {
-      var prevBtn = document.querySelector(".glider-prev");
-      var nextBtn = document.querySelector(".glider-next");
-      new _glider.default(document.querySelector(".products-list"), {
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        scrollLock: true,
-        duration: 5,
-        arrows: {
-          prev: prevBtn,
-          next: nextBtn
-        },
-        responsive: [{
-          // screens greater than >= 775px
-          breakpoint: 775,
-          settings: {
-            // Set to `auto` and provide item width to adjust to viewport
-            slidesToShow: "auto",
-            slidesToScroll: "auto",
-            itemWidth: 150,
-            duration: 2
+      var prev = document.querySelector(".slider-prev");
+      var next = document.querySelector(".slider-next");
+      var slider = (0, _tinySlider.tns)({
+        container: document.getElementById("js-slider"),
+        items: 1,
+        slideBy: "page",
+        controls: false,
+        nav: false,
+        controlsContainer: "#slider-controls",
+        touch: true,
+        speed: 500,
+        responsive: {
+          640: {
+            items: 2
+          },
+          768: {
+            items: 3
           }
-        }, {
-          // screens greater than >= 1024px
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: 0,
-            slidesToScroll: 0,
-            itemWidth: 150,
-            duration: 2
-          }
-        }]
+        }
+      });
+      if (prev) prev.addEventListener("click", function () {
+        slider.goTo("prev");
+        console.log("hi");
+      });
+      if (next) next.addEventListener("click", function () {
+        slider.goTo("next");
       });
     }
   }, {
@@ -10206,8 +14050,8 @@ function (_EventEmitter) {
 
       if (page === "main") {
         this.anchors = ["main", "calcivit", "multivit", "immunovit", "smartvit", "omega", "hello-kitty", "spider-man", "about-products"];
-      } else if (page === "main-smartvit") {
-        this.anchors = ["main-smartvit", "about-smartvit", "product-list", "footer"];
+      } else if (page === "main-about") {
+        this.anchors = ["main-product", "about-product", "products-list", "footer"];
       }
 
       var container = document.getElementById("container");
@@ -10244,7 +14088,7 @@ function (_EventEmitter) {
           var href = window.location.href;
           var screen = href.split("#").splice(1, 2).join("/");
 
-          if (screen === "main") {
+          if (screen === "main" || screen === "main-product") {
             _this2.upBtn.style.display = "none";
           } else {
             _this2.upBtn.style.display = "block";
@@ -10259,7 +14103,7 @@ function (_EventEmitter) {
 }(_eventEmitter.default);
 
 exports.default = View;
-},{"./services/event-emitter":"js/services/event-emitter.js","pageable":"../node_modules/pageable/dist/pageable.min.js","./glider":"js/glider.js","./animations":"js/animations.js","babel-polyfill":"../node_modules/babel-polyfill/lib/index.js"}],"js/controller.js":[function(require,module,exports) {
+},{"./services/event-emitter":"js/services/event-emitter.js","pageable":"../node_modules/pageable/dist/pageable.min.js","./animations":"js/animations.js","../../node_modules/tiny-slider/src/tiny-slider":"../node_modules/tiny-slider/src/tiny-slider.js","babel-polyfill":"../node_modules/babel-polyfill/lib/index.js"}],"js/controller.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -10349,7 +14193,9 @@ function (_EventEmitter) {
           if (window.matchMedia("(min-width: 1024px)").matches) {
             view.loadFirstScreenAnimation();
             view.loadOnePageScroll(path);
-          } else {
+          }
+
+          if (currentPage === "main-product") {
             view.loadProductsSlide();
           }
 
@@ -10422,7 +14268,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59455" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59842" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

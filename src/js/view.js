@@ -1,7 +1,7 @@
 import EventEmitter from "./services/event-emitter";
 import Pageable from "pageable";
-import Glider from "./glider";
 import Animations from "./animations";
+import { tns } from "../../node_modules/tiny-slider/src/tiny-slider";
 import "babel-polyfill";
 
 export default class View extends EventEmitter {
@@ -26,41 +26,36 @@ export default class View extends EventEmitter {
   }
 
   loadProductsSlide() {
-    const prevBtn = document.querySelector(".glider-prev");
-    const nextBtn = document.querySelector(".glider-next");
-    new Glider(document.querySelector(".products-list"), {
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      scrollLock: true,
-      duration: 5,
-      arrows: {
-        prev: prevBtn,
-        next: nextBtn
-      },
-      responsive: [
-        {
-          // screens greater than >= 775px
-          breakpoint: 775,
-          settings: {
-            // Set to `auto` and provide item width to adjust to viewport
-            slidesToShow: "auto",
-            slidesToScroll: "auto",
-            itemWidth: 150,
-            duration: 2
-          }
+    const prev = document.querySelector(".slider-prev");
+    const next = document.querySelector(".slider-next");
+    const slider = tns({
+      container: document.getElementById("js-slider"),
+      items: 1,
+      slideBy: "page",
+      controls: false,
+      nav: false,
+      controlsContainer: "#slider-controls",
+      touch: true,
+      speed: 500,
+      responsive: {
+        640: {
+          items: 2
         },
-        {
-          // screens greater than >= 1024px
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: 0,
-            slidesToScroll: 0,
-            itemWidth: 150,
-            duration: 2
-          }
+
+        768: {
+          items: 3
         }
-      ]
+      }
     });
+    if (prev)
+      prev.addEventListener("click", () => {
+        slider.goTo("prev");
+        console.log("hi");
+      });
+    if (next)
+      next.addEventListener("click", () => {
+        slider.goTo("next");
+      });
   }
 
   handleScrollToTop(evt) {
@@ -81,11 +76,11 @@ export default class View extends EventEmitter {
         "spider-man",
         "about-products"
       ];
-    } else if (page === "main-smartvit") {
+    } else if (page === "main-about") {
       this.anchors = [
-        "main-smartvit",
-        "about-smartvit",
-        "product-list",
+        "main-product",
+        "about-product",
+        "products-list",
         "footer"
       ];
     }
@@ -118,7 +113,7 @@ export default class View extends EventEmitter {
           .split("#")
           .splice(1, 2)
           .join("/");
-        if (screen === "main") {
+        if (screen === "main" || screen === "main-product") {
           this.upBtn.style.display = "none";
         } else {
           this.upBtn.style.display = "block";

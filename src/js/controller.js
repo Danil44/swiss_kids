@@ -48,7 +48,8 @@ export default class Controller extends EventEmitter {
         if (window.matchMedia("(min-width: 1024px)").matches) {
           view.loadFirstScreenAnimation();
           view.loadOnePageScroll(path);
-        } else {
+        }
+        if (currentPage === "main-product") {
           view.loadProductsSlide();
         }
         TweenMax.to(preloaderCircle, 0.8, {

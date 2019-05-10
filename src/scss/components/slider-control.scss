@@ -1,0 +1,22 @@
+.slider-control {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 100%;
+  padding: 0 2em;
+
+  & > button {
+    font-size: 60px;
+    cursor: pointer;
+    color: #acacac;
+    transition: 0.1s linear;
+
+    &:hover {
+      color: #414141;
+    }
+  }
+}

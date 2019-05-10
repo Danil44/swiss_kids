@@ -1,11 +1,11 @@
 @import "../helpers/variables";
 .footer {
-  background-image: url("../images/about-products/background.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   background-color: $primary-bg-color;
   padding: 1.5em;
+  height: 100vh;
 
   &__inner {
     background-color: #fff;
