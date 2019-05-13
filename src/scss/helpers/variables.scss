@@ -4,6 +4,17 @@ $primary-bg-color: #e3eaec;
 
 $primary-text-color: #403e3e;
 
+$primary-text-gradient: linear-gradient(
+  135deg,
+  rgba(223, 67, 7, 1) 10%,
+  rgba(223, 67, 7, 1) 25%,
+  rgba(171, 79, 135, 1) 36%,
+  rgba(69, 125, 171, 1) 59%,
+  rgba(69, 125, 171, 1) 60%,
+  rgba(61, 165, 107, 1) 70%,
+  rgba(61, 165, 107, 1) 100%
+);
+
 $green-btn: #00a042;
 $blue-btn: #006d9e;
 $purple-btn: #9e1679;
