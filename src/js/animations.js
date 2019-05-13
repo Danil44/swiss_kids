@@ -21,19 +21,13 @@ export default class Animations {
 
     if (bottles) {
       bottles.forEach(item => {
-        const tl = new TimelineMax();
-        tl.from(
-          item,
-          1,
-          {
-            delay: 0.8,
-            alpha: 0,
-            opacity: 0,
-            y: -250,
-            ease: Power2.easeOut
-          },
-          0
-        );
+        TweenMax.from(item, 1.5, {
+          delay: 0.8,
+          alpha: 0,
+          opacity: 0,
+          y: -500,
+          ease: Elastic.easeOut.config(0.7, 0.5)
+        });
       });
     }
     TweenMax.from(title, 1, {
@@ -44,7 +38,7 @@ export default class Animations {
     });
 
     TweenMax.from(subtitle, 1, {
-      delay: 1.5,
+      delay: 1.9,
       opacity: 0,
       y: 20,
       ease: Power2.easeOut,
@@ -113,7 +107,7 @@ export default class Animations {
 
     TweenMax.from(vitamins, 2, {
       scale: 0,
-      ease: Elastic.easeOut.config(0.6, 0.3),
+      ease: Elastic.easeOut.config(0.6, 0.5),
       opacity: 0
     });
 

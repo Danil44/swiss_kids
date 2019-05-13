@@ -1621,14 +1621,13 @@ function () {
 
       if (bottles) {
         bottles.forEach(function (item) {
-          var tl = new TimelineMax();
-          tl.from(item, 1, {
+          TweenMax.from(item, 1.5, {
             delay: 0.8,
             alpha: 0,
             opacity: 0,
-            y: -250,
-            ease: Power2.easeOut
-          }, 0);
+            y: -500,
+            ease: Elastic.easeOut.config(0.7, 0.5)
+          });
         });
       }
 
@@ -1639,7 +1638,7 @@ function () {
         ease: Power2.easeOut
       });
       TweenMax.from(subtitle, 1, {
-        delay: 1.5,
+        delay: 1.9,
         opacity: 0,
         y: 20,
         ease: Power2.easeOut,
@@ -1707,7 +1706,7 @@ function () {
 
       TweenMax.from(vitamins, 2, {
         scale: 0,
-        ease: Elastic.easeOut.config(0.6, 0.3),
+        ease: Elastic.easeOut.config(0.6, 0.5),
         opacity: 0
       });
 
@@ -14220,7 +14219,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53011" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61839" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
