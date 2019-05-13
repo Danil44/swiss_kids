@@ -30,6 +30,10 @@
       width: 80px;
       height: 80px;
       cursor: pointer;
+      transition: 0.2s linear;
+      &:hover {
+        transform: scale(1.1);
+      }
     }
   }
 }

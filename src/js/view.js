@@ -11,6 +11,72 @@ export default class View extends EventEmitter {
     this.anchors = [];
     this.pageable = "";
     this.upBtn = document.querySelector(".js-upButton");
+    this.isAnimationComplete = {};
+  }
+
+  getPath() {
+    const href = window.location.href;
+    return href
+      .split("#")
+      .splice(1, 2)
+      .join("/");
+  }
+
+  onPageLoad() {
+    document.body.onload = () => {
+      const rollerCircle = document.getElementById("load-roller");
+      const animation = TweenMax.to(rollerCircle, 1.5, {
+        delay: 0,
+        rotation: 360,
+        ease: Linear.easeNone,
+        repeat: -1
+      }).timeScale(1.2);
+
+      const currentPage = document.querySelector("body").className;
+      const path = this.getPath() || currentPage;
+      console.log(path);
+      window.location.href = `#${path}`;
+
+      const preloaderCircle = document.getElementById("preloader");
+
+      setTimeout(() => {
+        if (window.matchMedia("(min-width: 1024px)").matches) {
+          this.loadFirstScreenAnimation();
+          this.loadOnePageScroll(path);
+        }
+        if (currentPage === "main-product") {
+          this.loadProductsSlide();
+        }
+        TweenMax.to(preloaderCircle, 0.8, {
+          delay: 0,
+          opacity: 0,
+          ease: Power2.easeOut,
+          onComplete: () => {
+            animation.kill();
+            preloaderCircle.classList.toggle("done");
+            document.body.onscroll = () => {
+              this.loadCurrentScreenAnimation();
+            };
+            this.loadCurrentScreenAnimation();
+          }
+        });
+      }, 1500);
+    };
+  }
+
+  loadCurrentScreenAnimation() {
+    const currentScreen = this.getPath();
+
+    if (this.isAnimationComplete[`${currentScreen}`]) return;
+    if (currentScreen === "main") return;
+
+    if (currentScreen === "about-products") {
+      this.isAnimationComplete[`${currentScreen}`] = true;
+      this.loadAboutScreenAnimation(currentScreen);
+    } else {
+      this.isAnimationComplete[`${currentScreen}`] = true;
+      this.loadProductsScreensAnimation(currentScreen);
+    }
   }
 
   loadAboutScreenAnimation(screenName) {
@@ -22,7 +88,9 @@ export default class View extends EventEmitter {
   }
 
   loadProductsScreensAnimation(productName) {
-    this.animation.products(productName);
+    const currentPage = document.querySelector("body").className;
+
+    if (currentPage === "main") this.animation.products(productName);
   }
 
   loadProductsSlide() {
@@ -77,12 +145,7 @@ export default class View extends EventEmitter {
         "about-products"
       ];
     } else if (page === "main-about") {
-      this.anchors = [
-        "main-product",
-        "about-product",
-        "products-list",
-        "footer"
-      ];
+      this.anchors = ["main", "about-product", "products-list", "footer"];
     }
     const container = document.getElementById("container");
     this.pageable = new Pageable(container, {

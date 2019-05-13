@@ -61,19 +61,17 @@
   right: 50%;
   transform: translate(50%, -23%);
 
-  &::before {
-    content: "";
-    display: inline-block;
-    background-image: url("../images/main-screen/instagram.png");
-    background-repeat: no-repeat;
-    background-position: 0 0;
-    background-size: contain;
+  & > a {
     position: absolute;
-    top: 50%;
-    left: 20%;
-    transform: translate(10%, -60%);
-    width: 40%;
-    height: 40%;
+    top: 25%;
+    left: 22%;
+    width: 20%;
+    height: 20%;
+    cursor: pointer;
+    transition: 0.2s linear;
+    &:hover {
+      transform: scale(1.1);
+    }
   }
   @media (min-width: $desktop-sm-bp) {
     width: 30%;

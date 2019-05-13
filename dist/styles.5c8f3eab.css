@@ -359,19 +359,17 @@ a {
   right: 50%;
   transform: translate(50%, -23%);
 }
-.women-picture::before {
-  content: "";
-  display: inline-block;
-  background-image: url("/instagram.ea74c007.png");
-  background-repeat: no-repeat;
-  background-position: 0 0;
-  background-size: contain;
+.women-picture > a {
   position: absolute;
-  top: 50%;
-  left: 20%;
-  transform: translate(10%, -60%);
-  width: 40%;
-  height: 40%;
+  top: 25%;
+  left: 22%;
+  width: 20%;
+  height: 20%;
+  cursor: pointer;
+  transition: 0.2s linear;
+}
+.women-picture > a:hover {
+  transform: scale(1.1);
 }
 @media (min-width: 1024px) {
   .women-picture {
@@ -1329,6 +1327,10 @@ a {
   width: 80px;
   height: 80px;
   cursor: pointer;
+  transition: 0.2s linear;
+}
+.footer__socials-item:hover {
+  transform: scale(1.1);
 }
 
 /*# sourceMappingURL=/styles.5c8f3eab.css.map */

@@ -181,10 +181,6 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
@@ -201,52 +197,10 @@ function (_EventEmitter) {
   _inherits(Model, _EventEmitter);
 
   function Model() {
-    var _this;
-
     _classCallCheck(this, Model);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Model).call(this));
-    _this.page = "";
-    _this.isAnimationComplete = {};
-    return _this;
+    return _possibleConstructorReturn(this, _getPrototypeOf(Model).call(this));
   }
-
-  _createClass(Model, [{
-    key: "getPath",
-    value: function getPath() {
-      var href = window.location.href;
-      return href.split("#").splice(1, 2).join("/");
-    }
-  }, {
-    key: "loadCurrentScreenAnimation",
-    value: function loadCurrentScreenAnimation() {
-      var _this2 = this;
-
-      var loadAnimation = function loadAnimation() {
-        _this2.isAnimationComplete["".concat(currentPage)] = true;
-
-        _this2.emit("loadAnimation", currentPage);
-      };
-
-      var loadAboutScreenAnimation = function loadAboutScreenAnimation() {
-        _this2.isAnimationComplete["".concat(currentPage)] = true;
-
-        _this2.emit("loadAboutAnimation", currentPage);
-      };
-
-      var currentPage = this.getPath();
-
-      if (currentPage === "main") {
-        return;
-      } else if (this.isAnimationComplete["".concat(currentPage)]) {
-        return;
-      } else if (currentPage === "about-products" || currentPage === "footer") {
-        loadAboutScreenAnimation();
-      } else {
-        loadAnimation();
-      }
-    }
-  }]);
 
   return Model;
 }(_eventEmitter.default);
@@ -1655,14 +1609,13 @@ function () {
       var title = mainScreen.querySelector(".js-title");
       var subtitle = mainScreen.querySelector(".js-subtitle");
       var productBottle = mainScreen.querySelector(".js-product-bottle");
-      var mainTimeline = new TimelineMax();
 
       if (productBottle) {
         TweenMax.from(productBottle, 2, {
-          delay: 0.5,
+          delay: 1,
           scale: 0,
           opacity: 0,
-          ease: Elastic.easeOut.config(0.8, 0.4)
+          ease: Elastic.easeOut.config(0.7, 0.4)
         });
       }
 
@@ -1683,10 +1636,10 @@ function () {
         delay: 0.5,
         opacity: 0,
         y: 100,
-        ease: Elastic.easeOut.config(0.8, 0.3)
+        ease: Elastic.easeOut.config(0.7, 0.4)
       });
       TweenMax.from(subtitle, 2.5, {
-        delay: 1.5,
+        delay: 2,
         opacity: 0,
         y: 20,
         ease: Power2.easeOut,
@@ -13988,10 +13941,79 @@ function (_EventEmitter) {
     _this.anchors = [];
     _this.pageable = "";
     _this.upBtn = document.querySelector(".js-upButton");
+    _this.isAnimationComplete = {};
     return _this;
   }
 
   _createClass(View, [{
+    key: "getPath",
+    value: function getPath() {
+      var href = window.location.href;
+      return href.split("#").splice(1, 2).join("/");
+    }
+  }, {
+    key: "onPageLoad",
+    value: function onPageLoad() {
+      var _this2 = this;
+
+      document.body.onload = function () {
+        var rollerCircle = document.getElementById("load-roller");
+        var animation = TweenMax.to(rollerCircle, 1.5, {
+          delay: 0,
+          rotation: 360,
+          ease: Linear.easeNone,
+          repeat: -1
+        }).timeScale(1.2);
+        var currentPage = document.querySelector("body").className;
+        var path = _this2.getPath() || currentPage;
+        console.log(path);
+        window.location.href = "#".concat(path);
+        var preloaderCircle = document.getElementById("preloader");
+        setTimeout(function () {
+          if (window.matchMedia("(min-width: 1024px)").matches) {
+            _this2.loadFirstScreenAnimation();
+
+            _this2.loadOnePageScroll(path);
+          }
+
+          if (currentPage === "main-product") {
+            _this2.loadProductsSlide();
+          }
+
+          TweenMax.to(preloaderCircle, 0.8, {
+            delay: 0,
+            opacity: 0,
+            ease: Power2.easeOut,
+            onComplete: function onComplete() {
+              animation.kill();
+              preloaderCircle.classList.toggle("done");
+
+              document.body.onscroll = function () {
+                _this2.loadCurrentScreenAnimation();
+              };
+
+              _this2.loadCurrentScreenAnimation();
+            }
+          });
+        }, 1500);
+      };
+    }
+  }, {
+    key: "loadCurrentScreenAnimation",
+    value: function loadCurrentScreenAnimation() {
+      var currentScreen = this.getPath();
+      if (this.isAnimationComplete["".concat(currentScreen)]) return;
+      if (currentScreen === "main") return;
+
+      if (currentScreen === "about-products") {
+        this.isAnimationComplete["".concat(currentScreen)] = true;
+        this.loadAboutScreenAnimation(currentScreen);
+      } else {
+        this.isAnimationComplete["".concat(currentScreen)] = true;
+        this.loadProductsScreensAnimation(currentScreen);
+      }
+    }
+  }, {
     key: "loadAboutScreenAnimation",
     value: function loadAboutScreenAnimation(screenName) {
       this.animation.about(screenName);
@@ -14004,7 +14026,8 @@ function (_EventEmitter) {
   }, {
     key: "loadProductsScreensAnimation",
     value: function loadProductsScreensAnimation(productName) {
-      this.animation.products(productName);
+      var currentPage = document.querySelector("body").className;
+      if (currentPage === "main") this.animation.products(productName);
     }
   }, {
     key: "loadProductsSlide",
@@ -14046,12 +14069,12 @@ function (_EventEmitter) {
   }, {
     key: "loadOnePageScroll",
     value: function loadOnePageScroll(page) {
-      var _this2 = this;
+      var _this3 = this;
 
       if (page === "main") {
         this.anchors = ["main", "calcivit", "multivit", "immunovit", "smartvit", "omega", "hello-kitty", "spider-man", "about-products"];
       } else if (page === "main-about") {
-        this.anchors = ["main-product", "about-product", "products-list", "footer"];
+        this.anchors = ["main", "about-product", "products-list", "footer"];
       }
 
       var container = document.getElementById("container");
@@ -14089,9 +14112,9 @@ function (_EventEmitter) {
           var screen = href.split("#").splice(1, 2).join("/");
 
           if (screen === "main" || screen === "main-product") {
-            _this2.upBtn.style.display = "none";
+            _this3.upBtn.style.display = "none";
           } else {
-            _this2.upBtn.style.display = "block";
+            _this3.upBtn.style.display = "block";
           }
         }
       });
@@ -14119,15 +14142,11 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -14147,77 +14166,10 @@ function (_EventEmitter) {
     _this.view = view;
     _this.model = model;
 
-    _this.onPageLoad(view);
+    _this.view.onPageLoad();
 
-    model.on("loadAnimation", _this.loadProductsScreensAnimation.bind(_assertThisInitialized(_this)));
-    model.on("loadAboutAnimation", _this.loadAboutScreensAnimation.bind(_assertThisInitialized(_this)));
     return _this;
   }
-
-  _createClass(Controller, [{
-    key: "loadAboutScreensAnimation",
-    value: function loadAboutScreensAnimation(screenName) {
-      if (screenName) {
-        this.view.loadAboutScreenAnimation(screenName);
-      } else {
-        return;
-      }
-    }
-  }, {
-    key: "loadProductsScreensAnimation",
-    value: function loadProductsScreensAnimation(productName) {
-      var currentPage = document.querySelector("body").className;
-
-      if (productName && currentPage === "main") {
-        this.view.loadProductsScreensAnimation(productName);
-      }
-    }
-  }, {
-    key: "onPageLoad",
-    value: function onPageLoad(view) {
-      var _this2 = this;
-
-      document.body.onload = function () {
-        var rollerCircle = document.getElementById("load-roller");
-        var animation = TweenMax.to(rollerCircle, 1.5, {
-          delay: 0,
-          rotation: 360,
-          ease: Linear.easeNone,
-          repeat: -1
-        }).timeScale(1.2);
-        var currentPage = document.querySelector("body").className;
-        var path = _this2.model.getPath() || currentPage;
-        window.location.href = "#".concat(path);
-        var preloaderCircle = document.getElementById("preloader");
-        setTimeout(function () {
-          if (window.matchMedia("(min-width: 1024px)").matches) {
-            view.loadFirstScreenAnimation();
-            view.loadOnePageScroll(path);
-          }
-
-          if (currentPage === "main-product") {
-            view.loadProductsSlide();
-          }
-
-          TweenMax.to(preloaderCircle, 0.8, {
-            delay: 0,
-            opacity: 0,
-            ease: Power2.easeOut,
-            onComplete: function onComplete() {
-              animation.kill();
-              preloaderCircle.classList.toggle("done");
-
-              document.body.onscroll = function () {
-                _this2.model.loadCurrentScreenAnimation();
-              };
-
-              _this2.model.loadCurrentScreenAnimation(path);
-            }
-          });
-        }, 1500);
-      };
-    }
-  }]);
 
   return Controller;
 }(_eventEmitter.default);
@@ -14268,7 +14220,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59842" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63034" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

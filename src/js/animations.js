@@ -9,14 +9,13 @@ export default class Animations {
     const title = mainScreen.querySelector(".js-title");
     const subtitle = mainScreen.querySelector(".js-subtitle");
     const productBottle = mainScreen.querySelector(".js-product-bottle");
-    const mainTimeline = new TimelineMax();
 
     if (productBottle) {
       TweenMax.from(productBottle, 2, {
-        delay: 0.5,
+        delay: 1,
         scale: 0,
         opacity: 0,
-        ease: Elastic.easeOut.config(0.8, 0.4)
+        ease: Elastic.easeOut.config(0.7, 0.4)
       });
     }
 
@@ -41,11 +40,11 @@ export default class Animations {
       delay: 0.5,
       opacity: 0,
       y: 100,
-      ease: Elastic.easeOut.config(0.8, 0.3)
+      ease: Elastic.easeOut.config(0.7, 0.4)
     });
 
     TweenMax.from(subtitle, 2.5, {
-      delay: 1.5,
+      delay: 2,
       opacity: 0,
       y: 20,
       ease: Power2.easeOut,
