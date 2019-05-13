@@ -11,8 +11,8 @@ export default class Animations {
     const productBottle = mainScreen.querySelector(".js-product-bottle");
 
     if (productBottle) {
-      TweenMax.from(productBottle, 2, {
-        delay: 1,
+      TweenMax.from(productBottle, 1.5, {
+        delay: 0.5,
         scale: 0,
         opacity: 0,
         ease: Elastic.easeOut.config(0.7, 0.4)
@@ -24,27 +24,27 @@ export default class Animations {
         const tl = new TimelineMax();
         tl.from(
           item,
-          1,
+          1.5,
           {
-            delay: 1.5,
+            delay: 0.5,
             alpha: 0,
             opacity: 0,
             y: -250,
-            ease: Elastic.easeOut.config(0.8, 0.3)
+            ease: Elastic.easeOut.config(0.8, 0.4)
           },
           0
         );
       });
     }
-    TweenMax.from(title, 2.5, {
-      delay: 0.5,
+    TweenMax.from(title, 1.5, {
+      delay: 0.3,
       opacity: 0,
       y: 100,
       ease: Elastic.easeOut.config(0.7, 0.4)
     });
 
-    TweenMax.from(subtitle, 2.5, {
-      delay: 2,
+    TweenMax.from(subtitle, 1, {
+      delay: 1,
       opacity: 0,
       y: 20,
       ease: Power2.easeOut,
