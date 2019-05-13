@@ -3,6 +3,7 @@
   font-family: "Open Sans";
   font-style: normal;
   font-weight: 400;
+  font-display: swap;
   src: url("/open-sans-v16-cyrillic_cyrillic-ext_latin-regular.2e643340.eot");
   /* IE9 Compat Modes */
   src: local("Open Sans Regular"), local("OpenSans-Regular"), url("/open-sans-v16-cyrillic_cyrillic-ext_latin-regular.2e643340.eot?#iefix") format("embedded-opentype"), url("/open-sans-v16-cyrillic_cyrillic-ext_latin-regular.6049d29b.woff2") format("woff2"), url("/open-sans-v16-cyrillic_cyrillic-ext_latin-regular.e196c079.woff") format("woff"), url("/open-sans-v16-cyrillic_cyrillic-ext_latin-regular.7b0ea896.ttf") format("truetype"), url("/open-sans-v16-cyrillic_cyrillic-ext_latin-regular.4f10a9c2.svg#OpenSans") format("svg");
@@ -13,6 +14,7 @@
   font-family: "Open Sans";
   font-style: normal;
   font-weight: 700;
+  font-display: swap;
   src: url("/open-sans-v16-cyrillic_cyrillic-ext_latin-700.36c77f4a.eot");
   /* IE9 Compat Modes */
   src: local("Open Sans Bold"), local("OpenSans-Bold"), url("/open-sans-v16-cyrillic_cyrillic-ext_latin-700.36c77f4a.eot?#iefix") format("embedded-opentype"), url("/open-sans-v16-cyrillic_cyrillic-ext_latin-700.22fc9f23.woff2") format("woff2"), url("/open-sans-v16-cyrillic_cyrillic-ext_latin-700.945f3d6e.woff") format("woff"), url("/open-sans-v16-cyrillic_cyrillic-ext_latin-700.246ff39c.ttf") format("truetype"), url("/open-sans-v16-cyrillic_cyrillic-ext_latin-700.d3c908f3.svg#OpenSans") format("svg");
@@ -23,6 +25,7 @@
   font-family: "Open Sans";
   font-style: normal;
   font-weight: 800;
+  font-display: swap;
   src: url("/open-sans-v16-cyrillic_cyrillic-ext_latin-800.b002957f.eot");
   /* IE9 Compat Modes */
   src: local("Open Sans ExtraBold"), local("OpenSans-ExtraBold"), url("/open-sans-v16-cyrillic_cyrillic-ext_latin-800.b002957f.eot?#iefix") format("embedded-opentype"), url("/open-sans-v16-cyrillic_cyrillic-ext_latin-800.ae2d6028.woff2") format("woff2"), url("/open-sans-v16-cyrillic_cyrillic-ext_latin-800.6b3a60fd.woff") format("woff"), url("/open-sans-v16-cyrillic_cyrillic-ext_latin-800.8d676e4c.ttf") format("truetype"), url("/open-sans-v16-cyrillic_cyrillic-ext_latin-800.8009bff2.svg#OpenSans") format("svg");
@@ -33,6 +36,7 @@
   font-family: "Roboto";
   font-style: normal;
   font-weight: 300;
+  font-display: swap;
   src: url("/roboto-v19-cyrillic_cyrillic-ext_latin-300.5d70ca1d.eot");
   /* IE9 Compat Modes */
   src: local("Roboto Light"), local("Roboto-Light"), url("/roboto-v19-cyrillic_cyrillic-ext_latin-300.5d70ca1d.eot?#iefix") format("embedded-opentype"), url("/roboto-v19-cyrillic_cyrillic-ext_latin-300.764f1edf.woff2") format("woff2"), url("/roboto-v19-cyrillic_cyrillic-ext_latin-300.762093cd.woff") format("woff"), url("/roboto-v19-cyrillic_cyrillic-ext_latin-300.56b6ec10.ttf") format("truetype"), url("/roboto-v19-cyrillic_cyrillic-ext_latin-300.a8d4d2b3.svg#Roboto") format("svg");
@@ -43,6 +47,7 @@
   font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
+  font-display: swap;
   src: url("/roboto-v19-cyrillic_cyrillic-ext_latin-regular.00f9f1da.eot");
   /* IE9 Compat Modes */
   src: local("Roboto"), local("Roboto-Regular"), url("/roboto-v19-cyrillic_cyrillic-ext_latin-regular.00f9f1da.eot?#iefix") format("embedded-opentype"), url("/roboto-v19-cyrillic_cyrillic-ext_latin-regular.aca53ebf.woff2") format("woff2"), url("/roboto-v19-cyrillic_cyrillic-ext_latin-regular.58dffa9d.woff") format("woff"), url("/roboto-v19-cyrillic_cyrillic-ext_latin-regular.6c9490a1.ttf") format("truetype"), url("/roboto-v19-cyrillic_cyrillic-ext_latin-regular.3ea8f8d9.svg#Roboto") format("svg");
@@ -53,6 +58,7 @@
   font-family: "Roboto";
   font-style: normal;
   font-weight: 900;
+  font-display: swap;
   src: url("/roboto-v19-cyrillic_cyrillic-ext_latin-900.36b7de8d.eot");
   /* IE9 Compat Modes */
   src: local("Roboto Black"), local("Roboto-Black"), url("/roboto-v19-cyrillic_cyrillic-ext_latin-900.36b7de8d.eot?#iefix") format("embedded-opentype"), url("/roboto-v19-cyrillic_cyrillic-ext_latin-900.54cafda5.woff2") format("woff2"), url("/roboto-v19-cyrillic_cyrillic-ext_latin-900.49776890.woff") format("woff"), url("/roboto-v19-cyrillic_cyrillic-ext_latin-900.368af77c.ttf") format("truetype"), url("/roboto-v19-cyrillic_cyrillic-ext_latin-900.5f927c7f.svg#Roboto") format("svg");
@@ -355,9 +361,10 @@ a {
 .women-picture {
   width: 66%;
   position: absolute;
+  z-index: 5;
   top: 0;
   right: 50%;
-  transform: translate(50%, -23%);
+  transform: translate(50%, 1%);
 }
 .women-picture > a {
   position: absolute;
@@ -471,6 +478,17 @@ a {
   }
 }
 
+.border {
+  border: 20px solid #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
 .main-page__screen, .product-page__about, .product-page__main-screen {
   user-select: none;
   padding: 0.8em;
@@ -492,14 +510,12 @@ a {
 .main-page__inner, .product-page__inner {
   z-index: 1;
   padding: 0.7em 0.5em;
-  border: 10px solid #fff;
   position: relative;
   height: 100%;
 }
 @media (min-width: 1024px) {
   .main-page__inner, .product-page__inner {
-    padding: 1.5em 3.5em;
-    border: 20px solid #fff;
+    padding: 3.5em 5.5em;
   }
 }
 
@@ -817,6 +833,7 @@ a {
 
 .product-screen__desc {
   width: 100%;
+  z-index: 2;
   padding: 0 0 0 5em;
   align-self: center;
 }
@@ -965,6 +982,7 @@ a {
   text-align: center;
   margin-top: 5em;
   visibility: visible;
+  z-index: 2;
 }
 .about-screen__desc.hidden {
   opacity: 0;
@@ -1013,6 +1031,17 @@ a {
   height: 30px;
 }
 
+.border {
+  border: 20px solid #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
 .main-page__screen, .product-page__about, .product-page__main-screen {
   user-select: none;
   padding: 0.8em;
@@ -1034,14 +1063,12 @@ a {
 .main-page__inner, .product-page__inner {
   z-index: 1;
   padding: 0.7em 0.5em;
-  border: 10px solid #fff;
   position: relative;
   height: 100%;
 }
 @media (min-width: 1024px) {
   .main-page__inner, .product-page__inner {
-    padding: 1.5em 3.5em;
-    border: 20px solid #fff;
+    padding: 3.5em 5.5em;
   }
 }
 

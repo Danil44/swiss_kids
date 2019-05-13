@@ -1615,31 +1615,31 @@ function () {
           delay: 0.5,
           scale: 0,
           opacity: 0,
-          ease: Elastic.easeOut.config(0.7, 0.4)
+          ease: Elastic.easeOut.config(0.6, 0.5)
         });
       }
 
       if (bottles) {
         bottles.forEach(function (item) {
           var tl = new TimelineMax();
-          tl.from(item, 1.5, {
-            delay: 0.5,
+          tl.from(item, 1, {
+            delay: 0.8,
             alpha: 0,
             opacity: 0,
             y: -250,
-            ease: Elastic.easeOut.config(0.8, 0.4)
+            ease: Power2.easeOut
           }, 0);
         });
       }
 
-      TweenMax.from(title, 1.5, {
-        delay: 0.3,
+      TweenMax.from(title, 1, {
+        delay: 0.2,
         opacity: 0,
         y: 100,
-        ease: Elastic.easeOut.config(0.7, 0.4)
+        ease: Power2.easeOut
       });
       TweenMax.from(subtitle, 1, {
-        delay: 1,
+        delay: 1.5,
         opacity: 0,
         y: 20,
         ease: Power2.easeOut,
@@ -13970,7 +13970,7 @@ function (_EventEmitter) {
         window.location.href = "#".concat(path);
         var preloaderCircle = document.getElementById("preloader");
         setTimeout(function () {
-          if (window.matchMedia("(min-width: 1024px)").matches) {
+          if (window.matchMedia("(min-width: 1024px)").matches && currentPage) {
             _this2.loadFirstScreenAnimation();
 
             _this2.loadOnePageScroll(path);
@@ -14220,7 +14220,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64550" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53011" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

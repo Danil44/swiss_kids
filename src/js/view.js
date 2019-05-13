@@ -40,7 +40,7 @@ export default class View extends EventEmitter {
       const preloaderCircle = document.getElementById("preloader");
 
       setTimeout(() => {
-        if (window.matchMedia("(min-width: 1024px)").matches) {
+        if (window.matchMedia("(min-width: 1024px)").matches && currentPage) {
           this.loadFirstScreenAnimation();
           this.loadOnePageScroll(path);
         }

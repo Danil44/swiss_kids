@@ -1,0 +1,10 @@
+@import "./main-page.scss";
+@import "../helpers/variables";
+
+.comments-page__main-screen {
+  @extend .main-page__screen;
+}
+
+.comments-page__inner {
+  @extend .main-page__inner;
+}

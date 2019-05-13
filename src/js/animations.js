@@ -15,7 +15,7 @@ export default class Animations {
         delay: 0.5,
         scale: 0,
         opacity: 0,
-        ease: Elastic.easeOut.config(0.7, 0.4)
+        ease: Elastic.easeOut.config(0.6, 0.5)
       });
     }
 
@@ -24,27 +24,27 @@ export default class Animations {
         const tl = new TimelineMax();
         tl.from(
           item,
-          1.5,
+          1,
           {
-            delay: 0.5,
+            delay: 0.8,
             alpha: 0,
             opacity: 0,
             y: -250,
-            ease: Elastic.easeOut.config(0.8, 0.4)
+            ease: Power2.easeOut
           },
           0
         );
       });
     }
-    TweenMax.from(title, 1.5, {
-      delay: 0.3,
+    TweenMax.from(title, 1, {
+      delay: 0.2,
       opacity: 0,
       y: 100,
-      ease: Elastic.easeOut.config(0.7, 0.4)
+      ease: Power2.easeOut
     });
 
     TweenMax.from(subtitle, 1, {
-      delay: 1,
+      delay: 1.5,
       opacity: 0,
       y: 20,
       ease: Power2.easeOut,

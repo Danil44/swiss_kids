@@ -57,9 +57,10 @@
 .women-picture {
   width: 66%;
   position: absolute;
+  z-index: 5;
   top: 0;
   right: 50%;
-  transform: translate(50%, -23%);
+  transform: translate(50%, 1%);
 
   & > a {
     position: absolute;
