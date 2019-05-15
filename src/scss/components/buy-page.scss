@@ -1,0 +1,10 @@
+@import "./company-page";
+@import "../helpers/variables";
+
+.buy-page__main-screen {
+  @extend .company-page__main-screen;
+}
+
+.buy-page__inner {
+  @extend .company-page__inner;
+}

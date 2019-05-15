@@ -26,6 +26,20 @@
                 </div>
             </div>
             <section class="main-screen js-main-screen main-page__screen" data-anchor="main">
+                <ul class="main-screen__burger js-burger">
+                    <li class="top"></li>
+                    <li class="mid"></li>
+                    <li class="bot"></li>
+                </ul>
+                <div class="menu js-menu hidden">
+                    <ul>
+                        <li><a href="./technology.html">Технологія</a></li>
+                        <li><a href="./about-company.html">Компанія</a></li>
+                        <li><a href="./distributor.html">Дистриб'ютор</a></li>
+                        <li><a href="./buy.html">Де купити</a></li>
+                        <li><a href="./comments.html">Відгуки</a></li>
+                    </ul>
+                </div>
                 <div class="main-page__fruits">
                     <ul id="fruits-1" data-relative-input="true">
                         <li data-depth="0.04"><img src="./images/main-screen/blackberry.png" alt=""></li>
@@ -41,17 +55,13 @@
                     </ul>
                 </div>
                 <div class="women-picture">
-                    <a href="./comments.html"><img src="./images/main-screen/instagram.png"></a>
+                    <a href="./technology.html"><img src="./images/main-screen/instagram.png"></a>
                     <img src="./images/main-screen/women.png" alt="" />
                 </div>
                 <div class="main-screen__inner main-page__inner">
                     <div class="border"></div>
                     <a href="/" class="main-page__logo"><img src="./images/swiss-logo.svg" alt="Swiss logo" /></a>
-                    <ul class="main-screen__burger">
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
+
                     <div class="main-screen__title-wrapper"><img src="./images/main-screen/title.png" alt="Title"
                             class="main-screen__title js-title" />
                         <h4 class="main-screen__subtitle js-subtitle">Швейцарські</h4>
@@ -60,16 +70,24 @@
                     <button type="button" class="bottles__slide"><i class="fas fa-angle-left"></i></button>
 
                     <ul class="bottles-list products-list" id="bottles-list" data-relative-input="true">
-                        <li class="bottles__item" data-depth="0.08">
+                        <li class="bottles__item" data-depth="0.08"><img srcset="./images/main-screen/green-bottle.png 1x,
+                            ./images/main-screen/green-bottle.png 2x" src="./images/main-screen/green-bottle.png"
+                                alt="Vitamin in bottle">
                         </li>
 
-                        <li class="bottles__item" data-depth="0.06">
+                        <li class="bottles__item" data-depth="0.06"><img srcset="./images/main-screen/blue-bottle.png 1x,
+                            ./images/main-screen/blue-bottle.png 2x" src="./images/main-screen/blue-bottle.png"
+                                alt="Vitamin in bottle">
                         </li>
 
-                        <li class="bottles__item" data-depth="0.08">
+                        <li class="bottles__item" data-depth="0.08"><img srcset="./images/main-screen/purple-bottle.png 1x,
+                            ./images/main-screen/purple-bottle.png 2x" src="./images/main-screen/purple-bottle.png"
+                                alt="Vitamin in bottle">
                         </li>
 
-                        <li class="bottles__item" data-depth="0.05">
+                        <li class="bottles__item" data-depth="0.05"><img srcset="./images/main-screen/orange-bottle.png 1x,
+                            ./images/main-screen/orange-bottle.png 2x" src="./images/main-screen/orange-bottle.png"
+                                alt="Vitamin in bottle">
                         </li>
                     </ul>
 
@@ -89,7 +107,9 @@
                                     src="./images/products-screens/calcivit/parrot.svg" />
                             </li>
                             <li data-depth="0.08"
-                                class="product-screen__vitamins  product-screen__vitamins--calcivit js-vitamins">
+                                class="product-screen__vitamins  product-screen__vitamins--calcivit js-vitamins"><img
+                                    srcset="./images/products-screens/calcivit/vitamins.png 1x, ./images/products-screens/calcivit/vitamins@2x.png 2x"
+                                    src="./images/products-screens/calcivit/vitamins.png" alt="">
                             </li>
                             <li data-depth="0.1"
                                 class="product-screen__item product-screen__plants js-product-background">
@@ -97,7 +117,7 @@
                                     src="./images/products-screens/calcivit/background.png" alt=""></li>
                         </ul>
                         <div class="product-screen__desc">
-                            <h3 class="product-screen__title">Calcivit Kids</h3>
+                            <h3 class="product-screen__title product-screen__title--green">Calcivit Kids</h3>
                             <p class="product-screen__text">Жувальні пастилки для здорового росту та розвитку кісток і
                                 зубів, а також для укріплення загального здоров’я дітей. <strong>З вітамінами К2, D3 та
                                     кальцієм.</strong>
@@ -119,14 +139,16 @@
                                     src="./images/products-screens/multivit/fish.svg" />
                             </li>
                             <li data-depth="0.2"
-                                class="product-screen__vitamins--multivit product-screen__vitamins js-vitamins"></li>
+                                class="product-screen__vitamins--multivit product-screen__vitamins js-vitamins"><img
+                                    srcset="./images/products-screens/multivit/vitamins.png 1x, ./images/products-screens/multivit/vitamins@2x.png 2x"
+                                    src="./images/products-screens/multivit/vitamins.png" alt=""></li>
                             <li data-depth="0.06"
                                 class="product-screen__item product-screen__reef js-product-background">
                                 <img srcset="./images/products-screens/multivit/background.png 1x, ./images/products-screens/multivit/background@2x.png 2x"
                                     src="./images/products-screens/multivit/background.png" alt=""></li>
                         </ul>
                         <div class="product-screen__desc">
-                            <h3 class="product-screen__title">Multivit Kids</h3>
+                            <h3 class="product-screen__title product-screen__title--purple">Multivit Kids</h3>
                             <p class="product-screen__text">Жувальні пастилки, що сприяють здоровому росту та розвитку
                                 дитячого організму. З вітамінами <strong>A, C, D, E, B, біотином, йодом,
                                     рибофлавіном та тіаміном</strong>. Жувальні пастилки без цукру, зі смаком лісових
@@ -150,14 +172,16 @@
                                     src="./images/products-screens/immunovit/owl.svg" />
                             </li>
                             <li data-depth="0.3"
-                                class="product-screen__vitamins--immunovit product-screen__vitamins js-vitamins"></li>
+                                class="product-screen__vitamins--immunovit product-screen__vitamins js-vitamins"><img
+                                    srcset="./images/products-screens/immunovit/vitamins.png 1x, ./images/products-screens/immunovit/vitamins@2x.png 2x"
+                                    src="./images/products-screens/immunovit/vitamins.png" alt=""></li>
                             <li data-depth="0.02"
                                 class="product-screen__item product-screen__night js-product-background">
                                 <img src="./images/products-screens/immunovit/background.svg" />
                             </li>
                         </ul>
                         <div class="product-screen__desc">
-                            <h3 class="product-screen__title">immunovit Kids</h3>
+                            <h3 class="product-screen__title product-screen__title--blue">immunovit Kids</h3>
                             <p class="product-screen__text">Жувальні пастилки, що сприяють зміцненню імунної системи у
                                 дітей, а також допомагають впоратися з фізичними та розумовими
                                 навантаженнями.<strong> Містить ключові вітаміни та мінерали, без цукру.</strong>
@@ -180,7 +204,9 @@
                                     src="./images/products-screens/smartvit/bug.svg" />
                             </li>
                             <li data-depth="0.1"
-                                class="product-screen__vitamins--smartvit product-screen__vitamins js-vitamins"></li>
+                                class="product-screen__vitamins--smartvit product-screen__vitamins js-vitamins"><img
+                                    srcset="./images/products-screens/smartvit/vitamins.png 1x, ./images/products-screens/smartvit/vitamins@2x.png 2x"
+                                    src="./images/products-screens/smartvit/vitamins.png" alt=""></li>
                             <li data-depth="0.02"
                                 class="product-screen__item product-screen__forest js-product-background">
                                 <img srcset="./images/products-screens/smartvit/background.png 1x, ./images/products-screens/smartvit/background@2x.png 2x"
@@ -188,7 +214,7 @@
                             </li>
                         </ul>
                         <div class="product-screen__desc">
-                            <h3 class="product-screen__title">smartvit kids</h3>
+                            <h3 class="product-screen__title product-screen__title--green">smartvit kids</h3>
                             <p class="product-screen__text">Жувальні таблетки для покращення розумової активності у
                                 дітей,
                                 так звані «вітаміни для розуму». З вітамінами <strong>B2, B5, B6, B12, цинком та
@@ -214,7 +240,9 @@
                                 <img src="./images/products-screens/omega/spaceship.svg" />
                             </li>
                             <li data-depth="0.1"
-                                class="product-screen__vitamins--omega product-screen__vitamins js-vitamins"></li>
+                                class="product-screen__vitamins--omega product-screen__vitamins js-vitamins"><img
+                                    srcset="./images/products-screens/omega/vitamins.png 1x, ./images/products-screens/omega/vitamins@2x.png 2x"
+                                    src="./images/products-screens/omega/vitamins.png" alt=""></li>
                             <li data-depth="0.02"
                                 class="product-screen__item product-screen__space js-product-background">
                                 <img srcset="./images/products-screens/omega/background.png 1x, ./images/products-screens/omega/background@2x.png 2x"
@@ -222,7 +250,7 @@
                             </li>
                         </ul>
                         <div class="product-screen__desc">
-                            <h3 class="product-screen__title">omega-3 multivit</h3>
+                            <h3 class="product-screen__title product-screen__title--purple">omega-3 multivit</h3>
                             <p class="product-screen__text">Жувальні пастилки, що сприяють зміцненню імунної системи у
                                 дітей, а також допомагають впоратися з фізичними та розумовими
                                 навантаженнями.<strong> Містить ключові вітаміни та мінерали, без цукру.</strong>
@@ -251,7 +279,7 @@
                             </li>
                         </ul>
                         <div class="product-screen__desc">
-                            <h3 class="product-screen__title">multivitamin hello kitty</h3>
+                            <h3 class="product-screen__title product-screen__title--pink">multivitamin hello kitty</h3>
                             <p class="product-screen__text">Жувальні таблетки, рекомендовані в період активного росту
                                 дитини, при незбалансованому харчуванні, та недостатньому вживанні овочів та
                                 фруктів.<strong> З 10
@@ -282,7 +310,7 @@
                             </li>
                         </ul>
                         <div class="product-screen__desc">
-                            <h3 class="product-screen__title">multivitamin spider-man</h3>
+                            <h3 class="product-screen__title product-screen__title--red">multivitamin spider-man</h3>
                             <p class="product-screen__text">Жувальні таблетки, рекомендовані в період активного росту
                                 дитини, при незбалансованому харчуванні, та недостатньому вживанні овочів та
                                 фруктів.<strong> З 10
@@ -317,7 +345,8 @@
                                     безпечних
                                     продуктів.
                                 </p>
-                                <button class="about-screen__btn js-about-element">Про компанію</button>
+                                <a href="./about-company.html" class="about-screen__btn js-about-element">Про
+                                    компанію</a>
                             </div>
                         </div>
                     </div>
@@ -325,7 +354,10 @@
             </div>
         </main>
         <footer class="main-page__footer footer" data-anchor="footer">
-            <div class="footer__inner"><img src="./images/swiss-title.png" alt="swiss title">
+            <div class="footer__inner"><img srcset="./images/swiss-title-320.png 320w, 
+                ./images/swiss-title-420.png 420w,
+                ./images/swiss-title-640.png 640w,
+                ./images/swiss-title.png 1366w" src="./images/swiss-title.png" alt="swiss title">
                 <ul class="footer__socials">
                     <li class="footer__socials-item"><a href="#"><img src="./images/socials/fb.svg" /></a>
                     </li>

@@ -20,6 +20,7 @@
     }
   }
   &__parrot {
+    max-width: 20%;
     width: 125px;
     height: 125px;
     position: absolute;
@@ -27,21 +28,26 @@
     left: 12% !important;
   }
   &__vitamins {
-    max-width: 55%;
-    width: 55%;
-    height: 57%;
-    background-repeat: no-repeat;
-    background-size: cover;
     position: absolute;
     top: 15% !important;
     left: 20% !important;
     z-index: 2;
+    width: 100%;
+    height: 100%;
+
+    & > img {
+      width: 55%;
+    }
 
     &--lg {
       max-width: 80%;
       width: 100%;
       top: 20% !important;
       left: 10% !important;
+
+      & > img {
+        width: 100%;
+      }
     }
   }
 
@@ -83,8 +89,12 @@
   &__forest {
     @extend .product-screen__reef;
     max-width: 105%;
-    left: -11% !important;
-    top: -13% !important;
+    left: -17% !important;
+    top: -16% !important;
+    @media (min-width: $desktop-lg-bp) {
+      left: -11% !important;
+      top: -13% !important;
+    }
   }
   &__bug {
     @extend .product-screen__owl;
@@ -93,8 +103,11 @@
     border-radius: 50%;
     overflow: hidden;
     position: absolute !important;
-    top: 9% !important;
+    top: 2% !important;
     transform: translate(0, 140%) !important;
+    @media (min-width: $desktop-lg-bp) {
+      top: 9% !important;
+    }
     & > div {
       width: 7.5vw;
       height: 7.5vw;
@@ -119,6 +132,7 @@
   }
 
   &__ballons {
+    max-width: 25%;
     width: 190px;
     position: absolute !important;
     top: 0% !important;
@@ -160,63 +174,87 @@
   }
 }
 
-.product-screen__vitamins {
-  &--calcivit {
-    background-image: url("../images/products-screens/calcivit/vitamins.png");
-    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-      background-image: url("../images/products-screens/calcivit/vitamins@2x.png");
-    }
-  }
-  &--multivit {
-    background-image: url("../images/products-screens/multivit/vitamins.png");
-    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-      background-image: url("../images/products-screens/multivit/vitamins@2x.png");
-    }
-  }
-  &--immunovit {
-    background-image: url("../images/products-screens/immunovit/vitamins.png");
-    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-      background-image: url("../images/products-screens/immunovit/vitamins@2x.png");
-    }
-  }
-  &--smartvit {
-    background-image: url("../images/products-screens/smartvit/vitamins.png");
-    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-      background-image: url("../images/products-screens/smartvit/vitamins@2x.png");
-    }
-  }
-  &--omega {
-    background-image: url("../images/products-screens/omega/vitamins.png");
-    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-      background-image: url("../images/products-screens/omega/vitamins@2x.png");
-    }
-  }
-}
-
 .product-screen__desc {
-  width: 100%;
+  width: 55%;
   z-index: 2;
   padding: 0 0 0 5em;
   align-self: center;
+  @media (min-width: $desktop-md-bp) {
+    width: 100%;
+  }
 }
 
 .product-screen__title {
   font-size: 73px;
-  color: #403e3e;
   font-family: $primary-font-stack;
   font-weight: 700;
+  color: $primary-text-color;
   text-transform: uppercase;
   margin-bottom: 0.6em;
+
+  &--green {
+    background: linear-gradient(
+      45deg,
+      rgba(62, 62, 62, 1) 18%,
+      rgba(47, 119, 34, 1) 55%
+    ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3e3e3e', endColorstr='#2f7722',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    @include text-clip();
+  }
+
+  &--purple {
+    @extend .product-screen__title;
+    background: linear-gradient(
+      45deg,
+      rgba(23, 25, 68, 1) 27%,
+      rgba(186, 129, 226, 1) 58%
+    ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#171944', endColorstr='#ba81e2',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    @include text-clip();
+  }
+  &--blue {
+    @extend .product-screen__title;
+    background: linear-gradient(
+      45deg,
+      rgba(30, 44, 84, 1) 37%,
+      rgba(28, 109, 201, 1) 68%
+    ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e2c54', endColorstr='#1c6dc9',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    @include text-clip();
+  }
+  &--pink {
+    @extend .product-screen__title;
+    background: linear-gradient(
+      45deg,
+      rgba(25, 17, 13, 1) 25%,
+      rgba(238, 50, 195, 1) 48%
+    ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#19110d', endColorstr='#ee32c3',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    @include text-clip();
+  }
+  &--red {
+    background: linear-gradient(
+      45deg,
+      rgba(35, 13, 1, 1) 22%,
+      rgba(218, 31, 0, 1) 58%
+    ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#230d01', endColorstr='#da1f00',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    @include text-clip();
+  }
 }
 
 .product-screen__text {
   width: 600px;
-  font-size: 24px;
+  font-size: calc(12px + 0.5vw);
   line-height: 36px;
   color: #403e3e;
   font-family: $primary-font-stack;
   font-weight: 400;
   margin-bottom: 3.5em;
+
+  @media (min-width: $desktop-lg-bp) {
+    font-size: 24px;
+  }
 
   & strong {
     font-weight: 600;
@@ -225,7 +263,7 @@
 
 .product-screen__btn {
   font-family: $primary-font-stack;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 800;
   border: 5px solid transparent;
   border-radius: 44px;
@@ -237,6 +275,10 @@
   cursor: pointer;
   transition: 0.2s linear;
 
+  @media (min-width: $desktop-lg-bp) {
+    font-size: 22px;
+  }
+
   &::before {
     content: "";
     display: inline-block;
@@ -246,11 +288,16 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    width: 90px;
-    height: 90px;
+    width: 78px;
+    height: 78px;
     top: 0;
     left: 0;
     transform: translate(16%, -35%);
+
+    @media (min-width: $desktop-lg-bp) {
+      width: 90px;
+      height: 90px;
+    }
   }
 
   &::after {

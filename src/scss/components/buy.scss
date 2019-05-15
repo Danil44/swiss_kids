@@ -1,0 +1,59 @@
+@import "./about-company";
+@import "../helpers/variables";
+@import "../components/distributor.scss";
+
+.buy {
+  @extend .distributor;
+  height: unset;
+}
+
+.buy__inner {
+  @extend .distributor__inner;
+}
+
+.buy__content {
+  padding: 5em 8em;
+
+  & > .content-title {
+    @include text($font-size: calc(44px + 0.5vw), $font-weight: 700);
+    background: rgb(61, 165, 107); /* Old browsers */
+    background: linear-gradient(
+      135deg,
+      #3da56b 6%,
+      #3da56b 10%,
+      #457dab 15%,
+      #ab4f87 20%,
+      #df4307 25%,
+      #df4307 100%
+    ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3da56b', endColorstr='#df4307',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: left;
+    margin-bottom: 45px;
+  }
+
+  & > ul {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    border: 3px solid #dee4e7;
+
+    & > li {
+      width: 25%;
+      border: 3px solid #dee4e7;
+      overflow: hidden;
+      & > a {
+        transition: 0.2s linear;
+        & > img {
+          width: 100%;
+        }
+
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+}

@@ -13,27 +13,6 @@
   overflow: auto;
   max-height: 82vh;
   padding: 5em 5em;
-}
-
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(
-    135deg,
-    rgba(61, 165, 107, 1) 10%,
-    rgba(61, 165, 107, 1) 25%,
-    rgba(69, 125, 171, 1) 30%,
-    rgba(69, 125, 171, 1) 50%,
-    rgba(171, 79, 135, 1) 60%,
-    rgba(171, 79, 135, 1) 70%,
-    rgba(223, 67, 7, 1) 90%,
-    rgba(223, 67, 7, 1) 100%
-  );
-}
-
-.comments__list {
   & > li {
     width: 100%;
     display: flex;
@@ -107,4 +86,22 @@
       line-height: 33px;
     }
   }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    135deg,
+    rgba(61, 165, 107, 1) 10%,
+    rgba(61, 165, 107, 1) 25%,
+    rgba(69, 125, 171, 1) 30%,
+    rgba(69, 125, 171, 1) 50%,
+    rgba(171, 79, 135, 1) 60%,
+    rgba(171, 79, 135, 1) 70%,
+    rgba(223, 67, 7, 1) 90%,
+    rgba(223, 67, 7, 1) 100%
+  );
 }

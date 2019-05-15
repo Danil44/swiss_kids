@@ -12,6 +12,8 @@ export default class View extends EventEmitter {
     this.pageable = "";
     this.upBtn = document.querySelector(".js-upButton");
     this.isAnimationComplete = {};
+
+    this.animation.burger();
   }
 
   getPath() {

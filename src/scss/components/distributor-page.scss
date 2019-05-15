@@ -1,0 +1,10 @@
+@import "./company-page";
+@import "../helpers/variables";
+
+.distributor-page__main-screen {
+  @extend .company-page__main-screen;
+}
+
+.distributor-page__inner {
+  @extend .company-page__inner;
+}

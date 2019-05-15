@@ -1,7 +1,52 @@
 import Parallax from "parallax-js";
 
 export default class Animations {
-  constructor() {}
+  constructor() {
+    this.menuBtn = document.querySelector(".js-burger");
+  }
+
+  burger() {
+    if (this.menuBtn) {
+      const menuToggle = new TimelineMax({ paused: true, reversed: true });
+      const top = this.menuBtn.querySelector(".top");
+      const mid = this.menuBtn.querySelector(".mid");
+      const bot = this.menuBtn.querySelector(".bot");
+      menuToggle
+        .set(this.menuBtn, { className: "-=closemenu" })
+        .set(this.menuBtn, { className: "+=openmenu" })
+        .to(top, 0.1, { y: "-9px", transformOrigin: "50% 50%" }, "burg")
+        .to(bot, 0.1, { y: "9px", transformOrigin: "50% 50%" }, "burg")
+        .to(mid, 0.1, { scale: 0.1, transformOrigin: "50% 50%" }, "burg")
+        .add("rotate")
+        .to(top, 0.1, { y: "5" }, "rotate")
+        .to(bot, 0.1, { y: "-10" }, "rotate")
+        .to(top, 0.1, { rotationZ: 45, transformOrigin: "50% 50%" }, "rotate")
+        .to(bot, 0.1, { rotationZ: -45, transformOrigin: "50% 50%" }, "rotate");
+
+      this.menuBtn.addEventListener("click", () => {
+        if (menuToggle.reversed()) {
+          menuToggle.restart();
+          this.handleMenu(true);
+        } else {
+          menuToggle.reverse();
+          this.handleMenu(false);
+        }
+      });
+    }
+  }
+
+  handleMenu(show) {
+    const menu = document.querySelector(".js-menu");
+    const menuToggle = new TimelineMax({ paused: true, reversed: true });
+    menu.classList.toggle("hidden");
+    if (show) {
+      TweenMax.from(menu, 0.3, {
+        opacity: 0,
+        scale: 0
+      });
+    } else {
+    }
+  }
 
   firstScreen() {
     const mainScreen = document.querySelector(".js-main-screen");
@@ -25,7 +70,7 @@ export default class Animations {
           delay: 0.8,
           alpha: 0,
           opacity: 0,
-          y: -500,
+          y: -300,
           ease: Elastic.easeOut.config(0.7, 0.5)
         });
       });
@@ -38,7 +83,7 @@ export default class Animations {
     });
 
     TweenMax.from(subtitle, 1, {
-      delay: 1.9,
+      delay: 1.8,
       opacity: 0,
       y: 20,
       ease: Power2.easeOut,

@@ -1,0 +1,143 @@
+@import "./main-page.scss";
+@import "./comments.scss";
+@import "../helpers/variables";
+@import "../helpers/mixins";
+
+.about-company {
+  @extend .comments;
+  padding: 0.5em;
+  position: relative;
+  &--underscore {
+    padding-bottom: 40px;
+    border-bottom: 5px solid #dee4e7;
+  }
+}
+
+.about-company__inner {
+  overflow: auto;
+  max-height: 82vh;
+  position: relative;
+
+  &::before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: 0%;
+    right: 0.7%;
+    width: 35%;
+    height: 28%;
+    background-image: url("../images/about-company/text-block-top-bg.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+}
+
+.about-company__list {
+  position: relative;
+  padding: 5em 8em;
+
+  & > li {
+    width: 100%;
+    height: 100%;
+    align-items: unset;
+    position: relative;
+    padding-bottom: 50px;
+    margin-bottom: 60px;
+    & > .content-title {
+      @include text($font-size: calc(44px + 0.5vw), $font-weight: 700);
+      background: rgb(61, 165, 107); /* Old browsers */
+      background: linear-gradient(
+        135deg,
+        #3da56b 6%,
+        #3da56b 15%,
+        #457dab 25%,
+        #ab4f87 40%,
+        #df4307 51%,
+        #df4307 100%
+      ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3da56b', endColorstr='#df4307',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-align: left;
+      margin-bottom: 45px;
+    }
+
+    & p {
+      @include text($color: #314b66, $font-size: calc(10px + 0.5vw));
+      line-height: 38px;
+      margin-bottom: 30px;
+    }
+
+    & strong {
+      font-weight: 700;
+    }
+
+    &:not(:last-child) {
+      border-bottom: 1px solid #b7bdc09a;
+    }
+  }
+}
+
+.companies {
+  &__list {
+    margin-top: 4em;
+    & > li {
+      display: flex;
+
+      &:not(:last-child) {
+        margin-bottom: 4em;
+      }
+    }
+    &::after {
+      content: "";
+      display: inline-block;
+      position: absolute;
+      bottom: -15%;
+      left: -8%;
+      width: 35%;
+      height: 28%;
+      background-image: url("../images/about-company/text-block-bottom-bg.png");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+  }
+
+  &__picture {
+    flex-basis: calc(16.5% + 30px);
+  }
+  &__desc {
+    flex-basis: calc(77.5% + 30px);
+
+    & h4 {
+      @include text(
+        $color: #314b66,
+        $font-size: calc(15px + 0.5vw),
+        $font-weight: 700
+      );
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+  }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  background: #dee4e7;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    135deg,
+    rgba(61, 165, 107, 1) 10%,
+    rgba(61, 165, 107, 1) 25%,
+    rgba(69, 125, 171, 1) 30%,
+    rgba(69, 125, 171, 1) 50%,
+    rgba(171, 79, 135, 1) 60%,
+    rgba(171, 79, 135, 1) 70%,
+    rgba(223, 67, 7, 1) 90%,
+    rgba(223, 67, 7, 1) 100%
+  );
+}

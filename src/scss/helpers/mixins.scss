@@ -11,6 +11,12 @@
   font-weight: $font-weight;
 }
 
+@mixin text-clip() {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 /// Mixin to place items on a circle
 /// @author Hugo Giraudel
 /// @author Ana Tudor

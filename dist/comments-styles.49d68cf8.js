@@ -117,79 +117,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
-
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
-  }
-
-  return bundleURL;
-}
-
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
-
-    if (matches) {
-      return getBaseURL(matches[0]);
-    }
-  }
-
-  return '/';
-}
-
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
-}
-
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"../node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
-
-function updateLink(link) {
-  var newLink = link.cloneNode();
-
-  newLink.onload = function () {
-    link.remove();
-  };
-
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-
-var cssTimeout = null;
-
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
-  }
-
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
-
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
-      }
-    }
-
-    cssTimeout = null;
-  }, 50);
-}
-
-module.exports = reloadCSS;
-},{"./bundle-url":"../node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"scss/comments-styles.scss":[function(require,module,exports) {
+})({"scss/comments-styles.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"./..\\fonts\\open-sans-v16-cyrillic_cyrillic-ext_latin-regular.eot":[["open-sans-v16-cyrillic_cyrillic-ext_latin-regular.2e643340.eot","fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-regular.eot"],"fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-regular.eot"],"./..\\fonts\\open-sans-v16-cyrillic_cyrillic-ext_latin-regular.woff2":[["open-sans-v16-cyrillic_cyrillic-ext_latin-regular.6049d29b.woff2","fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-regular.woff2"],"fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-regular.woff2"],"./..\\fonts\\open-sans-v16-cyrillic_cyrillic-ext_latin-regular.woff":[["open-sans-v16-cyrillic_cyrillic-ext_latin-regular.e196c079.woff","fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-regular.woff"],"fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-regular.woff"],"./..\\fonts\\open-sans-v16-cyrillic_cyrillic-ext_latin-regular.ttf":[["open-sans-v16-cyrillic_cyrillic-ext_latin-regular.7b0ea896.ttf","fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-regular.ttf"],"fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-regular.ttf"],"./..\\fonts\\open-sans-v16-cyrillic_cyrillic-ext_latin-regular.svg":[["open-sans-v16-cyrillic_cyrillic-ext_latin-regular.4f10a9c2.svg","fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-regular.svg"],"fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-regular.svg"],"./..\\fonts\\open-sans-v16-cyrillic_cyrillic-ext_latin-700.eot":[["open-sans-v16-cyrillic_cyrillic-ext_latin-700.36c77f4a.eot","fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-700.eot"],"fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-700.eot"],"./..\\fonts\\open-sans-v16-cyrillic_cyrillic-ext_latin-700.woff2":[["open-sans-v16-cyrillic_cyrillic-ext_latin-700.22fc9f23.woff2","fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-700.woff2"],"fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-700.woff2"],"./..\\fonts\\open-sans-v16-cyrillic_cyrillic-ext_latin-700.woff":[["open-sans-v16-cyrillic_cyrillic-ext_latin-700.945f3d6e.woff","fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-700.woff"],"fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-700.woff"],"./..\\fonts\\open-sans-v16-cyrillic_cyrillic-ext_latin-700.ttf":[["open-sans-v16-cyrillic_cyrillic-ext_latin-700.246ff39c.ttf","fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-700.ttf"],"fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-700.ttf"],"./..\\fonts\\open-sans-v16-cyrillic_cyrillic-ext_latin-700.svg":[["open-sans-v16-cyrillic_cyrillic-ext_latin-700.d3c908f3.svg","fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-700.svg"],"fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-700.svg"],"./..\\fonts\\open-sans-v16-cyrillic_cyrillic-ext_latin-800.eot":[["open-sans-v16-cyrillic_cyrillic-ext_latin-800.b002957f.eot","fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-800.eot"],"fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-800.eot"],"./..\\fonts\\open-sans-v16-cyrillic_cyrillic-ext_latin-800.woff2":[["open-sans-v16-cyrillic_cyrillic-ext_latin-800.ae2d6028.woff2","fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-800.woff2"],"fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-800.woff2"],"./..\\fonts\\open-sans-v16-cyrillic_cyrillic-ext_latin-800.woff":[["open-sans-v16-cyrillic_cyrillic-ext_latin-800.6b3a60fd.woff","fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-800.woff"],"fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-800.woff"],"./..\\fonts\\open-sans-v16-cyrillic_cyrillic-ext_latin-800.ttf":[["open-sans-v16-cyrillic_cyrillic-ext_latin-800.8d676e4c.ttf","fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-800.ttf"],"fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-800.ttf"],"./..\\fonts\\open-sans-v16-cyrillic_cyrillic-ext_latin-800.svg":[["open-sans-v16-cyrillic_cyrillic-ext_latin-800.8009bff2.svg","fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-800.svg"],"fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-800.svg"],"./..\\fonts\\roboto-v19-cyrillic_cyrillic-ext_latin-300.eot":[["roboto-v19-cyrillic_cyrillic-ext_latin-300.5d70ca1d.eot","fonts/roboto-v19-cyrillic_cyrillic-ext_latin-300.eot"],"fonts/roboto-v19-cyrillic_cyrillic-ext_latin-300.eot"],"./..\\fonts\\roboto-v19-cyrillic_cyrillic-ext_latin-300.woff2":[["roboto-v19-cyrillic_cyrillic-ext_latin-300.764f1edf.woff2","fonts/roboto-v19-cyrillic_cyrillic-ext_latin-300.woff2"],"fonts/roboto-v19-cyrillic_cyrillic-ext_latin-300.woff2"],"./..\\fonts\\roboto-v19-cyrillic_cyrillic-ext_latin-300.woff":[["roboto-v19-cyrillic_cyrillic-ext_latin-300.762093cd.woff","fonts/roboto-v19-cyrillic_cyrillic-ext_latin-300.woff"],"fonts/roboto-v19-cyrillic_cyrillic-ext_latin-300.woff"],"./..\\fonts\\roboto-v19-cyrillic_cyrillic-ext_latin-300.ttf":[["roboto-v19-cyrillic_cyrillic-ext_latin-300.56b6ec10.ttf","fonts/roboto-v19-cyrillic_cyrillic-ext_latin-300.ttf"],"fonts/roboto-v19-cyrillic_cyrillic-ext_latin-300.ttf"],"./..\\fonts\\roboto-v19-cyrillic_cyrillic-ext_latin-300.svg":[["roboto-v19-cyrillic_cyrillic-ext_latin-300.a8d4d2b3.svg","fonts/roboto-v19-cyrillic_cyrillic-ext_latin-300.svg"],"fonts/roboto-v19-cyrillic_cyrillic-ext_latin-300.svg"],"./..\\fonts\\roboto-v19-cyrillic_cyrillic-ext_latin-regular.eot":[["roboto-v19-cyrillic_cyrillic-ext_latin-regular.00f9f1da.eot","fonts/roboto-v19-cyrillic_cyrillic-ext_latin-regular.eot"],"fonts/roboto-v19-cyrillic_cyrillic-ext_latin-regular.eot"],"./..\\fonts\\roboto-v19-cyrillic_cyrillic-ext_latin-regular.woff2":[["roboto-v19-cyrillic_cyrillic-ext_latin-regular.aca53ebf.woff2","fonts/roboto-v19-cyrillic_cyrillic-ext_latin-regular.woff2"],"fonts/roboto-v19-cyrillic_cyrillic-ext_latin-regular.woff2"],"./..\\fonts\\roboto-v19-cyrillic_cyrillic-ext_latin-regular.woff":[["roboto-v19-cyrillic_cyrillic-ext_latin-regular.58dffa9d.woff","fonts/roboto-v19-cyrillic_cyrillic-ext_latin-regular.woff"],"fonts/roboto-v19-cyrillic_cyrillic-ext_latin-regular.woff"],"./..\\fonts\\roboto-v19-cyrillic_cyrillic-ext_latin-regular.ttf":[["roboto-v19-cyrillic_cyrillic-ext_latin-regular.6c9490a1.ttf","fonts/roboto-v19-cyrillic_cyrillic-ext_latin-regular.ttf"],"fonts/roboto-v19-cyrillic_cyrillic-ext_latin-regular.ttf"],"./..\\fonts\\roboto-v19-cyrillic_cyrillic-ext_latin-regular.svg":[["roboto-v19-cyrillic_cyrillic-ext_latin-regular.3ea8f8d9.svg","fonts/roboto-v19-cyrillic_cyrillic-ext_latin-regular.svg"],"fonts/roboto-v19-cyrillic_cyrillic-ext_latin-regular.svg"],"./..\\fonts\\roboto-v19-cyrillic_cyrillic-ext_latin-900.eot":[["roboto-v19-cyrillic_cyrillic-ext_latin-900.36b7de8d.eot","fonts/roboto-v19-cyrillic_cyrillic-ext_latin-900.eot"],"fonts/roboto-v19-cyrillic_cyrillic-ext_latin-900.eot"],"./..\\fonts\\roboto-v19-cyrillic_cyrillic-ext_latin-900.woff2":[["roboto-v19-cyrillic_cyrillic-ext_latin-900.54cafda5.woff2","fonts/roboto-v19-cyrillic_cyrillic-ext_latin-900.woff2"],"fonts/roboto-v19-cyrillic_cyrillic-ext_latin-900.woff2"],"./..\\fonts\\roboto-v19-cyrillic_cyrillic-ext_latin-900.woff":[["roboto-v19-cyrillic_cyrillic-ext_latin-900.49776890.woff","fonts/roboto-v19-cyrillic_cyrillic-ext_latin-900.woff"],"fonts/roboto-v19-cyrillic_cyrillic-ext_latin-900.woff"],"./..\\fonts\\roboto-v19-cyrillic_cyrillic-ext_latin-900.ttf":[["roboto-v19-cyrillic_cyrillic-ext_latin-900.368af77c.ttf","fonts/roboto-v19-cyrillic_cyrillic-ext_latin-900.ttf"],"fonts/roboto-v19-cyrillic_cyrillic-ext_latin-900.ttf"],"./..\\fonts\\roboto-v19-cyrillic_cyrillic-ext_latin-900.svg":[["roboto-v19-cyrillic_cyrillic-ext_latin-900.5f927c7f.svg","fonts/roboto-v19-cyrillic_cyrillic-ext_latin-900.svg"],"fonts/roboto-v19-cyrillic_cyrillic-ext_latin-900.svg"],"./..\\images\\main-screen\\raspberrie.png":[["raspberrie.d36cb90b.png","images/main-screen/raspberrie.png"],"images/main-screen/raspberrie.png"],"./..\\images\\main-screen\\blackberry.png":[["blackberry.3c7b47bb.png","images/main-screen/blackberry.png"],"images/main-screen/blackberry.png"],"./..\\images\\main-screen\\strawberry.png":[["strawberry.2b05899a.png","images/main-screen/strawberry.png"],"images/main-screen/strawberry.png"],"./..\\images\\main-screen\\lemon.png":[["lemon.b1759aba.png","images/main-screen/lemon.png"],"images/main-screen/lemon.png"],"./..\\images\\main-screen\\background.png":[["background.dacad9f3.png","images/main-screen/background.png"],"images/main-screen/background.png"],"./..\\images\\about-products\\background.jpg":[["background.803e8979.jpg","images/about-products/background.jpg"],"images/about-products/background.jpg"],"./..\\images\\instagram-icon.svg":[["instagram-icon.da494dde.svg","images/instagram-icon.svg"],"images/instagram-icon.svg"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./..\\fonts\\open-sans-v16-cyrillic_cyrillic-ext_latin-regular.eot":[["open-sans-v16-cyrillic_cyrillic-ext_latin-regular.2e643340.eot","fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-regular.eot"],"fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-regular.eot"],"./..\\fonts\\open-sans-v16-cyrillic_cyrillic-ext_latin-regular.woff2":[["open-sans-v16-cyrillic_cyrillic-ext_latin-regular.6049d29b.woff2","fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-regular.woff2"],"fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-regular.woff2"],"./..\\fonts\\open-sans-v16-cyrillic_cyrillic-ext_latin-regular.woff":[["open-sans-v16-cyrillic_cyrillic-ext_latin-regular.e196c079.woff","fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-regular.woff"],"fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-regular.woff"],"./..\\fonts\\open-sans-v16-cyrillic_cyrillic-ext_latin-regular.ttf":[["open-sans-v16-cyrillic_cyrillic-ext_latin-regular.7b0ea896.ttf","fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-regular.ttf"],"fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-regular.ttf"],"./..\\fonts\\open-sans-v16-cyrillic_cyrillic-ext_latin-regular.svg":[["open-sans-v16-cyrillic_cyrillic-ext_latin-regular.4f10a9c2.svg","fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-regular.svg"],"fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-regular.svg"],"./..\\fonts\\open-sans-v16-cyrillic_cyrillic-ext_latin-700.eot":[["open-sans-v16-cyrillic_cyrillic-ext_latin-700.36c77f4a.eot","fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-700.eot"],"fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-700.eot"],"./..\\fonts\\open-sans-v16-cyrillic_cyrillic-ext_latin-700.woff2":[["open-sans-v16-cyrillic_cyrillic-ext_latin-700.22fc9f23.woff2","fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-700.woff2"],"fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-700.woff2"],"./..\\fonts\\open-sans-v16-cyrillic_cyrillic-ext_latin-700.woff":[["open-sans-v16-cyrillic_cyrillic-ext_latin-700.945f3d6e.woff","fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-700.woff"],"fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-700.woff"],"./..\\fonts\\open-sans-v16-cyrillic_cyrillic-ext_latin-700.ttf":[["open-sans-v16-cyrillic_cyrillic-ext_latin-700.246ff39c.ttf","fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-700.ttf"],"fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-700.ttf"],"./..\\fonts\\open-sans-v16-cyrillic_cyrillic-ext_latin-700.svg":[["open-sans-v16-cyrillic_cyrillic-ext_latin-700.d3c908f3.svg","fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-700.svg"],"fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-700.svg"],"./..\\fonts\\open-sans-v16-cyrillic_cyrillic-ext_latin-800.eot":[["open-sans-v16-cyrillic_cyrillic-ext_latin-800.b002957f.eot","fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-800.eot"],"fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-800.eot"],"./..\\fonts\\open-sans-v16-cyrillic_cyrillic-ext_latin-800.woff2":[["open-sans-v16-cyrillic_cyrillic-ext_latin-800.ae2d6028.woff2","fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-800.woff2"],"fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-800.woff2"],"./..\\fonts\\open-sans-v16-cyrillic_cyrillic-ext_latin-800.woff":[["open-sans-v16-cyrillic_cyrillic-ext_latin-800.6b3a60fd.woff","fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-800.woff"],"fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-800.woff"],"./..\\fonts\\open-sans-v16-cyrillic_cyrillic-ext_latin-800.ttf":[["open-sans-v16-cyrillic_cyrillic-ext_latin-800.8d676e4c.ttf","fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-800.ttf"],"fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-800.ttf"],"./..\\fonts\\open-sans-v16-cyrillic_cyrillic-ext_latin-800.svg":[["open-sans-v16-cyrillic_cyrillic-ext_latin-800.8009bff2.svg","fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-800.svg"],"fonts/open-sans-v16-cyrillic_cyrillic-ext_latin-800.svg"],"./..\\fonts\\roboto-v19-cyrillic_cyrillic-ext_latin-300.eot":[["roboto-v19-cyrillic_cyrillic-ext_latin-300.5d70ca1d.eot","fonts/roboto-v19-cyrillic_cyrillic-ext_latin-300.eot"],"fonts/roboto-v19-cyrillic_cyrillic-ext_latin-300.eot"],"./..\\fonts\\roboto-v19-cyrillic_cyrillic-ext_latin-300.woff2":[["roboto-v19-cyrillic_cyrillic-ext_latin-300.764f1edf.woff2","fonts/roboto-v19-cyrillic_cyrillic-ext_latin-300.woff2"],"fonts/roboto-v19-cyrillic_cyrillic-ext_latin-300.woff2"],"./..\\fonts\\roboto-v19-cyrillic_cyrillic-ext_latin-300.woff":[["roboto-v19-cyrillic_cyrillic-ext_latin-300.762093cd.woff","fonts/roboto-v19-cyrillic_cyrillic-ext_latin-300.woff"],"fonts/roboto-v19-cyrillic_cyrillic-ext_latin-300.woff"],"./..\\fonts\\roboto-v19-cyrillic_cyrillic-ext_latin-300.ttf":[["roboto-v19-cyrillic_cyrillic-ext_latin-300.56b6ec10.ttf","fonts/roboto-v19-cyrillic_cyrillic-ext_latin-300.ttf"],"fonts/roboto-v19-cyrillic_cyrillic-ext_latin-300.ttf"],"./..\\fonts\\roboto-v19-cyrillic_cyrillic-ext_latin-300.svg":[["roboto-v19-cyrillic_cyrillic-ext_latin-300.a8d4d2b3.svg","fonts/roboto-v19-cyrillic_cyrillic-ext_latin-300.svg"],"fonts/roboto-v19-cyrillic_cyrillic-ext_latin-300.svg"],"./..\\fonts\\roboto-v19-cyrillic_cyrillic-ext_latin-regular.eot":[["roboto-v19-cyrillic_cyrillic-ext_latin-regular.00f9f1da.eot","fonts/roboto-v19-cyrillic_cyrillic-ext_latin-regular.eot"],"fonts/roboto-v19-cyrillic_cyrillic-ext_latin-regular.eot"],"./..\\fonts\\roboto-v19-cyrillic_cyrillic-ext_latin-regular.woff2":[["roboto-v19-cyrillic_cyrillic-ext_latin-regular.aca53ebf.woff2","fonts/roboto-v19-cyrillic_cyrillic-ext_latin-regular.woff2"],"fonts/roboto-v19-cyrillic_cyrillic-ext_latin-regular.woff2"],"./..\\fonts\\roboto-v19-cyrillic_cyrillic-ext_latin-regular.woff":[["roboto-v19-cyrillic_cyrillic-ext_latin-regular.58dffa9d.woff","fonts/roboto-v19-cyrillic_cyrillic-ext_latin-regular.woff"],"fonts/roboto-v19-cyrillic_cyrillic-ext_latin-regular.woff"],"./..\\fonts\\roboto-v19-cyrillic_cyrillic-ext_latin-regular.ttf":[["roboto-v19-cyrillic_cyrillic-ext_latin-regular.6c9490a1.ttf","fonts/roboto-v19-cyrillic_cyrillic-ext_latin-regular.ttf"],"fonts/roboto-v19-cyrillic_cyrillic-ext_latin-regular.ttf"],"./..\\fonts\\roboto-v19-cyrillic_cyrillic-ext_latin-regular.svg":[["roboto-v19-cyrillic_cyrillic-ext_latin-regular.3ea8f8d9.svg","fonts/roboto-v19-cyrillic_cyrillic-ext_latin-regular.svg"],"fonts/roboto-v19-cyrillic_cyrillic-ext_latin-regular.svg"],"./..\\fonts\\roboto-v19-cyrillic_cyrillic-ext_latin-900.eot":[["roboto-v19-cyrillic_cyrillic-ext_latin-900.36b7de8d.eot","fonts/roboto-v19-cyrillic_cyrillic-ext_latin-900.eot"],"fonts/roboto-v19-cyrillic_cyrillic-ext_latin-900.eot"],"./..\\fonts\\roboto-v19-cyrillic_cyrillic-ext_latin-900.woff2":[["roboto-v19-cyrillic_cyrillic-ext_latin-900.54cafda5.woff2","fonts/roboto-v19-cyrillic_cyrillic-ext_latin-900.woff2"],"fonts/roboto-v19-cyrillic_cyrillic-ext_latin-900.woff2"],"./..\\fonts\\roboto-v19-cyrillic_cyrillic-ext_latin-900.woff":[["roboto-v19-cyrillic_cyrillic-ext_latin-900.49776890.woff","fonts/roboto-v19-cyrillic_cyrillic-ext_latin-900.woff"],"fonts/roboto-v19-cyrillic_cyrillic-ext_latin-900.woff"],"./..\\fonts\\roboto-v19-cyrillic_cyrillic-ext_latin-900.ttf":[["roboto-v19-cyrillic_cyrillic-ext_latin-900.368af77c.ttf","fonts/roboto-v19-cyrillic_cyrillic-ext_latin-900.ttf"],"fonts/roboto-v19-cyrillic_cyrillic-ext_latin-900.ttf"],"./..\\fonts\\roboto-v19-cyrillic_cyrillic-ext_latin-900.svg":[["roboto-v19-cyrillic_cyrillic-ext_latin-900.5f927c7f.svg","fonts/roboto-v19-cyrillic_cyrillic-ext_latin-900.svg"],"fonts/roboto-v19-cyrillic_cyrillic-ext_latin-900.svg"],"./..\\images\\main-screen\\raspberrie.png":[["raspberrie.d36cb90b.png","images/main-screen/raspberrie.png"],"images/main-screen/raspberrie.png"],"./..\\images\\main-screen\\blackberry.png":[["blackberry.3c7b47bb.png","images/main-screen/blackberry.png"],"images/main-screen/blackberry.png"],"./..\\images\\main-screen\\strawberry.png":[["strawberry.2b05899a.png","images/main-screen/strawberry.png"],"images/main-screen/strawberry.png"],"./..\\images\\main-screen\\lemon.png":[["lemon.b1759aba.png","images/main-screen/lemon.png"],"images/main-screen/lemon.png"],"./..\\images\\main-screen\\background.png":[["background.dacad9f3.png","images/main-screen/background.png"],"images/main-screen/background.png"],"./..\\images\\about-products\\background.jpg":[["background.803e8979.jpg","images/about-products/background.jpg"],"images/about-products/background.jpg"],"./..\\images\\instagram-icon.svg":[["instagram-icon.da494dde.svg","images/instagram-icon.svg"],"images/instagram-icon.svg"],"./..\\images\\menu\\decor.png":[["decor.38e79248.png","images/menu/decor.png"],"images/menu/decor.png"],"./..\\images\\menu\\1.png":[["1.6ef7057e.png","images/menu/1.png"],"images/menu/1.png"],"./..\\images\\menu\\2.png":[["2.939253c3.png","images/menu/2.png"],"images/menu/2.png"],"./..\\images\\menu\\3.png":[["3.725158c0.png","images/menu/3.png"],"images/menu/3.png"],"./..\\images\\menu\\4.png":[["4.f2036bee.png","images/menu/4.png"],"images/menu/4.png"],"./..\\images\\menu\\5.png":[["5.9cc4e283.png","images/menu/5.png"],"images/menu/5.png"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -217,7 +150,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63004" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53791" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -392,5 +325,144 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
+},{}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
+
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
+
+  return bundleURL;
+}
+
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
+
+  return '/';
+}
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"../node_modules/parcel-bundler/src/builtins/bundle-loader.js":[function(require,module,exports) {
+var getBundleURL = require('./bundle-url').getBundleURL;
+
+function loadBundlesLazy(bundles) {
+  if (!Array.isArray(bundles)) {
+    bundles = [bundles];
+  }
+
+  var id = bundles[bundles.length - 1];
+
+  try {
+    return Promise.resolve(require(id));
+  } catch (err) {
+    if (err.code === 'MODULE_NOT_FOUND') {
+      return new LazyPromise(function (resolve, reject) {
+        loadBundles(bundles.slice(0, -1)).then(function () {
+          return require(id);
+        }).then(resolve, reject);
+      });
+    }
+
+    throw err;
+  }
+}
+
+function loadBundles(bundles) {
+  return Promise.all(bundles.map(loadBundle));
+}
+
+var bundleLoaders = {};
+
+function registerBundleLoader(type, loader) {
+  bundleLoaders[type] = loader;
+}
+
+module.exports = exports = loadBundlesLazy;
+exports.load = loadBundles;
+exports.register = registerBundleLoader;
+var bundles = {};
+
+function loadBundle(bundle) {
+  var id;
+
+  if (Array.isArray(bundle)) {
+    id = bundle[1];
+    bundle = bundle[0];
+  }
+
+  if (bundles[bundle]) {
+    return bundles[bundle];
+  }
+
+  var type = (bundle.substring(bundle.lastIndexOf('.') + 1, bundle.length) || bundle).toLowerCase();
+  var bundleLoader = bundleLoaders[type];
+
+  if (bundleLoader) {
+    return bundles[bundle] = bundleLoader(getBundleURL() + bundle).then(function (resolved) {
+      if (resolved) {
+        module.bundle.register(id, resolved);
+      }
+
+      return resolved;
+    }).catch(function (e) {
+      delete bundles[bundle];
+      throw e;
+    });
+  }
+}
+
+function LazyPromise(executor) {
+  this.executor = executor;
+  this.promise = null;
+}
+
+LazyPromise.prototype.then = function (onSuccess, onError) {
+  if (this.promise === null) this.promise = new Promise(this.executor);
+  return this.promise.then(onSuccess, onError);
+};
+
+LazyPromise.prototype.catch = function (onError) {
+  if (this.promise === null) this.promise = new Promise(this.executor);
+  return this.promise.catch(onError);
+};
+},{"./bundle-url":"../node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"../node_modules/parcel-bundler/src/builtins/loaders/browser/js-loader.js":[function(require,module,exports) {
+module.exports = function loadJSBundle(bundle) {
+  return new Promise(function (resolve, reject) {
+    var script = document.createElement('script');
+    script.async = true;
+    script.type = 'text/javascript';
+    script.charset = 'utf-8';
+    script.src = bundle;
+
+    script.onerror = function (e) {
+      script.onerror = script.onload = null;
+      reject(e);
+    };
+
+    script.onload = function () {
+      script.onerror = script.onload = null;
+      resolve();
+    };
+
+    document.getElementsByTagName('head')[0].appendChild(script);
+  });
+};
+},{}],0:[function(require,module,exports) {
+var b=require("../node_modules/parcel-bundler/src/builtins/bundle-loader.js");b.register("js",require("../node_modules/parcel-bundler/src/builtins/loaders/browser/js-loader.js"));b.load([]);
+},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js",0], null)
 //# sourceMappingURL=/comments-styles.49d68cf8.js.map

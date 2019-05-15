@@ -1597,12 +1597,81 @@ var Animations =
 function () {
   function Animations() {
     _classCallCheck(this, Animations);
+
+    this.menuBtn = document.querySelector(".js-burger");
   }
 
   _createClass(Animations, [{
+    key: "burger",
+    value: function burger() {
+      var _this = this;
+
+      if (this.menuBtn) {
+        var menuToggle = new TimelineMax({
+          paused: true,
+          reversed: true
+        });
+        var top = this.menuBtn.querySelector(".top");
+        var mid = this.menuBtn.querySelector(".mid");
+        var bot = this.menuBtn.querySelector(".bot");
+        menuToggle.set(this.menuBtn, {
+          className: "-=closemenu"
+        }).set(this.menuBtn, {
+          className: "+=openmenu"
+        }).to(top, 0.1, {
+          y: "-9px",
+          transformOrigin: "50% 50%"
+        }, "burg").to(bot, 0.1, {
+          y: "9px",
+          transformOrigin: "50% 50%"
+        }, "burg").to(mid, 0.1, {
+          scale: 0.1,
+          transformOrigin: "50% 50%"
+        }, "burg").add("rotate").to(top, 0.1, {
+          y: "5"
+        }, "rotate").to(bot, 0.1, {
+          y: "-10"
+        }, "rotate").to(top, 0.1, {
+          rotationZ: 45,
+          transformOrigin: "50% 50%"
+        }, "rotate").to(bot, 0.1, {
+          rotationZ: -45,
+          transformOrigin: "50% 50%"
+        }, "rotate");
+        this.menuBtn.addEventListener("click", function () {
+          if (menuToggle.reversed()) {
+            menuToggle.restart();
+
+            _this.handleMenu(true);
+          } else {
+            menuToggle.reverse();
+
+            _this.handleMenu(false);
+          }
+        });
+      }
+    }
+  }, {
+    key: "handleMenu",
+    value: function handleMenu(show) {
+      var menu = document.querySelector(".js-menu");
+      var menuToggle = new TimelineMax({
+        paused: true,
+        reversed: true
+      });
+      menu.classList.toggle("hidden");
+
+      if (show) {
+        TweenMax.from(menu, 0.3, {
+          opacity: 0,
+          scale: 0
+        });
+      } else {}
+    }
+  }, {
     key: "firstScreen",
     value: function firstScreen() {
-      var _this = this;
+      var _this2 = this;
 
       var mainScreen = document.querySelector(".js-main-screen");
       var bottles = mainScreen.querySelectorAll(".bottles__item");
@@ -1625,7 +1694,7 @@ function () {
             delay: 0.8,
             alpha: 0,
             opacity: 0,
-            y: -500,
+            y: -300,
             ease: Elastic.easeOut.config(0.7, 0.5)
           });
         });
@@ -1638,13 +1707,13 @@ function () {
         ease: Power2.easeOut
       });
       TweenMax.from(subtitle, 1, {
-        delay: 1.9,
+        delay: 1.8,
         opacity: 0,
         y: 20,
         ease: Power2.easeOut,
         onComplete: function onComplete() {
           if (window.matchMedia("(min-width: 1024px)").matches) {
-            _this.runParallax("main");
+            _this2.runParallax("main");
           }
         }
       });
@@ -1686,7 +1755,7 @@ function () {
   }, {
     key: "products",
     value: function products(productName) {
-      var _this2 = this;
+      var _this3 = this;
 
       var container = document.querySelector(".js-screen > .".concat(productName));
       var productPictures = container.querySelector(".product-screen__pictures");
@@ -1718,7 +1787,7 @@ function () {
           opacity: 0,
           onComplete: function onComplete() {
             if (window.matchMedia("(min-width: 1024px)").matches) {
-              _this2.runParallax(productName, container);
+              _this3.runParallax(productName, container);
             }
           }
         });
@@ -1761,7 +1830,7 @@ function () {
           ease: Elastic.easeOut.config(0.8, 0.4),
           onComplete: function onComplete() {
             if (window.matchMedia("(min-width: 1024px)").matches) {
-              _this2.runParallax(productName, container);
+              _this3.runParallax(productName, container);
             }
           }
         });
@@ -1783,7 +1852,7 @@ function () {
           ease: Elastic.easeOut.config(0.8, 0.4),
           onComplete: function onComplete() {
             if (window.matchMedia("(min-width: 1024px)").matches) {
-              _this2.runParallax(productName, container);
+              _this3.runParallax(productName, container);
             }
           }
         });
@@ -1798,7 +1867,7 @@ function () {
           ease: Elastic.easeOut.config(0.8, 0.4),
           onComplete: function onComplete() {
             if (window.matchMedia("(min-width: 1024px)").matches) {
-              _this2.runParallax(productName, container);
+              _this3.runParallax(productName, container);
             }
           }
         });
@@ -13941,6 +14010,9 @@ function (_EventEmitter) {
     _this.pageable = "";
     _this.upBtn = document.querySelector(".js-upButton");
     _this.isAnimationComplete = {};
+
+    _this.animation.burger();
+
     return _this;
   }
 
@@ -14219,7 +14291,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63004" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53791" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

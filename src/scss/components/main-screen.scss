@@ -10,6 +10,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  position: relative;
 }
 
 .main-screen__burger {
@@ -18,12 +19,12 @@
   position: absolute;
   top: 20px;
   right: 20px;
-  z-index: 2;
+  z-index: 11;
   transition: 0.2s linear;
   @media (min-width: $desktop-sm-bp) {
     width: 40px;
-    top: 55px;
-    right: 42px;
+    top: 100px;
+    right: 100px;
   }
 
   &:hover li:nth-child(2),
@@ -37,17 +38,17 @@
     height: 4px;
     background-color: #000;
 
-    &:first-child {
-      width: 100%;
-    }
+    // &:first-child {
+    //   width: 100%;
+    // }
 
-    &:nth-child(2) {
-      width: 70%;
-    }
+    // &:nth-child(2) {
+    //   width: 70%;
+    // }
 
-    &:last-child {
-      width: 40%;
-    }
+    // &:last-child {
+    //   width: 40%;
+    // }
 
     &:not(:last-child) {
       margin-bottom: 4px;

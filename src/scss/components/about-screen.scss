@@ -41,15 +41,28 @@
   @extend .about-screen__text;
   font-weight: 700;
   line-height: 70px;
-  font-size: calc(50px + 0.5vw);
+  font-size: calc(40px + 0.5vw);
   text-transform: uppercase;
+  background: linear-gradient(
+    45deg,
+    rgba(31, 45, 55, 1) 27%,
+    rgba(78, 126, 159, 1) 60%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1f2d37', endColorstr='#4e7e9f',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  @media (min-width: $desktop-md-bp) {
+    font-size: calc(50px + 0.5vw);
+  }
 }
 
 .about-screen__btn {
   @extend .about-screen__title;
+  display: inline-block;
   font-size: calc(20px + 0.5vw);
   line-height: unset;
-  font-weight: 800;
   border: 3px solid $primary-text-color;
   border-radius: 64px;
   padding: 35px 130px;

@@ -319,6 +319,7 @@ a {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  position: relative;
 }
 
 .main-screen__burger {
@@ -327,14 +328,14 @@ a {
   position: absolute;
   top: 20px;
   right: 20px;
-  z-index: 2;
+  z-index: 11;
   transition: 0.2s linear;
 }
 @media (min-width: 1024px) {
   .main-screen__burger {
     width: 40px;
-    top: 55px;
-    right: 42px;
+    top: 100px;
+    right: 100px;
   }
 }
 .main-screen__burger:hover li:nth-child(2), .main-screen__burger:hover li:last-child {
@@ -345,15 +346,6 @@ a {
   width: 100%;
   height: 4px;
   background-color: #000;
-}
-.main-screen__burger li:first-child {
-  width: 100%;
-}
-.main-screen__burger li:nth-child(2) {
-  width: 70%;
-}
-.main-screen__burger li:last-child {
-  width: 40%;
 }
 .main-screen__burger li:not(:last-child) {
   margin-bottom: 4px;
@@ -446,6 +438,7 @@ a {
 }
 .footer__inner > img {
   margin: 0 auto 110px;
+  width: 80%;
 }
 .footer__socials {
   display: flex;
@@ -647,15 +640,6 @@ a {
   max-height: 82vh;
   padding: 5em 5em;
 }
-
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #3da56b 10%, #3da56b 25%, #457dab 30%, #457dab 50%, #ab4f87 60%, #ab4f87 70%, #df4307 90%, #df4307 100%);
-}
-
 .comments__list > li {
   width: 100%;
   display: flex;
@@ -725,6 +709,14 @@ a {
   font-size: calc(10px + 0.5vw);
   font-weight: 400;
   line-height: 33px;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #3da56b 10%, #3da56b 25%, #457dab 30%, #457dab 50%, #ab4f87 60%, #ab4f87 70%, #df4307 90%, #df4307 100%);
 }
 
 .border {
@@ -903,6 +895,108 @@ a {
   padding: 2.5em 4.5em;
   border: 20px solid #fff;
   overflow: hidden;
+}
+
+.menu {
+  width: 98%;
+  height: 95vh;
+  background-color: #fff;
+  z-index: 10;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-image: url("/decor.38e79248.png");
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: contain;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: visible;
+}
+.menu.hidden {
+  visibility: hidden;
+}
+.menu > ul > li {
+  margin-bottom: 60px;
+  position: relative;
+}
+.menu > ul > li::before {
+  content: "";
+  background-image: url("/1.6ef7057e.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: -40%;
+  left: -6%;
+  z-index: -1;
+}
+.menu > ul > li:hover::before {
+  animation: bounce 0.7s ease-in-out;
+}
+.menu > ul > li:nth-child(2)::before {
+  background-image: url("/2.939253c3.png");
+}
+.menu > ul > li:nth-child(3)::before {
+  background-image: url("/3.725158c0.png");
+}
+.menu > ul > li:nth-child(4)::before {
+  background-image: url("/4.f2036bee.png");
+}
+.menu > ul > li:last-child::before {
+  background-image: url("/5.9cc4e283.png");
+}
+.menu > ul > li > a {
+  color: #403e3e;
+  font-family: "Open Sans";
+  font-size: calc(45px + 0.5vw);
+  font-weight: 700;
+  z-index: 1;
+}
+
+@keyframes bounce {
+  0%, 20%, 60%, 100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  40% {
+    -webkit-transform: translateY(-20px);
+    transform: scale(1.1) translateY(-20px);
+  }
+  80% {
+    -webkit-transform: translateY(-10px);
+    transform: scale(1.05) translateY(-10px);
+  }
+}
+.back-btn {
+  color: #3b4f55;
+  font-family: "Open Sans";
+  font-size: calc(11px + 0.5vw);
+  font-weight: 400;
+  padding-left: 1.2em;
+  display: inline-block;
+  position: absolute;
+  z-index: 5;
+  top: 4%;
+  left: 2%;
+}
+.back-btn::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 15%;
+  left: 0;
+  width: 15px;
+  height: 15px;
+  transform: rotate(-180deg);
+  background-image: url("data:image/svg+xml,%3Csvg id='Layer_1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26.5 43.8'%3E%3Cstyle%3E .st0%7Bfill:%233b4f55%7D %3C/style%3E%3Cpath transform='rotate(45.001 13.258 13.257)' class='st0' d='M-1.7 9.5h30V17h-30z'/%3E%3Cpath transform='rotate(-45.001 13.257 30.507)' class='st0' d='M-1.7 26.8h30v7.5h-30z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 /*# sourceMappingURL=/comments-styles.49d68cf8.css.map */
