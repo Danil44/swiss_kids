@@ -633,6 +633,7 @@ a {
   background-color: #fff;
   margin: 6em auto;
   z-index: 5;
+  position: relative;
 }
 
 .comments__list {
