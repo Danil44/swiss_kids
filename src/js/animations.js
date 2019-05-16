@@ -161,7 +161,7 @@ export default class Animations {
 
     if (background && productName !== "spider-man") {
       TweenMax.from(background, 2, {
-        delay: 0.5,
+        delay: 1,
         x: -200,
         ease: Elastic.easeOut.config(0.8, 0.4),
         opacity: 0,

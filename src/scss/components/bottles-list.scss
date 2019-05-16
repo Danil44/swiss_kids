@@ -5,6 +5,8 @@
   bottom: 17%;
   left: 0;
   width: 200px;
+  pointer-events: unset !important;
+  z-index: 20;
 
   @media (min-width: $desktop-sm-bp) {
     bottom: 50%;
@@ -21,16 +23,20 @@
     width: 100%;
     height: 100%;
     transition: 0.2s linear;
+    z-index: 21;
 
-    & > img {
-      width: 55%;
-      margin: 0 auto;
-      @media (min-width: $desktop-sm-bp) {
-        width: 62%;
-      }
-      @media (min-width: $desktop-md-bp) {
-        width: 100%;
-        margin: 0;
+    & > a {
+      cursor: pointer;
+      & > img {
+        width: 55%;
+        margin: 0 auto;
+        @media (min-width: $desktop-sm-bp) {
+          width: 62%;
+        }
+        @media (min-width: $desktop-md-bp) {
+          width: 100%;
+          margin: 0;
+        }
       }
     }
   }

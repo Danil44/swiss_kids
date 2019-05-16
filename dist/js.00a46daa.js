@@ -1783,7 +1783,7 @@ function () {
 
       if (background && productName !== "spider-man") {
         TweenMax.from(background, 2, {
-          delay: 0.5,
+          delay: 1,
           x: -200,
           ease: Elastic.easeOut.config(0.8, 0.4),
           opacity: 0,
@@ -14013,7 +14013,6 @@ function (_EventEmitter) {
     _this.upBtn = document.querySelector(".js-upButton");
     _this.isAnimationComplete = {};
     window.addEventListener("resize", function () {
-      // We execute the same script as before
       var vh = window.innerHeight * 0.01;
       document.documentElement.style.setProperty("--vh", "".concat(vh, "px"));
     });
@@ -14312,7 +14311,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59384" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57508" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

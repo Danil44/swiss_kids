@@ -488,6 +488,8 @@ a {
   bottom: 17%;
   left: 0;
   width: 200px;
+  pointer-events: unset !important;
+  z-index: 20;
 }
 @media (min-width: 1024px) {
   .bottles-list {
@@ -507,18 +509,22 @@ a {
   width: 100%;
   height: 100%;
   transition: 0.2s linear;
+  z-index: 21;
 }
-.bottles-list li > img {
+.bottles-list li > a {
+  cursor: pointer;
+}
+.bottles-list li > a > img {
   width: 55%;
   margin: 0 auto;
 }
 @media (min-width: 1024px) {
-  .bottles-list li > img {
+  .bottles-list li > a > img {
     width: 62%;
   }
 }
 @media (min-width: 1440px) {
-  .bottles-list li > img {
+  .bottles-list li > a > img {
     width: 100%;
     margin: 0;
   }
