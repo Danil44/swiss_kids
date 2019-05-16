@@ -13,6 +13,12 @@ export default class View extends EventEmitter {
     this.upBtn = document.querySelector(".js-upButton");
     this.isAnimationComplete = {};
 
+    window.addEventListener("resize", () => {
+      // We execute the same script as before
+      let vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
+    });
+
     this.animation.burger();
 
     if (window.matchMedia("(max-width: 1024px)").matches) {

@@ -14012,6 +14012,11 @@ function (_EventEmitter) {
     _this.pageable = "";
     _this.upBtn = document.querySelector(".js-upButton");
     _this.isAnimationComplete = {};
+    window.addEventListener("resize", function () {
+      // We execute the same script as before
+      var vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty("--vh", "".concat(vh, "px"));
+    });
 
     _this.animation.burger();
 
@@ -14307,7 +14312,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55871" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59384" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

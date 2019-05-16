@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   position: absolute !important;
-  bottom: 15%;
+  bottom: 17%;
   left: 0;
   width: 200px;
 
@@ -23,8 +23,11 @@
     transition: 0.2s linear;
 
     & > img {
-      width: 62%;
+      width: 55%;
       margin: 0 auto;
+      @media (min-width: $desktop-sm-bp) {
+        width: 62%;
+      }
       @media (min-width: $desktop-md-bp) {
         width: 100%;
         margin: 0;
