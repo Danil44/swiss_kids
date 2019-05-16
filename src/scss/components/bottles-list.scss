@@ -2,13 +2,15 @@
   display: flex;
   align-items: center;
   position: absolute !important;
-  bottom: 50%;
-  left: 50%;
+  bottom: 15%;
+  left: 0;
   width: 200px;
-  transform: translate(-50%, 100%) !important;
 
   @media (min-width: $desktop-sm-bp) {
+    bottom: 50%;
+    left: 50%;
     width: 1000px;
+    transform: translate(-50%, 100%) !important;
   }
   @media (min-width: $desktop-md-bp) {
     width: 1200px;
@@ -21,7 +23,12 @@
     transition: 0.2s linear;
 
     & > img {
-      width: 100%;
+      width: 62%;
+      margin: 0 auto;
+      @media (min-width: $desktop-md-bp) {
+        width: 100%;
+        margin: 0;
+      }
     }
   }
 }

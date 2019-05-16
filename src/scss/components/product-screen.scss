@@ -5,6 +5,7 @@
 
 .product-screen {
   position: relative;
+
   & > .vines {
     opacity: 1;
     width: 100%;
@@ -29,21 +30,32 @@
   }
   &__vitamins {
     position: absolute;
-    top: 15% !important;
-    left: 20% !important;
+    top: 0%;
+    left: 0%;
     z-index: 2;
     width: 100%;
     height: 100%;
+
+    @media (min-width: $desktop-sm-bp) {
+      top: 15% !important;
+      left: 20% !important;
+    }
 
     & > img {
       width: 55%;
     }
 
     &--lg {
-      max-width: 80%;
+      max-width: 90%;
       width: 100%;
-      top: 20% !important;
-      left: 10% !important;
+      top: -5%;
+      left: -5%;
+
+      @media (min-width: $desktop-sm-bp) {
+        max-width: 80%;
+        top: 20% !important;
+        left: 10% !important;
+      }
 
       & > img {
         width: 100%;
@@ -56,15 +68,38 @@
     max-width: 200%;
     position: absolute;
     top: 0;
-    left: -20% !important;
+    left: -10% !important;
+
+    @media (min-width: $desktop-sm-bp) {
+      left: -20% !important;
+    }
+
+    & > picture > img {
+      @media (max-width: $desktop-sm-bp) {
+        width: 350px;
+      }
+    }
   }
+
   &__reef {
     max-width: 100%;
     z-index: -1;
     position: absolute;
-    top: -10% !important;
-    left: -10% !important;
+    top: -25%;
+    left: -20%;
+
+    @media (min-width: $desktop-sm-bp) {
+      top: -10% !important;
+      left: -10% !important;
+    }
+
+    & > img {
+      @media (max-width: $desktop-sm-bp) {
+        width: 85%;
+      }
+    }
   }
+
   &__fish {
     @extend .product-screen__parrot;
     top: 0% !important;
@@ -73,18 +108,41 @@
 
   &__night {
     @extend .product-screen__reef;
-    width: 650px;
+    width: 100%;
     z-index: -1;
-    top: -7% !important;
-    left: 16% !important;
+    top: -30%;
+    left: -10%;
+
+    @media (max-width: 375px) {
+      top: -20%;
+    }
+
+    @media (min-width: $desktop-sm-bp) {
+      width: 650px;
+      top: -7% !important;
+      left: 16% !important;
+    }
+
+    & > img {
+      @media (max-width: $desktop-sm-bp) {
+        width: 75%;
+      }
+    }
   }
 
   &__owl {
-    top: 20% !important;
-    left: 68% !important;
+    top: 0%;
+    left: 60%;
     position: absolute;
-    width: 90px;
-    height: 90px;
+    width: 65px;
+    height: 65px;
+
+    @media (min-width: $desktop-sm-bp) {
+      width: 90px;
+      height: 90px;
+      top: 20% !important;
+      left: 68% !important;
+    }
   }
   &__forest {
     @extend .product-screen__reef;
@@ -103,46 +161,74 @@
     border-radius: 50%;
     overflow: hidden;
     position: absolute !important;
-    top: 2% !important;
+    top: 10%;
     transform: translate(0, 140%) !important;
+
+    @media (min-width: $desktop-sm-bp) {
+      top: 2% !important;
+    }
+
     @media (min-width: $desktop-lg-bp) {
       top: 9% !important;
     }
+
     & > div {
-      width: 7.5vw;
-      height: 7.5vw;
+      width: 10vw;
+      height: 10vw;
       background-image: url("../images/products-screens/omega/planet.svg");
       background-repeat: no-repeat;
       background-size: 200% 200%;
       animation: planetRotation 5s linear infinite alternate-reverse;
       transition: transform 200ms linear;
+
+      @media (min-width: $desktop-lg-bp) {
+        width: 7.5vw;
+        height: 7.5vw;
+      }
     }
   }
   &__spaceship {
     @extend .product-screen__owl;
     top: 5% !important;
     left: 60% !important;
-    width: 120px;
+    width: 80px;
+    @media (min-width: $desktop-sm-bp) {
+      width: 120px;
+    }
   }
 
   &__space {
     @extend .product-screen__reef;
     max-width: 150%;
-    top: -5% !important;
+    top: -17%;
+
+    @media (min-width: $desktop-sm-bp) {
+      top: -5% !important;
+    }
   }
 
   &__ballons {
     max-width: 25%;
     width: 190px;
     position: absolute !important;
-    top: 0% !important;
-    left: 10% !important;
+    top: -35%;
+    left: 0%;
+
+    @media (min-width: $desktop-sm-bp) {
+      top: 0% !important;
+      left: 10% !important;
+    }
   }
 
   &__city {
     @extend .product-screen__reef;
-    top: -5% !important;
-    left: -1% !important;
+    top: -30%;
+    left: -5%;
+
+    @media (min-width: $desktop-sm-bp) {
+      top: -5% !important;
+      left: -1% !important;
+    }
   }
 }
 
@@ -158,6 +244,15 @@
 .product-screen__content {
   height: 100%;
   display: flex;
+  flex-direction: column;
+
+  @media (max-width: $desktop-sm-bp) {
+    overflow: hidden;
+    padding: 0 0 2em;
+  }
+  @media (min-width: $desktop-sm-bp) {
+    flex-direction: row;
+  }
 }
 
 .product-screen__pictures {
@@ -175,22 +270,35 @@
 }
 
 .product-screen__desc {
-  width: 55%;
+  width: 100%;
   z-index: 2;
-  padding: 0 0 0 5em;
+  padding: 0 1em;
   align-self: center;
+  @media (min-with: $desktop-sm-bp) {
+    width: 55%;
+    padding: 0 0 0 5em;
+  }
   @media (min-width: $desktop-md-bp) {
     width: 100%;
   }
 }
 
 .product-screen__title {
-  font-size: 73px;
+  font-size: 31px;
   font-family: $primary-font-stack;
   font-weight: 700;
   color: $primary-text-color;
   text-transform: uppercase;
-  margin-bottom: 0.6em;
+  margin-bottom: 0.4em;
+
+  @media (max-width: 375px) {
+    font-size: 25px;
+  }
+
+  @media (min-width: $desktop-sm-bp) {
+    margin-bottom: 0.6em;
+    font-size: 73px;
+  }
 
   &--green {
     background: linear-gradient(
@@ -244,13 +352,23 @@
 }
 
 .product-screen__text {
-  width: 600px;
-  font-size: calc(12px + 0.5vw);
-  line-height: 36px;
+  width: 100%;
+  font-size: calc(11px + 0.5vw);
+  line-height: 22px;
   color: #403e3e;
   font-family: $primary-font-stack;
   font-weight: 400;
-  margin-bottom: 3.5em;
+  margin-bottom: 1.5em;
+
+  @media (max-width: 375px) {
+    line-height: 17px;
+  }
+
+  @media (min-width: $desktop-sm-bp) {
+    width: 600px;
+    line-height: 36px;
+    margin-bottom: 3.5em;
+  }
 
   @media (min-width: $desktop-lg-bp) {
     font-size: 24px;
@@ -263,17 +381,22 @@
 
 .product-screen__btn {
   font-family: $primary-font-stack;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 800;
   border: 5px solid transparent;
   border-radius: 44px;
   background-color: #ffffff;
-  padding: 1.2em 2.2em 1.2em 6em;
+  padding: 1em 2.2em 1em 6em;
   position: relative;
   display: inline-block;
   text-transform: uppercase;
   cursor: pointer;
   transition: 0.2s linear;
+
+  @media (min-width: $desktop-sm-bp) {
+    font-size: 18px;
+    padding: 1.2em 2.2em 1.2em 6em;
+  }
 
   @media (min-width: $desktop-lg-bp) {
     font-size: 22px;
@@ -288,11 +411,16 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    width: 78px;
-    height: 78px;
+    width: 65px;
+    height: 65px;
     top: 0;
     left: 0;
     transform: translate(16%, -35%);
+
+    @media (min-width: $desktop-sm-bp) {
+      width: 78px;
+      height: 78px;
+    }
 
     @media (min-width: $desktop-lg-bp) {
       width: 90px;
@@ -309,8 +437,13 @@
     top: 50%;
     right: 5%;
     transform: translate(-50%, -40%);
-    width: 18px;
-    height: 18px;
+    width: 10px;
+    height: 10px;
+
+    @media (min-width: $desktop-sm-bp) {
+      width: 18px;
+      height: 18px;
+    }
   }
   &--green {
     color: $green-btn;

@@ -12,7 +12,7 @@
 }
 
 .buy__content {
-  padding: 5em 8em;
+  padding: 3em 8em;
 
   & > .content-title {
     @include text($font-size: calc(44px + 0.5vw), $font-weight: 700);

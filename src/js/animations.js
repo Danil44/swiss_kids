@@ -36,9 +36,11 @@ export default class Animations {
   }
 
   handleMenu(show) {
+    const womenPicture = document.querySelector(".women-picture");
     const menu = document.querySelector(".js-menu");
     const menuToggle = new TimelineMax({ paused: true, reversed: true });
     menu.classList.toggle("hidden");
+    if (womenPicture) womenPicture.classList.toggle("hidden");
     if (show) {
       TweenMax.from(menu, 0.3, {
         opacity: 0,
@@ -140,6 +142,7 @@ export default class Animations {
     const animal = productPictures.querySelector(".js-animal");
     const vitamins = productPictures.querySelector(".js-vitamins");
     const background = productPictures.querySelector(".js-product-background");
+
     this.togglePicturesVissibility([productPictures, vines]);
 
     if (vines) {

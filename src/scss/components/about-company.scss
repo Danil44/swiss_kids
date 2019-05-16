@@ -6,6 +6,7 @@
 .about-company {
   @extend .comments;
   padding: 0.5em;
+  height: unset;
   position: relative;
   &--underscore {
     padding-bottom: 40px;
@@ -15,7 +16,7 @@
 
 .about-company__inner {
   overflow: auto;
-  max-height: 82vh;
+  max-height: 65vh;
   position: relative;
 
   &::before {

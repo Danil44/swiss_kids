@@ -14,6 +14,13 @@ export default class View extends EventEmitter {
     this.isAnimationComplete = {};
 
     this.animation.burger();
+
+    if (window.matchMedia("(max-width: 1024px)").matches) {
+      const hiddenAnimation = document.querySelectorAll(
+        ".js-animation-container .hidden"
+      );
+      this.animation.togglePicturesVissibility(hiddenAnimation);
+    }
   }
 
   getPath() {
@@ -37,7 +44,10 @@ export default class View extends EventEmitter {
       const currentPage = document.querySelector("body").className;
       const path = this.getPath() || currentPage;
       console.log(path);
-      window.location.href = `#${path}`;
+
+      if (window.matchMedia("(min-width: 1024px)").matches) {
+        window.location.href = `#${path}`;
+      }
 
       const preloaderCircle = document.getElementById("preloader");
 
@@ -47,6 +57,12 @@ export default class View extends EventEmitter {
           this.loadOnePageScroll(path);
         }
         if (currentPage === "main-product") {
+          this.loadProductsSlide();
+        }
+        if (
+          currentPage === "main" &&
+          window.matchMedia("(max-width: 1024px)").matches
+        ) {
           this.loadProductsSlide();
         }
         TweenMax.to(preloaderCircle, 0.8, {
@@ -91,7 +107,6 @@ export default class View extends EventEmitter {
 
   loadProductsScreensAnimation(productName) {
     const currentPage = document.querySelector("body").className;
-
     if (currentPage === "main") this.animation.products(productName);
   }
 
@@ -99,7 +114,7 @@ export default class View extends EventEmitter {
     const prev = document.querySelector(".slider-prev");
     const next = document.querySelector(".slider-next");
     const slider = tns({
-      container: document.getElementById("js-slider"),
+      container: document.querySelector(".js-slider"),
       items: 1,
       slideBy: "page",
       controls: false,

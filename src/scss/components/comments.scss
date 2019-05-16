@@ -4,16 +4,21 @@
 
 .comments {
   width: 70%;
+  height: unset;
   background-color: #fff;
   margin: 6em auto;
   z-index: 5;
   position: relative;
+
+  & > .comments-scroll {
+    overflow: auto;
+    max-height: 65vh;
+    position: relative;
+  }
 }
 
 .comments__list {
-  overflow: auto;
-  max-height: 82vh;
-  padding: 5em 5em;
+  padding: 2em 5em;
   & > li {
     width: 100%;
     display: flex;

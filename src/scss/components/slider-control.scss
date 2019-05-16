@@ -1,3 +1,4 @@
+@import "../helpers/variables";
 .slider-control {
   display: flex;
   align-items: center;
@@ -8,6 +9,7 @@
   transform: translateY(-50%);
   width: 100%;
   padding: 0 2em;
+  z-index: 20;
 
   & > button {
     font-size: 60px;

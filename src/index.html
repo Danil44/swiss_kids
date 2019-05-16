@@ -31,27 +31,19 @@
                     <li class="mid"></li>
                     <li class="bot"></li>
                 </ul>
-                <div class="menu js-menu hidden">
-                    <ul>
-                        <li><a href="./technology.html">Технологія</a></li>
-                        <li><a href="./about-company.html">Компанія</a></li>
-                        <li><a href="./distributor.html">Дистриб'ютор</a></li>
-                        <li><a href="./buy.html">Де купити</a></li>
-                        <li><a href="./comments.html">Відгуки</a></li>
-                    </ul>
-                </div>
+
                 <div class="main-page__fruits">
                     <ul id="fruits-1" data-relative-input="true">
-                        <li data-depth="0.04"><img src="./images/main-screen/blackberry.png" alt=""></li>
-                        <li data-depth="0.12"><img src="./images/main-screen/strawberry.png" alt=""></li>
-                        <li data-depth="0.06"><img src="./images/main-screen/lemon.png" alt=""></li>
-                        <li data-depth="0.18"><img src="./images/main-screen/raspberrie.png" alt=""></li>
+                        <li data-depth="0.04"><img src="./images/main-screen/blackberry.png" alt="fruit decor"></li>
+                        <li data-depth="0.12"><img src="./images/main-screen/strawberry.png" alt="fruit decor"></li>
+                        <li data-depth="0.06"><img src="./images/main-screen/lemon.png" alt="fruit decor"></li>
+                        <li data-depth="0.18"><img src="./images/main-screen/raspberrie.png" alt="fruit decor"></li>
                     </ul>
                     <ul class="fruits__right-list" id="fruits-2">
-                        <li data-depth="0.06"><img src="./images/main-screen/blueberrie.png" alt=""></li>
-                        <li data-depth="0.08"><img src="./images/main-screen/strawberry.png" alt=""></li>
-                        <li data-depth="0.10"><img src="./images/main-screen/lemon.png" alt=""></li>
-                        <li data-depth="0.26"><img src="./images/main-screen/orange.png" alt=""></li>
+                        <li data-depth="0.06"><img src="./images/main-screen/blueberrie.png" alt="fruit decor"></li>
+                        <li data-depth="0.08"><img src="./images/main-screen/strawberry.png" alt="fruit decor"></li>
+                        <li data-depth="0.10"><img src="./images/main-screen/lemon.png" alt="fruit decor"></li>
+                        <li data-depth="0.26"><img src="./images/main-screen/orange.png" alt="fruit decor"></li>
                     </ul>
                 </div>
                 <div class="women-picture">
@@ -59,17 +51,27 @@
                     <img src="./images/main-screen/women.png" alt="" />
                 </div>
                 <div class="main-screen__inner main-page__inner">
-                    <div class="border"></div>
+                    <div class="border"> </div>
+                    <div class="menu js-menu hidden">
+                        <ul>
+                            <li><a href="./about-company.html">Компанія</a></li>
+                            <li><a href="./distributor.html">Дистриб'ютор</a></li>
+                            <li><a href="./buy.html">Де купити</a></li>
+                            <li><a href="./comments.html">Відгуки мама-блогерів</a></li>
+                        </ul>
+                    </div>
                     <a href="/" class="main-page__logo"><img src="./images/swiss-logo.svg" alt="Swiss logo" /></a>
 
-                    <div class="main-screen__title-wrapper"><img src="./images/main-screen/title.png" alt="Title"
-                            class="main-screen__title js-title" />
+                    <div class="main-screen__title-wrapper">
+                        <picture>
+                            <source media="(max-width: 768px)" srcset="./images/main-screen/title-mobile.png">
+                            <img src="./images/main-screen/title.png" alt="Title" class="main-screen__title js-title" />
+                        </picture>
                         <h4 class="main-screen__subtitle js-subtitle">Швейцарські</h4>
                     </div>
 
-                    <button type="button" class="bottles__slide"><i class="fas fa-angle-left"></i></button>
 
-                    <ul class="bottles-list products-list" id="bottles-list" data-relative-input="true">
+                    <ul class="bottles-list products-list js-slider" id="bottles-list" data-relative-input="true">
                         <li class="bottles__item" data-depth="0.08"><img srcset="./images/main-screen/green-bottle.png 1x,
                             ./images/main-screen/green-bottle.png 2x" src="./images/main-screen/green-bottle.png"
                                 alt="Vitamin in bottle">
@@ -90,17 +92,26 @@
                                 alt="Vitamin in bottle">
                         </li>
                     </ul>
-
-                    <button type="button" class="bottles__slide"><i class="fas fa-angle-right"></i></button>
+                    <div class="main-page__slider-control" id="slider-controls"> <button type="button"
+                            class="slider-prev"><i class="fas fa-angle-left"></i></button>
+                        <button type="button" class="slider-next"><i class="fas fa-angle-right"></i></button>
+                    </div>
+                    <div class="main-screen__decor-mobile">
+                        <a href="./comments.html">
+                            <div class="arrow-wrapper"><img src="./images/arrow.svg" alt="arrow"></div>
+                            <span>Відгуки мама-блогерів</span>
+                        </a>
+                    </div>
                 </div>
             </section>
             <section class="main-page__screen js-screen" data-anchor="calcivit">
                 <div class="main-page__inner product-screen calcivit">
-                    <a href="/" class="main-page__logo"><img src="./images/swiss-logo.svg" alt="Swiss logo" />
+                    <a href="/" class="main-page__logo mobile-logo"><img src="./images/swiss-logo.svg"
+                            alt="Swiss logo" />
                     </a>
                     <div class="vines hidden"><img src="./images/products-screens/calcivit/monkey-vines.png" alt="">
                     </div>
-                    <div class="product-screen__content">
+                    <div class="product-screen__content js-animation-container">
                         <div class="border"></div>
                         <ul class="product-screen__pictures hidden calcivit-pictures">
                             <li data-depth="0.6" class="product-screen__item product-screen__parrot js-animal"><img
@@ -113,8 +124,14 @@
                             </li>
                             <li data-depth="0.1"
                                 class="product-screen__item product-screen__plants js-product-background">
-                                <img srcset="./images/products-screens/calcivit/background.png 1x, ./images/products-screens/calcivit/background@2x.png 2x"
-                                    src="./images/products-screens/calcivit/background.png" alt=""></li>
+                                <picture>
+                                    <source media="(max-width: 1024px)"
+                                        srcset="./images/products-screens/calcivit/background-mobile.png"><img
+                                        srcset="./images/products-screens/calcivit/background.png 1x, ./images/products-screens/calcivit/background@2x.png 2x"
+                                        src="./images/products-screens/calcivit/background.png" alt="">
+                                </picture>
+
+                            </li>
                         </ul>
                         <div class="product-screen__desc">
                             <h3 class="product-screen__title product-screen__title--green">Calcivit Kids</h3>
@@ -131,8 +148,9 @@
             </section>
             <section class="main-page__screen js-screen" data-anchor="multivit">
                 <div class="main-page__inner product-screen multivit">
-                    <a href="/" class="main-page__logo"><img src="./images/swiss-logo.svg" alt="Swiss logo" /></a>
-                    <div class="product-screen__content">
+                    <a href="/" class="main-page__logo mobile-logo"><img src="./images/swiss-logo.svg"
+                            alt="Swiss logo" /></a>
+                    <div class="product-screen__content js-animation-container">
                         <div class="border"></div>
                         <ul class="product-screen__pictures hidden multivit-pictures">
                             <li data-depth="0.7" class="product-screen__item product-screen__fish js-animal"><img
@@ -163,9 +181,10 @@
                 </div>
             </section>
             <section class="main-page__screen js-screen" data-anchor="immunovit">
-                <div class="main-page__inner product-screen immunovit">
-                    <a href="/" class="main-page__logo"><img src="./images/swiss-logo.svg" alt="Swiss logo" /></a>
-                    <div class="product-screen__content">
+                <div class="main-page__inner  product-screen immunovit">
+                    <a href="/" class="main-page__logo mobile-logo"><img src="./images/swiss-logo.svg"
+                            alt="Swiss logo" /></a>
+                    <div class="product-screen__content js-animation-container">
                         <div class="border"></div>
                         <ul class="product-screen__pictures hidden immunovit-pictures">
                             <li data-depth="0.09" class="product-screen__item product-screen__owl js-animal"><img
@@ -195,9 +214,10 @@
                 </div>
             </section>
             <section class="main-page__screen js-screen" data-anchor="smartvit">
-                <div class="main-page__inner product-screen smartvit">
-                    <a href="/" class="main-page__logo"><img src="./images/swiss-logo.svg" alt="Swiss logo" /></a>
-                    <div class="product-screen__content">
+                <div class="main-page__inner  product-screen smartvit">
+                    <a href="/" class="main-page__logo mobile-logo"><img src="./images/swiss-logo.svg"
+                            alt="Swiss logo" /></a>
+                    <div class="product-screen__content js-animation-container">
                         <div class="border"></div>
                         <ul class="product-screen__pictures hidden smartvit-pictures">
                             <li data-depth="0.9" class="product-screen__item product-screen__bug js-animal"><img
@@ -228,9 +248,10 @@
                 </div>
             </section>
             <section class="main-page__screen js-screen" data-anchor="omega">
-                <div class="main-page__inner product-screen omega">
-                    <a href="/" class="main-page__logo"><img src="./images/swiss-logo.svg" alt="Swiss logo" /></a>
-                    <div class="product-screen__content">
+                <div class="main-page__inner  product-screen omega">
+                    <a href="/" class="main-page__logo mobile-logo"><img src="./images/swiss-logo.svg"
+                            alt="Swiss logo" /></a>
+                    <div class="product-screen__content js-animation-container">
                         <div class="border"></div>
                         <ul class="product-screen__pictures hidden omega-pictures">
                             <li class="product-screen__item product-screen__planet js-planet">
@@ -264,9 +285,10 @@
                 </div>
             </section>
             <section class="main-page__screen js-screen" data-anchor="hello-kitty">
-                <div class="main-page__inner product-screen hello-kitty">
-                    <a href="/" class="main-page__logo"><img src="./images/swiss-logo.svg" alt="Swiss logo" /></a>
-                    <div class="product-screen__content">
+                <div class="main-page__inner  product-screen hello-kitty">
+                    <a href="/" class="main-page__logo mobile-logo"><img src="./images/swiss-logo.svg"
+                            alt="Swiss logo" /></a>
+                    <div class="product-screen__content js-animation-container">
                         <div class="border"></div>
                         <ul class="product-screen__pictures hidden hello-kitty-pictures">
                             <li data-depth="0.1" class="product-screen__item product-screen__ballons js-ballons"><img
@@ -295,8 +317,9 @@
             </section>
             <section class="main-page__screen js-screen" data-anchor="spider-man">
                 <div class="main-page__inner product-screen spider-man">
-                    <a href="/" class="main-page__logo"><img src="./images/swiss-logo.svg" alt="Swiss logo" /></a>
-                    <div class="product-screen__content">
+                    <a href="/" class="main-page__logo mobile-logo"><img src="./images/swiss-logo.svg"
+                            alt="Swiss logo" /></a>
+                    <div class="product-screen__content js-animation-container">
                         <div class="border"></div>
                         <ul class="product-screen__pictures hidden spider-man-pictures">
                             <li data-depth="0.1"
@@ -327,8 +350,9 @@
             <div class="about-screen-wrapper">
                 <section class="main-page__about main-page__screen" data-anchor="about-products">
                     <div class="main-page__inner about-screen">
-                        <a href="/" class="main-page__logo"><img src="./images/swiss-logo.svg" alt="Swiss logo" /></a>
-                        <div class="about-screen__content">
+                        <a href="/" class="main-page__logo mobile-logo"><img src="./images/swiss-logo.svg"
+                                alt="Swiss logo" /></a>
+                        <div class="about-screen__content js-animation-container">
                             <div class="border"></div>
                             <div class="about-screen__desc about-products hidden">
                                 <h3 class="about-screen__title js-about-element">З самого серця Швейцарії</h3>
