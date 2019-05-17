@@ -184,7 +184,4 @@
 .main-page__slider-control {
   @extend .slider-control;
   top: 55%;
-  @media (min-width: $desktop-sm-bp) {
-    display: none;
-  }
 }

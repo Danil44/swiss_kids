@@ -12,6 +12,10 @@
   padding: 0 2em;
   z-index: 20;
 
+  @media (min-width: $desktop-sm-bp) {
+    display: none;
+  }
+
   & > span {
     display: block;
     cursor: pointer;

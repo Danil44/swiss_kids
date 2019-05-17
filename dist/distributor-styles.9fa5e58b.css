@@ -563,6 +563,11 @@ a {
   padding: 0 2em;
   z-index: 20;
 }
+@media (min-width: 1024px) {
+  .slider-control, .main-page__slider-control {
+    display: none;
+  }
+}
 .slider-control > span, .main-page__slider-control > span {
   display: block;
   cursor: pointer;
@@ -762,11 +767,6 @@ a {
 
 .main-page__slider-control {
   top: 55%;
-}
-@media (min-width: 1024px) {
-  .main-page__slider-control {
-    display: none;
-  }
 }
 
 .slider-control, .main-page__slider-control {
@@ -782,6 +782,11 @@ a {
   padding: 0 2em;
   z-index: 20;
 }
+@media (min-width: 1024px) {
+  .slider-control, .main-page__slider-control {
+    display: none;
+  }
+}
 .slider-control > span, .main-page__slider-control > span {
   display: block;
   cursor: pointer;
@@ -981,11 +986,6 @@ a {
 
 .main-page__slider-control {
   top: 55%;
-}
-@media (min-width: 1024px) {
-  .main-page__slider-control {
-    display: none;
-  }
 }
 
 .comments, .about-company, .distributor {
@@ -1448,6 +1448,11 @@ a {
   padding: 0 2em;
   z-index: 20;
 }
+@media (min-width: 1024px) {
+  .slider-control, .main-page__slider-control {
+    display: none;
+  }
+}
 .slider-control > span, .main-page__slider-control > span {
   display: block;
   cursor: pointer;
@@ -1647,11 +1652,6 @@ a {
 
 .main-page__slider-control {
   top: 55%;
-}
-@media (min-width: 1024px) {
-  .main-page__slider-control {
-    display: none;
-  }
 }
 
 .slider-control, .main-page__slider-control {
@@ -1667,6 +1667,11 @@ a {
   padding: 0 2em;
   z-index: 20;
 }
+@media (min-width: 1024px) {
+  .slider-control, .main-page__slider-control {
+    display: none;
+  }
+}
 .slider-control > span, .main-page__slider-control > span {
   display: block;
   cursor: pointer;
@@ -1867,15 +1872,9 @@ a {
 .main-page__slider-control {
   top: 55%;
 }
-@media (min-width: 1024px) {
-  .main-page__slider-control {
-    display: none;
-  }
-}
 
 .comments-page__inner, .company-page__inner, .distributor-page__inner {
   padding: 2.5em 4.5em;
-  border: 20px solid #fff;
   overflow: hidden;
 }
 
@@ -1902,22 +1901,26 @@ a {
 }
 
 .menu {
-  width: 98%;
-  height: 95vh;
+  width: 100%;
+  height: 100%;
   background-color: #fff;
   z-index: 21;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-image: url("/decor.38e79248.png");
-  background-repeat: no-repeat;
-  background-position: left;
-  background-size: contain;
   display: flex;
   justify-content: center;
   align-items: center;
   visibility: visible;
+}
+@media (min-width: 1024px) {
+  .menu {
+    background-image: url("/decor.38e79248.png");
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: contain;
+  }
 }
 .menu.hidden {
   visibility: hidden;
