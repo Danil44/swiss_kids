@@ -6,6 +6,10 @@
 }
 .comments-page__inner {
   @extend .main-page__inner;
-  padding: 2.5em 4.5em;
   overflow: hidden;
+  padding: 1.5em;
+
+  @media (min-width: $desktop-sm-bp) {
+    padding: 2.5em 4.5em;
+  }
 }

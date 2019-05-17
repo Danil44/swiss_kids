@@ -4,18 +4,17 @@
 
 .buy {
   @extend .distributor;
-  height: unset;
 }
 
 .buy__inner {
   @extend .distributor__inner;
-}
 
-.buy__content {
-  padding: 3em 8em;
+  @media (min-width: $desktop-sm-bp) {
+    padding: 3em 8em;
+  }
 
   & > .content-title {
-    @include text($font-size: calc(44px + 0.5vw), $font-weight: 700);
+    @include text($font-size: calc(25px + 0.5vw), $font-weight: 700);
     background: rgb(61, 165, 107); /* Old browsers */
     background: linear-gradient(
       135deg,
@@ -32,6 +31,10 @@
     -webkit-text-fill-color: transparent;
     text-align: left;
     margin-bottom: 45px;
+
+    @media (min-width: $desktop-sm-bp) {
+      font-size: calc(40px + 0.5vw);
+    }
   }
 
   & > ul {
@@ -44,6 +47,15 @@
       width: 25%;
       border: 3px solid #dee4e7;
       overflow: hidden;
+
+      @media (max-width: 570px) {
+        width: 50%;
+      }
+
+      @media (max-width: 375px) {
+        width: 100%;
+      }
+
       & > a {
         transition: 0.2s linear;
         & > img {

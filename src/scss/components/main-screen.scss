@@ -132,17 +132,23 @@
 .main-screen__decor-mobile {
   position: absolute;
   bottom: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   background-image: url("../images/main-screen/decor-bottom-mobile.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: bottom;
-  width: 100%;
+  width: 90%;
   height: 50%;
 
   @media (min-width: $desktop-sm-bp) {
     display: none;
   }
+
+  @media (max-height: 510px) {
+    width: 75%;
+  }
+
   & > a {
     display: inline-block;
     position: absolute;
@@ -152,11 +158,17 @@
     height: 100%;
     & > span {
       position: absolute;
+      width: 100%;
+      text-align: center;
       left: 50%;
       transform: translateX(-50%);
       bottom: 7%;
       @include text($color: #1c70b0, $font-size: calc(10px + 0.5vw));
       text-transform: uppercase;
+
+      @media (max-height: 510px) {
+        font-size: calc(9px + 0.5vw);
+      }
     }
 
     & > .arrow-wrapper {

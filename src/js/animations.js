@@ -11,6 +11,8 @@ export default class Animations {
       const top = this.menuBtn.querySelector(".top");
       const mid = this.menuBtn.querySelector(".mid");
       const bot = this.menuBtn.querySelector(".bot");
+      const firstScreen = document.querySelector(".js-first-screen");
+
       menuToggle
         .set(this.menuBtn, { className: "-=closemenu" })
         .set(this.menuBtn, { className: "+=openmenu" })
@@ -27,9 +29,11 @@ export default class Animations {
         if (menuToggle.reversed()) {
           menuToggle.restart();
           this.handleMenu(true);
+          firstScreen.style.height = "100vh";
         } else {
           menuToggle.reverse();
           this.handleMenu(false);
+          firstScreen.style.height = "unset";
         }
       });
     }
@@ -38,7 +42,6 @@ export default class Animations {
   handleMenu(show) {
     const womenPicture = document.querySelector(".women-picture");
     const menu = document.querySelector(".js-menu");
-    const menuToggle = new TimelineMax({ paused: true, reversed: true });
     menu.classList.toggle("hidden");
     if (womenPicture) womenPicture.classList.toggle("hidden");
     if (show) {
@@ -46,7 +49,6 @@ export default class Animations {
         opacity: 0,
         scale: 0
       });
-    } else {
     }
   }
 

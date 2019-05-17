@@ -1614,6 +1614,7 @@ function () {
         var top = this.menuBtn.querySelector(".top");
         var mid = this.menuBtn.querySelector(".mid");
         var bot = this.menuBtn.querySelector(".bot");
+        var firstScreen = document.querySelector(".js-first-screen");
         menuToggle.set(this.menuBtn, {
           className: "-=closemenu"
         }).set(this.menuBtn, {
@@ -1643,10 +1644,14 @@ function () {
             menuToggle.restart();
 
             _this.handleMenu(true);
+
+            firstScreen.style.height = "100vh";
           } else {
             menuToggle.reverse();
 
             _this.handleMenu(false);
+
+            firstScreen.style.height = "unset";
           }
         });
       }
@@ -1656,10 +1661,6 @@ function () {
     value: function handleMenu(show) {
       var womenPicture = document.querySelector(".women-picture");
       var menu = document.querySelector(".js-menu");
-      var menuToggle = new TimelineMax({
-        paused: true,
-        reversed: true
-      });
       menu.classList.toggle("hidden");
       if (womenPicture) womenPicture.classList.toggle("hidden");
 
@@ -1668,7 +1669,7 @@ function () {
           opacity: 0,
           scale: 0
         });
-      } else {}
+      }
     }
   }, {
     key: "firstScreen",
@@ -14311,7 +14312,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56652" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53888" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -3,6 +3,7 @@
 @import "../components/slider-control";
 .product-page__main-screen {
   @extend .main-page__screen;
+  height: 100vh;
 }
 
 .product-page__inner {
@@ -20,18 +21,13 @@
   }
 }
 
-.product-page__vitamins {
-  max-width: 38%;
-  height: 100%;
-  margin: 0 auto;
-  display: flex;
-  align-items: flex-end;
-}
-
 .product-page__title-wrapper {
-  @extend .main-screen__title-wrapper;
-  top: 8%;
-  width: 100%;
+  text-align: center;
+  margin: 5em 0 2em;
+
+  @media (min-width: $desktop-sm-bp) {
+    margin: 2em 0 4em;
+  }
 }
 
 .product-page__title {
@@ -40,8 +36,8 @@
   font-weight: 700;
   text-transform: uppercase;
   font-family: $primary-font-stack;
-  font-size: calc(135px - 1vw);
-  margin-bottom: 38px;
+  font-size: calc(40px + 0.5vw);
+  margin-bottom: 30px;
   background: rgb(61, 165, 107); /* Old browsers */
 
   background: linear-gradient(
@@ -56,13 +52,33 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3da56b', endColorstr='#df4307',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
+  @media (min-width: $desktop-sm-bp) {
+    font-size: calc(135px - 1vw);
+  }
+}
+
+.product-page__vitamins {
+  max-width: 80%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+
+  @media (min-width: $desktop-sm-bp) {
+    max-width: 38%;
+    align-items: flex-end;
+  }
 }
 
 .product-page__subtitle {
   @extend .main-screen__subtitle;
   text-transform: uppercase;
   top: 0;
+  font-size: 11px;
   letter-spacing: 2px;
+  @media (min-width: $desktop-sm-bp) {
+    font-size: 23px;
+  }
 }
 
 .product-page__fruits {
