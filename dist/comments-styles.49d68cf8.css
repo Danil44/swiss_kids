@@ -172,9 +172,13 @@ section {
   display: block;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   line-height: 1;
-  height: 100%;
+  min-height: 100%;
   position: relative;
   overflow-x: hidden;
 }
@@ -553,6 +557,11 @@ a {
   padding: 0 2em;
   z-index: 20;
 }
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (width: 375px) and (height: 559px) and (orientation: portrait) and (color: 8) and (device-aspect-ratio: 375/667) and (aspect-ratio: 375/559) and (device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 2) {
+  .slider-control, .main-page__slider-control {
+    left: -10%;
+  }
+}
 .slider-control > button, .main-page__slider-control > button {
   font-size: 60px;
   cursor: pointer;
@@ -868,6 +877,11 @@ a {
   width: 100%;
   padding: 0 2em;
   z-index: 20;
+}
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (width: 375px) and (height: 559px) and (orientation: portrait) and (color: 8) and (device-aspect-ratio: 375/667) and (aspect-ratio: 375/559) and (device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 2) {
+  .slider-control, .main-page__slider-control {
+    left: -10%;
+  }
 }
 .slider-control > button, .main-page__slider-control > button {
   font-size: 60px;
