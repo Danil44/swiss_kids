@@ -1,5 +1,6 @@
 @import "./main-page.scss";
 @import "../helpers/variables";
+@import "../components/slider-control";
 .product-page__main-screen {
   @extend .main-page__screen;
 }
@@ -107,4 +108,28 @@
 
 .product-page__about {
   @extend .main-page__screen;
+}
+
+.product-page__slider-control {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 100%;
+  padding: 0 2em;
+  z-index: 20;
+
+  & > button {
+    font-size: 60px;
+    cursor: pointer;
+    color: #acacac;
+    transition: 0.1s linear;
+
+    &:hover {
+      color: #464646;
+    }
+  }
 }

@@ -4,24 +4,19 @@
   align-items: center;
   justify-content: space-between;
   position: absolute;
-  top: 50%;
+  pointer-events: none;
+  top: 60%;
   left: 0;
   transform: translateY(-50%);
   width: 100%;
   padding: 0 2em;
   z-index: 20;
-  @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (width: 375px) and (height: 559px) and (orientation: portrait) and (color: 8) and (device-aspect-ratio: 375/667) and (aspect-ratio: 375/559) and (device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 2) {
-    left: -10%;
-  }
 
-  & > button {
-    font-size: 60px;
+  & > span {
+    display: block;
     cursor: pointer;
-    color: #acacac;
-    transition: 0.1s linear;
-
-    &:hover {
-      color: #414141;
-    }
+    width: 25%;
+    padding: 15px;
+    pointer-events: auto;
   }
 }

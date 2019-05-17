@@ -319,11 +319,16 @@ a {
 
 .main-screen {
   background-image: url("/background.dacad9f3.png");
-  height: 100%;
+  height: 100vh !important;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   position: relative;
+}
+@media (max-width: 1024px) and (min-height: 510px) {
+  .main-screen {
+    height: 90vh !important;
+  }
 }
 
 .main-screen__burger {
@@ -387,7 +392,7 @@ a {
 }
 
 .main-screen__title-wrapper {
-  width: 100%;
+  width: 85%;
   text-align: center;
   position: absolute;
   top: 15%;
@@ -409,7 +414,7 @@ a {
 
 .main-screen__title {
   margin: 0 auto;
-  width: 70%;
+  width: 65%;
   margin-bottom: 1em;
 }
 @media (min-width: 1024px) {
@@ -550,26 +555,20 @@ a {
   align-items: center;
   justify-content: space-between;
   position: absolute;
-  top: 50%;
+  pointer-events: none;
+  top: 60%;
   left: 0;
   transform: translateY(-50%);
   width: 100%;
   padding: 0 2em;
   z-index: 20;
 }
-@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (width: 375px) and (height: 559px) and (orientation: portrait) and (color: 8) and (device-aspect-ratio: 375/667) and (aspect-ratio: 375/559) and (device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 2) {
-  .slider-control, .main-page__slider-control {
-    left: -10%;
-  }
-}
-.slider-control > button, .main-page__slider-control > button {
-  font-size: 60px;
+.slider-control > span, .main-page__slider-control > span {
+  display: block;
   cursor: pointer;
-  color: #acacac;
-  transition: 0.1s linear;
-}
-.slider-control > button:hover, .main-page__slider-control > button:hover {
-  color: #414141;
+  width: 25%;
+  padding: 15px;
+  pointer-events: auto;
 }
 
 .border {
@@ -595,13 +594,13 @@ a {
   position: relative;
   overflow: hidden;
   width: 100%;
-  height: 100vh;
-  height: calc(var(--vh, 1vh) * 100);
+  height: unset;
   background-color: #e3eaec;
 }
 @media (min-width: 1024px) {
   .main-page__screen, .company-page__main-screen, .comments-page__main-screen {
     padding: 1.5em;
+    height: 100vh;
   }
 }
 .main-page__screen.main-page__about, .main-page__about.company-page__main-screen, .main-page__about.comments-page__main-screen {
@@ -762,7 +761,7 @@ a {
 }
 
 .main-page__slider-control {
-  top: 60%;
+  top: 55%;
 }
 @media (min-width: 1024px) {
   .main-page__slider-control {
@@ -775,26 +774,20 @@ a {
   align-items: center;
   justify-content: space-between;
   position: absolute;
-  top: 50%;
+  pointer-events: none;
+  top: 60%;
   left: 0;
   transform: translateY(-50%);
   width: 100%;
   padding: 0 2em;
   z-index: 20;
 }
-@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (width: 375px) and (height: 559px) and (orientation: portrait) and (color: 8) and (device-aspect-ratio: 375/667) and (aspect-ratio: 375/559) and (device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 2) {
-  .slider-control, .main-page__slider-control {
-    left: -10%;
-  }
-}
-.slider-control > button, .main-page__slider-control > button {
-  font-size: 60px;
+.slider-control > span, .main-page__slider-control > span {
+  display: block;
   cursor: pointer;
-  color: #acacac;
-  transition: 0.1s linear;
-}
-.slider-control > button:hover, .main-page__slider-control > button:hover {
-  color: #414141;
+  width: 25%;
+  padding: 15px;
+  pointer-events: auto;
 }
 
 .border {
@@ -820,13 +813,13 @@ a {
   position: relative;
   overflow: hidden;
   width: 100%;
-  height: 100vh;
-  height: calc(var(--vh, 1vh) * 100);
+  height: unset;
   background-color: #e3eaec;
 }
 @media (min-width: 1024px) {
   .main-page__screen, .company-page__main-screen, .comments-page__main-screen {
     padding: 1.5em;
+    height: 100vh;
   }
 }
 .main-page__screen.main-page__about, .main-page__about.company-page__main-screen, .main-page__about.comments-page__main-screen {
@@ -987,7 +980,7 @@ a {
 }
 
 .main-page__slider-control {
-  top: 60%;
+  top: 55%;
 }
 @media (min-width: 1024px) {
   .main-page__slider-control {
@@ -1215,26 +1208,20 @@ a {
   align-items: center;
   justify-content: space-between;
   position: absolute;
-  top: 50%;
+  pointer-events: none;
+  top: 60%;
   left: 0;
   transform: translateY(-50%);
   width: 100%;
   padding: 0 2em;
   z-index: 20;
 }
-@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (width: 375px) and (height: 559px) and (orientation: portrait) and (color: 8) and (device-aspect-ratio: 375/667) and (aspect-ratio: 375/559) and (device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 2) {
-  .slider-control, .main-page__slider-control {
-    left: -10%;
-  }
-}
-.slider-control > button, .main-page__slider-control > button {
-  font-size: 60px;
+.slider-control > span, .main-page__slider-control > span {
+  display: block;
   cursor: pointer;
-  color: #acacac;
-  transition: 0.1s linear;
-}
-.slider-control > button:hover, .main-page__slider-control > button:hover {
-  color: #414141;
+  width: 25%;
+  padding: 15px;
+  pointer-events: auto;
 }
 
 .border {
@@ -1260,13 +1247,13 @@ a {
   position: relative;
   overflow: hidden;
   width: 100%;
-  height: 100vh;
-  height: calc(var(--vh, 1vh) * 100);
+  height: unset;
   background-color: #e3eaec;
 }
 @media (min-width: 1024px) {
   .main-page__screen, .company-page__main-screen, .comments-page__main-screen {
     padding: 1.5em;
+    height: 100vh;
   }
 }
 .main-page__screen.main-page__about, .main-page__about.company-page__main-screen, .main-page__about.comments-page__main-screen {
@@ -1427,7 +1414,7 @@ a {
 }
 
 .main-page__slider-control {
-  top: 60%;
+  top: 55%;
 }
 @media (min-width: 1024px) {
   .main-page__slider-control {
@@ -1440,26 +1427,20 @@ a {
   align-items: center;
   justify-content: space-between;
   position: absolute;
-  top: 50%;
+  pointer-events: none;
+  top: 60%;
   left: 0;
   transform: translateY(-50%);
   width: 100%;
   padding: 0 2em;
   z-index: 20;
 }
-@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (width: 375px) and (height: 559px) and (orientation: portrait) and (color: 8) and (device-aspect-ratio: 375/667) and (aspect-ratio: 375/559) and (device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 2) {
-  .slider-control, .main-page__slider-control {
-    left: -10%;
-  }
-}
-.slider-control > button, .main-page__slider-control > button {
-  font-size: 60px;
+.slider-control > span, .main-page__slider-control > span {
+  display: block;
   cursor: pointer;
-  color: #acacac;
-  transition: 0.1s linear;
-}
-.slider-control > button:hover, .main-page__slider-control > button:hover {
-  color: #414141;
+  width: 25%;
+  padding: 15px;
+  pointer-events: auto;
 }
 
 .border {
@@ -1485,13 +1466,13 @@ a {
   position: relative;
   overflow: hidden;
   width: 100%;
-  height: 100vh;
-  height: calc(var(--vh, 1vh) * 100);
+  height: unset;
   background-color: #e3eaec;
 }
 @media (min-width: 1024px) {
   .main-page__screen, .company-page__main-screen, .comments-page__main-screen {
     padding: 1.5em;
+    height: 100vh;
   }
 }
 .main-page__screen.main-page__about, .main-page__about.company-page__main-screen, .main-page__about.comments-page__main-screen {
@@ -1652,7 +1633,7 @@ a {
 }
 
 .main-page__slider-control {
-  top: 60%;
+  top: 55%;
 }
 @media (min-width: 1024px) {
   .main-page__slider-control {
