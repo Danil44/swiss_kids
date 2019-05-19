@@ -138,6 +138,7 @@
   align-items: center;
   justify-content: space-between;
   position: absolute;
+  pointer-events: none;
   top: 50%;
   left: 0;
   transform: translateY(-50%);
@@ -150,6 +151,7 @@
     cursor: pointer;
     color: #acacac;
     transition: 0.1s linear;
+    pointer-events: auto;
 
     &:hover {
       color: #464646;
