@@ -11,6 +11,10 @@
   z-index: 5;
   position: relative;
 
+  @media (min-width: $laptop-sm-bp) {
+    margin-top: 10em;
+  }
+
   @media (min-width: $desktop-sm-bp) {
     width: 70%;
     overflow: auto;

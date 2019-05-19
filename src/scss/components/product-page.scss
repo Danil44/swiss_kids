@@ -3,7 +3,10 @@
 @import "../components/slider-control";
 .product-page__main-screen {
   @extend .main-page__screen;
-  height: 100vh;
+
+  @media (max-width: 567px) {
+    height: 100vh;
+  }
 }
 
 .product-page__inner {
@@ -36,7 +39,7 @@
   font-weight: 700;
   text-transform: uppercase;
   font-family: $primary-font-stack;
-  font-size: calc(40px + 0.5vw);
+  font-size: calc(35px + 0.5vw);
   margin-bottom: 30px;
   background: rgb(61, 165, 107); /* Old browsers */
 
@@ -59,10 +62,14 @@
 }
 
 .product-page__vitamins {
-  max-width: 80%;
+  max-width: 60%;
   margin: 0 auto;
   display: flex;
   align-items: center;
+
+  @media (max-width: 567px) {
+    max-width: 100%;
+  }
 
   @media (min-width: $desktop-sm-bp) {
     max-width: 38%;

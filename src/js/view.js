@@ -20,7 +20,7 @@ export default class View extends EventEmitter {
 
     this.animation.burger();
 
-    if (window.matchMedia("(max-width: 1024px)").matches) {
+    if (window.matchMedia("(max-width: 1279px)").matches) {
       const hiddenAnimation = document.querySelectorAll(
         ".js-animation-container .hidden"
       );
@@ -50,14 +50,14 @@ export default class View extends EventEmitter {
       const path = this.getPath() || currentPage;
       console.log(path);
 
-      if (window.matchMedia("(min-width: 1024px)").matches) {
+      if (window.matchMedia("(min-width: 1279px)").matches) {
         window.location.href = `#${path}`;
       }
 
       const preloaderCircle = document.getElementById("preloader");
 
       setTimeout(() => {
-        if (window.matchMedia("(min-width: 1024px)").matches && currentPage) {
+        if (window.matchMedia("(min-width: 1279px)").matches && currentPage) {
           this.loadFirstScreenAnimation();
           this.loadOnePageScroll(path);
         }
@@ -66,7 +66,7 @@ export default class View extends EventEmitter {
         }
         if (
           currentPage === "main" &&
-          window.matchMedia("(max-width: 1024px)").matches
+          window.matchMedia("(max-width: 767px)").matches
         ) {
           this.loadProductsSlide();
         }
@@ -128,11 +128,14 @@ export default class View extends EventEmitter {
       touch: true,
       speed: 500,
       responsive: {
-        640: {
-          items: 2
+        320: {
+          items: 1
         },
 
         768: {
+          items: 2
+        },
+        1024: {
           items: 3
         }
       }

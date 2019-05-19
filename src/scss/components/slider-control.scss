@@ -12,7 +12,7 @@
   padding: 0 2em;
   z-index: 20;
 
-  @media (min-width: $desktop-sm-bp) {
+  @media (min-width: 768px) {
     display: none;
   }
 

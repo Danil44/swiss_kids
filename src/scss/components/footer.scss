@@ -7,9 +7,12 @@
   padding: 1em;
   height: 60vh;
 
+  @media (min-width: $landscape-bp) {
+    height: 100vh;
+  }
+
   @media (min-width: $desktop-sm-bp) {
     padding: 1.5em;
-    height: 100vh;
   }
 
   &__inner {

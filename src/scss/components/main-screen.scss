@@ -12,7 +12,11 @@
   background-position: center;
   position: relative;
 
-  @media (max-width: $desktop-sm-bp) and (min-height: 510px) {
+  @media (min-width: $landscape-bp) and (max-width: 1023px) {
+    height: 160vh !important;
+  }
+
+  @media (max-width: 1023px) and (min-height: 510px) {
     height: 90vh !important;
   }
 }
@@ -25,7 +29,7 @@
   right: 50px;
   z-index: 22;
   transition: 0.2s linear;
-  @media (min-width: $desktop-sm-bp) {
+  @media (min-width: $laptop-sm-bp) {
     width: 40px;
     top: 100px;
     right: 100px;
@@ -41,18 +45,6 @@
     width: 100%;
     height: 4px;
     background-color: #000;
-
-    // &:first-child {
-    //   width: 100%;
-    // }
-
-    // &:nth-child(2) {
-    //   width: 70%;
-    // }
-
-    // &:last-child {
-    //   width: 40%;
-    // }
 
     &:not(:last-child) {
       margin-bottom: 4px;
@@ -85,9 +77,12 @@
       transform: scale(1.1);
     }
   }
-  @media (min-width: $desktop-sm-bp) {
+  @media (min-width: $laptop-sm-bp) {
     display: block;
     width: 30%;
+  }
+  @media (min-width: $landscape-bp) and (max-width: $laptop-sm-bp) {
+    top: 10px;
   }
 }
 
@@ -98,7 +93,7 @@
   top: 15%;
   left: 50%;
   transform: translateX(-50%);
-  @media (min-width: $desktop-sm-bp) {
+  @media (min-width: $laptop-sm-bp) {
     top: 20%;
     width: 900px;
     height: 145px;
@@ -110,18 +105,25 @@
 
 .main-screen__title {
   margin: 0 auto;
-  width: 65%;
   margin-bottom: 1em;
-  @media (min-width: $desktop-sm-bp) {
-    width: 100%;
+  @media (min-width: $laptop-sm-bp) {
     margin-bottom: 1.5em;
+  }
+
+  @media (min-width: $landscape-bp) and (max-width: $laptop-sm-bp) {
+    max-width: 90%;
   }
 }
 
 .main-screen__subtitle {
   @include text($font-size: 15px);
   letter-spacing: 6px;
-  @media (min-width: $desktop-sm-bp) {
+
+  @media (min-width: $landscape-bp) {
+    font-size: 20px;
+  }
+
+  @media (min-width: $laptop-sm-bp) {
     font-size: 23px;
     letter-spacing: 14px;
     text-align: center;
@@ -141,12 +143,16 @@
   width: 90%;
   height: 50%;
 
-  @media (min-width: $desktop-sm-bp) {
+  @media (min-width: $laptop-sm-bp) {
     display: none;
   }
 
   @media (max-height: 510px) {
     width: 75%;
+  }
+
+  @media (min-width: $landscape-bp) {
+    width: 45%;
   }
 
   & > a {
@@ -155,14 +161,14 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 75%;
     & > span {
       position: absolute;
       width: 100%;
       text-align: center;
       left: 50%;
       transform: translateX(-50%);
-      bottom: 7%;
+      bottom: 15px;
       @include text($color: #1c70b0, $font-size: calc(10px + 0.5vw));
       text-transform: uppercase;
 
@@ -180,7 +186,7 @@
       & > img {
         transform: rotate(90deg) translateY(50%);
         position: absolute;
-        bottom: 15%;
+        bottom: 37px;
         left: 50%;
         max-width: 10%;
       }
