@@ -590,6 +590,9 @@ a {
     .main-page__screen, .comments-page__main-screen, .company-page__main-screen, .distributor-page__main-screen {
       padding: 1.5em;
       height: 100%; } }
+  @media (min-width: 1279px) {
+    .main-page__screen, .comments-page__main-screen, .company-page__main-screen, .distributor-page__main-screen {
+      height: 100vh; } }
   .main-page__screen.main-page__about, .main-page__about.comments-page__main-screen, .main-page__about.company-page__main-screen, .main-page__about.distributor-page__main-screen {
     background: none; }
 
@@ -598,9 +601,6 @@ a {
   padding: 0.7em 0.5em;
   position: relative;
   height: 100%; }
-  @media (min-width: 1279px) {
-    .main-page__inner, .comments-page__inner, .company-page__inner, .distributor-page__inner {
-      padding: 3.5em 5.5em; } }
   .main-page__inner > nav, .comments-page__inner > nav, .company-page__inner > nav, .distributor-page__inner > nav {
     width: 100%;
     height: 100%;
@@ -771,7 +771,7 @@ a {
       position: unset !important; }
       .main-page__fruits > ul:last-child li:first-child {
         max-width: 12%;
-        margin-left: 7em; }
+        margin-left: 12em; }
       .main-page__fruits > ul:last-child li:nth-child(2) {
         max-width: 25%;
         margin-left: 7em; }
@@ -782,7 +782,7 @@ a {
         max-width: 85%; }
       @media (min-width: 768px) {
         .main-page__fruits > ul:last-child li:first-child {
-          margin-left: 7em; }
+          margin-left: 12em; }
         .main-page__fruits > ul:last-child li:nth-child(2) {
           margin-left: 9em; }
         .main-page__fruits > ul:last-child li:nth-child(3) {
@@ -881,6 +881,9 @@ a {
     .main-page__screen, .comments-page__main-screen, .company-page__main-screen, .distributor-page__main-screen {
       padding: 1.5em;
       height: 100%; } }
+  @media (min-width: 1279px) {
+    .main-page__screen, .comments-page__main-screen, .company-page__main-screen, .distributor-page__main-screen {
+      height: 100vh; } }
   .main-page__screen.main-page__about, .main-page__about.comments-page__main-screen, .main-page__about.company-page__main-screen, .main-page__about.distributor-page__main-screen {
     background: none; }
 
@@ -889,9 +892,6 @@ a {
   padding: 0.7em 0.5em;
   position: relative;
   height: 100%; }
-  @media (min-width: 1279px) {
-    .main-page__inner, .comments-page__inner, .company-page__inner, .distributor-page__inner {
-      padding: 3.5em 5.5em; } }
   .main-page__inner > nav, .comments-page__inner > nav, .company-page__inner > nav, .distributor-page__inner > nav {
     width: 100%;
     height: 100%;
@@ -1062,7 +1062,7 @@ a {
       position: unset !important; }
       .main-page__fruits > ul:last-child li:first-child {
         max-width: 12%;
-        margin-left: 7em; }
+        margin-left: 12em; }
       .main-page__fruits > ul:last-child li:nth-child(2) {
         max-width: 25%;
         margin-left: 7em; }
@@ -1073,7 +1073,7 @@ a {
         max-width: 85%; }
       @media (min-width: 768px) {
         .main-page__fruits > ul:last-child li:first-child {
-          margin-left: 7em; }
+          margin-left: 12em; }
         .main-page__fruits > ul:last-child li:nth-child(2) {
           margin-left: 9em; }
         .main-page__fruits > ul:last-child li:nth-child(3) {
@@ -1114,7 +1114,11 @@ a {
     .comments, .about-company, .distributor {
       width: 70%;
       overflow: auto;
-      max-height: 72vh; } }
+      max-height: 72vh;
+      margin-top: 2em; } }
+  @media (min-width: 1680px) {
+    .comments, .about-company, .distributor {
+      margin-top: 5em; } }
 
 @media (min-width: 1279px) {
   .comments__list {
@@ -1265,7 +1269,7 @@ a {
 
 .about-company__list {
   position: relative; }
-  @media (min-width: 1279px) {
+  @media (min-width: 1680px) {
     .about-company__list {
       padding: 5em 8em; } }
   .about-company__list > li {
@@ -1275,7 +1279,6 @@ a {
         -ms-flex-align: unset;
             align-items: unset;
     position: relative;
-    padding-bottom: 25px;
     margin-bottom: 55px; }
     @media (min-width: 1279px) {
       .about-company__list > li {
@@ -1401,14 +1404,28 @@ a {
   margin-top: 5em;
   padding: 0 1em;
   visibility: visible;
-  z-index: 2; }
+  z-index: 2;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center; }
   @media (max-width: 375px) {
     .about-screen__desc {
       margin-top: 2em; } }
   @media (min-width: 1279px) {
     .about-screen__desc {
       padding: 0;
-      width: 870px; } }
+      width: 870px;
+      height: 100%; } }
   .about-screen__desc.hidden {
     opacity: 0;
     visibility: hidden; }
@@ -1466,6 +1483,10 @@ a {
   cursor: pointer; }
   @media (min-width: 1279px) {
     .about-screen__btn, .distributor__btn {
+      font-size: calc(17px + 0.5vw);
+      padding: 20px 110px; } }
+  @media (min-width: 1680px) {
+    .about-screen__btn, .distributor__btn {
       font-size: calc(20px + 0.5vw);
       padding: 35px 130px; } }
   .about-screen__btn::after, .distributor__btn::after {
@@ -1485,8 +1506,12 @@ a {
     height: 14px; }
     @media (min-width: 1279px) {
       .about-screen__btn::after, .distributor__btn::after {
+        width: 20px;
+        height: 20px;
+        right: 12%; } }
+    @media (min-width: 1680px) {
+      .about-screen__btn::after, .distributor__btn::after {
         top: 49%;
-        right: 12%;
         -webkit-transform: translate(-50%, -40%);
                 transform: translate(-50%, -40%);
         width: 30px;
@@ -1504,7 +1529,7 @@ a {
   .distributor__inner::before {
     content: unset; }
 
-@media (min-width: 1279px) {
+@media (min-width: 1680px) {
   .distributor__content {
     padding: 5em 2em 5em 8em; } }
 
@@ -1667,6 +1692,9 @@ a {
     .main-page__screen, .comments-page__main-screen, .company-page__main-screen, .distributor-page__main-screen {
       padding: 1.5em;
       height: 100%; } }
+  @media (min-width: 1279px) {
+    .main-page__screen, .comments-page__main-screen, .company-page__main-screen, .distributor-page__main-screen {
+      height: 100vh; } }
   .main-page__screen.main-page__about, .main-page__about.comments-page__main-screen, .main-page__about.company-page__main-screen, .main-page__about.distributor-page__main-screen {
     background: none; }
 
@@ -1675,9 +1703,6 @@ a {
   padding: 0.7em 0.5em;
   position: relative;
   height: 100%; }
-  @media (min-width: 1279px) {
-    .main-page__inner, .comments-page__inner, .company-page__inner, .distributor-page__inner {
-      padding: 3.5em 5.5em; } }
   .main-page__inner > nav, .comments-page__inner > nav, .company-page__inner > nav, .distributor-page__inner > nav {
     width: 100%;
     height: 100%;
@@ -1848,7 +1873,7 @@ a {
       position: unset !important; }
       .main-page__fruits > ul:last-child li:first-child {
         max-width: 12%;
-        margin-left: 7em; }
+        margin-left: 12em; }
       .main-page__fruits > ul:last-child li:nth-child(2) {
         max-width: 25%;
         margin-left: 7em; }
@@ -1859,7 +1884,7 @@ a {
         max-width: 85%; }
       @media (min-width: 768px) {
         .main-page__fruits > ul:last-child li:first-child {
-          margin-left: 7em; }
+          margin-left: 12em; }
         .main-page__fruits > ul:last-child li:nth-child(2) {
           margin-left: 9em; }
         .main-page__fruits > ul:last-child li:nth-child(3) {
@@ -1944,6 +1969,9 @@ a {
     .main-page__screen, .comments-page__main-screen, .company-page__main-screen, .distributor-page__main-screen {
       padding: 1.5em;
       height: 100%; } }
+  @media (min-width: 1279px) {
+    .main-page__screen, .comments-page__main-screen, .company-page__main-screen, .distributor-page__main-screen {
+      height: 100vh; } }
   .main-page__screen.main-page__about, .main-page__about.comments-page__main-screen, .main-page__about.company-page__main-screen, .main-page__about.distributor-page__main-screen {
     background: none; }
 
@@ -1952,9 +1980,6 @@ a {
   padding: 0.7em 0.5em;
   position: relative;
   height: 100%; }
-  @media (min-width: 1279px) {
-    .main-page__inner, .comments-page__inner, .company-page__inner, .distributor-page__inner {
-      padding: 3.5em 5.5em; } }
   .main-page__inner > nav, .comments-page__inner > nav, .company-page__inner > nav, .distributor-page__inner > nav {
     width: 100%;
     height: 100%;
@@ -2125,7 +2150,7 @@ a {
       position: unset !important; }
       .main-page__fruits > ul:last-child li:first-child {
         max-width: 12%;
-        margin-left: 7em; }
+        margin-left: 12em; }
       .main-page__fruits > ul:last-child li:nth-child(2) {
         max-width: 25%;
         margin-left: 7em; }
@@ -2136,7 +2161,7 @@ a {
         max-width: 85%; }
       @media (min-width: 768px) {
         .main-page__fruits > ul:last-child li:first-child {
-          margin-left: 7em; }
+          margin-left: 12em; }
         .main-page__fruits > ul:last-child li:nth-child(2) {
           margin-left: 9em; }
         .main-page__fruits > ul:last-child li:nth-child(3) {

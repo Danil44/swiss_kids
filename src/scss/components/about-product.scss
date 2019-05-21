@@ -6,12 +6,16 @@
   height: 100%;
   padding: 1.7em 1em;
 
-  @media (min-width: $tablet-bp) {
-    padding: 2.7em 5em;
-  }
+  // @media (min-width: $tablet-bp) {
+  //   padding: 2.7em 5em;
+  // }
 
-  @media (min-width: $desktop-sm-bp) {
-    padding: 5.5em 9.5em;
+  // @media (min-width: $desktop-sm-bp) {
+  //   padding: 5.5em 9.5em;
+  // }
+
+  @media (min-width: $desktop-lg-bp) {
+    padding: 3.7em 5em;
   }
 }
 
@@ -40,7 +44,7 @@
   justify-content: space-between;
   flex-direction: column;
   width: 100%;
-  align-items: baseline;
+  align-items: center;
 
   @media (min-width: $desktop-sm-bp) {
     flex-direction: row;

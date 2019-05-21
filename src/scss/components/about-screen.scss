@@ -22,6 +22,10 @@
   padding: 0 1em;
   visibility: visible;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
   @media (max-width: 375px) {
     margin-top: 2em;
@@ -30,6 +34,7 @@
   @media (min-width: $desktop-sm-bp) {
     padding: 0;
     width: 870px;
+    height: 100%;
   }
 
   &.hidden {
@@ -102,6 +107,11 @@
   cursor: pointer;
 
   @media (min-width: $desktop-sm-bp) {
+    font-size: calc(17px + 0.5vw);
+    padding: 20px 110px;
+  }
+
+  @media (min-width: $desktop-lg-bp) {
     font-size: calc(20px + 0.5vw);
     padding: 35px 130px;
   }
@@ -121,8 +131,13 @@
     height: 14px;
 
     @media (min-width: $desktop-sm-bp) {
-      top: 49%;
+      width: 20px;
+      height: 20px;
       right: 12%;
+    }
+
+    @media (min-width: $desktop-lg-bp) {
+      top: 49%;
       transform: translate(-50%, -40%);
       width: 30px;
       height: 30px;

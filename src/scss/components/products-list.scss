@@ -42,7 +42,11 @@
   justify-content: center;
 
   @media (min-width: $desktop-sm-bp) {
+    padding: 2em 0;
     margin-right: 1.2em;
+  }
+  @media (min-width: $desktop-lg-bp) {
+    padding: 4.5em 0;
   }
 
   & > div {
@@ -53,6 +57,14 @@
       width: 65%;
       margin: 0 auto;
       margin-bottom: 4em;
+
+      @media (min-width: $desktop-sm-bp) {
+        margin-bottom: 2em;
+      }
+
+      @media (min-width: $desktop-lg-bp) {
+        margin-bottom: 4em;
+      }
     }
   }
 

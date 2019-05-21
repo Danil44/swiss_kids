@@ -30,6 +30,10 @@
     height: 100%;
   }
 
+  @media (min-width: $desktop-sm-bp) {
+    height: 100vh;
+  }
+
   &.main-page__about {
     background: none;
   }
@@ -42,7 +46,7 @@
   height: 100%;
 
   @media (min-width: $desktop-sm-bp) {
-    padding: 3.5em 5.5em;
+    // padding: 3.5em 5.5em;
   }
   & > nav {
     width: 100%;
@@ -241,7 +245,7 @@
 
       &:first-child {
         max-width: 12%;
-        margin-left: 7em;
+        margin-left: 12em;
       }
       &:nth-child(2) {
         max-width: 25%;
@@ -256,7 +260,7 @@
       }
       @media (min-width: $tablet-bp) {
         &:first-child {
-          margin-left: 7em;
+          margin-left: 12em;
         }
         &:nth-child(2) {
           margin-left: 9em;

@@ -590,6 +590,9 @@ a {
     .main-page__screen, .comments-page__main-screen, .company-page__main-screen {
       padding: 1.5em;
       height: 100%; } }
+  @media (min-width: 1279px) {
+    .main-page__screen, .comments-page__main-screen, .company-page__main-screen {
+      height: 100vh; } }
   .main-page__screen.main-page__about, .main-page__about.comments-page__main-screen, .main-page__about.company-page__main-screen {
     background: none; }
 
@@ -598,9 +601,6 @@ a {
   padding: 0.7em 0.5em;
   position: relative;
   height: 100%; }
-  @media (min-width: 1279px) {
-    .main-page__inner, .comments-page__inner, .company-page__inner {
-      padding: 3.5em 5.5em; } }
   .main-page__inner > nav, .comments-page__inner > nav, .company-page__inner > nav {
     width: 100%;
     height: 100%;
@@ -771,7 +771,7 @@ a {
       position: unset !important; }
       .main-page__fruits > ul:last-child li:first-child {
         max-width: 12%;
-        margin-left: 7em; }
+        margin-left: 12em; }
       .main-page__fruits > ul:last-child li:nth-child(2) {
         max-width: 25%;
         margin-left: 7em; }
@@ -782,7 +782,7 @@ a {
         max-width: 85%; }
       @media (min-width: 768px) {
         .main-page__fruits > ul:last-child li:first-child {
-          margin-left: 7em; }
+          margin-left: 12em; }
         .main-page__fruits > ul:last-child li:nth-child(2) {
           margin-left: 9em; }
         .main-page__fruits > ul:last-child li:nth-child(3) {
@@ -881,6 +881,9 @@ a {
     .main-page__screen, .comments-page__main-screen, .company-page__main-screen {
       padding: 1.5em;
       height: 100%; } }
+  @media (min-width: 1279px) {
+    .main-page__screen, .comments-page__main-screen, .company-page__main-screen {
+      height: 100vh; } }
   .main-page__screen.main-page__about, .main-page__about.comments-page__main-screen, .main-page__about.company-page__main-screen {
     background: none; }
 
@@ -889,9 +892,6 @@ a {
   padding: 0.7em 0.5em;
   position: relative;
   height: 100%; }
-  @media (min-width: 1279px) {
-    .main-page__inner, .comments-page__inner, .company-page__inner {
-      padding: 3.5em 5.5em; } }
   .main-page__inner > nav, .comments-page__inner > nav, .company-page__inner > nav {
     width: 100%;
     height: 100%;
@@ -1062,7 +1062,7 @@ a {
       position: unset !important; }
       .main-page__fruits > ul:last-child li:first-child {
         max-width: 12%;
-        margin-left: 7em; }
+        margin-left: 12em; }
       .main-page__fruits > ul:last-child li:nth-child(2) {
         max-width: 25%;
         margin-left: 7em; }
@@ -1073,7 +1073,7 @@ a {
         max-width: 85%; }
       @media (min-width: 768px) {
         .main-page__fruits > ul:last-child li:first-child {
-          margin-left: 7em; }
+          margin-left: 12em; }
         .main-page__fruits > ul:last-child li:nth-child(2) {
           margin-left: 9em; }
         .main-page__fruits > ul:last-child li:nth-child(3) {
@@ -1114,7 +1114,11 @@ a {
     .comments, .about-company {
       width: 70%;
       overflow: auto;
-      max-height: 72vh; } }
+      max-height: 72vh;
+      margin-top: 2em; } }
+  @media (min-width: 1680px) {
+    .comments, .about-company {
+      margin-top: 5em; } }
 
 @media (min-width: 1279px) {
   .comments__list {
@@ -1265,7 +1269,7 @@ a {
 
 .about-company__list {
   position: relative; }
-  @media (min-width: 1279px) {
+  @media (min-width: 1680px) {
     .about-company__list {
       padding: 5em 8em; } }
   .about-company__list > li {
@@ -1275,7 +1279,6 @@ a {
         -ms-flex-align: unset;
             align-items: unset;
     position: relative;
-    padding-bottom: 25px;
     margin-bottom: 55px; }
     @media (min-width: 1279px) {
       .about-company__list > li {
@@ -1435,6 +1438,9 @@ a {
     .main-page__screen, .comments-page__main-screen, .company-page__main-screen {
       padding: 1.5em;
       height: 100%; } }
+  @media (min-width: 1279px) {
+    .main-page__screen, .comments-page__main-screen, .company-page__main-screen {
+      height: 100vh; } }
   .main-page__screen.main-page__about, .main-page__about.comments-page__main-screen, .main-page__about.company-page__main-screen {
     background: none; }
 
@@ -1443,9 +1449,6 @@ a {
   padding: 0.7em 0.5em;
   position: relative;
   height: 100%; }
-  @media (min-width: 1279px) {
-    .main-page__inner, .comments-page__inner, .company-page__inner {
-      padding: 3.5em 5.5em; } }
   .main-page__inner > nav, .comments-page__inner > nav, .company-page__inner > nav {
     width: 100%;
     height: 100%;
@@ -1616,7 +1619,7 @@ a {
       position: unset !important; }
       .main-page__fruits > ul:last-child li:first-child {
         max-width: 12%;
-        margin-left: 7em; }
+        margin-left: 12em; }
       .main-page__fruits > ul:last-child li:nth-child(2) {
         max-width: 25%;
         margin-left: 7em; }
@@ -1627,7 +1630,7 @@ a {
         max-width: 85%; }
       @media (min-width: 768px) {
         .main-page__fruits > ul:last-child li:first-child {
-          margin-left: 7em; }
+          margin-left: 12em; }
         .main-page__fruits > ul:last-child li:nth-child(2) {
           margin-left: 9em; }
         .main-page__fruits > ul:last-child li:nth-child(3) {
@@ -1712,6 +1715,9 @@ a {
     .main-page__screen, .comments-page__main-screen, .company-page__main-screen {
       padding: 1.5em;
       height: 100%; } }
+  @media (min-width: 1279px) {
+    .main-page__screen, .comments-page__main-screen, .company-page__main-screen {
+      height: 100vh; } }
   .main-page__screen.main-page__about, .main-page__about.comments-page__main-screen, .main-page__about.company-page__main-screen {
     background: none; }
 
@@ -1720,9 +1726,6 @@ a {
   padding: 0.7em 0.5em;
   position: relative;
   height: 100%; }
-  @media (min-width: 1279px) {
-    .main-page__inner, .comments-page__inner, .company-page__inner {
-      padding: 3.5em 5.5em; } }
   .main-page__inner > nav, .comments-page__inner > nav, .company-page__inner > nav {
     width: 100%;
     height: 100%;
@@ -1893,7 +1896,7 @@ a {
       position: unset !important; }
       .main-page__fruits > ul:last-child li:first-child {
         max-width: 12%;
-        margin-left: 7em; }
+        margin-left: 12em; }
       .main-page__fruits > ul:last-child li:nth-child(2) {
         max-width: 25%;
         margin-left: 7em; }
@@ -1904,7 +1907,7 @@ a {
         max-width: 85%; }
       @media (min-width: 768px) {
         .main-page__fruits > ul:last-child li:first-child {
-          margin-left: 7em; }
+          margin-left: 12em; }
         .main-page__fruits > ul:last-child li:nth-child(2) {
           margin-left: 9em; }
         .main-page__fruits > ul:last-child li:nth-child(3) {

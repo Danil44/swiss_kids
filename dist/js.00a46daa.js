@@ -14176,15 +14176,16 @@ function (_EventEmitter) {
       this.pageable = new _pageable.default(container, {
         childSelector: "[data-anchor]",
         // CSS3 selector string for the pages
+        throttle: 50,
         anchors: this.anchors,
         // define the page anchors
-        animation: 450,
+        animation: 600,
         // the duration in ms of the scroll animation
         delay: 0,
         // the delay in ms before the scroll animation starts
         orientation: "vertical",
         // or horizontal
-        swipeThreshold: 50,
+        swipeThreshold: 500,
         // swipe / mouse drag distance (px) before firing the page change event
         freeScroll: true,
         // allow manual scrolling when dragging instead of automatically moving to next page
@@ -14193,7 +14194,7 @@ function (_EventEmitter) {
           // enable / disable mousewheel scrolling
           mouse: true,
           // enable / disable mouse drag scrolling
-          touch: true,
+          touch: false,
           // enable / disable touch / swipe scrolling
           keydown: true // enable / disable keyboard navigation
 
@@ -14315,7 +14316,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58974" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61945" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

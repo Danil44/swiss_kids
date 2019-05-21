@@ -35,7 +35,7 @@
 .about-company__list {
   position: relative;
 
-  @media (min-width: $desktop-sm-bp) {
+  @media (min-width: $desktop-lg-bp) {
     padding: 5em 8em;
   }
 
@@ -44,7 +44,6 @@
     height: 100%;
     align-items: unset;
     position: relative;
-    padding-bottom: 25px;
     margin-bottom: 55px;
 
     @media (min-width: $desktop-sm-bp) {

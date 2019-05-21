@@ -175,16 +175,17 @@ export default class View extends EventEmitter {
     const container = document.getElementById("container");
     this.pageable = new Pageable(container, {
       childSelector: "[data-anchor]", // CSS3 selector string for the pages
+      throttle: 50,
       anchors: this.anchors, // define the page anchors
-      animation: 450, // the duration in ms of the scroll animation
+      animation: 600, // the duration in ms of the scroll animation
       delay: 0, // the delay in ms before the scroll animation starts
       orientation: "vertical", // or horizontal
-      swipeThreshold: 50, // swipe / mouse drag distance (px) before firing the page change event
+      swipeThreshold: 500, // swipe / mouse drag distance (px) before firing the page change event
       freeScroll: true, // allow manual scrolling when dragging instead of automatically moving to next page
       events: {
         wheel: true, // enable / disable mousewheel scrolling
         mouse: true, // enable / disable mouse drag scrolling
-        touch: true, // enable / disable touch / swipe scrolling
+        touch: false, // enable / disable touch / swipe scrolling
         keydown: true // enable / disable keyboard navigation
       },
 

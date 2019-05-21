@@ -29,7 +29,7 @@
   margin: 5em 0 2em;
 
   @media (min-width: $desktop-sm-bp) {
-    margin: 2em 0 4em;
+    margin: 2em 0 2.5em;
   }
 }
 
@@ -57,7 +57,7 @@
   -webkit-text-fill-color: transparent;
 
   @media (min-width: $desktop-sm-bp) {
-    font-size: calc(135px - 1vw);
+    font-size: calc(90px + 1vw);
   }
 }
 
@@ -72,7 +72,7 @@
   }
 
   @media (min-width: $desktop-sm-bp) {
-    max-width: 38%;
+    max-width: 33%;
     align-items: flex-end;
   }
 }
