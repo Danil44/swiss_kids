@@ -63,6 +63,7 @@ export default class View extends EventEmitter {
         }
         if (currentPage === "main-product") {
           this.loadProductsSlide();
+          this.upBtn.style.display = "none";
         }
         if (
           currentPage === "main" &&

@@ -586,6 +586,9 @@ a {
   .about-product__desc div, .about-product__ingredients div {
     overflow: auto;
     height: 400px; }
+    @media (min-width: 768px) {
+      .about-product__desc div, .about-product__ingredients div {
+        height: 455px; } }
     .about-product__desc div > p, .about-product__ingredients div > p {
       color: #403e3e;
       font-family: "Open Sans";
@@ -925,7 +928,7 @@ a {
         margin: 0;
         position: absolute;
         top: 19% !important;
-        left: 20% !important; } }
+        left: 34% !important; } }
     .product-screen__vitamins > img {
       max-width: 59%; }
     .product-screen__vitamins--lg {
@@ -949,7 +952,7 @@ a {
     @media (min-width: 1279px) {
       .product-screen__plants {
         top: 5% !important;
-        left: -20% !important; } }
+        left: -10% !important; } }
     @media (max-width: 767px) {
       .product-screen__plants > picture > img {
         width: 350px; } }
@@ -996,7 +999,7 @@ a {
         width: 90px;
         height: 90px;
         top: 20% !important;
-        left: 68% !important; } }
+        left: 80% !important; } }
   .product-screen__forest {
     max-width: 105%;
     left: -1% !important;
@@ -1400,7 +1403,8 @@ a {
   font-weight: 400;
   text-align: center;
   font-size: calc(11px + 0.5vw);
-  margin-bottom: 52px; }
+  margin-bottom: 52px;
+  position: relative; }
   @media (max-width: 375px) {
     .about-screen__text, .about-screen__title, .about-screen__btn {
       line-height: 19px;
@@ -1409,6 +1413,11 @@ a {
     .about-screen__text, .about-screen__title, .about-screen__btn {
       font-size: calc(12px + 0.5vw);
       line-height: 35px; } }
+  .about-screen__text > span, .about-screen__title > span, .about-screen__btn > span {
+    position: absolute;
+    top: -5px;
+    margin-right: 5px;
+    font-size: 17px; }
 
 .about-screen__title, .about-screen__btn {
   font-weight: 700;
@@ -1831,7 +1840,7 @@ a {
         margin: 0;
         position: absolute;
         top: 19% !important;
-        left: 20% !important; } }
+        left: 34% !important; } }
     .product-screen__vitamins > img {
       max-width: 59%; }
     .product-screen__vitamins--lg {
@@ -1855,7 +1864,7 @@ a {
     @media (min-width: 1279px) {
       .product-screen__plants {
         top: 5% !important;
-        left: -20% !important; } }
+        left: -10% !important; } }
     @media (max-width: 767px) {
       .product-screen__plants > picture > img {
         width: 350px; } }
@@ -1902,7 +1911,7 @@ a {
         width: 90px;
         height: 90px;
         top: 20% !important;
-        left: 68% !important; } }
+        left: 80% !important; } }
   .product-screen__forest {
     max-width: 105%;
     left: -1% !important;

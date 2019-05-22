@@ -14064,6 +14064,8 @@ function (_EventEmitter) {
 
           if (currentPage === "main-product") {
             _this2.loadProductsSlide();
+
+            _this2.upBtn.style.display = "none";
           }
 
           if (currentPage === "main" && window.matchMedia("(max-width: 767px)").matches) {
@@ -14314,7 +14316,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49561" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59902" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

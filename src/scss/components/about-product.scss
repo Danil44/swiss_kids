@@ -67,6 +67,10 @@
     overflow: auto;
     height: 400px;
 
+    @media (min-width: $tablet-bp) {
+      height: 455px;
+    }
+
     & > p {
       @include text($font-size: calc(11px + 0.5vw));
       line-height: 33px;

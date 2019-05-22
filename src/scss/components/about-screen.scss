@@ -51,6 +51,7 @@
   text-align: center;
   font-size: calc(11px + 0.5vw);
   margin-bottom: 52px;
+  position: relative;
 
   @media (max-width: 375px) {
     line-height: 19px;
@@ -60,6 +61,13 @@
   @media (min-width: $desktop-sm-bp) {
     font-size: calc(12px + 0.5vw);
     line-height: 35px;
+  }
+
+  & > span {
+    position: absolute;
+    top: -5px;
+    margin-right: 5px;
+    font-size: 17px;
   }
 }
 
