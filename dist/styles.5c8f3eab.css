@@ -904,7 +904,7 @@ a {
     top: 10% !important; }
     @media (min-width: 1279px) {
       .product-screen__fish {
-        top: 0% !important; } }
+        top: 2% !important; } }
   .product-screen__night {
     width: 100%;
     z-index: -1;
@@ -1758,7 +1758,7 @@ a {
   -webkit-text-fill-color: transparent; }
   @media (min-width: 1279px) {
     .product-page__title {
-      font-size: calc(90px + 1vw); } }
+      font-size: calc(75px + 1vw); } }
 
 .product-page__vitamins {
   max-width: 60%;
@@ -1788,36 +1788,6 @@ a {
     .product-page__subtitle {
       font-size: 23px; } }
 
-.product-page__fruits {
-  height: 100%; }
-  .product-page__fruits > ul:first-child {
-    top: -20% !important;
-    left: 0;
-    width: 50%;
-    height: 100%; }
-    .product-page__fruits > ul:first-child li {
-      position: absolute !important; }
-      .product-page__fruits > ul:first-child li:first-child {
-        width: 45%;
-        top: -35% !important; }
-      .product-page__fruits > ul:first-child li:last-child {
-        width: 25%;
-        top: 10% !important;
-        left: 50% !important; }
-  .product-page__fruits > ul:last-child {
-    right: -10%;
-    width: 50%;
-    height: 100%; }
-    .product-page__fruits > ul:last-child li {
-      position: absolute !important;
-      top: 0; }
-      .product-page__fruits > ul:last-child li:first-child {
-        width: 20%;
-        top: -45% !important; }
-      .product-page__fruits > ul:last-child li:last-child {
-        width: 40%;
-        top: -20% !important; }
-
 .product-page__slider-control {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1846,6 +1816,77 @@ a {
     pointer-events: auto; }
     .product-page__slider-control > button:hover {
       color: #464646; }
+
+.product-page__fruits {
+  height: 100%; }
+  .product-page__fruits > ul:first-child {
+    top: -20% !important;
+    left: 10%;
+    width: 50%;
+    height: 100%; }
+    .product-page__fruits > ul:first-child li {
+      position: absolute !important; }
+  .product-page__fruits > ul:last-child {
+    right: -10%;
+    width: 50%;
+    height: 100%; }
+    .product-page__fruits > ul:last-child li {
+      position: absolute !important; }
+
+.smartvit-fruits > ul:first-child li:first-child {
+  max-width: 40%;
+  top: -35% !important; }
+
+.smartvit-fruits > ul:first-child li:last-child {
+  max-width: 20%;
+  top: 10% !important;
+  left: 40% !important; }
+
+.smartvit-fruits > ul:last-child li {
+  position: absolute !important;
+  top: 0; }
+  .smartvit-fruits > ul:last-child li:first-child {
+    max-width: 20%;
+    top: -45% !important; }
+  .smartvit-fruits > ul:last-child li:last-child {
+    max-width: 40%;
+    top: -20% !important; }
+
+.calcivit-fruits > ul:first-child li:first-child {
+  max-width: 30%;
+  top: -30% !important;
+  left: -20% !important; }
+
+.calcivit-fruits > ul:first-child li:nth-child(2) {
+  top: 5% !important;
+  max-width: 6%; }
+
+.calcivit-fruits > ul:first-child li:nth-child(3) {
+  top: 10% !important;
+  left: 40% !important; }
+
+.calcivit-fruits > ul:first-child li:last-child {
+  max-width: 9%;
+  top: -25% !important;
+  left: 45% !important; }
+
+.calcivit-fruits > ul:last-child li {
+  position: absolute !important;
+  top: 0; }
+  .calcivit-fruits > ul:last-child li:first-child {
+    max-width: 20%;
+    top: -60% !important; }
+  .calcivit-fruits > ul:last-child li:nth-child(2) {
+    top: -47% !important;
+    left: -19% !important;
+    max-width: 6%; }
+  .calcivit-fruits > ul:last-child li:nth-child(3) {
+    top: -30% !important;
+    max-width: 17%; }
+  .calcivit-fruits > ul:last-child li:last-child {
+    max-width: 7%;
+    top: 0% !important;
+    left: 30% !important; }
 
 .up-button {
   display: none;

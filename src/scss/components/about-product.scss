@@ -20,12 +20,12 @@
 }
 
 .about-product__title {
-  @include text($font-size: calc(40px + 0.5vw), $font-weight: 600);
+  @include text($font-size: calc(35px + 0.5vw), $font-weight: 600);
   margin-bottom: 0.8em;
 
   @media (min-width: $desktop-sm-bp) {
     font-size: calc(75px + 0.5vw);
-    margin-bottom: 1.5em;
+    margin-bottom: 1em;
   }
 }
 
@@ -44,7 +44,7 @@
   justify-content: space-between;
   flex-direction: column;
   width: 100%;
-  align-items: center;
+  align-items: baseline;
 
   @media (min-width: $desktop-sm-bp) {
     flex-direction: row;
@@ -63,15 +63,49 @@
     margin: 0;
   }
 
-  & > p {
-    @include text($font-size: calc(13px + 0.5vw));
-    line-height: 33px;
-    padding-top: 1.5em;
+  & div {
+    overflow: auto;
+    height: 500px;
 
-    @media (min-width: $desktop-sm-bp) {
-      line-height: 40px;
+    & > p {
+      @include text($font-size: calc(8px + 0.5vw));
+      line-height: 33px;
+      padding-top: 1.5em;
+      margin-bottom: 15px;
+
+      @media (min-width: $desktop-sm-bp) {
+        line-height: 40px;
+      }
+    }
+    & > ul {
+      list-style: square inside;
+
+      & > li {
+        @include text($font-size: calc(8px + 0.5vw));
+        margin-bottom: 15px;
+        line-height: 33px;
+        margin-left: 30px;
+      }
     }
   }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    135deg,
+    rgba(61, 165, 107, 1) 10%,
+    rgba(61, 165, 107, 1) 25%,
+    rgba(69, 125, 171, 1) 30%,
+    rgba(69, 125, 171, 1) 50%,
+    rgba(171, 79, 135, 1) 60%,
+    rgba(171, 79, 135, 1) 70%,
+    rgba(223, 67, 7, 1) 90%,
+    rgba(223, 67, 7, 1) 100%
+  );
 }
 
 .about-product__ingredients {
@@ -85,7 +119,7 @@
     margin-bottom: 1em;
   }
   .ingredient-name {
-    @include text($font-size: calc(11px + 0.5vw), $font-weight: 600);
+    @include text($font-size: calc(10px + 0.5vw), $font-weight: 600);
   }
   .dots {
     margin: 0 33px;
@@ -95,6 +129,6 @@
     align-self: flex-end;
   }
   .ingredient-number {
-    @include text($font-size: calc(11px + 0.5vw));
+    @include text($font-size: calc(10px + 0.5vw));
   }
 }

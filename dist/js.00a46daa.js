@@ -1643,15 +1643,13 @@ function () {
           if (menuToggle.reversed()) {
             menuToggle.restart();
 
-            _this.handleMenu(true);
+            _this.handleMenu(true); // firstScreen.style.height = "100vh";
 
-            firstScreen.style.height = "100vh";
           } else {
             menuToggle.reverse();
 
-            _this.handleMenu(false);
+            _this.handleMenu(false); // firstScreen.style.height = "unset";
 
-            firstScreen.style.height = "unset";
           }
         });
       }
@@ -14316,7 +14314,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61945" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59215" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

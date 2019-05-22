@@ -29,11 +29,11 @@ export default class Animations {
         if (menuToggle.reversed()) {
           menuToggle.restart();
           this.handleMenu(true);
-          firstScreen.style.height = "100vh";
+          // firstScreen.style.height = "100vh";
         } else {
           menuToggle.reverse();
           this.handleMenu(false);
-          firstScreen.style.height = "unset";
+          // firstScreen.style.height = "unset";
         }
       });
     }
