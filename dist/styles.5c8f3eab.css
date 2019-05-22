@@ -486,13 +486,13 @@ a {
   @media (min-width: 1024px) {
     .bottles-list {
       bottom: 50%;
-      left: 52%;
+      left: 50%;
       width: 1000px;
       -webkit-transform: translate(-50%, 100%) !important;
               transform: translate(-50%, 100%) !important; } }
   @media (min-width: 1440px) {
     .bottles-list {
-      width: 1200px; } }
+      width: 75%; } }
   .bottles-list li {
     position: unset !important;
     width: 100%;
@@ -1761,23 +1761,26 @@ a {
       font-size: calc(75px + 1vw); } }
 
 .product-page__vitamins {
-  max-width: 60%;
   margin: 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
-          align-items: center; }
+          align-items: center;
+  max-width: 55%; }
   @media (max-width: 567px) {
     .product-page__vitamins {
-      max-width: 100%; } }
+      max-width: 85%; } }
   @media (min-width: 1279px) {
     .product-page__vitamins {
-      max-width: 33%;
+      max-width: 31%;
       -webkit-box-align: end;
           -ms-flex-align: end;
               align-items: flex-end; } }
+  @media (min-width: 1680px) {
+    .product-page__vitamins {
+      max-width: 38%; } }
 
 .product-page__subtitle {
   text-transform: uppercase;
@@ -1808,7 +1811,8 @@ a {
   padding: 0 2em;
   z-index: 20; }
   .product-page__slider-control > button {
-    font-size: 60px;
+    height: 50px;
+    width: 50px;
     cursor: pointer;
     color: #acacac;
     -webkit-transition: 0.1s linear;
@@ -1852,41 +1856,74 @@ a {
     max-width: 40%;
     top: -20% !important; }
 
-.calcivit-fruits > ul:first-child li:first-child {
+.calcivit-fruits > ul:first-child li:first-child, .multivit-fruits > ul:first-child li:first-child, .hello-kitty-fruits > ul:first-child li:first-child {
   max-width: 30%;
   top: -30% !important;
   left: -20% !important; }
 
-.calcivit-fruits > ul:first-child li:nth-child(2) {
+.calcivit-fruits > ul:first-child li:nth-child(2), .multivit-fruits > ul:first-child li:nth-child(2), .hello-kitty-fruits > ul:first-child li:nth-child(2) {
   top: 5% !important;
   max-width: 6%; }
 
-.calcivit-fruits > ul:first-child li:nth-child(3) {
+.calcivit-fruits > ul:first-child li:nth-child(3), .multivit-fruits > ul:first-child li:nth-child(3), .hello-kitty-fruits > ul:first-child li:nth-child(3) {
   top: 10% !important;
   left: 40% !important; }
 
-.calcivit-fruits > ul:first-child li:last-child {
+.calcivit-fruits > ul:first-child li:last-child, .multivit-fruits > ul:first-child li:last-child, .hello-kitty-fruits > ul:first-child li:last-child {
   max-width: 9%;
   top: -25% !important;
   left: 45% !important; }
 
-.calcivit-fruits > ul:last-child li {
+.calcivit-fruits > ul:last-child li, .multivit-fruits > ul:last-child li, .hello-kitty-fruits > ul:last-child li {
   position: absolute !important;
   top: 0; }
-  .calcivit-fruits > ul:last-child li:first-child {
+  .calcivit-fruits > ul:last-child li:first-child, .multivit-fruits > ul:last-child li:first-child, .hello-kitty-fruits > ul:last-child li:first-child {
     max-width: 20%;
     top: -60% !important; }
-  .calcivit-fruits > ul:last-child li:nth-child(2) {
+  .calcivit-fruits > ul:last-child li:nth-child(2), .multivit-fruits > ul:last-child li:nth-child(2), .hello-kitty-fruits > ul:last-child li:nth-child(2) {
     top: -47% !important;
     left: -19% !important;
     max-width: 6%; }
-  .calcivit-fruits > ul:last-child li:nth-child(3) {
+  .calcivit-fruits > ul:last-child li:nth-child(3), .multivit-fruits > ul:last-child li:nth-child(3), .hello-kitty-fruits > ul:last-child li:nth-child(3) {
     top: -30% !important;
     max-width: 17%; }
-  .calcivit-fruits > ul:last-child li:last-child {
+  .calcivit-fruits > ul:last-child li:last-child, .multivit-fruits > ul:last-child li:last-child, .hello-kitty-fruits > ul:last-child li:last-child {
     max-width: 7%;
     top: 0% !important;
     left: 30% !important; }
+
+.multivit-fruits > ul:last-child li:nth-child(3) {
+  top: -30% !important;
+  max-width: 30%; }
+
+.hello-kitty-fruits > ul:first-child li:first-child {
+  max-width: 17%;
+  top: -30% !important;
+  left: -3% !important; }
+
+.hello-kitty-fruits > ul:first-child li:nth-child(2) {
+  top: 5% !important;
+  max-width: 23%; }
+
+.hello-kitty-fruits > ul:first-child li:last-child {
+  max-width: 9%;
+  top: -4% !important;
+  left: 30% !important; }
+
+.hello-kitty-fruits > ul:last-child li:first-child {
+  max-width: 23%;
+  top: -60% !important;
+  left: 22% !important; }
+
+.hello-kitty-fruits > ul:last-child li:nth-child(2) {
+  top: -35% !important;
+  left: 0% !important;
+  max-width: 7%; }
+
+.hello-kitty-fruits > ul:last-child li:last-child {
+  max-width: 20%;
+  top: 0% !important;
+  left: 15% !important; }
 
 .up-button {
   display: none;

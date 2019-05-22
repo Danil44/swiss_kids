@@ -14,12 +14,12 @@
   }
   @media (min-width: $laptop-sm-bp) {
     bottom: 50%;
-    left: 52%;
+    left: 50%;
     width: 1000px;
     transform: translate(-50%, 100%) !important;
   }
   @media (min-width: $desktop-md-bp) {
-    width: 1200px;
+    width: 75%;
   }
 
   li {

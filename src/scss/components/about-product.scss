@@ -52,7 +52,7 @@
 }
 
 .about-product__desc {
-  flex-basis: calc(50% - 8em);
+  flex-basis: calc(50% - 5em);
   margin-bottom: 2em;
 
   @media (min-width: $landscape-bp) {
@@ -65,12 +65,12 @@
 
   & div {
     overflow: auto;
-    height: 500px;
+    height: 400px;
 
     & > p {
-      @include text($font-size: calc(8px + 0.5vw));
+      @include text($font-size: calc(11px + 0.5vw));
       line-height: 33px;
-      padding-top: 1.5em;
+      padding-top: 25px;
       margin-bottom: 15px;
 
       @media (min-width: $desktop-sm-bp) {
@@ -81,7 +81,7 @@
       list-style: square inside;
 
       & > li {
-        @include text($font-size: calc(8px + 0.5vw));
+        @include text($font-size: calc(11px + 0.5vw));
         margin-bottom: 15px;
         line-height: 33px;
         margin-left: 30px;
@@ -110,8 +110,10 @@
 
 .about-product__ingredients {
   @extend .about-product__desc;
+  width: 100%;
   & > p {
     @include text($font-size: calc(13px + 0.5vw));
+    padding-top: 25px;
     margin-bottom: 1em;
   }
   & > ul li {
