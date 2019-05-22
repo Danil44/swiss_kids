@@ -116,4 +116,16 @@
       background-color: $orange-btn;
     }
   }
+  &--pink {
+    @extend .product-screen__btn--pink;
+    &:hover {
+      background-color: $pink-btn;
+    }
+  }
+  &--purple {
+    @extend .product-screen__btn--purple;
+    &:hover {
+      background-color: $purple-btn;
+    }
+  }
 }

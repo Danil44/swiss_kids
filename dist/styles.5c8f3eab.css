@@ -503,11 +503,11 @@ a {
     .bottles-list li > a {
       cursor: pointer; }
       .bottles-list li > a > img {
-        width: 50%;
+        max-width: 62%;
         margin: 0 auto; }
         @media (min-width: 568px) {
           .bottles-list li > a > img {
-            max-width: 35%;
+            max-width: 38%;
             width: 100%; } }
         @media (min-width: 768px) {
           .bottles-list li > a > img {

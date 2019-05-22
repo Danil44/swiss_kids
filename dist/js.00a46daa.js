@@ -14138,7 +14138,7 @@ function (_EventEmitter) {
             items: 1
           },
           568: {
-            items: 2
+            items: 1
           },
           1024: {
             items: 3
@@ -14314,7 +14314,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61558" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49561" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

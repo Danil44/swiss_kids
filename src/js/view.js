@@ -133,7 +133,7 @@ export default class View extends EventEmitter {
         },
 
         568: {
-          items: 2
+          items: 1
         },
         1024: {
           items: 3
