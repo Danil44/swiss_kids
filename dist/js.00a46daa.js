@@ -1659,14 +1659,18 @@ function () {
     value: function handleMenu(show) {
       var womenPicture = document.querySelector(".women-picture");
       var menu = document.querySelector(".js-menu");
+      var body = document.querySelector("body");
       menu.classList.toggle("hidden");
       if (womenPicture) womenPicture.classList.toggle("hidden");
 
       if (show) {
+        body.style.position = "fixed";
         TweenMax.from(menu, 0.3, {
           opacity: 0,
           scale: 0
         });
+      } else {
+        body.style.position = "unset";
       }
     }
   }, {
@@ -14316,7 +14320,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59902" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57070" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

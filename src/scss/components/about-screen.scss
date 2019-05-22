@@ -51,7 +51,6 @@
   text-align: center;
   font-size: calc(11px + 0.5vw);
   margin-bottom: 52px;
-  position: relative;
 
   @media (max-width: 375px) {
     line-height: 19px;
@@ -64,10 +63,20 @@
   }
 
   & > span {
-    position: absolute;
-    top: -5px;
-    margin-right: 5px;
-    font-size: 17px;
+    font-size: calc(11px + 0.5vw);
+    font-family: $primary-font-stack;
+    color: $primary-text-color;
+    position: relative;
+
+    &:after {
+      content: "\00AE";
+      display: inline-block;
+      position: absolute;
+      top: -7px;
+      right: -8px;
+      width: 6px;
+      height: 6px;
+    }
   }
 }
 

@@ -175,6 +175,7 @@ html {
 
 body {
   line-height: 1;
+  width: 100%;
   min-height: 100%;
   position: relative;
   overflow-x: hidden; }
@@ -307,6 +308,12 @@ a {
   @media (max-width: 1023px) and (min-height: 510px) {
     .main-screen {
       height: 90vh !important; } }
+  @media (min-width: 1024px) and (min-height: 1366px) {
+    .main-screen {
+      height: 60vh !important; } }
+  @media (min-width: 1366px) and (min-height: 1024px) {
+    .main-screen {
+      height: 70vh !important; } }
 
 .main-screen__burger {
   width: 30px;
@@ -479,6 +486,9 @@ a {
   @media (min-width: 1279px) {
     .footer {
       padding: 1.5em; } }
+  @media (min-width: 1024px) and (min-height: 1366px) {
+    .footer {
+      height: 60vh !important; } }
   .footer__inner {
     background-color: #fff;
     width: 100%;
@@ -603,7 +613,7 @@ a {
   height: 100%; }
   .main-page__inner > nav, .comments-page__inner > nav, .company-page__inner > nav, .distributor-page__inner > nav {
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background-color: #fff;
     z-index: 21;
     position: absolute;
@@ -894,7 +904,7 @@ a {
   height: 100%; }
   .main-page__inner > nav, .comments-page__inner > nav, .company-page__inner > nav, .distributor-page__inner > nav {
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background-color: #fff;
     z-index: 21;
     position: absolute;
@@ -1119,6 +1129,9 @@ a {
   @media (min-width: 1680px) {
     .comments, .about-company, .distributor {
       margin-top: 5em; } }
+  @media (min-width: 1366px) and (min-height: 1024px) {
+    .comments, .about-company, .distributor {
+      margin-top: 5em; } }
 
 @media (min-width: 1279px) {
   .comments__list {
@@ -1257,7 +1270,7 @@ a {
     @media (min-width: 1279px) {
       .about-company--underscore {
         padding-bottom: 40px; } }
-  .about-company > img, .distributor > img {
+  .about-company > .top-decor, .distributor > .top-decor {
     top: 5px;
     right: 5px;
     position: absolute;
@@ -1266,6 +1279,14 @@ a {
 .about-company__inner, .distributor__inner {
   position: relative;
   padding: 2em 0; }
+  @media (min-width: 1024px) and (min-height: 1366px) {
+    .about-company__inner, .distributor__inner {
+      padding: 8em 0; } }
+  .about-company__inner > .bottom-decor, .distributor__inner > .bottom-decor {
+    bottom: 5px;
+    left: 5px;
+    position: absolute;
+    width: 38%; }
 
 .about-company__list {
   position: relative; }
@@ -1340,18 +1361,6 @@ a {
       @media (min-width: 1279px) {
         .companies__list > li:not(:last-child) {
           margin-bottom: 4em; } }
-  .companies__list::after {
-    content: "";
-    display: inline-block;
-    position: absolute;
-    bottom: -15%;
-    left: -8%;
-    width: 35%;
-    height: 28%;
-    background-image: url("/text-block-bottom-bg.b4e7aff8.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain; }
 
 .companies__picture {
   -ms-flex-preferred-size: calc(16.5% + 30px);
@@ -1437,8 +1446,7 @@ a {
   font-weight: 400;
   text-align: center;
   font-size: calc(11px + 0.5vw);
-  margin-bottom: 52px;
-  position: relative; }
+  margin-bottom: 52px; }
   @media (max-width: 375px) {
     .about-screen__text, .about-screen__title, .about-screen__btn, .distributor__btn {
       line-height: 19px;
@@ -1448,10 +1456,18 @@ a {
       font-size: calc(12px + 0.5vw);
       line-height: 35px; } }
   .about-screen__text > span, .about-screen__title > span, .about-screen__btn > span, .distributor__btn > span {
-    position: absolute;
-    top: -5px;
-    margin-right: 5px;
-    font-size: 17px; }
+    font-size: calc(11px + 0.5vw);
+    font-family: "Open Sans";
+    color: #403e3e;
+    position: relative; }
+    .about-screen__text > span:after, .about-screen__title > span:after, .about-screen__btn > span:after, .distributor__btn > span:after {
+      content: "\00AE";
+      display: inline-block;
+      position: absolute;
+      top: -7px;
+      right: -8px;
+      width: 6px;
+      height: 6px; }
 
 .about-screen__title, .about-screen__btn, .distributor__btn {
   font-weight: 700;
@@ -1523,11 +1539,9 @@ a {
         width: 30px;
         height: 30px; } }
 
-.distributor {
-  height: 100%; }
-  .distributor--underscore {
-    padding-bottom: 30px;
-    border-bottom: 5px solid #dee4e7; }
+.distributor--underscore {
+  padding-bottom: 30px;
+  border-bottom: 5px solid #dee4e7; }
 
 .distributor__inner {
   max-height: unset;
@@ -1711,7 +1725,7 @@ a {
   height: 100%; }
   .main-page__inner > nav, .comments-page__inner > nav, .company-page__inner > nav, .distributor-page__inner > nav {
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background-color: #fff;
     z-index: 21;
     position: absolute;
@@ -1988,7 +2002,7 @@ a {
   height: 100%; }
   .main-page__inner > nav, .comments-page__inner > nav, .company-page__inner > nav, .distributor-page__inner > nav {
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background-color: #fff;
     z-index: 21;
     position: absolute;

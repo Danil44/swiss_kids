@@ -7,6 +7,10 @@
   @media (max-width: 567px) {
     height: 100vh;
   }
+
+  @media (min-width: 1366px) and(min-height: 1024px) {
+    height: 70vh !important;
+  }
 }
 
 .product-page__inner {
@@ -39,7 +43,7 @@
   font-weight: 700;
   text-transform: uppercase;
   font-family: $primary-font-stack;
-  font-size: calc(35px + 0.5vw);
+  font-size: calc(30px + 0.5vw);
   margin-bottom: 30px;
   background: rgb(61, 165, 107); /* Old browsers */
 
@@ -57,6 +61,10 @@
   -webkit-text-fill-color: transparent;
 
   @media (min-width: $desktop-sm-bp) {
+    font-size: calc(40px + 1vw);
+  }
+
+  @media (min-width: $desktop-lg-bp) {
     font-size: calc(75px + 1vw);
   }
 }
@@ -94,6 +102,9 @@
 
 .product-page__about {
   @extend .main-page__screen;
+  @media (min-width: 1366px) and(min-height: 1024px) {
+    height: 100%;
+  }
 }
 
 .product-page__slider-control {

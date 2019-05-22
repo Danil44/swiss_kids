@@ -40,12 +40,13 @@
     margin-top: 3em;
 
     @media (min-width: $tablet-bp) {
-      margin-top: 7em;
+      position: absolute;
+      margin: 0;
+      top: 60px !important;
+      left: 34% !important;
     }
 
     @media (min-width: $desktop-sm-bp) {
-      margin: 0;
-      position: absolute;
       top: 19% !important;
       left: 34% !important;
     }
@@ -56,6 +57,11 @@
 
     &--lg {
       width: 95%;
+
+      @media (min-width: $tablet-bp) {
+        top: 110px !important;
+        left: 8% !important;
+      }
 
       @media (min-width: $desktop-sm-bp) {
         max-width: 100%;
@@ -80,7 +86,7 @@
     left: -10%;
 
     @media (min-width: $desktop-sm-bp) {
-      top: 5% !important;
+      top: 10% !important;
       left: -10% !important;
     }
 
@@ -95,8 +101,8 @@
     max-width: 100%;
     z-index: -1;
     position: absolute;
-    top: 0%;
-    left: -20%;
+    top: -10%;
+    left: -35%;
 
     @media (min-width: $desktop-sm-bp) {
       top: 0% !important;
@@ -123,8 +129,12 @@
     @extend .product-screen__reef;
     width: 100%;
     z-index: -1;
-    top: 10%;
+    top: 0%;
     left: -10%;
+
+    @media (min-width: $tablet-bp) {
+      left: 20%;
+    }
 
     @media (min-width: $desktop-sm-bp) {
       max-width: 81%;
@@ -146,6 +156,10 @@
     width: 65px;
     height: 65px;
 
+    @media (min-width: $tablet-bp) {
+      top: 10% !important;
+    }
+
     @media (min-width: $desktop-sm-bp) {
       width: 90px;
       height: 90px;
@@ -155,9 +169,13 @@
   }
   &__forest {
     @extend .product-screen__reef;
-    max-width: 105%;
+    max-width: 93%;
     left: -1% !important;
     top: -1% !important;
+
+    @media (min-wdith: $tablet-bp) {
+      max-width: 93%;
+    }
 
     @media (min-wdith: $desktop-sm-bp) {
       left: -17% !important;
@@ -237,11 +255,12 @@
 
     @media (min-width: $tablet-bp) {
       top: 20%;
-      left: -20%;
+      left: 0%;
     }
 
     @media (min-width: $desktop-sm-bp) {
-      top: 5% !important;
+      top: 9% !important;
+      left: 0% !important;
     }
 
     & > img {
@@ -268,8 +287,8 @@
   &__city {
     @extend .product-screen__reef;
     top: 0;
-    left: -5%;
-    width: 95%;
+    left: 5%;
+    width: 80%;
     @media (min-width: $desktop-sm-bp) {
       top: 10% !important;
       left: 5% !important;

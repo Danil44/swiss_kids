@@ -13,6 +13,10 @@
     padding: 3em 8em;
   }
 
+  @media (min-width: 1366px) and(min-height: 1024px) {
+    padding: 0;
+  }
+
   & > .content-title {
     @include text($font-size: calc(25px + 0.5vw), $font-weight: 700);
     background: rgb(61, 165, 107); /* Old browsers */
