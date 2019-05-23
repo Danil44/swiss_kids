@@ -1439,6 +1439,9 @@ a {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover; }
+  @media (min-width: 768px) and (min-height: 768px) {
+    .about-screen-wrapper {
+      background-image: url("/bg-mobile.4e40f77c.png"); } }
 
 .about-screen__content {
   width: 100%;

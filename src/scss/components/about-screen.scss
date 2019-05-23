@@ -5,6 +5,10 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+
+  @media (min-width: 768px) and (min-height: 768px) {
+    background-image: url("../images/about-products/bg-mobile.png");
+  }
 }
 
 .about-screen__content {
