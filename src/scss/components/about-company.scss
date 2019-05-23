@@ -26,7 +26,15 @@
 
 .about-company__inner {
   position: relative;
-  padding: 2em 0;
+  padding: 3em 0;
+
+  @media (min-width: 768px) and (min-height: 1024px) {
+    padding: 5em 0;
+  }
+
+  @media (min-width: 1024px) and (min-height: 768px) {
+    padding: 8em 0;
+  }
 
   @media (min-width: 1024px) and (min-height: 1366px) {
     padding: 8em 0;
@@ -81,6 +89,10 @@
       @media (min-width: $desktop-sm-bp) {
         font-size: calc(44px + 0.5vw);
         margin-bottom: 45px;
+      }
+
+      @media (min-width: 1024px) and (min-height: 1366px) {
+        font-size: calc(38px + 0.5vw);
       }
     }
 
@@ -143,6 +155,10 @@
 
     @media (min-width: $desktop-sm-bp) {
       margin: 0;
+    }
+
+    @media (min-width: 1024px) and (min-height: 1366px) {
+      margin: 0 auto 3em 0;
     }
   }
   &__desc {

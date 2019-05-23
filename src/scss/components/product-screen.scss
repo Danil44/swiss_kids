@@ -32,6 +32,11 @@
       top: 20% !important;
       left: 12% !important;
     }
+
+    @media (min-width: 1024px) and (min-height: 768px) {
+      top: 165px !important;
+      left: 10% !important;
+    }
   }
   &__vitamins {
     z-index: 2;
@@ -47,7 +52,7 @@
     }
 
     @media (min-width: $desktop-sm-bp) {
-      top: 19% !important;
+      top: 21% !important;
       left: 34% !important;
     }
 
@@ -90,6 +95,10 @@
       left: -10% !important;
     }
 
+    @media (min-width: $tablet-bp) {
+      top: 5%;
+    }
+
     & > picture > img {
       @media (max-width: 767px) {
         width: 350px;
@@ -109,6 +118,16 @@
       left: -10% !important;
     }
 
+    @media (min-width: 1024px) and (min-height: 768px) {
+      top: -45px;
+      left: -10%;
+    }
+
+    @media (min-width: 768px) and (min-height: 1024px) {
+      top: -45px;
+      left: -10%;
+    }
+
     & > img {
       @media (max-width: $desktop-sm-bp) {
         width: 100%;
@@ -122,6 +141,14 @@
     top: 10% !important;
     @media (min-width: $desktop-sm-bp) {
       top: 2% !important;
+    }
+    @media (min-width: 1024px) and (min-height: 768px) {
+      top: 30px !important;
+      left: 77% !important;
+    }
+    @media (min-width: 768px) and (min-height: 1024px) {
+      top: 30px !important;
+      left: 77% !important;
     }
   }
 
@@ -165,6 +192,11 @@
       height: 90px;
       top: 20% !important;
       left: 80% !important;
+    }
+
+    @media (min-width: 1024px) and (min-height: 768px) {
+      top: 30px !important;
+      left: 77% !important;
     }
   }
   &__forest {
@@ -217,6 +249,11 @@
       top: 17% !important;
     }
 
+    @media (min-width: 1024px) and (min-height: 768px) {
+      top: 10%;
+      left: 4%;
+    }
+
     & > div {
       width: 10vw;
       height: 10vw;
@@ -245,6 +282,14 @@
     @media (min-width: $desktop-sm-bp) {
       width: 120px;
     }
+    @media (min-width: 1024px) and (min-height: 768px) {
+      top: 30px !important;
+      left: 77% !important;
+    }
+    @media (min-width: 768px) and (min-height: 1024px) {
+      top: 30px !important;
+      left: 77% !important;
+    }
   }
 
   &__space {
@@ -254,7 +299,7 @@
     left: -30%;
 
     @media (min-width: $tablet-bp) {
-      top: 20%;
+      top: 5%;
       left: 0%;
     }
 
@@ -289,6 +334,11 @@
     top: 0;
     left: 5%;
     width: 80%;
+
+    @media (min-width: 768px) and (min-height: 1024px) {
+      top: 50px;
+    }
+
     @media (min-width: $desktop-sm-bp) {
       top: 10% !important;
       left: 5% !important;

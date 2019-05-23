@@ -20,7 +20,9 @@ export default class View extends EventEmitter {
 
     this.animation.burger();
 
-    if (window.matchMedia("(max-width: 1279px)").matches) {
+    if (
+      window.matchMedia("(max-width: 1367px) and (max-height: 1367px)").matches
+    ) {
       const hiddenAnimation = document.querySelectorAll(
         ".js-animation-container .hidden"
       );
@@ -48,7 +50,6 @@ export default class View extends EventEmitter {
 
       const currentPage = document.querySelector("body").className;
       const path = this.getPath() || currentPage;
-      console.log(path);
 
       if (window.matchMedia("(min-width: 1279px)").matches) {
         window.location.href = `#${path}`;
@@ -57,7 +58,11 @@ export default class View extends EventEmitter {
       const preloaderCircle = document.getElementById("preloader");
 
       setTimeout(() => {
-        if (window.matchMedia("(min-width: 1279px)").matches && currentPage) {
+        if (
+          window.matchMedia("(min-width: 1279px) and (max-height: 1023px)")
+            .matches &&
+          currentPage
+        ) {
           this.loadFirstScreenAnimation();
           this.loadOnePageScroll(path);
         }
@@ -71,6 +76,15 @@ export default class View extends EventEmitter {
         ) {
           this.loadProductsSlide();
         }
+        if (
+          window.matchMedia("(max-width: 1367px) and (max-height: 1025px)")
+            .matches
+        ) {
+          if (this.upBtn) {
+            this.upBtn.style.display = "none";
+          }
+        }
+
         TweenMax.to(preloaderCircle, 0.8, {
           delay: 0,
           opacity: 0,
@@ -119,37 +133,40 @@ export default class View extends EventEmitter {
   loadProductsSlide() {
     const prev = document.querySelector(".slider-prev");
     const next = document.querySelector(".slider-next");
-    const slider = tns({
-      container: document.querySelector(".js-slider"),
-      items: 1,
-      slideBy: "page",
-      controls: false,
-      nav: false,
-      controlsContainer: "#slider-controls",
-      touch: true,
-      speed: 500,
-      responsive: {
-        320: {
-          items: 1
-        },
+    const container = document.querySelector(".js-slider");
+    if (container) {
+      const slider = tns({
+        container: container,
+        items: 1,
+        slideBy: "page",
+        controls: false,
+        nav: false,
+        controlsContainer: "#slider-controls",
+        touch: true,
+        speed: 500,
+        responsive: {
+          320: {
+            items: 1
+          },
 
-        568: {
-          items: 1
-        },
-        1024: {
-          items: 3
+          568: {
+            items: 1
+          },
+          1024: {
+            items: 3
+          }
         }
-      }
-    });
-    if (prev)
-      prev.addEventListener("click", () => {
-        slider.goTo("prev");
-        console.log("hi");
       });
-    if (next)
-      next.addEventListener("click", () => {
-        slider.goTo("next");
-      });
+      if (prev)
+        prev.addEventListener("click", () => {
+          slider.goTo("prev");
+          console.log("hi");
+        });
+      if (next)
+        next.addEventListener("click", () => {
+          slider.goTo("next");
+        });
+    }
   }
 
   handleScrollToTop(evt) {

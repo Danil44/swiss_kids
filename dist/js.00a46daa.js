@@ -1658,19 +1658,22 @@ function () {
     key: "handleMenu",
     value: function handleMenu(show) {
       var womenPicture = document.querySelector(".women-picture");
+      var mainScreen = document.querySelector(".js-main-screen");
       var menu = document.querySelector(".js-menu");
       var body = document.querySelector("body");
       menu.classList.toggle("hidden");
       if (womenPicture) womenPicture.classList.toggle("hidden");
 
       if (show) {
-        body.style.position = "fixed";
+        body.style.overflow = "hidden";
+        mainScreen.setAttribute("style", "height: 100vh !important");
         TweenMax.from(menu, 0.3, {
           opacity: 0,
           scale: 0
         });
       } else {
-        body.style.position = "unset";
+        body.style.overflow = "";
+        mainScreen.setAttribute("style", "height: ''");
       }
     }
   }, {
@@ -14022,7 +14025,7 @@ function (_EventEmitter) {
 
     _this.animation.burger();
 
-    if (window.matchMedia("(max-width: 1279px)").matches) {
+    if (window.matchMedia("(max-width: 1367px) and (max-height: 1367px)").matches) {
       var hiddenAnimation = document.querySelectorAll(".js-animation-container .hidden");
 
       _this.animation.togglePicturesVissibility(hiddenAnimation);
@@ -14052,7 +14055,6 @@ function (_EventEmitter) {
         }).timeScale(1.2);
         var currentPage = document.querySelector("body").className;
         var path = _this2.getPath() || currentPage;
-        console.log(path);
 
         if (window.matchMedia("(min-width: 1279px)").matches) {
           window.location.href = "#".concat(path);
@@ -14060,7 +14062,7 @@ function (_EventEmitter) {
 
         var preloaderCircle = document.getElementById("preloader");
         setTimeout(function () {
-          if (window.matchMedia("(min-width: 1279px)").matches && currentPage) {
+          if (window.matchMedia("(min-width: 1279px) and (max-height: 1023px)").matches && currentPage) {
             _this2.loadFirstScreenAnimation();
 
             _this2.loadOnePageScroll(path);
@@ -14074,6 +14076,12 @@ function (_EventEmitter) {
 
           if (currentPage === "main" && window.matchMedia("(max-width: 767px)").matches) {
             _this2.loadProductsSlide();
+          }
+
+          if (window.matchMedia("(max-width: 1367px) and (max-height: 1025px)").matches) {
+            if (_this2.upBtn) {
+              _this2.upBtn.style.display = "none";
+            }
           }
 
           TweenMax.to(preloaderCircle, 0.8, {
@@ -14130,34 +14138,38 @@ function (_EventEmitter) {
     value: function loadProductsSlide() {
       var prev = document.querySelector(".slider-prev");
       var next = document.querySelector(".slider-next");
-      var slider = (0, _tinySlider.tns)({
-        container: document.querySelector(".js-slider"),
-        items: 1,
-        slideBy: "page",
-        controls: false,
-        nav: false,
-        controlsContainer: "#slider-controls",
-        touch: true,
-        speed: 500,
-        responsive: {
-          320: {
-            items: 1
-          },
-          568: {
-            items: 1
-          },
-          1024: {
-            items: 3
+      var container = document.querySelector(".js-slider");
+
+      if (container) {
+        var slider = (0, _tinySlider.tns)({
+          container: container,
+          items: 1,
+          slideBy: "page",
+          controls: false,
+          nav: false,
+          controlsContainer: "#slider-controls",
+          touch: true,
+          speed: 500,
+          responsive: {
+            320: {
+              items: 1
+            },
+            568: {
+              items: 1
+            },
+            1024: {
+              items: 3
+            }
           }
-        }
-      });
-      if (prev) prev.addEventListener("click", function () {
-        slider.goTo("prev");
-        console.log("hi");
-      });
-      if (next) next.addEventListener("click", function () {
-        slider.goTo("next");
-      });
+        });
+        if (prev) prev.addEventListener("click", function () {
+          slider.goTo("prev");
+          console.log("hi");
+        });
+        if (next) next.addEventListener("click", function () {
+          slider.goTo("next");
+        });
+      }
     }
   }, {
     key: "handleScrollToTop",
@@ -14320,7 +14332,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55293" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55387" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

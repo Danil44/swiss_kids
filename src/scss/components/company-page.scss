@@ -4,6 +4,7 @@
 
 .company-page__main-screen {
   @extend .main-page__screen;
+  height: 100%;
 }
 .company-page__inner {
   @extend .main-page__inner;

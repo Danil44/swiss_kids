@@ -20,12 +20,12 @@
     height: 90vh !important;
   }
 
-  @media (min-width: 1024px) and (min-height: 1366px) {
+  @media (min-width: 768px) and (min-height: 1366px) {
     height: 60vh !important;
   }
 
   @media (min-width: 1366px) and(min-height: 1024px) {
-    height: 70vh !important;
+    height: 80vh !important;
   }
 }
 
@@ -95,7 +95,8 @@
 }
 
 .main-screen__title-wrapper {
-  width: 85%;
+  max-width: 65%;
+  width: 100%;
   text-align: center;
   position: absolute;
   top: 15%;
@@ -103,11 +104,9 @@
   transform: translateX(-50%);
   @media (min-width: $laptop-sm-bp) {
     top: 20%;
-    width: 900px;
     height: 145px;
   }
   @media (min-width: $desktop-lg-bp) {
-    width: 1090px;
   }
 }
 
@@ -143,6 +142,7 @@
   position: absolute;
   bottom: 0;
   left: 50%;
+  z-index: 20;
   transform: translateX(-50%);
   background-image: url("../images/main-screen/decor-bottom-mobile.png");
   background-repeat: no-repeat;

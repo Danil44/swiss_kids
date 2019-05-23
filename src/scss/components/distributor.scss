@@ -18,6 +18,10 @@
   &::before {
     content: unset;
   }
+
+  @media (min-height: 1366px) and (min-width: 1024px) {
+    padding: 3em 0;
+  }
 }
 
 .distributor__content {

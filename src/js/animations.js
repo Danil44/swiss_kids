@@ -41,18 +41,21 @@ export default class Animations {
 
   handleMenu(show) {
     const womenPicture = document.querySelector(".women-picture");
+    const mainScreen = document.querySelector(".js-main-screen");
     const menu = document.querySelector(".js-menu");
     const body = document.querySelector("body");
     menu.classList.toggle("hidden");
     if (womenPicture) womenPicture.classList.toggle("hidden");
     if (show) {
-      body.style.position = "fixed";
+      body.style.overflow = "hidden";
+      mainScreen.setAttribute("style", "height: 100vh !important");
       TweenMax.from(menu, 0.3, {
         opacity: 0,
         scale: 0
       });
     } else {
-      body.style.position = "unset";
+      body.style.overflow = "";
+      mainScreen.setAttribute("style", "height: ''");
     }
   }
 

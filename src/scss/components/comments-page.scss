@@ -3,6 +3,7 @@
 
 .comments-page__main-screen {
   @extend .main-page__screen;
+  height: 100%;
 }
 .comments-page__inner {
   @extend .main-page__inner;

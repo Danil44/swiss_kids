@@ -46,7 +46,7 @@
 .about-screen__text {
   font-family: $primary-font-stack;
   color: $primary-text-color;
-  line-height: 21px;
+  line-height: 34px;
   font-weight: 400;
   text-align: center;
   font-size: calc(11px + 0.5vw);
@@ -62,11 +62,19 @@
     line-height: 35px;
   }
 
+  @media (min-width: 1024px) and (min-height: 1366px) {
+    line-height: 35px;
+  }
+
   & > span {
     font-size: calc(11px + 0.5vw);
     font-family: $primary-font-stack;
     color: $primary-text-color;
     position: relative;
+
+    @media (min-width: $desktop-sm-bp) {
+      font-size: calc(12px + 0.5vw);
+    }
 
     &:after {
       content: "\00AE";
@@ -76,6 +84,16 @@
       right: -8px;
       width: 6px;
       height: 6px;
+
+      @media (min-width: 768px) and (min-height: 1024px) {
+        top: -15px;
+        right: -7px;
+      }
+
+      @media (min-width: 1024px) and (min-height: 768px) {
+        top: -15px;
+        right: -7px;
+      }
     }
   }
 }
