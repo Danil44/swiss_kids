@@ -2423,18 +2423,20 @@ a {
         width: 30px;
         height: 30px; } }
 
-.distributor--underscore {
-  padding-bottom: 30px;
-  border-bottom: 5px solid #dee4e7; }
+.distributor, .buy {
+  max-height: unset; }
+  .distributor--underscore {
+    padding-bottom: 30px;
+    border-bottom: 5px solid #dee4e7; }
 
 .distributor__inner, .buy__inner {
-  max-height: unset;
-  height: 100%; }
+  max-height: unset !important;
+  padding: 2em 0 0; }
   .distributor__inner::before, .buy__inner::before {
     content: unset; }
   @media (min-height: 1366px) and (min-width: 1024px) {
     .distributor__inner, .buy__inner {
-      padding: 3em 0; } }
+      padding: 1em 0 0; } }
 
 @media (min-width: 1680px) {
   .distributor__content {
@@ -2443,7 +2445,7 @@ a {
 .distributor__content > .content-title {
   color: #403e3e;
   font-family: "Open Sans";
-  font-size: calc(25px + 0.5vw);
+  font-size: calc(21px + 0.5vw);
   font-weight: 700;
   background: #3da56b;
   /* Old browsers */
@@ -2458,7 +2460,7 @@ a {
   margin-bottom: 30px; }
   @media (min-width: 1279px) {
     .distributor__content > .content-title {
-      font-size: calc(40px + 0.5vw); } }
+      font-size: calc(35px + 0.5vw); } }
 
 .distributor__info {
   display: -webkit-box;

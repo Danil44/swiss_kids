@@ -4,7 +4,7 @@
 
 .distributor {
   @extend .about-company;
-
+  max-height: unset;
   &--underscore {
     padding-bottom: 30px;
     border-bottom: 5px solid #dee4e7;
@@ -13,14 +13,14 @@
 
 .distributor__inner {
   @extend .about-company__inner;
-  max-height: unset;
-  height: 100%;
+  max-height: unset !important;
+  padding: 2em 0 0;
   &::before {
     content: unset;
   }
 
   @media (min-height: 1366px) and (min-width: 1024px) {
-    padding: 3em 0;
+    padding: 1em 0 0;
   }
 }
 
@@ -30,7 +30,7 @@
   }
 
   & > .content-title {
-    @include text($font-size: calc(25px + 0.5vw), $font-weight: 700);
+    @include text($font-size: calc(21px + 0.5vw), $font-weight: 700);
     background: rgb(61, 165, 107); /* Old browsers */
     background: linear-gradient(
       135deg,
@@ -49,7 +49,7 @@
     margin-bottom: 30px;
 
     @media (min-width: $desktop-sm-bp) {
-      font-size: calc(40px + 0.5vw);
+      font-size: calc(35px + 0.5vw);
     }
   }
 }
