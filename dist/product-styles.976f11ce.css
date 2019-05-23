@@ -2404,11 +2404,25 @@ a {
   font-weight: 700;
   text-align: center;
   padding: 0 0 2em; }
+  @media (min-width: 1279px) and (max-width: 1440px) {
+    .product-list__title {
+      font-size: 18px; } }
 
 .products-list__btn {
   border: 3px solid; }
+  @media (min-width: 1279px) and (max-width: 1440px) {
+    .products-list__btn {
+      font-size: 12px; } }
   .products-list__btn::before {
     border-color: #fff; }
+    @media (min-width: 1279px) and (max-width: 1440px) {
+      .products-list__btn::before {
+        width: 55px;
+        height: 55px; } }
+  @media (min-width: 1279px) and (max-width: 1440px) {
+    .products-list__btn::after {
+      width: 10px;
+      height: 10px; } }
   .products-list__btn:hover span {
     color: #fff; }
   .products-list__btn:hover:after {

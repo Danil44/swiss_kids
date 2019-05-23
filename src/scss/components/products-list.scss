@@ -77,14 +77,35 @@
   @include text($font-size: calc(22px + 0.5vw), $font-weight: 700);
   text-align: center;
   padding: 0 0 2em;
+
+  @media (min-width: $desktop-sm-bp) and (max-width: $desktop-md-bp) {
+    font-size: 18px;
+  }
 }
 
 .products-list__btn {
   @extend .product-screen__btn;
   border: 3px solid;
+
+  @media (min-width: $desktop-sm-bp) and (max-width: $desktop-md-bp) {
+    font-size: 12px;
+  }
+
   &::before {
     border-color: #fff;
+    @media (min-width: $desktop-sm-bp) and (max-width: $desktop-md-bp) {
+      width: 55px;
+      height: 55px;
+    }
   }
+
+  &::after {
+    @media (min-width: $desktop-sm-bp) and (max-width: $desktop-md-bp) {
+      width: 10px;
+      height: 10px;
+    }
+  }
+
   &:hover span {
     color: #fff;
   }
