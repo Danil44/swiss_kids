@@ -14025,16 +14025,23 @@ function (_EventEmitter) {
 
     _this.animation.burger();
 
-    if (window.matchMedia("(max-width: 1367px) and (min-height: 768px)").matches) {
-      var hiddenAnimation = document.querySelectorAll(".js-animation-container .hidden");
-
-      _this.animation.togglePicturesVissibility(hiddenAnimation);
-    }
+    _this.handlePicturesVisibility();
 
     return _this;
   }
 
   _createClass(View, [{
+    key: "handlePicturesVisibility",
+    value: function handlePicturesVisibility() {
+      var isMobile = window.matchMedia("(min-width: 320px) and (min-height: 320px) and (max-width: 768px) and (max-width: 768px)").matches;
+      var isTablet = window.matchMedia("(min-width: 768px) and (min-height: 768px) and (max-width: 1366px) and (max-height: 1366px)").matches;
+
+      if (isMobile || isTablet) {
+        var hiddenAnimation = document.querySelectorAll(".js-animation-container .hidden");
+        this.animation.togglePicturesVissibility(hiddenAnimation);
+      }
+    }
+  }, {
     key: "getPath",
     value: function getPath() {
       var href = window.location.href;
@@ -14332,7 +14339,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51193" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51791" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

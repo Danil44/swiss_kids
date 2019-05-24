@@ -20,9 +20,19 @@ export default class View extends EventEmitter {
 
     this.animation.burger();
 
-    if (
-      window.matchMedia("(max-width: 1367px) and (min-height: 768px)").matches
-    ) {
+    this.handlePicturesVisibility();
+  }
+
+  handlePicturesVisibility() {
+    const isMobile = window.matchMedia(
+      "(min-width: 320px) and (min-height: 320px) and (max-width: 768px) and (max-width: 768px)"
+    ).matches;
+
+    const isTablet = window.matchMedia(
+      "(min-width: 768px) and (min-height: 768px) and (max-width: 1366px) and (max-height: 1366px)"
+    ).matches;
+
+    if (isMobile || isTablet) {
       const hiddenAnimation = document.querySelectorAll(
         ".js-animation-container .hidden"
       );
