@@ -14025,7 +14025,7 @@ function (_EventEmitter) {
 
     _this.animation.burger();
 
-    if (window.matchMedia("(max-width: 1367px) and (max-height: 1367px)").matches) {
+    if (window.matchMedia("(max-width: 1367px) and (min-height: 768px)").matches) {
       var hiddenAnimation = document.querySelectorAll(".js-animation-container .hidden");
 
       _this.animation.togglePicturesVissibility(hiddenAnimation);
@@ -14332,7 +14332,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57293" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51193" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
