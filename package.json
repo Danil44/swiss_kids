@@ -6,7 +6,7 @@
   "scripts": {
     "start": "parcel  serve src/index.html --port 1234",
     "start:browsersync": "browser-sync start --proxy 'localhost:1234' --watch --files 'dist'",
-    "build": "parcel build src/index.html"
+    "build": "parcel build src/index.html --public-url ./"
   },
   "repository": {
     "type": "git",

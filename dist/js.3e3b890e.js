@@ -804,4 +804,4 @@ var e=arguments[3];if(require("core-js/shim"),require("regenerator-runtime/runti
 },{"./services/event-emitter":"7Ns1"}],"QvaY":[function(require,module,exports) {
 "use strict";var e=n(require("./model")),r=n(require("./view")),u=n(require("./animations")),t=n(require("./controller"));function n(e){return e&&e.__esModule?e:{default:e}}var a=new e.default,i=new r.default;new u.default,new t.default(a,i);
 },{"./model":"kRZE","./view":"kWCP","./animations":"gRug","./controller":"zrc5"}]},{},["QvaY"], null)
-//# sourceMappingURL=/js.3e3b890e.js.map
+//# sourceMappingURL=js.3e3b890e.js.map
