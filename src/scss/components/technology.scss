@@ -1,0 +1,93 @@
+@import "./main-page.scss";
+@import "./about-company.scss";
+@import "./buy.scss";
+@import "../helpers/variables";
+@import "../helpers/mixins";
+
+.technology {
+  @extend .about-company;
+}
+
+.technology__inner {
+  @extend .about-company__inner;
+  padding: 5em 8em;
+
+  &::before {
+    content: unset;
+  }
+
+  & > ul > li {
+    display: flex;
+    padding-bottom: 60px;
+    margin-bottom: 60px;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid #dee4e7;
+    }
+
+    & > .picture {
+      margin-right: 55px;
+      width: 16.5%;
+      & > img {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.technology__content {
+  @extend .buy__content;
+  padding: 0;
+  margin-bottom: 100px;
+
+  & > h3 {
+    padding-bottom: 40px;
+    border-bottom: 5px solid #dee4e7;
+  }
+
+  & > h4 {
+    @include text(
+      $color: #314b66,
+      $font-size: calc(14px + 0.5vw),
+      $font-weight: 700
+    );
+    line-height: 38px;
+    margin-bottom: 40px;
+  }
+}
+
+.technology__desc {
+  display: flex;
+  & > p {
+    @include text($color: #314b66, $font-size: calc(10px + 0.5vw));
+    line-height: 33px;
+    margin-bottom: 30px;
+    flex-basis: 50%;
+    margin-right: 50px;
+  }
+  & > .technology__img {
+    flex-basis: 50%;
+
+    & > img {
+      width: 100%;
+    }
+  }
+}
+
+.technology__about {
+  width: 77.5%;
+  & > h4 {
+    @include text(
+      $color: #314b66,
+      $font-size: calc(14px + 0.5vw),
+      $font-weight: 700
+    );
+    text-transform: uppercase;
+    margin-bottom: 30px;
+  }
+
+  & > p {
+    @include text($color: #314b66, $font-size: calc(10px + 0.5vw));
+    line-height: 42px;
+  }
+}

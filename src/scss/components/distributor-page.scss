@@ -1,0 +1,14 @@
+@import "./company-page";
+@import "../helpers/variables";
+
+.distributor-page__main-screen {
+  @extend .company-page__main-screen;
+  height: 100vh;
+  @media (max-width: 767px) {
+    height: 100%;
+  }
+}
+
+.distributor-page__inner {
+  @extend .company-page__inner;
+}

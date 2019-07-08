@@ -1,0 +1,10 @@
+@import "./company-page.scss";
+@import "./comments-page";
+@import "../helpers/variables";
+
+.technology-page__main-screen {
+  @extend .company-page__main-screen;
+}
+.technology-page__inner {
+  @extend .company-page__inner;
+}

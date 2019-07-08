@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "parcel src/index.html",
-    "build": "parcel build src/index.html"
+    "start": "parcel  serve src/index.html --port 1234",
+    "start:browsersync": "browser-sync start --proxy 'localhost:1234' --watch --files 'dist'",
+    "build": "parcel build src/index.html --public-url ./"
   },
   "repository": {
     "type": "git",
@@ -16,10 +17,18 @@
   "license": "ISC",
   "homepage": "https://bitbucket.org/itcg/swiss_kids#readme",
   "devDependencies": {
-    "parcel-bundler": "^1.12.3",
+    "cssnano": "^4.1.10",
     "sass": "^1.19.0"
   },
   "dependencies": {
-    "parallax-js": "^3.1.0"
+    "autoprefixer": "^9.5.1",
+    "babel-polyfill": "^6.26.0",
+    "browser-sync": "^2.26.5",
+    "node-sass": "^4.12.0",
+    "pageable": "^0.6.8",
+    "parallax-js": "^3.1.0",
+    "parcel-bundler": "^1.12.3",
+    "postcss-modules": "^1.4.1",
+    "tiny-slider": "^2.9.2"
   }
 }

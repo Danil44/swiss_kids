@@ -107,11 +107,27 @@ section {
   display: block;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   line-height: 1;
-  height: 100%;
+  width: 100%;
+  min-height: 100%;
   position: relative;
+  overflow-x: hidden;
+}
+
+.tns-outer {
   overflow: hidden;
+}
+
+.tns-liveregion {
+  display: none;
+}
+section {
+  height: 100vh;
 }
 
 ol,

@@ -1,0 +1,67 @@
+@import "../helpers/variables";
+.footer {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-color: $primary-bg-color;
+  padding: 1em;
+  height: 60vh;
+
+  @media (min-width: $landscape-bp) {
+    height: 100vh;
+  }
+
+  @media (min-width: $desktop-sm-bp) {
+    padding: 1.5em;
+  }
+
+  @media (min-width: 1024px) and (min-height: 1366px) {
+    height: 60vh !important;
+  }
+
+  &__inner {
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    & > img {
+      margin: 0 auto 55px;
+      width: 90%;
+
+      @media (min-width: $desktop-sm-bp) {
+        margin: 0 auto 110px;
+        width: 80%;
+      }
+    }
+  }
+
+  &__socials {
+    display: flex;
+    width: 200px;
+    justify-content: space-between;
+    align-items: center;
+
+    @media (min-width: $desktop-sm-bp) {
+      width: 295px;
+    }
+
+    &-item {
+      width: 57px;
+      height: 57px;
+      cursor: pointer;
+      transition: 0.2s linear;
+      &:hover {
+        transform: scale(1.1);
+      }
+
+      @media (min-width: $desktop-sm-bp) {
+        width: 80px;
+        height: 80px;
+      }
+    }
+  }
+}

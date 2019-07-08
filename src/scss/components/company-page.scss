@@ -1,0 +1,34 @@
+@import "./main-page.scss";
+@import "./comments-page";
+@import "../helpers/variables";
+
+.company-page__main-screen {
+  @extend .main-page__screen;
+  height: 100%;
+}
+.company-page__inner {
+  @extend .main-page__inner;
+  @extend .comments-page__inner;
+  &::before,
+  &::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: -1;
+  }
+  &::before {
+    background-image: url("../images/about-company/left-fruits.png");
+    left: -8%;
+    bottom: 15%;
+  }
+  &::after {
+    background-image: url("../images/about-company/right-fruits.png");
+    right: -8%;
+    top: 8%;
+  }
+}

@@ -1,0 +1,172 @@
+@import "./main-page.scss";
+@import "../helpers/variables";
+@import "../helpers/mixins";
+.about-product__inner {
+  background-color: #fff;
+  height: 100%;
+  padding: 1.7em 1em;
+
+  // @media (min-width: $tablet-bp) {
+  //   padding: 2.7em 5em;
+  // }
+
+  // @media (min-width: $desktop-sm-bp) {
+  //   padding: 5.5em 9.5em;
+  // }
+
+  @media (min-width: $desktop-lg-bp) {
+    padding: 3.7em 5em;
+  }
+}
+
+.about-product__title {
+  @include text($font-size: calc(35px + 0.5vw), $font-weight: 600);
+  margin-bottom: 0.8em;
+
+  @media (min-width: $desktop-sm-bp) {
+    font-size: calc(75px + 0.5vw);
+    margin-bottom: 1em;
+  }
+}
+
+.about-product__subtitle {
+  @include text($font-size: calc(25px + 0.5vw), $font-weight: 600);
+  padding-bottom: 1em;
+  border-bottom: 5px solid $primary-bg-color;
+  @media (min-width: $desktop-sm-bp) {
+    font-size: calc(40px + 0.5vw);
+  }
+}
+
+.about-product__content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 100%;
+  align-items: baseline;
+
+  @media (min-width: $desktop-sm-bp) {
+    flex-direction: row;
+  }
+}
+
+.about-product__desc {
+  flex-basis: calc(50% - 5em);
+  margin-bottom: 2em;
+
+  @media (min-width: $landscape-bp) {
+    width: 100%;
+  }
+
+  @media (min-width: $desktop-sm-bp) {
+    margin: 0;
+  }
+
+  & div {
+    @media (min-width: $tablet-bp) {
+      overflow: auto;
+      height: 100%;
+    }
+
+    @media (min-width: $desktop-sm-bp) {
+      height: 310px;
+    }
+
+    @media (min-width: $desktop-md-bp) {
+      height: 560px;
+    }
+
+    @media (min-width: 1366px) and (min-height: 1024px) {
+      height: 100%;
+      overflow: unset;
+    }
+
+    @media (min-width: 1024px) and (min-height: 1366px) {
+      height: 100%;
+    }
+
+    & > p {
+      @include text($font-size: calc(11px + 0.5vw));
+      line-height: 33px;
+      padding-top: 25px;
+      margin-bottom: 15px;
+
+      @media (min-width: $desktop-sm-bp) {
+        line-height: 40px;
+      }
+    }
+    & > ul {
+      list-style: square inside;
+
+      & > li {
+        @include text($font-size: calc(11px + 0.5vw));
+        margin-bottom: 15px;
+        line-height: 33px;
+        margin-left: 30px;
+      }
+    }
+  }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    135deg,
+    rgba(61, 165, 107, 1) 10%,
+    rgba(61, 165, 107, 1) 25%,
+    rgba(69, 125, 171, 1) 30%,
+    rgba(69, 125, 171, 1) 50%,
+    rgba(171, 79, 135, 1) 60%,
+    rgba(171, 79, 135, 1) 70%,
+    rgba(223, 67, 7, 1) 90%,
+    rgba(223, 67, 7, 1) 100%
+  );
+}
+
+.about-product__ingredients {
+  @extend .about-product__desc;
+  width: 100%;
+  & > p {
+    @include text($font-size: calc(13px + 0.5vw));
+    padding-top: 25px;
+    margin-bottom: 1em;
+  }
+  & > ul {
+    @media (min-width: $desktop-sm-bp) {
+      height: 220px;
+      overflow: auto;
+    }
+    @media (min-width: $desktop-md-bp) {
+      height: 470px;
+      overflow: auto;
+    }
+
+    @media (min-width: 1366px) and (min-height: 1024px) {
+      height: 100%;
+      overflow: unset;
+    }
+
+    & > li {
+      display: flex;
+      margin-right: 10px;
+      margin-bottom: 1em;
+    }
+  }
+  .ingredient-name {
+    @include text($font-size: calc(10px + 0.5vw), $font-weight: 600);
+  }
+  .dots {
+    margin: 0 33px;
+    flex-grow: 1;
+    border-bottom: 3px dotted #afbdc5;
+    height: 0;
+    align-self: flex-end;
+  }
+  .ingredient-number {
+    @include text($font-size: calc(10px + 0.5vw));
+  }
+}

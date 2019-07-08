@@ -3,6 +3,8 @@ import EventEmitter from "./services/event-emitter";
 export default class Controller extends EventEmitter {
   constructor(model, view) {
     super();
-    view.runParallax();
+    this.view = view;
+    this.model = model;
+    this.view.onPageLoad();
   }
 }

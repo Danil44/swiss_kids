@@ -1,0 +1,16 @@
+@import "./main-page.scss";
+@import "../helpers/variables";
+
+.comments-page__main-screen {
+  @extend .main-page__screen;
+  height: 100%;
+}
+.comments-page__inner {
+  @extend .main-page__inner;
+  overflow: hidden;
+  padding: 1.5em;
+
+  @media (min-width: $desktop-sm-bp) {
+    padding: 2.5em 4.5em;
+  }
+}

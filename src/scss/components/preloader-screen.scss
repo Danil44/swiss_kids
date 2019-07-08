@@ -1,0 +1,47 @@
+@import "../helpers/variables.scss";
+@import "../helpers/mixins.scss";
+
+.preloader-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $primary-bg-color;
+  z-index: 999;
+  visibility: visible;
+  &.done {
+    visibility: hidden;
+  }
+
+  .lds-roller {
+    @include on-circle($item-count: 5, $circle-size: 6em, $item-size: 5em);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    & div {
+      width: 40px;
+      height: 40px;
+      background-size: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+
+      &:first-child {
+        width: 50px;
+        height: 50px;
+        background-image: url("../images/main-screen/raspberrie.png");
+      }
+      &:nth-child(2) {
+        background-image: url("../images/main-screen/blackberry.png");
+      }
+      &:nth-child(3) {
+        background-image: url("../images/main-screen/strawberry.png");
+      }
+      &:last-child {
+        background-image: url("../images/main-screen/lemon.png");
+      }
+    }
+  }
+}
