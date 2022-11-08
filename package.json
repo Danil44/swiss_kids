@@ -28,7 +28,7 @@
     "pageable": "^0.6.8",
     "parallax-js": "^3.1.0",
     "parcel-bundler": "^1.12.3",
-    "postcss-modules": "^1.4.1",
+    "postcss-modules": "^1.5.0",
     "tiny-slider": "^2.9.2"
   }
 }
